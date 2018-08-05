@@ -1,0 +1,23 @@
+{
+    "files.associations": {
+        "*.inc": "cpp",
+        "array": "cpp",
+        "istream": "cpp",
+        "memory": "cpp",
+        "tuple": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp",
+        "xlocmon": "cpp",
+        "xlocnum": "cpp",
+        "xloctime": "cpp",
+        "chrono": "cpp",
+        "functional": "cpp",
+        "random": "cpp",
+        "ratio": "cpp",
+        "xmemory0": "cpp",
+        "xtr1common": "cpp",
+        "xutility": "cpp"
+    },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true
+}
