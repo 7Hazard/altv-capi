@@ -91,6 +91,7 @@ public:
           {"params", params},
           {"isCtor", method->getKind() == Decl::CXXConstructor},
           {"isDtor", method->getKind() == Decl::CXXDestructor},
+          {"isStatic", method->isStatic()},
       });
     }
 
