@@ -39,6 +39,17 @@ json merge(const json &a, const json &b) {
     return result;
 }
 
+std::string GetAccessStr(AccessSpecifier as)
+{
+    switch(as)
+    {
+        case AS_private: return "private";
+        case AS_protected: return "protected";
+        case AS_public: return "public";
+        default: return "";
+    }
+}
+
 // Checks if the record is local to the processed files
 bool IsRecordLocal(const CXXRecordDecl *record) {
     FullSourceLoc fullSourceLoc(record->getLocation(),
@@ -57,8 +68,7 @@ json GetTypeInfo(QualType type, std::string name = "") {
     return {
         {"name", name},
         {"type", type.getAsString()},
-        {"baseType",
-        type.getNonReferenceType().getUnqualifiedType().getAsString(pp)},
+        {"baseType", type.getNonReferenceType().getUnqualifiedType().getAsString(pp)},
         //{"qualifiers", type.getQualifiers().getAsString()},
 
         {"isFundemental", type->isFundamentalType()},
@@ -78,7 +88,7 @@ json GetTypeInfo(QualType type, std::string name = "") {
         // Template stuff
         {"isTemplated", type->isTemplateTypeParmType()},
         //{"templateArgs", type->getAs},
-
+        
         {"isEnum", type->isEnumeralType()},
         {"isStruct", type->isStructureType()},
         {"isClass", type->isClassType()},
@@ -91,11 +101,11 @@ json GetTypeInfo(QualType type, std::string name = "") {
     };
 }
 
-json GetSubRecords(const CXXRecordDecl *record) {
-  json subRecords = json::array();
-
-  return subRecords;
-}
+//json GetSubRecords(const CXXRecordDecl *record) {
+//  json subRecords = json::array();
+//
+//  return subRecords;
+//}
 
 json GetFuncParams(FunctionDecl *func) {
     json params = json::array();
@@ -110,6 +120,7 @@ json GetFuncParams(FunctionDecl *func) {
     return params;
 }
 
+bool containsTemplates = false;
 json GetFuncInfo(NamedDecl *decl) {
     auto func = decl->getAsFunction();
     return {
@@ -117,18 +128,27 @@ json GetFuncInfo(NamedDecl *decl) {
         {"returns", GetTypeInfo(func->getReturnType())},
         {"params", GetFuncParams(func)},
         {"isOverloadedOperator", func->isOverloadedOperator()},
+        {
+            "isTemplated", 
+            containsTemplates = func->isTemplated() 
+                || func->isTemplateDecl() 
+                || func->isTemplateInstantiation() 
+                || func->isTemplateParameter() 
+                || func->isTemplateParameterPack()
+        }
     };
 }
 
 bool isSingleton = false;
 json GetRecordMethods(const CXXRecordDecl *record) {
-    json methods = json::array();
     isSingleton = false;
+    containsTemplates = false;
+
+    json methods = json::array();
     // Iterate over record's methods
     for (auto method : record->methods()) {
-        // Templates are not fun
-        if (method->isTemplated() ||
-            method->getVisibility() != clang::Visibility::DefaultVisibility)
+        // Public methods
+        if (method->getVisibility() != clang::Visibility::DefaultVisibility)
         continue;
 
         // Set method info from record
@@ -139,10 +159,11 @@ json GetRecordMethods(const CXXRecordDecl *record) {
                     {"isDtor", method->getKind() == Decl::CXXDestructor},
                     {"isStatic", method->isStatic()},
                     {"isVirtual", method->isVirtual()},
+                    {"kind", method->getKind()}
                 }));
 
         if (method->isStatic() && method->getNameAsString() == "Instance")
-        isSingleton = true;
+            isSingleton = true;
     }
 
     return methods;
@@ -203,12 +224,25 @@ class RecordHandler : public MatchFinder::MatchCallback {
 public:
     virtual void run(const MatchFinder::MatchResult &Result)
     {
+        auto GetRecordBases = [](const CXXRecordDecl *r){
+            json j = json::array();
+            for(auto b : r->bases())
+            {
+                j.push_back(merge(
+                    GetTypeInfo(b.getType()),
+                    {
+                        {"isVirtual", b.isVirtual()},
+                        {"access", GetAccessStr(b.getAccessSpecifier())},
+                    }
+                ));
+            }
+            return j;
+        };
+
         const CXXRecordDecl *rd = Result.Nodes.getNodeAs<clang::CXXRecordDecl>("records");
 
         // Only handle local records, no templates
-        if (!IsRecordLocal(rd) || rd->isTemplated() ||
-            !rd->isThisDeclarationADefinition())
-        return;
+        if (!IsRecordLocal(rd) || !rd->isThisDeclarationADefinition()) return;
 
         // debug?
         rd->dump(ast);
@@ -219,16 +253,29 @@ public:
         classes.push_back({
             {"name", rd->getNameAsString()},
 
-            //{"subrecords", GetSubRecords(rd)}, // couldn't figure it out
+            //{"vbases", GetRecordVBases(rd)},
             {"methods", GetRecordMethods(rd)},
             {"decls", GetRecordDecls(rd)},
             //{"parent", rd->getParent()}
 
+            {"isCLike", rd->isCLike()},
+            {"kind", rd->getKindName().str()},
             {"isEnum", rd->isEnum()},
             {"isStruct", rd->isStruct()},
             {"isClass", rd->isClass()},
             {"isUnion", rd->isUnion()},
+
+            {"isPolymorphic", rd->isPolymorphic()},
+            {"bases", GetRecordBases(rd)},
+
+            {"isTemplated", rd->isTemplated() || rd->isTemplateDecl() || rd->isTemplateParameter() || rd->isTemplateParameterPack()},
+            {"templateSpecializationKind", rd->getTemplateSpecializationKind()},
+            //{"describedTemplate", rd->getDescribedTemplate()->getNameAsString()},
+            //{"describedClassTemplate", rd->getDescribedClassTemplate()->getNameAsString()},
+            //{"getTemplateInstantiationPattern", rd->getTemplateInstantiationPattern()->getNameAsString()},
+
             {"isSingleton", isSingleton},
+            {"containsTemplates", containsTemplates},
 
             {"location", rd->getLocation().printToString(
                             rd->getASTContext().getSourceManager())},
