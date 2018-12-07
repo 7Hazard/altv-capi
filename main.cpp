@@ -57,18 +57,18 @@ bool IsRecordLocal(const CXXRecordDecl *record) {
     return fullSourceLoc.isValid() && !fullSourceLoc.isInSystemHeader();
 }
 
-json GetFunctionPtrInfo(QualType type) {
-    bool isFuncPtr = false;
-    if (false) {
-    }
-    return {{"isFuncPtr", false}};
-}
+//json GetFunctionPtrInfo(QualType type) {
+//    bool isFuncPtr = false;
+//    if (false) {
+//    }
+//    return {{"isFuncPtr", false}};
+//}
 
-json GetTypeInfo(QualType type, std::string name = "") {
+json GetTypeInfo(QualType type) {
     return {
-        {"name", name},
-        {"type", type.getAsString()},
-        {"baseType", type.getNonReferenceType().getUnqualifiedType().getAsString(pp)},
+        {"kind", "type"},
+        {"name", type.getAsString()},
+        {"baseName", type.getNonReferenceType().getUnqualifiedType().getAsString(pp)},
         //{"qualifiers", type.getQualifiers().getAsString()},
 
         {"isFundemental", type->isFundamentalType()},
@@ -110,12 +110,12 @@ json GetTypeInfo(QualType type, std::string name = "") {
 json GetFuncParams(FunctionDecl *func) {
     json params = json::array();
     for (auto param : func->parameters()) {
-        params.push_back(
-            merge(GetTypeInfo(param->getType(), param->getNameAsString()),
-                {
-                    //{"isFunc", param->isFunctionOrFunctionTemplate()},
-                    //{"funcInfo", GetFuncInfo(param->getAsFunction())},
-                }));
+        params.push_back({
+            {"type", GetTypeInfo(param->getType())},
+            {"name", param->getNameAsString()},
+            //{"isFunc", param->isFunctionOrFunctionTemplate()},
+            //{"funcInfo", GetFuncInfo(param->getAsFunction())},
+        });
     }
     return params;
 }
@@ -159,7 +159,8 @@ json GetRecordMethods(const CXXRecordDecl *record) {
                     {"isDtor", method->getKind() == Decl::CXXDestructor},
                     {"isStatic", method->isStatic()},
                     {"isVirtual", method->isVirtual()},
-                    {"kind", method->getKind()}
+                    {"kind", "function"},
+                    {"funcKind", method->getKind()}
                 }));
 
         if (method->isStatic() && method->getNameAsString() == "Instance")
@@ -198,8 +199,8 @@ json GetRecordDecls(const CXXRecordDecl *record)
                 auto ed = static_cast<EnumDecl*>(decl);
                 decls.push_back({
                     {"kind", decl->getDeclKindName()},
-                    {"name", ed->getNameAsString()},
-                    {"qualName", ed->getQualifiedNameAsString()},
+                    {"baseName", ed->getNameAsString()},
+                    {"name", ed->getQualifiedNameAsString()},
                     {"values", GetEnumValues(ed)},
                 });
                 break;
@@ -251,7 +252,8 @@ public:
 
         // Set the JSON info
         classes.push_back({
-            {"name", rd->getNameAsString()},
+            {"name", rd->getQualifiedNameAsString()},
+            {"baseName", rd->getNameAsString()},
 
             //{"vbases", GetRecordVBases(rd)},
             {"methods", GetRecordMethods(rd)},
@@ -295,11 +297,11 @@ int main(int argc, const char **argv) {
     MatchFinder finder;
     finder.addMatcher(recordMatcher, &recordHandler);
 
-    std::cout << "Processing API..." << std::endl;
+    std::cout << "Processing..." << std::endl;
     tool.run(newFrontendActionFactory(&finder).get());
 
     std::ofstream out(OUTPUT_NAME);
     out << std::setw(4) << classes;
-    std::cout << "Output to " << OUTPUT_NAME << std::endl;
+    std::cout << "Output " << OUTPUT_NAME << std::endl;
     return 0;
 }
