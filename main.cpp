@@ -67,7 +67,7 @@ bool IsRecordLocal(const CXXRecordDecl *record) {
 json GetTypeInfo(QualType type) {
     return {
         {"kind", "type"},
-        {"name", type.getAsString()},
+        {"name", type.getAsString(pp)},
         {"baseName", type.getNonReferenceType().getUnqualifiedType().getAsString(pp)},
         //{"qualifiers", type.getQualifiers().getAsString()},
 
@@ -111,7 +111,7 @@ json GetFuncParams(FunctionDecl *func) {
     json params = json::array();
     for (auto param : func->parameters()) {
         params.push_back({
-            {"type", GetTypeInfo(param->getType())},
+            {"type", GetTypeInfo(param->getOriginalType())},
             {"name", param->getNameAsString()},
             //{"isFunc", param->isFunctionOrFunctionTemplate()},
             //{"funcInfo", GetFuncInfo(param->getAsFunction())},
@@ -123,19 +123,19 @@ json GetFuncParams(FunctionDecl *func) {
 bool containsTemplates = false;
 json GetFuncInfo(NamedDecl *decl) {
     auto func = decl->getAsFunction();
+    containsTemplates = containsTemplates
+        || func->isTemplated() 
+        || func->isTemplateDecl() 
+        || func->isTemplateInstantiation() 
+        || func->isTemplateParameter() 
+        || func->isTemplateParameterPack();
+
     return {
         {"name", func->getNameAsString()},
         {"returns", GetTypeInfo(func->getReturnType())},
         {"params", GetFuncParams(func)},
         {"isOverloadedOperator", func->isOverloadedOperator()},
-        {
-            "isTemplated", 
-            containsTemplates = func->isTemplated() 
-                || func->isTemplateDecl() 
-                || func->isTemplateInstantiation() 
-                || func->isTemplateParameter() 
-                || func->isTemplateParameterPack()
-        }
+        {"isTemplated", containsTemplates}
     };
 }
 
@@ -144,12 +144,14 @@ json GetRecordMethods(const CXXRecordDecl *record) {
     isSingleton = false;
     containsTemplates = false;
 
-    json methods = json::array();
     // Iterate over record's methods
+    json methods = json::array();
     for (auto method : record->methods()) {
-        // Public methods
-        if (method->getVisibility() != clang::Visibility::DefaultVisibility)
-        continue;
+        // Public methods, no ctors and dtors
+        if (method->getVisibility() != clang::Visibility::DefaultVisibility
+            || method->getKind() == Decl::CXXConstructor
+            || method->getKind() == Decl::CXXDestructor)
+            continue;
 
         // Set method info from record
         methods.push_back(
@@ -229,31 +231,32 @@ public:
             json j = json::array();
             for(auto b : r->bases())
             {
-                j.push_back(merge(
-                    GetTypeInfo(b.getType()),
-                    {
-                        {"isVirtual", b.isVirtual()},
-                        {"access", GetAccessStr(b.getAccessSpecifier())},
-                    }
-                ));
+                j.push_back({
+                    {"kind", "base"},
+                    {"isVirtual", b.isVirtual()},
+                    {"access", GetAccessStr(b.getAccessSpecifier())},
+                    {"qualName", b.getType().getAsString()},
+                    {"name", b.getType().getNonReferenceType().getUnqualifiedType().getAsString(pp)},
+                });
             }
             return j;
         };
 
         const CXXRecordDecl *rd = Result.Nodes.getNodeAs<clang::CXXRecordDecl>("records");
 
-        // Only handle local records, no templates
+        // Only handle local records
         if (!IsRecordLocal(rd) || !rd->isThisDeclarationADefinition()) return;
 
-        // debug?
+        // remove?
         rd->dump(ast);
         astOut << ast.str();
-        // debug?
+        // remove?
 
         // Set the JSON info
-        classes.push_back({
+        json classjson = {
             {"name", rd->getQualifiedNameAsString()},
             {"baseName", rd->getNameAsString()},
+            //{"qualName",  rd->getTypeForDecl() .getTypeForDecl().getAsString()},
 
             //{"vbases", GetRecordVBases(rd)},
             {"methods", GetRecordMethods(rd)},
@@ -281,12 +284,19 @@ public:
 
             {"location", rd->getLocation().printToString(
                             rd->getASTContext().getSourceManager())},
-        });
+        };
+
+        // Do not output templates
+        containsTemplates = containsTemplates || rd->isTemplated() || rd->isTemplateDecl() || rd->isTemplateParameter() || rd->isTemplateParameterPack() || rd->getTemplateSpecializationKind() == 53;
+        if(containsTemplates) return;
+
+        classes.push_back(classjson);
     }
 };
 
 int main(int argc, const char **argv) {
     pp.SuppressTagKeyword = true;
+    pp.FullyQualifiedName = true;
 
     CommonOptionsParser optionsParser(argc, argv, category, 0);
 
