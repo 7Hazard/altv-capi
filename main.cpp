@@ -200,7 +200,7 @@ json GetRecordDecls(const CXXRecordDecl *record)
             {
                 auto ed = static_cast<EnumDecl*>(decl);
                 decls.push_back({
-                    {"kind", decl->getDeclKindName()},
+                    {"kind", "enum"},
                     {"baseName", ed->getNameAsString()},
                     {"name", ed->getQualifiedNameAsString()},
                     {"values", GetEnumValues(ed)},
@@ -211,6 +211,20 @@ json GetRecordDecls(const CXXRecordDecl *record)
     }
 
     return decls;
+}
+
+json GetRecordFields(const CXXRecordDecl *record)
+{
+    json fields = json::array();
+    for(auto field : record->fields())
+    {
+        fields.push_back({
+            {"name", field->getNameAsString()},
+            {"type", GetTypeInfo(field->getType())},
+        });
+    }
+    
+    return fields;
 }
 
 // CXXRecordDecl are structs/classes/unions
@@ -253,7 +267,7 @@ public:
         // remove?
 
         // Set the JSON info
-        json classjson = {
+        json recordjson = {
             {"name", rd->getQualifiedNameAsString()},
             {"baseName", rd->getNameAsString()},
             //{"qualName",  rd->getTypeForDecl() .getTypeForDecl().getAsString()},
@@ -261,6 +275,7 @@ public:
             //{"vbases", GetRecordVBases(rd)},
             {"methods", GetRecordMethods(rd)},
             {"decls", GetRecordDecls(rd)},
+            {"fields", GetRecordFields(rd)},
             //{"parent", rd->getParent()}
 
             {"isCLike", rd->isCLike()},
@@ -282,15 +297,14 @@ public:
             {"isSingleton", isSingleton},
             {"containsTemplates", containsTemplates},
 
-            {"location", rd->getLocation().printToString(
-                            rd->getASTContext().getSourceManager())},
+            {"location", rd->getLocation().printToString(rd->getASTContext().getSourceManager())},
         };
 
         // Do not output templates
         containsTemplates = containsTemplates || rd->isTemplated() || rd->isTemplateDecl() || rd->isTemplateParameter() || rd->isTemplateParameterPack() || rd->getTemplateSpecializationKind() == 53;
         if(containsTemplates) return;
 
-        classes.push_back(classjson);
+        classes.push_back(recordjson);
     }
 };
 
