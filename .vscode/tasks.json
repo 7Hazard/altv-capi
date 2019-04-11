@@ -10,7 +10,12 @@
             "options": {
                 "cwd": "${workspaceFolder}/../../../../../../BUILD"
             },
-            "args": []
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "args": [],
+            "problemMatcher": []
         },
         {
             "label": "Build (clang-cl)",
@@ -18,6 +23,36 @@
             "command": "${workspaceFolder}/../../../../../../BUILD/build.bat",
             "options": {
                 "cwd": "${workspaceFolder}/../../../../../../BUILD"
+            },
+            "args": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Generate Release (clang-cl)",
+            "type": "shell",
+            "command": "${workspaceFolder}/../../../../../../BUILD-REL/gen-cmake.bat",
+            "options": {
+                "cwd": "${workspaceFolder}/../../../../../../BUILD-REL"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "args": []
+        },
+        {
+            "label": "Build Release (clang-cl)",
+            "type": "shell",
+            "command": "${workspaceFolder}/../../../../../../BUILD-REL/build.bat",
+            "options": {
+                "cwd": "${workspaceFolder}/../../../../../../BUILD-REL"
             },
             "args": [],
             "group": {

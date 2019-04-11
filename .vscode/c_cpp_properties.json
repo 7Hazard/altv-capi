@@ -4,10 +4,10 @@
             "name": "Clang x64 (Windows)",
             "includePath": [
                 "${workspaceFolder}/**",
-                "G:/src/clang-llvm/llvm/tools/clang/include",
-                "G:/src/clang-llvm/llvm/include",
-                "G:/src/clang-llvm/BUILD/tools/clang/include",
-                "G:/src/clang-llvm/BUILD/include"
+                "${workspaceFolder}/../../../../../../llvm/tools/clang/include",
+                "${workspaceFolder}/../../../../../../llvm/include",
+                "${workspaceFolder}/../../../../../../BUILD-REL/tools/clang/include",
+                "${workspaceFolder}/../../../../../../BUILD-REL/include"
             ],
             "defines": [
                 "_DEBUG",
@@ -18,7 +18,7 @@
             "compilerPath": "C:/Program Files/LLVM/bin/clang-cl.exe",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64"
+            "intelliSenseMode": "${default}"
         }
     ],
     "version": 4

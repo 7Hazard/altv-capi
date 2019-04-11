@@ -68,7 +68,14 @@
         "xiosbase": "cpp",
         "xlocinfo": "cpp",
         "xmemory": "cpp",
-        "xstddef": "cpp"
+        "xstddef": "cpp",
+        "filesystem": "cpp",
+        "codecvt": "cpp",
+        "locale": "cpp",
+        "regex": "cpp",
+        "string_view": "cpp",
+        "xlocbuf": "cpp",
+        "xlocmes": "cpp"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true
