@@ -75,7 +75,10 @@
         "regex": "cpp",
         "string_view": "cpp",
         "xlocbuf": "cpp",
-        "xlocmes": "cpp"
+        "xlocmes": "cpp",
+        "unordered_set": "cpp",
+        "*.def": "cpp",
+        "queue": "cpp"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true
