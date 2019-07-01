@@ -15,12 +15,12 @@ static Handler h(matcher, [](const MatchFinder::MatchResult& result){
 
 #ifdef _DEBUG
     auto loc = method->getLocation().printToString(*result.SourceManager);
-    capiheader 
+    capicheader 
         << "// Method" << std::endl
         << "// " << loc << std::endl
         << "// " << methodname << std::endl;
 #endif
 
-    capiheader << "\n" << std::endl;
+    capicheader << "\n" << std::endl;
 });
 */

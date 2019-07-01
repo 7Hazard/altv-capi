@@ -4,10 +4,10 @@
             "name": "Clang x64 (Windows)",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/../../../../../../llvm/tools/clang/include",
-                "${workspaceFolder}/../../../../../../llvm/include",
-                "${workspaceFolder}/../../../../../../BUILD-REL/tools/clang/include",
-                "${workspaceFolder}/../../../../../../BUILD-REL/include",
+                "${workspaceFolder}/../../clang/include",
+                "${workspaceFolder}/../../llvm/include",
+                "${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/tools/clang/include",
+                "${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/include",
                 "${workspaceFolder}/src"
             ],
             "defines": [
@@ -22,19 +22,42 @@
             "intelliSenseMode": "${default}"
         },
         {
-            "name": "CAPI",
+            "name": "CAPI Server",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/../../../../../../llvm/tools/clang/include",
-                "${workspaceFolder}/../../../../../../llvm/include",
-                "${workspaceFolder}/../../../../../../BUILD-REL/tools/clang/include",
-                "${workspaceFolder}/../../../../../../BUILD-REL/include",
+                "${workspaceFolder}/../../clang/include",
+                "${workspaceFolder}/../../llvm/include",
+                "${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/tools/clang/include",
+                "${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/include",
                 "${workspaceFolder}/src"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
-                "_UNICODE"
+                "_UNICODE",
+                "ALT_SERVER_API"
+            ],
+            "windowsSdkVersion": "10.0.16299.0",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang-cl.exe",
+            "cStandard": "c11",
+            "intelliSenseMode": "${default}"
+        },
+        {
+            "name": "CAPI Client WIN32",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/../../clang/include",
+                "${workspaceFolder}/../../llvm/include",
+                "${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/tools/clang/include",
+                "${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/include",
+                "${workspaceFolder}/src"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "ALT_CLIENT_API",
+                "_WIN32"
             ],
             "windowsSdkVersion": "10.0.16299.0",
             "compilerPath": "C:/Program Files/LLVM/bin/clang-cl.exe",

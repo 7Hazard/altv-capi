@@ -10,11 +10,12 @@ static Handler enumHandler(enumMatcher, [](const MatchFinder::MatchResult& resul
 
     // Data
     json enumjson;
-    auto enumname = GetCName(enumdecl->getQualifiedNameAsString());
+    auto enumname = ToCIdentifier(enumdecl->getQualifiedNameAsString());
     //logfile << "Enum: " << enumname << std::endl;
 
     // Write to header
-    capiheader << "typedef enum " << enumname << " {\n";
+    capixheader("typedef ", "");
+    capiheader("enum " << enumname << " {\n");
 
     // enums
     for(auto e = enumdecl->enumerator_begin(); e != enumdecl->enumerator_end(); )
@@ -25,8 +26,9 @@ static Handler enumHandler(enumMatcher, [](const MatchFinder::MatchResult& resul
         //logfile << ename << " = " << eval << std::endl;
 
         // header
-        capiheader << "    " << ename << " = " << eval 
-            << (++e != enumdecl->enumerator_end() ? ",\n" : "\n");
+        std::string s = ("    ") + ename + (" = ") + std::to_string(eval);
+        s += (++e != enumdecl->enumerator_end() ? ",\n" : "\n");
+        capiheader(s);
 
         // json
         enumjson["enumerators"].push_back({
@@ -35,7 +37,7 @@ static Handler enumHandler(enumMatcher, [](const MatchFinder::MatchResult& resul
         });
     }
 
-    capiheader << "};\n" << std::endl;
+    capiheader("};\n" << std::endl);
 
     // json
     capijson["enums"][enumname] = enumjson;

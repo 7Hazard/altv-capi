@@ -1,26 +1,24 @@
 #pragma once
 
-#define ASTFileName "altv-capi.ast"
-#define LogFileName "altv-capi.log"
-#define JsonFileName "altv-capi.json"
-#define HeaderFileName "altv-capi.h"
-#define SourceFileName "alt-capi.cpp"
-
 #define STRINGIFY(x) #x
 #define astdump(node) node->dump(ast); ast << "\n--- END OF NODE ---\n\n"
 #define sastdump(node) static bool dump_##node = false; \
     if(!dump_##node) { node->dump(ast); ast << "\n--- END OF NODE ---\n\n"; dump_##node = true; } 
 
 #ifdef _DEBUG
-#define logd(x) capiheader << x << std::endl
+#define logd(x) capicheader << x << std::endl; capicppheader << x << std::endl
 #else
 #define logd(x)
 #endif
+
+#define capiheader(x) capicheader << x; capicppheader << x
+#define capixheader(c, cpp) capicheader << c; capicppheader << cpp
 
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <unordered_set>
+#include <chrono>
 
 #include "nlohmann/json.hpp"
 using nlohmann::json;
@@ -46,9 +44,10 @@ extern Sema* semma;
 extern raw_fd_ostream ast;
 extern std::ofstream logfile;
 extern json capijson;
-extern std::ofstream capiheader;
+extern std::ofstream capicheader;
+extern std::ofstream capicppheader;
 extern std::ofstream capisource;
-extern std::unordered_set<std::string> typedefs;
+extern std::unordered_set<std::string> capisymbols;
 
 class Handler : public MatchFinder::MatchCallback
 {

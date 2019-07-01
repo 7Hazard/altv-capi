@@ -1,0 +1,911 @@
+{
+    "enums": {
+        "altCEventType": {
+            "enumerators": [
+                {
+                    "name": "ALTCEVENTTYPE_NONE",
+                    "value": 0
+                },
+                {
+                    "name": "ALTCEVENTTYPE_PLAYER_CONNECT",
+                    "value": 1
+                },
+                {
+                    "name": "ALTCEVENTTYPE_PLAYER_DISCONNECT",
+                    "value": 2
+                },
+                {
+                    "name": "ALTCEVENTTYPE_SERVER_SCRIPT_EVENT",
+                    "value": 3
+                },
+                {
+                    "name": "ALTCEVENTTYPE_CLIENT_SCRIPT_EVENT",
+                    "value": 4
+                },
+                {
+                    "name": "ALTCEVENTTYPE_META_CHANGE",
+                    "value": 5
+                },
+                {
+                    "name": "ALTCEVENTTYPE_SYNCED_META_CHANGE",
+                    "value": 6
+                },
+                {
+                    "name": "ALTCEVENTTYPE_PLAYER_DAMAGE",
+                    "value": 7
+                },
+                {
+                    "name": "ALTCEVENTTYPE_PLAYER_DEATH",
+                    "value": 8
+                },
+                {
+                    "name": "ALTCEVENTTYPE_CHECKPOINT_EVENT",
+                    "value": 9
+                },
+                {
+                    "name": "ALTCEVENTTYPE_COLSHAPE_EVENT",
+                    "value": 10
+                },
+                {
+                    "name": "ALTCEVENTTYPE_PLAYER_ENTER_VEHICLE",
+                    "value": 11
+                },
+                {
+                    "name": "ALTCEVENTTYPE_PLAYER_LEAVE_VEHICLE",
+                    "value": 12
+                },
+                {
+                    "name": "ALTCEVENTTYPE_PLAYER_CHANGE_VEHICLE_SEAT",
+                    "value": 13
+                },
+                {
+                    "name": "ALTCEVENTTYPE_REMOVE_ENTITY_EVENT",
+                    "value": 14
+                },
+                {
+                    "name": "ALTCEVENTTYPE_DATA_NODE_RECEIVED_EVENT",
+                    "value": 15
+                },
+                {
+                    "name": "ALTCEVENTTYPE_CONSOLE_COMMAND_EVENT",
+                    "value": 16
+                },
+                {
+                    "name": "ALTCEVENTTYPE_CONNECTION_COMPLETE",
+                    "value": 17
+                },
+                {
+                    "name": "ALTCEVENTTYPE_DISCONNECT_EVENT",
+                    "value": 18
+                },
+                {
+                    "name": "ALTCEVENTTYPE_WEB_VIEW_EVENT",
+                    "value": 19
+                },
+                {
+                    "name": "ALTCEVENTTYPE_KEYBOARD_EVENT",
+                    "value": 20
+                },
+                {
+                    "name": "ALTCEVENTTYPE_GAME_ENTITY_CREATE",
+                    "value": 21
+                },
+                {
+                    "name": "ALTCEVENTTYPE_GAME_ENTITY_DESTROY",
+                    "value": 22
+                },
+                {
+                    "name": "ALTCEVENTTYPE_ALL",
+                    "value": 23
+                },
+                {
+                    "name": "ALTCEVENTTYPE_SIZE",
+                    "value": 24
+                }
+            ]
+        },
+        "altColShapeType": {
+            "enumerators": [
+                {
+                    "name": "ALTCOLSHAPETYPE_ColshapeSphere",
+                    "value": 0
+                },
+                {
+                    "name": "ALTCOLSHAPETYPE_ColshapeCylinder",
+                    "value": 1
+                },
+                {
+                    "name": "ALTCOLSHAPETYPE_ColshapeCircle",
+                    "value": 2
+                },
+                {
+                    "name": "ALTCOLSHAPETYPE_ColshapeCube",
+                    "value": 3
+                },
+                {
+                    "name": "ALTCOLSHAPETYPE_ColshapeRect",
+                    "value": 4
+                }
+            ]
+        },
+        "altIBaseObjectType": {
+            "enumerators": [
+                {
+                    "name": "ALTIBASEOBJECTTYPE_PLAYER",
+                    "value": 0
+                },
+                {
+                    "name": "ALTIBASEOBJECTTYPE_VEHICLE",
+                    "value": 1
+                },
+                {
+                    "name": "ALTIBASEOBJECTTYPE_CHECKPOINT",
+                    "value": 2
+                },
+                {
+                    "name": "ALTIBASEOBJECTTYPE_BLIP",
+                    "value": 3
+                },
+                {
+                    "name": "ALTIBASEOBJECTTYPE_WEBVIEW",
+                    "value": 4
+                },
+                {
+                    "name": "ALTIBASEOBJECTTYPE_VOICE_CHANNEL",
+                    "value": 5
+                },
+                {
+                    "name": "ALTIBASEOBJECTTYPE_COLSHAPE",
+                    "value": 6
+                }
+            ]
+        },
+        "altIBlipType": {
+            "enumerators": [
+                {
+                    "name": "ALTIBLIPTYPE_VEHICLE",
+                    "value": 1
+                },
+                {
+                    "name": "ALTIBLIPTYPE_PED",
+                    "value": 2
+                },
+                {
+                    "name": "ALTIBLIPTYPE_OBJECT",
+                    "value": 3
+                },
+                {
+                    "name": "ALTIBLIPTYPE_DESTINATION",
+                    "value": 4
+                },
+                {
+                    "name": "ALTIBLIPTYPE_CONT",
+                    "value": 5
+                },
+                {
+                    "name": "ALTIBLIPTYPE_PICKUP_UNK",
+                    "value": 6
+                },
+                {
+                    "name": "ALTIBLIPTYPE_RADIUS",
+                    "value": 7
+                },
+                {
+                    "name": "ALTIBLIPTYPE_PICKUP",
+                    "value": 8
+                },
+                {
+                    "name": "ALTIBLIPTYPE_COP",
+                    "value": 9
+                },
+                {
+                    "name": "ALTIBLIPTYPE_AREA",
+                    "value": 11
+                },
+                {
+                    "name": "ALTIBLIPTYPE_GALLERY",
+                    "value": 12
+                },
+                {
+                    "name": "ALTIBLIPTYPE_PICKUP_OBJECT",
+                    "value": 13
+                }
+            ]
+        },
+        "altIPackageMode": {
+            "enumerators": [
+                {
+                    "name": "ALTIPACKAGEMODE_READ",
+                    "value": 0
+                },
+                {
+                    "name": "ALTIPACKAGEMODE_WRITE",
+                    "value": 1
+                }
+            ]
+        },
+        "altIPackageSeekOrigin": {
+            "enumerators": [
+                {
+                    "name": "ALTIPACKAGESEEKORIGIN_SET",
+                    "value": 0
+                },
+                {
+                    "name": "ALTIPACKAGESEEKORIGIN_CUR",
+                    "value": 1
+                },
+                {
+                    "name": "ALTIPACKAGESEEKORIGIN_END",
+                    "value": 2
+                }
+            ]
+        },
+        "altIResourceState": {
+            "enumerators": [
+                {
+                    "name": "ALTIRESOURCESTATE_STOPPED",
+                    "value": 0
+                },
+                {
+                    "name": "ALTIRESOURCESTATE_INSTANTIATING",
+                    "value": 1
+                },
+                {
+                    "name": "ALTIRESOURCESTATE_STARTED",
+                    "value": 2
+                }
+            ]
+        },
+        "altMValueType": {
+            "enumerators": [
+                {
+                    "name": "ALTMVALUETYPE_NIL",
+                    "value": 0
+                },
+                {
+                    "name": "ALTMVALUETYPE_BOOL",
+                    "value": 1
+                },
+                {
+                    "name": "ALTMVALUETYPE_INT",
+                    "value": 2
+                },
+                {
+                    "name": "ALTMVALUETYPE_UINT",
+                    "value": 3
+                },
+                {
+                    "name": "ALTMVALUETYPE_DOUBLE",
+                    "value": 4
+                },
+                {
+                    "name": "ALTMVALUETYPE_STRING",
+                    "value": 5
+                },
+                {
+                    "name": "ALTMVALUETYPE_LIST",
+                    "value": 6
+                },
+                {
+                    "name": "ALTMVALUETYPE_DICT",
+                    "value": 7
+                },
+                {
+                    "name": "ALTMVALUETYPE_ENTITY",
+                    "value": 8
+                },
+                {
+                    "name": "ALTMVALUETYPE_FUNCTION",
+                    "value": 9
+                }
+            ]
+        }
+    },
+    "structs": {
+        "alt_ArrayMValue": {
+            "fields": [
+                {
+                    "name": "data"
+                },
+                {
+                    "name": "size"
+                },
+                {
+                    "name": "capacity"
+                }
+            ]
+        },
+        "alt_ArrayString": {
+            "fields": [
+                {
+                    "name": "data"
+                },
+                {
+                    "name": "size"
+                },
+                {
+                    "name": "capacity"
+                }
+            ]
+        },
+        "alt_ArrayStringView": {
+            "fields": [
+                {
+                    "name": "data"
+                },
+                {
+                    "name": "size"
+                },
+                {
+                    "name": "capacity"
+                }
+            ]
+        },
+        "alt_CCheckpointEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "target"
+                },
+                {
+                    "name": "entity"
+                },
+                {
+                    "name": "state"
+                }
+            ]
+        },
+        "alt_CClientScriptEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "target"
+                },
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "args"
+                }
+            ]
+        },
+        "alt_CColShapeEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "target"
+                },
+                {
+                    "name": "entity"
+                },
+                {
+                    "name": "state"
+                }
+            ]
+        },
+        "alt_CConsoleCommandEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "args"
+                }
+            ]
+        },
+        "alt_CDataNodeReceivedEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "json"
+                }
+            ]
+        },
+        "alt_CEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                }
+            ]
+        },
+        "alt_CPlayerChangeVehicleSeatEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "target"
+                },
+                {
+                    "name": "player"
+                },
+                {
+                    "name": "oldSeat"
+                },
+                {
+                    "name": "newSeat"
+                }
+            ]
+        },
+        "alt_CPlayerConnectEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "target"
+                },
+                {
+                    "name": "reason"
+                }
+            ]
+        },
+        "alt_CPlayerDamageEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "target"
+                },
+                {
+                    "name": "attacker"
+                },
+                {
+                    "name": "damage"
+                },
+                {
+                    "name": "weapon"
+                }
+            ]
+        },
+        "alt_CPlayerDeathEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "target"
+                },
+                {
+                    "name": "killer"
+                },
+                {
+                    "name": "weapon"
+                }
+            ]
+        },
+        "alt_CPlayerDisconnectEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "target"
+                },
+                {
+                    "name": "reason"
+                }
+            ]
+        },
+        "alt_CPlayerEnterVehicleEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "target"
+                },
+                {
+                    "name": "player"
+                },
+                {
+                    "name": "seat"
+                }
+            ]
+        },
+        "alt_CPlayerLeaveVehicleEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "target"
+                },
+                {
+                    "name": "player"
+                },
+                {
+                    "name": "seat"
+                }
+            ]
+        },
+        "alt_CRemoveEntityEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "target"
+                }
+            ]
+        },
+        "alt_CServerScriptEvent": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "cancelled"
+                },
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "args"
+                }
+            ]
+        },
+        "alt_IResource": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "path"
+                },
+                {
+                    "name": "main"
+                },
+                {
+                    "name": "pkg"
+                },
+                {
+                    "name": "state"
+                },
+                {
+                    "name": "exports"
+                }
+            ]
+        },
+        "alt_IResource_CreationInfo": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "name"
+                },
+                {
+                    "name": "path"
+                },
+                {
+                    "name": "main"
+                },
+                {
+                    "name": "deps"
+                },
+                {
+                    "name": "pkg"
+                }
+            ]
+        },
+        "alt_MValue": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "storage"
+                }
+            ]
+        },
+        "alt_MValueDict": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "storage"
+                }
+            ]
+        },
+        "alt_MValueFunction": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "storage"
+                }
+            ]
+        },
+        "alt_MValueList": {
+            "fields": [
+                {
+                    "name": "type"
+                },
+                {
+                    "name": "storage"
+                }
+            ]
+        },
+        "alt_MValue_Function": {
+            "fields": [
+                {
+                    "name": "invoker"
+                }
+            ]
+        },
+        "alt_MValue_Storage": {
+            "fields": [
+                {
+                    "name": "refCount"
+                }
+            ]
+        },
+        "alt_MValue_StorageArrayMValue": {
+            "fields": [
+                {
+                    "name": "refCount"
+                },
+                {
+                    "name": "value"
+                }
+            ]
+        },
+        "alt_MValue_StorageIBaseObjectPtr": {
+            "fields": [
+                {
+                    "name": "refCount"
+                },
+                {
+                    "name": "value"
+                }
+            ]
+        },
+        "alt_MValue_StorageMValue_Function": {
+            "fields": [
+                {
+                    "name": "refCount"
+                },
+                {
+                    "name": "value"
+                }
+            ]
+        },
+        "alt_MValue_StorageString": {
+            "fields": [
+                {
+                    "name": "refCount"
+                },
+                {
+                    "name": "value"
+                }
+            ]
+        },
+        "alt_MValue_Storage_Bool": {
+            "fields": [
+                {
+                    "name": "refCount"
+                },
+                {
+                    "name": "value"
+                }
+            ]
+        },
+        "alt_MValue_Storagedouble": {
+            "fields": [
+                {
+                    "name": "refCount"
+                },
+                {
+                    "name": "value"
+                }
+            ]
+        },
+        "alt_MValue_Storagelonglong": {
+            "fields": [
+                {
+                    "name": "refCount"
+                },
+                {
+                    "name": "value"
+                }
+            ]
+        },
+        "alt_MValue_Storageunsignedlonglong": {
+            "fields": [
+                {
+                    "name": "refCount"
+                },
+                {
+                    "name": "value"
+                }
+            ]
+        },
+        "alt_PointLayout": {
+            "fields": [
+                {
+                    "name": "x"
+                },
+                {
+                    "name": "y"
+                },
+                {
+                    "name": "z"
+                }
+            ]
+        },
+        "alt_PointPaddedLayout": {
+            "fields": [
+                {
+                    "name": "x"
+                },
+                {
+                    "name": "y"
+                },
+                {
+                    "name": "z"
+                },
+                {
+                    "name": "pad"
+                }
+            ]
+        },
+        "alt_RGBA": {
+            "fields": [
+                {
+                    "name": "r"
+                },
+                {
+                    "name": "g"
+                },
+                {
+                    "name": "b"
+                },
+                {
+                    "name": "a"
+                }
+            ]
+        },
+        "alt_RotationLayout": {
+            "fields": [
+                {
+                    "name": "roll"
+                },
+                {
+                    "name": "pitch"
+                },
+                {
+                    "name": "yaw"
+                }
+            ]
+        },
+        "alt_RotationPaddedLayout": {
+            "fields": [
+                {
+                    "name": "roll"
+                },
+                {
+                    "name": "pitch"
+                },
+                {
+                    "name": "yaw"
+                },
+                {
+                    "name": "pad"
+                }
+            ]
+        },
+        "alt_String": {
+            "fields": [
+                {
+                    "name": "data"
+                },
+                {
+                    "name": "size"
+                }
+            ]
+        },
+        "alt_StringView": {
+            "fields": [
+                {
+                    "name": "data"
+                },
+                {
+                    "name": "size"
+                }
+            ]
+        },
+        "alt_VectorLayoutfloat4": {
+            "fields": [
+                {
+                    "name": "elements"
+                }
+            ]
+        },
+        "alt_Vectorfloat4VectorLayoutfloat4": {
+            "fields": [
+                {
+                    "name": "elements"
+                }
+            ]
+        },
+        "alt_ViewMatrixLayout": {
+            "fields": [
+                {
+                    "name": "right"
+                },
+                {
+                    "name": "up"
+                },
+                {
+                    "name": "forward"
+                },
+                {
+                    "name": "pos"
+                }
+            ]
+        }
+    }
+}

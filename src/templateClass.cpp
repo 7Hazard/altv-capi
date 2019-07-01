@@ -47,7 +47,7 @@ static Handler templateClassHandler(templateClassMatcher, [](const MatchFinder::
 
 #ifdef _DEBUG
     auto loc = record->getLocation().printToString(*result.SourceManager);
-    capiheader 
+    capicheader 
         << "// classTemplateSpecializationDecl" << std::endl
         << "// " << loc << std::endl
         << "// " << recordnameorig << std::endl;
@@ -62,7 +62,7 @@ static Handler templateClassHandler(templateClassMatcher, [](const MatchFinder::
     else if(record->getDeclKind() == Decl::Kind::ClassTemplatePartialSpecialization)
     {
         #ifdef _DEBUG
-        capiheader << "// Is ClassTemplatePartialSpecialization.\n" << std::endl;
+        capicheader << "// Is ClassTemplatePartialSpecialization.\n" << std::endl;
         #endif
         return;
     }
@@ -71,14 +71,14 @@ static Handler templateClassHandler(templateClassMatcher, [](const MatchFinder::
     //    || record->getTemplateSpecializationKind() != TemplateSpecializationKind::TSK_ExplicitInstantiationDeclaration))
     //{
     //    #ifdef _DEBUG
-    //    capiheader << "// Is Partial ClassTemplateSpecialization.\n" << std::endl;
+    //    capicheader << "// Is Partial ClassTemplateSpecialization.\n" << std::endl;
     //    #endif
     //    return;
     //}
     //else if(record->getTemplateSpecializationKind() == TemplateSpecializationKind::TSK_ImplicitInstantiation)
     //{
     //    #ifdef _DEBUG
-    //    capiheader << "// Is ClassTemplate.\n" << std::endl;
+    //    capicheader << "// Is ClassTemplate.\n" << std::endl;
     //    #endif
     //    return;
     //}
@@ -188,9 +188,9 @@ static Handler templateClassHandler(templateClassMatcher, [](const MatchFinder::
     if(!dofields(record))
         return;
 
-    capiheader << "typedef struct " << cstructname;
-    if(body.str().empty()) capiheader << " " << cstructname << ";\n" << std::endl;
-    else capiheader << " {\n" << body.str() << "} " << cstructname << ";\n" << std::endl;
+    capicheader << "typedef struct " << cstructname;
+    if(body.str().empty()) capicheader << " " << cstructname << ";\n" << std::endl;
+    else capicheader << " {\n" << body.str() << "} " << cstructname << ";\n" << std::endl;
 
     // Parent methods
 
@@ -325,7 +325,7 @@ static Handler templateClassHandler(templateClassMatcher, [](const MatchFinder::
         }
 
         // Header
-        capiheader <<
+        capicheader <<
             "CAPI " << cret << " " << cfuncname << '(' << params << ");" << std::endl;
 
         // Source

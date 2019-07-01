@@ -69,9 +69,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
     }
     else if(record->getDeclKind() == Decl::Kind::ClassTemplatePartialSpecialization)
     {
-        #ifdef _DEBUG
-        capiheader << "// Is ClassTemplatePartialSpecialization.\n" << std::endl;
-        #endif
+        logd("// Is ClassTemplatePartialSpecialization.\n");
         return;
     }
     //else if(record->getDeclKind() == Decl::Kind::ClassTemplateSpecialization
@@ -79,14 +77,14 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
     //    || record->getTemplateSpecializationKind() != TemplateSpecializationKind::TSK_ExplicitInstantiationDeclaration))
     //{
     //    #ifdef _DEBUG
-    //    capiheader << "// Is Partial ClassTemplateSpecialization.\n" << std::endl;
+    //    capicheader << "// Is Partial ClassTemplateSpecialization.\n" << std::endl;
     //    #endif
     //    return;
     //}
     //else if(record->getTemplateSpecializationKind() == TemplateSpecializationKind::TSK_ImplicitInstantiation)
     //{
     //    #ifdef _DEBUG
-    //    capiheader << "// Is ClassTemplate.\n" << std::endl;
+    //    capicheader << "// Is ClassTemplate.\n" << std::endl;
     //    #endif
     //    return;
     //}
@@ -184,15 +182,31 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
     if(!dofields(record))
         return;
 
-    if(typedefs.find(cstructname) != typedefs.end())
+    if(capisymbols.find(cstructname) != capisymbols.end())
     {
-        logd("// typedef already declared");
+        logd("// symbol already declared");
         return;
     }
 
-    capiheader << "typedef struct " << cstructname;
-    if(body.str().empty()) capiheader << " " << cstructname << ";\n" << std::endl;
-    else capiheader << " {\n" << body.str() << "} " << cstructname << ";\n" << std::endl;
+    capixheader("typedef ", "");
+    capiheader("struct " << cstructname);
+    if(body.str().empty())
+    {
+        // capiheader(" " << cstructname << ";\n" << std::endl);
+        capixheader(" " << cstructname << ";\n" << std::endl, " {};\n\n");
+    }
+    else
+    {
+        capixheader(
+            " {\n" << body.str() << "} " << cstructname << ";\n" << std::endl,
+            " {\n" << body.str() << "};\n" << std::endl
+        );
+    }
+
+    // free function
+    auto cfreefuncsig = ("CAPI void ") + cstructname + ("_free(struct ") + cstructname + ("* ptr)");
+    capiheader(cfreefuncsig << ";\n\n");
+    capisource << cfreefuncsig << "\n{\n    delete ptr;\n}\n\n";
 
     auto domethods = [&](const CXXRecordDecl* r)
     {
@@ -211,6 +225,8 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             auto ret = method->getReturnType().getCanonicalType();
             std::string cret;
             std::stringstream cfuncsource;
+            std::stringstream cfunccomment;
+            json cfuncjson;
 
             auto loc = method->getLocation().printToString(*result.SourceManager);
             logd("// Method" << std::endl
@@ -266,34 +282,73 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             std::string params;
 
             // Return type
+            std::string crettype;
+            std::string crettypekind;
             std::string paramReturnType;
+            bool copyCtor = false;
             if(ret->isFundamentalType() || ret->isBooleanType()
                 || (ret->isPointerType() && ret->getPointeeType()->isFundamentalType())
                 )
             {
-                cret = ret.getAsString();
+                if(ret->isPointerType() && ret->getPointeeType()->isFundamentalType()){
+                    crettypekind = "pointer";
+                }
+                else {    
+                    crettypekind = "fundemental";
+                }
+                crettype = ret.getAsString();
+                cret = crettype;
                 cfuncsource << "    return (" << cret << ")";
             }
             else if(ret->isEnumeralType())
             {
-                cret = ToCType(ret.getAsString());
+                crettypekind = "enum";
+                crettype = ToCType(ret.getAsString());
+                cret = ("enum ")+crettype;
                 cfuncsource << "    return (" << cret << ")";
             }
             else if(ret->isReferenceType())
             {
-                cret = ("struct ")+ToCType(ret.getAsString());
+                crettypekind = "pointer";
+                crettype = ToCType(ret.getAsString());
+                cret = ("struct ")+crettype;
                 cfuncsource << "    return (" << cret << ")&";
             }
             else if(ret->isPointerType())
             {
-                cret = ("struct ")+ToCType(ret.getAsString());
+                crettypekind = "pointer";
+                crettype = ToCType(ret.getAsString());
+                cret = ("struct ")+crettype;
                 cfuncsource << "    return (" << cret << ")";
             }
-            else {
+            // copies
+            else if(ret.isTriviallyCopyableType(method->getASTContext())){
                 paramReturnType = ToCType(ret.getAsString())+"*";
+                crettypekind = "fundemental";
+                crettype = "void";
                 cret = "void";
-                cfuncsource << "    memcpy(_return, &";
+                cfuncsource << "    const auto& addr = ";
             }
+            else {
+                copyCtor = true;
+                // cross your fingers and hope that the type has a copy constructor
+                // allocate type via copy ctor
+                crettypekind = "pointer";
+                crettype = ToCType(ret.getAsString())+"*";
+                cret = ("struct ")+crettype;
+                cfuncsource << "    return (" << cret << ")(new " << ret.getAsString() << "(";
+
+                // Has to have accompanying free function for the type
+                // auto freefuncsig = ToCIdentifier(ret.getAsString())+("_free(")+cret+(" ptr)");
+                auto freefuncsig = ToCIdentifier(ret.getAsString())+("_free()");
+                cfunccomment << "// Return ptr must be manually freed with " << freefuncsig << "\n";
+            }
+
+            // return json
+            cfuncjson["returns"] = {
+                {"type", crettype},
+                {"kind", crettypekind}
+            };
 
             // Static/Member
             if(method->isStatic())
@@ -302,8 +357,16 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 cfuncsource << rname << "::";
             }
             else {
-                params += ("struct ")+cstructname+(" * _instance");
+                std::string cparamtype = cstructname+"*";
+                params += ("struct ")+cparamtype+(" _instance");
                 cfuncsource << "((" << rname << " *)_instance)->";
+
+                // json
+                cfuncjson["params"].push_back({
+                    {"name", "_instance"},
+                    {"type", cparamtype},
+                    {"kind", "pointer"}
+                });
             }
             cfuncsource << methodname << "(";
 
@@ -316,6 +379,8 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 auto paramtypestr = paramtype.getAsString();
                 auto paramname = param->getName().str();
                 std::string cparam;
+                std::string cparamtype;
+                std::string cparamtypekind;
                 logd("// Param " << paramtypestr << " " << paramname);
 
                 if(!params.empty())
@@ -331,7 +396,9 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 }
                 else if(paramtype->isFunctionPointerType())
                 {
+                    cparamtypekind = "function pointer";
                     cparam = GetCFuncPtr(paramtype, paramname);
+                    cparamtype = std::regex_replace(cparam, std::regex((" ")+paramname), "");
                     if(cparam.empty())
                     {
                         logd("// Bad funcptr\n");
@@ -339,27 +406,37 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                         continue;
                     }
                     cfuncSourceParams += ("(")+paramtypestr+(")")+paramname;
+
+
                 }
                 else if(paramtype->isFundamentalType() || paramtype->isBooleanType()
                     || (paramtype->isPointerType() && paramtype->getPointeeType()->isFundamentalType())
                     )
                 {
-                    cparam = paramtypestr+(" ")+paramname;
+                    cparamtypekind = "fundemental";
+                    cparamtype = paramtypestr;
+                    cparam = cparamtype+(" ")+paramname;
                     cfuncSourceParams += ("(")+paramtypestr+(")")+paramname;
                 }
                 else if(paramtype->isEnumeralType())
                 {
-                    cparam = ToCType(paramtypestr)+(" ")+paramname;
+                    cparamtypekind = "enum";
+                    cparamtype = ToCType(paramtypestr);
+                    cparam = ("enum ")+cparamtype+(" ")+paramname;
                     cfuncSourceParams += ("(")+paramtypestr+(")")+paramname;
                 }
                 else if(paramtype->isPointerType() || paramtype->isReferenceType())
                 {
-                    cparam = ("struct ")+ToCType(paramtypestr)+(" ")+paramname;
+                    cparamtypekind = "pointer";
+                    cparamtype = ToCType(paramtypestr);
+                    cparam = ("struct ")+cparamtype+(" ")+paramname;
                     cfuncSourceParams += ("(")+paramtypestr+(")")+paramname;
                 }
                 else {
                     // make it pointer type
-                    cparam = ("struct ")+ToCType(paramtypestr)+("* ")+paramname;
+                    cparamtypekind = "pointer";
+                    cparamtype = ToCType(paramtypestr)+("*");
+                    cparam = ("struct ")+cparamtype+(" ")+paramname;
                     cfuncSourceParams += ("*(")+paramtypestr+("*)")+paramname;
 
                     // AST DEBUG
@@ -419,6 +496,12 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 }
 
                 params += cparam;
+
+                cfuncjson["params"].push_back({
+                    {"name", paramname},
+                    {"type", cparamtype},
+                    {"kind", cparamtypekind}
+                });
             }
             cfuncsource << cfuncSourceParams << ")";
 
@@ -434,21 +517,30 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                     params+=", ";
                 params += ("struct ")+paramReturnType+" _return";
 
-                cfuncsource << ", sizeof(" << ret.getAsString() << "))";
+                cfuncsource << ";\n    memcpy(_return, &addr, sizeof(" << ret.getAsString() << "))";
+            }
+            else if(copyCtor)
+            {
+                cfuncsource << "))";
             }
 
             cfuncsource << ";";
 
             // Header
-            capiheader <<
-                "CAPI " << cret << " " << cfuncname << '(' << params << ");"
-                << std::endl << std::endl;
+            capiheader(cfunccomment.str()
+                << "CAPI " << cret << " " << cfuncname << '(' << params << ");"
+                << std::endl << std::endl);
 
             // Source
             capisource <<
                 "CAPI " << cret << " " << cfuncname << '(' << params << ")\n{\n" <<
                 cfuncsource.str() <<
                 "\n}\n\n";
+
+            // json
+            cfuncjson["comment"] = cfunccomment.str();
+            cfuncjson["struct"] = cstructname;
+            capijson["functions"][cfuncname] = cfuncjson;
         }
     };
 
@@ -469,8 +561,8 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
 
 
 
-    // Add record to processed records
-    //records.emplace(record, recordname);
+    // Add record to bookkept symbols
+    capisymbols.emplace(cstructname);
     
     //record->dump(ast);
 });

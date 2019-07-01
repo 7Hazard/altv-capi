@@ -83,10 +83,12 @@ static std::string ToCType(const std::string& str, const std::string& suffix = "
 
     result = std::regex_replace(result, reg::coloncolon_, "_");
     result = std::regex_replace(result, reg::sugarquals, "");
-    result = std::regex_replace(result, reg::ampersand, "*");
+    result = std::regex_replace(result, reg::spaceampersand, "*");
+    result = std::regex_replace(result, reg::spacestar, "*");
     result = std::regex_replace(result, reg::commaspace, "");
     result = std::regex_replace(result, reg::notstartwithalt_, "");
     result = std::regex_replace(result, reg::templates, "");
+    result = std::regex_replace(result, reg::space, "_");
 
     return result;
 }
@@ -225,4 +227,11 @@ static std::string GetCFuncPtr(const QualType& type, const std::string& name)
     else
         return ToCType(fn->getReturnType().getAsString())
             +(" (*")+name+(")(")+cfnparams+(")");
+}
+
+static std::string GetDateAndTime()
+{
+    auto time = std::chrono::system_clock::now();
+    std::time_t end_time = std::chrono::system_clock::to_time_t(time);
+    return std::ctime(&end_time);
 }

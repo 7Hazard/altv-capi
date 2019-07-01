@@ -1,2 +1,5 @@
 gen/*
+GEN/*
 .vscode/*
+capi/client/BUILD/*
+capi/server/BUILD/*

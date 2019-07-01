@@ -125,7 +125,7 @@ static Handler typedefHandler(typedefMatcher, [](const MatchFinder::MatchResult&
         //
         //if(record->hasDefinition())
         //{
-        //    capiheader << GetCRecord(result, record) << std::endl;
+        //    capicheader << GetCRecord(result, record) << std::endl;
         //}
         //
         //logd("// " << record->getQualifiedNameAsString());
@@ -180,80 +180,82 @@ static Handler typedefHandler(typedefMatcher, [](const MatchFinder::MatchResult&
 
         //auto temppattern = record->getTemplateInstantiationPattern();
 
+
+
         
-        auto classTempSpec = dyn_cast_or_null<ClassTemplateSpecializationDecl>(record);
-        auto descClass = classTempSpec->getSpecializedTemplate();
+        // auto classTempSpec = dyn_cast_or_null<ClassTemplateSpecializationDecl>(record);
+        // auto descClass = classTempSpec->getSpecializedTemplate();
 
-        //auto instantiatedClass = ClassTemplateSpecializationDecl::Create(
-        //    unit->getASTContext(),
-        //    TTK_Class,
-        //    (DeclContext*)td->getDeclContext(),
-        //    td->getLocation(),
-        //    td->getLocation(),
-        //    descClass,
-        //    classTempSpec->getTemplateInstantiationArgs().asArray(),
-        //    nullptr
-        //);
-        auto ok = semma->InstantiateClassTemplateSpecialization(
-            td->getLocation(),
-            classTempSpec,
-            TemplateSpecializationKind::TSK_ExplicitInstantiationDefinition
-        );
-        if(!ok)
-        {
-            return;
-        }
-        auto instantiatedClass = classTempSpec;
+        // //auto instantiatedClass = ClassTemplateSpecializationDecl::Create(
+        // //    unit->getASTContext(),
+        // //    TTK_Class,
+        // //    (DeclContext*)td->getDeclContext(),
+        // //    td->getLocation(),
+        // //    td->getLocation(),
+        // //    descClass,
+        // //    classTempSpec->getTemplateInstantiationArgs().asArray(),
+        // //    nullptr
+        // //);
+        // auto ok = semma->InstantiateClassTemplateSpecialization(
+        //     td->getLocation(),
+        //     classTempSpec,
+        //     TemplateSpecializationKind::TSK_ExplicitInstantiationDefinition
+        // );
+        // if(!ok)
+        // {
+        //     return;
+        // }
+        // auto instantiatedClass = classTempSpec;
 
-        if(instantiatedClass)
-        {
-            descClass->AddSpecialization(instantiatedClass, nullptr);
+        // if(instantiatedClass)
+        // {
+        //     descClass->AddSpecialization(instantiatedClass, nullptr);
 
-            auto typ = unit->getASTContext().getTypeDeclType(instantiatedClass);
-            bool is_incomplete = semma->RequireCompleteType(
-                instantiatedClass->getLocation(),
-                typ,
-                diag::err_unable_to_make_temp
-            );
+        //     auto typ = unit->getASTContext().getTypeDeclType(instantiatedClass);
+        //     bool is_incomplete = semma->RequireCompleteType(
+        //         instantiatedClass->getLocation(),
+        //         typ,
+        //         diag::err_unable_to_make_temp
+        //     );
 
-            if(is_incomplete)
-            {
-                logd("// Could not complete instantiated type");
-                return;
-            }
+        //     if(is_incomplete)
+        //     {
+        //         logd("// Could not complete instantiated type");
+        //         return;
+        //     }
             
 
-            logd("// INSTANTIATED CLASS");
-            ast << "FROM SPECIALIZATION " << tdnameorig << "\n";
-            astdump(classTempSpec);
-            ast << "INSTANTIATED CLASS " << instantiatedClass->getQualifiedNameAsString() << "\n";
-            astdump(instantiatedClass);
+        //     logd("// INSTANTIATED CLASS");
+        //     ast << "FROM SPECIALIZATION " << tdnameorig << "\n";
+        //     astdump(classTempSpec);
+        //     ast << "INSTANTIATED CLASS " << instantiatedClass->getQualifiedNameAsString() << "\n";
+        //     astdump(instantiatedClass);
 
-            auto t = instantiatedClass;
-            if(!t->isExplicitInstantiationOrSpecialization())
-                logd("// Not isExplicitInstantiationOrSpecialization");
-            if(!t->isExplicitSpecialization())
-                logd("// Not isExplicitSpecialization");
-            if(!t->hasBody())
-            {
-                logd("// Has no body");
-            }
-            if(!t->isCompleteDefinitionRequired())
-            {
-                logd("// Complete definition not required");
-            }
-            if(!t->isCompleteDefinition())
-            {
-                logd("// Is not complete definition");
-            }
-            if(!t->hasDefinition())
-            {
-                logd("// Has no definition");
-            }
-        }
-        else {
-            logd("// COULD NOT INSTANTIATE CLASS");
-        }
+        //     auto t = instantiatedClass;
+        //     if(!t->isExplicitInstantiationOrSpecialization())
+        //         logd("// Not isExplicitInstantiationOrSpecialization");
+        //     if(!t->isExplicitSpecialization())
+        //         logd("// Not isExplicitSpecialization");
+        //     if(!t->hasBody())
+        //     {
+        //         logd("// Has no body");
+        //     }
+        //     if(!t->isCompleteDefinitionRequired())
+        //     {
+        //         logd("// Complete definition not required");
+        //     }
+        //     if(!t->isCompleteDefinition())
+        //     {
+        //         logd("// Is not complete definition");
+        //     }
+        //     if(!t->hasDefinition())
+        //     {
+        //         logd("// Has no definition");
+        //     }
+        // }
+        // else {
+        //     logd("// COULD NOT INSTANTIATE CLASS");
+        // }
         
 
 
@@ -314,7 +316,7 @@ static Handler typedefHandler(typedefMatcher, [](const MatchFinder::MatchResult&
         //)
         //{
         //    logd("// Specialized Record\n");
-        //    capiheader << GetCRecord(result, record) << std::endl;
+        //    capicheader << GetCRecord(result, record) << std::endl;
         //}
         //else
         //{
@@ -356,16 +358,16 @@ static Handler typedefHandler(typedefMatcher, [](const MatchFinder::MatchResult&
             ctddef = ("struct ")+ToCIdentifier(tdtype.getAsString())+(" ")+tdname;
     }
 
-    if(typedefs.find(tdname) != typedefs.end())
+    if(capisymbols.find(tdname) != capisymbols.end())
     {
         logd("// " << tdname << " is already typedefed");
     }
     else {        
-        typedefs.emplace(tdname);
-        capiheader << "typedef " << ctddef << ";\n";
+        capisymbols.emplace(tdname);
+        capiheader("typedef " << ctddef << ";\n");
     }
 
-    capiheader << std::endl;
+    capiheader(std::endl);
 
     //td->dump(ast);
 });

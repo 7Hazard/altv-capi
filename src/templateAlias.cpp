@@ -51,5 +51,5 @@ static Handler templateAliasHandler(templateAliasMatcher, [](const MatchFinder::
     //alias->getCanonicalDecl()->getDescribedTemplate()
     //    ->init(alias->getTemplatedDecl(), alias->getTemplateParameters());
 
-    capiheader << std::endl;
+    capiheader(std::endl);
 });

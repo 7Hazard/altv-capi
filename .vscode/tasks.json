@@ -4,61 +4,42 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Generate (clang-cl)",
+            "label": "Build Parser Release",
             "type": "shell",
-            "command": "${workspaceFolder}/../../../../../../BUILD/gen-cmake.bat",
+            "command": "${workspaceFolder}/../../NINJA-WIN-RelWithDebInfo-BUILD.bat",
             "options": {
-                "cwd": "${workspaceFolder}/../../../../../../BUILD"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
+                "cwd": "${workspaceFolder}/../../"
             },
             "args": [],
-            "problemMatcher": []
-        },
-        {
-            "label": "Build (clang-cl)",
-            "type": "shell",
-            "command": "${workspaceFolder}/../../../../../../BUILD/build.bat",
-            "options": {
-                "cwd": "${workspaceFolder}/../../../../../../BUILD"
-            },
-            "args": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "problemMatcher": [
                 "$gcc",
                 "$msCompile"
             ]
         },
         {
-            "label": "Generate Release (clang-cl)",
+            "label": "Build Parser Debug",
             "type": "shell",
-            "command": "${workspaceFolder}/../../../../../../BUILD-REL/gen-cmake.bat",
+            "command": "${workspaceFolder}/../../NINJA-WIN-Debug-BUILD.bat",
             "options": {
-                "cwd": "${workspaceFolder}/../../../../../../BUILD-REL"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "args": []
-        },
-        {
-            "label": "Build Release (clang-cl)",
-            "type": "shell",
-            "command": "${workspaceFolder}/../../../../../../BUILD-REL/build.bat",
-            "options": {
-                "cwd": "${workspaceFolder}/../../../../../../BUILD-REL"
+                "cwd": "${workspaceFolder}/../../"
             },
             "args": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
+            "group": "build",
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Build Client CAPI",
+            "type": "shell",
+            "command": "${workspaceFolder}/capi/client/build.bat",
+            "options": {
+                "cwd": "${workspaceFolder}/capi/client"
             },
+            "args": [],
+            "group": "build",
             "problemMatcher": [
                 "$gcc",
                 "$msCompile"

@@ -5,7 +5,7 @@
 namespace reg
 {
     static std::regex classstructenum("class |struct |enum ");
-    static std::regex sugarquals("class |struct |const ");
+    static std::regex sugarquals("class |enum |struct |const ");
     static std::regex commaspace(", ");
     static std::regex notstartwithalt_("(?!^)alt_");
     static std::regex templates("(<|>| >)+");
