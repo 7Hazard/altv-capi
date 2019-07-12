@@ -4,7 +4,7 @@ set(LLVM_LINK_COMPONENTS support)
 set(LLVM_ENABLE_CXX1Z ON)
 
 include_directories(
-  src
+    src
 )
 
 add_clang_executable(altv-api-tool
@@ -18,7 +18,7 @@ add_clang_executable(altv-api-tool
     src/method.cpp
 )
 target_link_libraries(altv-api-tool PRIVATE
-  clangTooling
-  clangBasic
-  clangASTMatchers
+    clangTooling
+    clangBasic
+    clangASTMatchers
 )

@@ -22,14 +22,15 @@
             "intelliSenseMode": "${default}"
         },
         {
-            "name": "CAPI Server",
+            "name": "CAPI Server WIN32",
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/../../clang/include",
                 "${workspaceFolder}/../../llvm/include",
                 "${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/tools/clang/include",
                 "${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/include",
-                "${workspaceFolder}/src"
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/capi"
             ],
             "defines": [
                 "_DEBUG",
@@ -50,7 +51,8 @@
                 "${workspaceFolder}/../../llvm/include",
                 "${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/tools/clang/include",
                 "${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/include",
-                "${workspaceFolder}/src"
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/capi"
             ],
             "defines": [
                 "_DEBUG",

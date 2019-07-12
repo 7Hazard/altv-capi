@@ -85,6 +85,7 @@ static std::string ToCType(const std::string& str, const std::string& suffix = "
     result = std::regex_replace(result, reg::sugarquals, "");
     result = std::regex_replace(result, reg::spaceampersand, "*");
     result = std::regex_replace(result, reg::spacestar, "*");
+    //result = std::regex_replace(result, reg::star, "*");
     result = std::regex_replace(result, reg::commaspace, "");
     result = std::regex_replace(result, reg::notstartwithalt_, "");
     result = std::regex_replace(result, reg::templates, "");
@@ -180,7 +181,7 @@ static std::string GetSizedType(size_t bytes)
 }
 */
 
-static std::string GetCFuncPtr(const QualType& type, const std::string& name)
+static std::string GetCFuncPtr(const QualType& type)
 {
     auto fn = type->getPointeeType()->getAs<FunctionProtoType>();
                 
@@ -196,7 +197,7 @@ static std::string GetCFuncPtr(const QualType& type, const std::string& name)
         }
         else if(fnparam->isFunctionPointerType())
         {
-            cfnparam = GetCFuncPtr(fnparam, "");
+            cfnparam = GetCFuncPtr(fnparam);
             if(cfnparam.empty())
             {
                 logd("// Bad funcptr\n");
@@ -225,8 +226,7 @@ static std::string GetCFuncPtr(const QualType& type, const std::string& name)
     if(badparams)
         return "";
     else
-        return ToCType(fn->getReturnType().getAsString())
-            +(" (*")+name+(")(")+cfnparams+(")");
+        return ToCType(fn->getReturnType().getAsString())+("(*)(")+cfnparams+(")");
 }
 
 static std::string GetDateAndTime()

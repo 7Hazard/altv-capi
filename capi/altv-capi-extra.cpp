@@ -4,20 +4,18 @@
  * This file is managed by hand
  */
 
-#include "cpp-sdk/SDK.h"
-
-#ifdef CAPI_DLL
-#ifdef _WIN32
-#define CAPI CAPIEXTERN __declspec(dllexport)
-#endif // _WIN32
-#else
-#define CAPI CAPIEXTERN
-#endif // CAPI_DLL
-#include "altv-capi.hpp"
+#include "altv-capi-sourcedefs.hpp"
 
 #include <cassert>
-
 #define FnAssert(fn) assert(fn && #fn " has to be a valid callback function")
+
+void gg(float const(&elem)[3]) {}
+void gg2(float* g) { gg((float const (&)[3])g); }
+
+CAPI unsigned int alt_GetSDKVersion()
+{
+    return ALTV_SDK_VERSION;
+}
 
 class CAPIScriptRuntime : public alt::IScriptRuntime
 {
@@ -28,7 +26,7 @@ public:
     public:
 
 #ifdef ALT_SERVER_API
-        void(*MakeClientFn)(alt_IResource_CreationInfo*, alt_ArrayString);
+        void(*MakeClientFn)(alt_IResource_CreationInfo*, alt_ArrayString*);
 #endif
         _Bool(*InstantiateFn)();
         _Bool(*StartFn)();
@@ -41,7 +39,7 @@ public:
         Resource(
             alt_IResource_CreationInfo* info,
 #ifdef ALT_SERVER_API
-            void(*MakeClientFn)(alt_IResource_CreationInfo*, alt_ArrayString),
+            void(*MakeClientFn)(alt_IResource_CreationInfo*, alt_ArrayString*),
 #endif
             _Bool(*InstantiateFn)(),
             _Bool(*StartFn)(),
@@ -50,7 +48,7 @@ public:
             void(*OnTickFn)(),
             void(*OnCreateBaseObjectFn)(alt_IBaseObject*),
             void(*OnRemoveBaseObjectFn)(alt_IBaseObject*)
-        ) :         
+        ) : alt::IResource((alt::IResource::CreationInfo*)info),
 #ifdef ALT_SERVER_API
             MakeClientFn(MakeClientFn),
 #endif
@@ -60,14 +58,13 @@ public:
             OnEventFn(OnEventFn),
             OnTickFn(OnTickFn),
             OnCreateBaseObjectFn(OnCreateBaseObjectFn),
-            OnRemoveBaseObjectFn(OnRemoveBaseObjectFn),
-            alt::IResource((alt::IResource::CreationInfo*)info)
+            OnRemoveBaseObjectFn(OnRemoveBaseObjectFn)
         {}
 
 #ifdef ALT_SERVER_API
 		virtual void MakeClient(CreationInfo* info, Array<String> files) 
         {
-            MakeClientFn((alt_IResource_CreationInfo*)info, (alt_ArrayString)files)
+            MakeClientFn((alt_IResource_CreationInfo*)info, (alt_ArrayString*)&files);
         }
 #endif
         
@@ -153,7 +150,7 @@ CAPI alt_IScriptRuntime* alt_IScriptRuntime_Create(
 CAPI alt_IResource* alt_IResource_Create(
     alt_IResource_CreationInfo* info,
 #ifdef ALT_SERVER_API
-    void(*MakeClientFn)(alt_IResource_CreationInfo*, alt_ArrayString),
+    void(*MakeClientFn)(alt_IResource_CreationInfo*, alt_ArrayString*),
 #endif
     _Bool(*InstantiateFn)(),
     _Bool(*StartFn)(),

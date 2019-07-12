@@ -3,3 +3,5 @@ GEN/*
 .vscode/*
 capi/client/BUILD/*
 capi/server/BUILD/*
+BUILD/*
+capi/BUILD/*

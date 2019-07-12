@@ -1,7 +1,5 @@
 #include "tool.hpp"
 
-#include "record.hpp"
-
 static auto typedefMatcher = typedefNameDecl(
     unless(isExpansionInSystemHeader())
 
@@ -334,7 +332,7 @@ static Handler typedefHandler(typedefMatcher, [](const MatchFinder::MatchResult&
     }
     else if(tdtype->isFunctionPointerType())
     {
-        ctddef = GetCFuncPtr(tdtype, tdname);
+        ctddef = GetCFuncPtr(tdtype);
         if(ctddef.empty())
         {
             logd("// Bad funcptr\n");

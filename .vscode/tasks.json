@@ -32,11 +32,11 @@
             ]
         },
         {
-            "label": "Build Client CAPI",
+            "label": "Build CAPI",
             "type": "shell",
-            "command": "${workspaceFolder}/capi/client/build.bat",
+            "command": "${workspaceFolder}/capi/build.bat",
             "options": {
-                "cwd": "${workspaceFolder}/capi/client"
+                "cwd": "${workspaceFolder}/capi"
             },
             "args": [],
             "group": "build",
