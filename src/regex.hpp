@@ -4,7 +4,7 @@
 
 namespace reg
 {
-    static std::regex fnptrname("(\\*)");
+    static std::regex fnptrname("\\(\\*\\)");
     static std::regex classstructenum("class |struct |enum ");
     static std::regex sugarquals("class |enum |struct |const ");
     static std::regex commaspace(", ");

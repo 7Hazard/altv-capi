@@ -1,16 +1,13 @@
 
 /**
  * CAPI Extra features
- * This file is managed by hand
+ * This file is managed manually
  */
 
 #include "altv-capi-sourcedefs.hpp"
 
 #include <cassert>
 #define FnAssert(fn) assert(fn && #fn " has to be a valid callback function")
-
-void gg(float const(&elem)[3]) {}
-void gg2(float* g) { gg((float const (&)[3])g); }
 
 CAPI unsigned int alt_GetSDKVersion()
 {

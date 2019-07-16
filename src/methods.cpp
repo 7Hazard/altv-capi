@@ -10,8 +10,16 @@ static auto recordMatcher = cxxRecordDecl(
     //        isInStdNamespace()
     //    )
     //))
-
+    
+    // ,hasDescendant(
+    //     cxxMethodDecl(
+    //         isPublic()
+    //     )
+    // )
     // ,isPublic()
+    // ,unless(isPrivate())
+    // ,unless(isProtected())
+
     //,unless(classTemplateDecl())
     //,unless(isTemplateInstantiation())
     //,unless(isExplicitTemplateSpecialization())
@@ -20,157 +28,21 @@ static auto recordMatcher = cxxRecordDecl(
     //,unless(isInTemplateInstantiation())
     //,unless(hasAnyTemplateArgument(anything()))
     //,unless(hasSpecializedTemplate(classTemplateDecl()))
-    // ,unless(isPrivate())
+    //,unless(isPrivate())
     ,isDefinition()
 ).bind("record");
-
-struct Typedata
-{
-    enum Kind
-    {
-        FUNDEMENTAL,
-        ENUMERAL,
-        REFERENCE,
-        POINTER,
-        ARRAY,
-        STRUCT
-    } kind;
-
-    bool ok = true;
-    Typedata* pointee = nullptr;
-    std::string ctype;
-    std::string forwardDecl;
-
-    Typedata(clang::QualType type, const clang::ASTContext& context)
-    {
-        type = type.getCanonicalType()
-            .getUnqualifiedType()
-            .getDesugaredType(context);
-
-        auto cpptypestr = type.getAsString();
-        logd("// cpptype " << cpptypestr);
-
-        if(cpptypestr.find("std::") != std::string::npos)
-        {
-            logd("// type is in STD\n");
-            ok = false;
-            return;
-        }
-        else if(type->isFunctionPointerType())
-        {
-            // todo
-            abort();
-        }
-        else if(type->isFundamentalType() || type->isBooleanType())
-        {
-            logd("// fundamental");
-            kind = FUNDEMENTAL;
-            ctype = cpptypestr;
-        }
-        else if(type->isEnumeralType())
-        {
-            logd("// enumaral type");
-            kind = ENUMERAL;
-            forwardDecl = "enum ";
-            ctype = ToCType(cpptypestr);
-        }
-        else if(type->isArrayType())
-        {
-            logd("// array type");
-            kind = ARRAY;
-            pointee = new Typedata(
-                type->getPointeeOrArrayElementType()
-                    ->getCanonicalTypeUnqualified()
-                    .operator clang::QualType(),
-                context
-            );
-            ctype = pointee->ctype+"*";
-
-            // get the bottom pointee's forwardDecl
-            Typedata* bottomPointee = pointee;
-            while(bottomPointee->pointee)
-                bottomPointee = bottomPointee->pointee;
-            forwardDecl = bottomPointee->forwardDecl; 
-        }
-        else if(type->isReferenceType())
-        {
-            logd("// Reference type");
-            kind = REFERENCE;
-            pointee = new Typedata(type->getPointeeType(), context);
-            ctype = pointee->ctype+"*";
-
-            // get the bottom pointee's forwardDecl
-            Typedata* bottomPointee = pointee;
-            while(bottomPointee->pointee)
-                bottomPointee = bottomPointee->pointee;
-            forwardDecl = bottomPointee->forwardDecl;
-        }
-        else if(type->isPointerType())
-        {
-            logd("// Pointer type");
-            kind = POINTER;
-            pointee = new Typedata(type->getPointeeType(), context);
-
-            ctype = pointee->ctype+"*";
-
-            // get the bottom pointee's forwardDecl
-            Typedata* bottomPointee = pointee;
-            while(bottomPointee->pointee)
-                bottomPointee = bottomPointee->pointee;
-            forwardDecl = bottomPointee->forwardDecl;
-        }
-        else if(type->isStructureOrClassType())
-        {
-            kind = STRUCT;
-            forwardDecl = "struct ";
-            ctype = ToCType(cpptypestr);
-        }
-        else
-        {
-            logd("// Could not process type");
-            abort();
-        }
-    }
-
-    // Manual typing
-    // FUNDEMENTAL kind will use _ctype param for fundemental type
-    Typedata(Typedata& data, Typedata::Kind kind, std::string _ctype = "void")
-        : kind(kind)
-    {
-        switch (kind)
-        {
-        case POINTER:
-        {
-            pointee = &data;
-            ctype = pointee->ctype+"*";
-            
-            // get the bottom pointee's forwardDecl
-            Typedata* bottomPointee = pointee;
-            while(bottomPointee->pointee)
-                bottomPointee = bottomPointee->pointee;
-            forwardDecl = bottomPointee->forwardDecl;
-        } break;
-
-        case FUNDEMENTAL:
-        {
-            ctype = _ctype;
-            forwardDecl = "";
-            pointee = nullptr;
-        } break;
-        
-        default:
-        {
-            abort();
-        } break;
-        }
-    }
-};
 
 // Funcname, counter
 static std::unordered_map<std::string, size_t> funcnames;
 
 static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& result){
     auto record = result.Nodes.getNodeAs<CXXRecordDecl>("record");
+
+    static auto access = AccessSpecifier::AS_none;
+    if(record->getAccess() != AccessSpecifier::AS_none)
+    {
+        access = record->getAccess();
+    }
     
     // Data
     auto recordnameorig = record->getTypeForDecl()
@@ -227,102 +99,6 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         return;
     }
 
-    std::stringstream body;
-
-    std::function<bool(const CXXRecordDecl*)> dofields = [&](const CXXRecordDecl* r){
-        // Inherited fields
-        for(auto parent: r->bases())
-        {
-            auto parentname = parent.getType().getAsString();
-            logd("// derives from " << parentname);
-            if(parent.getType()->getAsCXXRecordDecl()->isInStdNamespace())
-            {
-                logd("// Parent is in STD namespace\n");
-                return false;
-            }
-
-            if(!dofields(parent.getType()->getAsCXXRecordDecl()))
-                return false;
-        }
-
-        for(auto field : r->fields())
-        {
-            auto fieldtype = field->getType().getCanonicalType();
-            auto fieldname = field->getName().str();
-            std::string cfield;
-
-            if(fieldtype.getAsString().find("std::") != std::string::npos)
-            {
-                logd("// Has fields in STD\n");
-                return false;
-            }
-            if(fieldtype->isArrayType())
-            {
-                cfield = field->getType().getCanonicalType().getAsString();
-                cfield.insert(cfield.rfind(" [")+1, fieldname);
-            }
-            else if(fieldtype->isFundamentalType() || fieldtype->isBooleanType()
-                || (fieldtype->isPointerType() && fieldtype->getPointeeType()->isFundamentalType())
-                )
-            {
-                cfield = fieldtype.getAsString()+(" ")+fieldname;
-            }
-            else if(fieldtype->isEnumeralType())
-            {
-                cfield = ("enum ")+ToCIdentifier(fieldtype.getAsString())+(" ")+fieldname;
-            }
-            else {
-                auto ctype = ToCType(
-                    field->getType().getCanonicalType().getAsString()
-                );
-                
-                cfield = ("struct ")+ctype+(" ")+field->getCanonicalDecl()->getName().str();
-            }
-            
-            auto loc = field->getLocation().printToString(*result.SourceManager);
-            logd( 
-                "    // " << loc << std::endl <<
-                "    // " << field->getType().getAsString() <<
-                " " << field->getName().str() << std::endl
-            );
-
-            body 
-                << "    " << cfield
-                << ";\n";
-
-            capijson["structs"][cstructname]["fields"].push_back({
-                {"name", fieldname}
-            });
-        }
-
-        return true;
-    };
-
-    // Fields
-    if(!dofields(record))
-        return;
-
-    if(capisymbols.find(cstructname) != capisymbols.end())
-    {
-        logd("// symbol already declared");
-        return;
-    }
-
-    capixheader("typedef ", "");
-    capiheader("struct " << cstructname);
-    if(body.str().empty())
-    {
-        // capiheader(" " << cstructname << ";\n" << std::endl);
-        capixheader(" " << cstructname << ";\n" << std::endl, " {};\n\n");
-    }
-    else
-    {
-        capixheader(
-            " {\n" << body.str() << "} " << cstructname << ";\n" << std::endl,
-            " {\n" << body.str() << "};\n" << std::endl
-        );
-    }
-
     std::function<void(const CXXRecordDecl*, const CXXRecordDecl*)> domethods = [&](
         const CXXRecordDecl* r,
         const CXXRecordDecl* derived = nullptr
@@ -340,10 +116,13 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             auto isvisible = parentrecord->getVisibility() == Visibility::DefaultVisibility;
             /* debug */
 
-            if(
-                parentrecord->getAccess() == AccessSpecifier::AS_public
-                && parentrecord->getAccess() == AccessSpecifier::AS_none
-            )
+            static auto parentAccess = AccessSpecifier::AS_none;
+            if(parentrecord->getAccess() != AccessSpecifier::AS_none)
+            {
+                parentAccess = parentrecord->getAccess();
+            }
+
+            if(parentAccess == AccessSpecifier::AS_public)
             {
                 logd("// functions derived from " << parentname << std::endl);
             }
@@ -548,8 +327,10 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 // just return the value
                 
                 if(retdata.ctype != "void")
+                {
                     cfuncbody << "return ";
-                cfuncbody << "(" << retdata.ctype << ")";
+                    cfuncbody << "(" << retdata.ctype << ")";
+                }
             }
 
             if(
@@ -561,11 +342,11 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             }
             else if(method->isStatic())
             {
-                logd("Static method");
+                logd("// Static method");
                 if(derived)
-                    cfuncbody << derivedname << "::";
+                    cfuncbody << derivedname << "::" << methodname << "(";
                 else 
-                    cfuncbody << recordname << "::";
+                    cfuncbody << recordname << "::" << methodname << "(";
             }
             else {
                 std::string cparamtype = cstructname+"*";
@@ -623,16 +404,26 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 {
                     // take a pointer to the struct and dereference it on use
                     typedata = Typedata(typedata, Typedata::POINTER);
+                    headerparams += typedata.forwardDecl + typedata.ctype
+                        + (" ") + paramname;
                     sourceparams += ("*(")+paramtype.getAsString()+("*)")
                         +paramname;
                 }
-                else {
+                else if(typedata.kind == Typedata::FUNCTION_POINTER)
+                {
+                    auto fn = typedata.forwardDecl + typedata.ctype;
+                    fn = std::regex_replace(fn, reg::fnptrname, ("(*")+paramname+")");
+                    
+                    headerparams += fn;
                     sourceparams += ("(")+paramtype.getAsString()+(")")
                         +paramname;
                 }
-
-                headerparams += typedata.forwardDecl + typedata.ctype
-                    + (" ") + paramname;
+                else {
+                    headerparams += typedata.forwardDecl + typedata.ctype
+                        + (" ") + paramname;
+                    sourceparams += ("(")+paramtype.getAsString()+(")")
+                        +paramname;
+                }
 
                 cfuncjson["params"].push_back({
                     {"name", paramname},
@@ -646,168 +437,6 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
 
             cfuncbody << sourceparams;
 
-
-
-            // bool badparams = false;
-            // std::string paramsSourceContent;
-            // for(auto param : method->parameters())
-            // {
-            //     bool isFundamental = false;
-            //     ParamData paramdata;
-
-            //     std::function<bool(clang::QualType)> handleParam = [&](
-            //         clang::QualType type
-            //     ){
-            //         auto cpptype = type.getAsString();
-
-            //         if(cpptype.find("std::") != std::string::npos)
-            //         {
-            //             logd("// type is in STD\n");
-            //             badparams = true;
-            //             return false;
-            //         }
-            //         else if(type->isRValueReferenceType())
-            //         {
-            //             // cannot handle these yet
-            //             logd("// is RValue reference\n");
-            //             badparams = true;
-            //             return false;
-            //         }
-            //         else if(type->isFunctionPointerType())
-            //         {
-            //             logd("// function pointer");
-            //             paramdata.type.kind = "function pointer";
-            //             paramdata.c = GetCFuncPtr(type);
-            //             if(paramdata.c.empty())
-            //             {
-            //                 logd("// Bad funcptr\n");
-            //                 badparams = true;
-            //                 return false;
-            //             }
-            //             paramdata.type.c = std::regex_replace(paramdata.c, reg::fnptrname, ("(*")+paramdata.name+")");
-            //             paramdata.sourceContent = ("(")+cpptype+(")")+paramdata.name;
-            //         }
-            //         else if(type->isFundamentalType() || type->isBooleanType())
-            //         {
-            //             logd("// fundemental type");
-
-            //             isFundamental = true;
-
-            //             paramdata.type.kind = "fundemental";
-            //             paramdata.type.c = cpptype;
-            //             paramdata.c = paramdata.type.c+(" ")+paramdata.name;
-            //             paramdata.sourceContent = ("(")+cpptype+(")")+paramdata.name;
-            //         }
-            //         else if(type->isEnumeralType())
-            //         {
-            //             logd("// enumaral type");
-            //             paramdata.type.kind = "enum";
-            //             paramdata.type.c = ToCType(cpptype);
-            //             // paramdata.type.forwardDecl = "enum ";
-            //             paramdata.c = paramdata.type.c+(" ")+paramdata.name;
-            //             paramdata.sourceContent = ("(")+cpptype+(")")+paramdata.name;
-            //         }
-            //         else if(type->isArrayType())
-            //         {
-            //             logd("// array type");
-            //             logd("// " << type.getAsString());
-
-            //             auto elemtype = type->getPointeeOrArrayElementType()
-            //                 ->getLocallyUnqualifiedSingleStepDesugaredType();
-
-            //             logd("// array element type: " << elemtype.getAsString());
-
-            //             if(!handleParam(elemtype))
-            //                 return false;
-
-            //             if(paramdata.type.kind == "function pointer")
-            //             {
-            //                 std::cout << "don't know what to do when function pointer in array param handler!!" << std::endl;
-            //                 // throw new std::logic_error("don't know what to do when function pointer in array param handler");
-            //                 abort();
-            //             }
-
-            //             // get array size
-            //             if(type->isVectorType())
-            //             {
-            //                 logd("vector type");
-            //             }
-            //             // comment
-            //             paramdata.type.kind = "array";
-            //             paramdata.type.c+="*";
-            //             paramdata.c = paramdata.type.c+(" ")+paramdata.name;
-            //             paramdata.sourceContent = ("(")+cpptype+(")")+paramdata.name;
-            //         }
-            //         else if(type->isPointerType() || type->isReferenceType())
-            //         {
-            //             logd("// Pointer type");
-
-            //             paramdata.type.kind = "pointer";
-            //             if(!handleParam(type->getPointeeType()))
-            //                 return false;
-
-            //             paramdata.type.c+="*";
-            //             paramdata.c = paramdata.type.c+(" ")+paramdata.name;
-            //             paramdata.sourceContent = ("(")+cpptype+(")")+paramdata.name;
-            //         }
-            //         else {
-            //             // make it pointer type
-                        
-            //             paramdata.type.c = ToCType(cpptype);
-            //             if(paramdata.type.kind != "pointer")
-            //                 paramdata.type.c+=("*");
-                            
-            //             paramdata.type.kind = "pointer";
-            //             if(isFundamental)
-            //                 paramdata.c = paramdata.type.c+(" ")+paramdata.name;
-            //             else
-            //                 paramdata.c = ("struct ")+paramdata.type.c+(" ")+paramdata.name;
-
-            //             paramdata.sourceContent = ("*(")+cpptype+("*)")+paramdata.name;
-            //         }
-                    
-            //         return true;
-            //     };
-
-            //     // do streams
-            //     if(!params.empty())
-            //         params+=", ";
-            //     if(!paramsSourceContent.empty())
-            //         paramsSourceContent+=", ";
-
-            //     auto paramtype = param->getType().getCanonicalType()
-            //         .getUnqualifiedType();
-            //     paramdata.name = param->getName().str();
-            //     if(paramdata.name.empty())
-            //     {
-            //         logd("// param has no name");
-            //         paramdata.name = "p"+std::to_string(param->getFunctionScopeIndex());
-            //     }
-            //     logd("// Param " << paramdata.name << ", CPP: " << paramtype.getAsString());
-
-            //     if(!handleParam(paramtype))
-            //         continue;
-
-            //     params += paramdata.c;
-
-            //     cfuncjson["params"].push_back({
-            //         {"name", paramdata.name},
-            //         {"type", paramdata.type.c},
-            //         {"kind", paramdata.type.kind}
-            //     });
-            //     paramsSourceContent += paramdata.sourceContent;
-            // }
-
-            // if(badparams)
-            //     continue;
-
-            // cfuncsource << paramsSourceContent << ")";
-
-            
-            // else if(copyCtor)
-            // {
-            //     cfuncsource << "))";
-            // }
 
             cfuncbody << stmtclose;
 
@@ -845,20 +474,17 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
     };
 
     // Methods
-    if(
-        record->getAccess() == AccessSpecifier::AS_none
-            || record->getAccess() == AccessSpecifier::AS_public
-    )
+    if(access == AccessSpecifier::AS_public)
     {
 
         /* debug */
         auto ispublic = record->getAccess() == AccessSpecifier::AS_public;
         auto isnone = record->getAccess() == AccessSpecifier::AS_none;
-        auto isvisible = record->getVisibility() == Visibility::DefaultVisibility;
+        auto isvisible = record->getAccess() == Visibility::DefaultVisibility;
         /* debug */
 
-        auto describedRecord = dyn_cast_or_null<ClassTemplateDecl>(record);
-        if(describedRecord) 
+        auto describedRecord = dyn_cast_or_null<ClassTemplateSpecializationDecl >(record);
+        if(describedRecord)
         {
             /* debug */
             auto ispublic = describedRecord->getAccess() == AccessSpecifier::AS_public;
@@ -866,6 +492,11 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             auto isvisible = describedRecord->getVisibility() == Visibility::DefaultVisibility;
             /* debug */
             logd("");
+        }
+
+        if(cstructname.find("_Storage") != std::string::npos)
+        {
+            logd("// STORAGE CLASS");
         }
 
         logd("// functions from " << recordnameorig);
@@ -897,9 +528,4 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
     {
         logd("// the record and its methods are not publicly accessible\n");
     }
-
-    // Add record to bookkept symbols
-    capisymbols.emplace(cstructname);
-    
-    //record->dump(ast);
 });

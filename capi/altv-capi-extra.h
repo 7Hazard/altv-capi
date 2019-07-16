@@ -1,7 +1,7 @@
 
 /**
  * CAPI Extra features
- * This file is managed by hand
+ * This file is managed manually
  */
 
 #ifndef _CAPI_EXTRA_H_

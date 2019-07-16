@@ -98,6 +98,8 @@ static Handler typedefHandler(typedefMatcher, [](const MatchFinder::MatchResult&
         logd("// Invalid loc\n");
         return;
     }
+
+    /*
     //else if(!td->isUsed())
     //{
     //    logd("// Is never used\n");
@@ -133,42 +135,42 @@ static Handler typedefHandler(typedefMatcher, [](const MatchFinder::MatchResult&
         //ast << ToCType(tdtype.getAsString()) << '\n';
         //astdump(record);
 
-        /*
-        auto t = dyn_cast_or_null<ClassTemplateSpecializationDecl>(record);
-        if(t == nullptr)
-        {
-            logd("// t was null");
-            ast << "NOT ClassTemplateSpecializationDecl \n";
-            return;
-        }
+        
+        // auto t = dyn_cast_or_null<ClassTemplateSpecializationDecl>(record);
+        // if(t == nullptr)
+        // {
+        //     logd("// t was null");
+        //     ast << "NOT ClassTemplateSpecializationDecl \n";
+        //     return;
+        // }
 
-        bool is_incomplete = semma->RequireCompleteType(
-            t->getLocation(),
-            t->getASTContext().getTypeDeclType(t),
-            diag::err_unable_to_make_temp
-        );
+        // bool is_incomplete = semma->RequireCompleteType(
+        //     t->getLocation(),
+        //     t->getASTContext().getTypeDeclType(t),
+        //     diag::err_unable_to_make_temp
+        // );
 
-        if(!t->isExplicitInstantiationOrSpecialization())
-            logd("// Not isExplicitInstantiationOrSpecialization");
-        if(!t->isExplicitSpecialization())
-            logd("// Not isExplicitSpecialization");
-        if(!t->hasBody())
-        {
-            logd("// Has no body");
-        }
-        if(!t->isCompleteDefinitionRequired())
-        {
-            logd("// Complete definition not required");
-        }
-        if(!t->isCompleteDefinition())
-        {
-            logd("// Is not complete definition");
-        }
-        if(!t->hasDefinition())
-        {
-            logd("// Has no definition");
-        }
-        */
+        // if(!t->isExplicitInstantiationOrSpecialization())
+        //     logd("// Not isExplicitInstantiationOrSpecialization");
+        // if(!t->isExplicitSpecialization())
+        //     logd("// Not isExplicitSpecialization");
+        // if(!t->hasBody())
+        // {
+        //     logd("// Has no body");
+        // }
+        // if(!t->isCompleteDefinitionRequired())
+        // {
+        //     logd("// Complete definition not required");
+        // }
+        // if(!t->isCompleteDefinition())
+        // {
+        //     logd("// Is not complete definition");
+        // }
+        // if(!t->hasDefinition())
+        // {
+        //     logd("// Has no definition");
+        // }
+        
         
         //auto pinst = t->getPointOfInstantiation();
         //if(!pinst.isValid())
@@ -364,8 +366,33 @@ static Handler typedefHandler(typedefMatcher, [](const MatchFinder::MatchResult&
         capisymbols.emplace(tdname);
         capiheader("typedef " << ctddef << ";\n");
     }
+    */
 
-    capiheader(std::endl);
+    auto typedata = Typedata(tdtype, td->getASTContext());
+    if(!typedata.ok)
+    {
+        logd("// bad typedef\n");
+        return;
+    }
+    else if(typedata.kind == Typedata::FUNCTION_POINTER)
+    {
+        auto tdef = typedata.forwardDecl + typedata.ctype;
+        tdef = std::regex_replace(tdef, reg::fnptrname, ("(*")+tdname+")");
+
+        capiheader(
+            "typedef "
+            << tdef
+            << ";" << std::endl << std::endl
+        );
+    }
+    else {
+        capiheader(
+            "typedef "
+            << typedata.forwardDecl << typedata.ctype
+            << " " << tdname
+            << ";" << std::endl << std::endl
+        );
+    }
 
     //td->dump(ast);
 });

@@ -181,57 +181,190 @@ static std::string GetSizedType(size_t bytes)
 }
 */
 
-static std::string GetCFuncPtr(const QualType& type)
-{
-    auto fn = type->getPointeeType()->getAs<FunctionProtoType>();
-                
-    std::string cfnparams, cfnparam;
-    bool badparams = false;
-    for(auto fnparam : fn->param_types())
-    {
-        if(fnparam.getAsString().find("std::") != std::string::npos)
-        {
-            logd("// Param type is in STD\n");
-            badparams = true;
-            continue;
-        }
-        else if(fnparam->isFunctionPointerType())
-        {
-            cfnparam = GetCFuncPtr(fnparam);
-            if(cfnparam.empty())
-            {
-                logd("// Bad funcptr\n");
-                badparams = true;
-                continue;
-            }
-        }
-        else if(fnparam->isFundamentalType() || fnparam->isBooleanType()
-            || (fnparam->isPointerType() && fnparam->getPointeeType()->isFundamentalType())
-            )
-        {
-            cfnparam = fnparam.getAsString();
-        }
-        else if(fnparam->isEnumeralType())
-        {
-            cfnparam = ToCType(fnparam.getAsString());
-        }
-        else {
-            cfnparam = ("struct ")+ToCType(fnparam.getAsString());
-        }
-        
-        if(!cfnparams.empty())
-            cfnparams+=", ";
-        cfnparams += cfnparam;
-    }
-    if(badparams)
-        return "";
-    else
-        return ToCType(fn->getReturnType().getAsString())+("(*)(")+cfnparams+(")");
-}
-
 static std::string GetDateAndTime()
 {
     auto time = std::chrono::system_clock::now();
     std::time_t end_time = std::chrono::system_clock::to_time_t(time);
     return std::ctime(&end_time);
 }
+
+
+struct Typedata
+{
+    enum Kind
+    {
+        FUNDEMENTAL,
+        ENUMERAL,
+        REFERENCE,
+        POINTER,
+        ARRAY,
+        FUNCTION_POINTER,
+        STRUCT
+    } kind;
+
+    bool ok = true;
+    Typedata* pointee = nullptr;
+    std::string ctype;
+    std::string forwardDecl;
+
+    Typedata(clang::QualType type, const clang::ASTContext& context)
+    {
+        type = type.getCanonicalType()
+            .getUnqualifiedType()
+            .getDesugaredType(context);
+
+        auto cpptypestr = type.getAsString();
+        logd("// cpptype " << cpptypestr);
+
+        if(cpptypestr.find("std::") != std::string::npos)
+        {
+            logd("// type is in STD\n");
+            ok = false;
+            return;
+        }
+        else if(type->isFunctionPointerType())
+        {
+            // todo
+            // abort();
+
+            logd("// function pointer");
+            kind = FUNCTION_POINTER;
+
+            auto fn = type->getPointeeType()->getAs<FunctionProtoType>();
+                
+            std::string cfnparams, cfnparam;
+            bool badparams = false;
+            for(auto paramtype : fn->param_types())
+            {
+                auto paramtypedata = Typedata(paramtype, context);
+                if(paramtypedata.ok)
+                    badparams = true;
+
+                if(!cfnparams.empty())
+                    cfnparams+=", ";
+                cfnparams += paramtypedata.ctype;
+            }
+
+            if(badparams)
+            {
+                logd("// bad params");
+                ok = false;
+                return;
+            }
+
+            auto rettype = fn->getReturnType();
+            auto rettypedata = Typedata(rettype, context);
+            if(!rettypedata.ok)
+            {
+                ok = false;
+                return;
+            }
+            
+            ctype = rettypedata.ctype+("(*)(")+cfnparams+(")");
+        }
+        else if(type->isFundamentalType() || type->isBooleanType())
+        {
+            logd("// fundamental");
+            kind = FUNDEMENTAL;
+            ctype = cpptypestr;
+        }
+        else if(type->isEnumeralType())
+        {
+            logd("// enumaral type");
+            kind = ENUMERAL;
+            forwardDecl = "enum ";
+            ctype = ToCType(cpptypestr);
+        }
+        else if(type->isArrayType())
+        {
+            logd("// array type");
+            kind = ARRAY;
+            pointee = new Typedata(
+                type->getPointeeOrArrayElementType()
+                    ->getCanonicalTypeUnqualified()
+                    .operator clang::QualType(),
+                context
+            );
+            ctype = pointee->ctype+"*";
+
+            // get the bottom pointee's forwardDecl
+            Typedata* bottomPointee = pointee;
+            while(bottomPointee->pointee)
+                bottomPointee = bottomPointee->pointee;
+            forwardDecl = bottomPointee->forwardDecl; 
+        }
+        else if(type->isReferenceType())
+        {
+            logd("// Reference type");
+            kind = REFERENCE;
+            pointee = new Typedata(type->getPointeeType(), context);
+            ctype = pointee->ctype+"*";
+
+            // get the bottom pointee's forwardDecl
+            Typedata* bottomPointee = pointee;
+            while(bottomPointee->pointee)
+                bottomPointee = bottomPointee->pointee;
+            forwardDecl = bottomPointee->forwardDecl;
+        }
+        else if(type->isPointerType())
+        {
+            logd("// Pointer type");
+            kind = POINTER;
+            pointee = new Typedata(type->getPointeeType(), context);
+
+            ctype = pointee->ctype+"*";
+
+            // get the bottom pointee's forwardDecl
+            Typedata* bottomPointee = pointee;
+            while(bottomPointee->pointee)
+                bottomPointee = bottomPointee->pointee;
+            forwardDecl = bottomPointee->forwardDecl;
+        }
+        else if(type->isStructureOrClassType())
+        {
+            kind = STRUCT;
+            forwardDecl = "struct ";
+            ctype = ToCType(cpptypestr);
+        }
+        else
+        {
+            logd("// Could not process type");
+            ok = false;
+            return;
+            // abort();
+        }
+    }
+
+    // Manual typing
+    // FUNDEMENTAL kind will use _ctype param for fundemental type
+    Typedata(Typedata& data, Typedata::Kind kind, std::string _ctype = "void")
+        : kind(kind)
+    {
+        switch (kind)
+        {
+        case POINTER:
+        {
+            pointee = &data;
+            ctype = pointee->ctype+"*";
+            
+            // get the bottom pointee's forwardDecl
+            Typedata* bottomPointee = pointee;
+            while(bottomPointee->pointee)
+                bottomPointee = bottomPointee->pointee;
+            forwardDecl = bottomPointee->forwardDecl;
+        } break;
+
+        case FUNDEMENTAL:
+        {
+            ctype = _ctype;
+            forwardDecl = "";
+            pointee = nullptr;
+        } break;
+        
+        default:
+        {
+            abort();
+        } break;
+        }
+    }
+};

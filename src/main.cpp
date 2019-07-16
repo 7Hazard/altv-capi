@@ -24,17 +24,23 @@ std::string cheaderstart = R"(
 #define _CAPI_H_
 
 #include <stdbool.h>
-#define CAPIEXTERN
+#define CAPI_EXTERN
 
 #ifdef _WIN32
+#define CAPI_EXPORT CAPI_EXTERN __declspec(dllexport)
+#define CAPI_IMPORT CAPI_EXTERN __declspec(dllimport)
+#else
+#define CAPI_EXPORT CAPI_EXTERN
+#define CAPI_IMPORT CAPI_EXTERN
+#endif
+
+#ifndef CAPI
 #ifdef CAPI_DLL
-#define CAPI CAPIEXTERN __declspec(dllimport)
+#define CAPI CAPI_IMPORT
 #else
-#define CAPI CAPIEXTERN
+#define CAPI CAPI_EXTERN
 #endif // CAPI_DLL
-#else
-#define CAPI CAPIEXTERN
-#endif // _WIN32
+#endif // CAPI
 
 )";
 
@@ -50,15 +56,21 @@ std::string cppheaderstart = R"(
 #pragma once
 
 #define _Bool bool
-#define CAPIEXTERN extern "C"
+#define CAPI_EXTERN extern "C"
+
+#ifdef _WIN32
+#define CAPI_EXPORT CAPI_EXTERN __declspec(dllexport)
+#define CAPI_IMPORT CAPI_EXTERN __declspec(dllimport)
+#else
+#define CAPI_EXPORT CAPI_EXTERN
+#define CAPI_IMPORT CAPI_EXTERN
+#endif
 
 #ifndef CAPI
 #ifdef CAPI_DLL
-#ifdef _WIN32
-#define CAPI CAPIEXTERN __declspec(dllimport)
-#endif // _WIN32
+#define CAPI CAPI_IMPORT
 #else
-#define CAPI CAPIEXTERN
+#define CAPI CAPI_EXTERN
 #endif // CAPI_DLL
 #endif // CAPI
 
@@ -84,16 +96,8 @@ const char* sourcestart = R"(
  * Source implementation for alt:V C API
  */
 
-#include "cpp-sdk/SDK.h"
 
-#ifdef CAPI_DLL
-#ifdef _WIN32
-#define CAPI CAPIEXTERN __declspec(dllexport)
-#endif // _WIN32
-#else
-#define CAPI CAPIEXTERN
-#endif // CAPI_DLL
-#include ")" CPPHeaderFileName R"("
+#include "altv-capi-sourcedefs.hpp"
 
 using namespace alt;
 
