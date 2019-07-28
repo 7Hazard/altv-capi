@@ -52,7 +52,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
 
     auto loc = record->getLocation().printToString(*result.SourceManager);
     logd(
-        "// Record" << std::endl
+        "// Record methods" << std::endl
         << "// " << loc << std::endl
         << "// " << recordnameorig
     );
@@ -110,25 +110,20 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             auto parentrecord = parent.getType()->getAsCXXRecordDecl();
             auto parentname = parentrecord->getIdentifier()->getName().str();
 
-            /* debug */
-            auto ispublic = parentrecord->getAccess() == AccessSpecifier::AS_public;
-            auto isnone = parentrecord->getAccess() == AccessSpecifier::AS_none;
-            auto isvisible = parentrecord->getVisibility() == Visibility::DefaultVisibility;
-            /* debug */
-
             static auto parentAccess = AccessSpecifier::AS_none;
             if(parentrecord->getAccess() != AccessSpecifier::AS_none)
             {
                 parentAccess = parentrecord->getAccess();
             }
 
-            if(parentAccess == AccessSpecifier::AS_public)
+            if(parentAccess == AccessSpecifier::AS_private
+                || parentAccess == AccessSpecifier::AS_protected)
             {
-                logd("// functions derived from " << parentname << std::endl);
-            }
-            else {
                 logd("// derived record " << parentname << " is not publicly accessible" << std::endl);
                 continue;
+            }
+            else {
+                logd("// functions derived from " << parentname << std::endl);
             }
 
             if(parentrecord->isInStdNamespace())
@@ -156,7 +151,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
 
         for(auto method : r->methods())
         {
-            auto methodname = method->getDeclName().getAsString();
+            auto methodname = method->getNameInfo().getAsString();
             auto methodQualifiedName = method->getQualifiedNameAsString();
             std::string cfuncname;
             std::stringstream cfuncbody;
@@ -471,33 +466,73 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             cfuncjson["struct"] = cstructname;
             capijson["functions"][cfuncname] = cfuncjson;
         }
+
+        capiheader("\n");
     };
 
+    // if(cstructname.find("String") != std::string::npos)
+    // {
+    //     logd("// GDGDF");
+    // }
+    // if(cstructname.find("Storage") != std::string::npos)
+    // {
+    //     logd("// STORAGE CLASS");
+    // }
+
+    // static std::unordered_set<std::string> privateRecords;
+    // auto describedRecord = record->getTemplateInstantiationPattern();
+    // std::string describedRecordName;
+    // if(describedRecord)
+    // {
+    //     describedRecordName = describedRecord->getDeclName().getAsString();
+
+    //     auto access = describedRecord->getAccess();
+    //     if(describedRecord->getAccess() == AccessSpecifier::AS_private
+    //         || describedRecord->getAccess() == AccessSpecifier::AS_protected)
+    //     {
+    //         logd("// OAGM");
+    //     }
+
+    //     // just, i can't deal with these yet
+    // }
+    
     // Methods
-    if(access == AccessSpecifier::AS_public)
+    // if(describedRecord
+    //     && privateRecords.find(describedRecordName) != privateRecords.end())
+    // {
+    //     logd("// templated record");
+    //     logd("// the record and its methods are not publicly accessible\n");
+    // }
+    if(recordnameorig.find("alt::MValue::Storage") != std::string::npos)
     {
+        // can't get proper access info for template instanciated records
+        // this is a horrible temporary workaround for current cpp-sdk
+        // https://bugs.llvm.org/show_bug.cgi?id=42658
 
-        /* debug */
-        auto ispublic = record->getAccess() == AccessSpecifier::AS_public;
-        auto isnone = record->getAccess() == AccessSpecifier::AS_none;
-        auto isvisible = record->getAccess() == Visibility::DefaultVisibility;
-        /* debug */
+        logd("// BAD RECORD\n");
+        // return;
+    }
+    else if(record->getAccess() == AccessSpecifier::AS_private
+        || record->getAccess() == AccessSpecifier::AS_protected)
+    {
+        logd("// the record and its methods are not publicly accessible\n");
 
-        auto describedRecord = dyn_cast_or_null<ClassTemplateSpecializationDecl >(record);
-        if(describedRecord)
-        {
-            /* debug */
-            auto ispublic = describedRecord->getAccess() == AccessSpecifier::AS_public;
-            auto isnone = describedRecord->getAccess() == AccessSpecifier::AS_none;
-            auto isvisible = describedRecord->getVisibility() == Visibility::DefaultVisibility;
-            /* debug */
-            logd("");
-        }
-
-        if(cstructname.find("_Storage") != std::string::npos)
-        {
-            logd("// STORAGE CLASS");
-        }
+        // auto rn = record->getIdentifier()->getName().str();
+        // privateRecords.insert(
+        //     rn
+        // );
+    }
+    else
+    // if(
+    //     (record->isStruct() && currentAccess == AccessSpecifier::AS_none)
+    //     || (record->isStruct() && currentAccess == AccessSpecifier::AS_public)
+    //     || (record->isClass() && currentAccess == AccessSpecifier::AS_public)
+    // )
+    {
+        // if(cstructname.find("Storage") != std::string::npos)
+        // {
+        //     logd("// STORAGE CLASS");
+        // }
 
         logd("// functions from " << recordnameorig);
 
@@ -523,9 +558,5 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         }
 
         domethods(record, nullptr);
-    }
-    else
-    {
-        logd("// the record and its methods are not publicly accessible\n");
     }
 });

@@ -39,14 +39,16 @@ static std::string ToCIdentifier(const std::string& str, const std::string& suff
     std::string result = str;
 
     //result = std::regex_replace(result, reg::underscore, "_$&");
-    result = std::regex_replace(result, reg::coloncolon_, "_");
+    result = std::regex_replace(result, reg::coloncolon, "_");
 
     result = std::regex_replace(result, reg::classstructenum, "");
     result = std::regex_replace(result, reg::ampersand, "Ref");
     result = std::regex_replace(result, reg::spacestar, "Ptr");
-    result = std::regex_replace(result, reg::commaspace, "");
+    result = std::regex_replace(result, reg::commaspace, "_");
     result = std::regex_replace(result, reg::notstartwithalt_, "");
-    result = std::regex_replace(result, reg::templates, "");
+    // result = std::regex_replace(result, reg::templates, "_");
+    result = std::regex_replace(result, reg::less, "_");
+    result = std::regex_replace(result, reg::more, "");
     result = std::regex_replace(result, reg::space, "");
 
     //result+=suffix;
@@ -86,10 +88,12 @@ static std::string ToCType(const std::string& str, const std::string& suffix = "
     result = std::regex_replace(result, reg::spaceampersand, "*");
     result = std::regex_replace(result, reg::spacestar, "*");
     //result = std::regex_replace(result, reg::star, "*");
-    result = std::regex_replace(result, reg::commaspace, "");
+    result = std::regex_replace(result, reg::commaspace, "_");
     result = std::regex_replace(result, reg::notstartwithalt_, "");
-    result = std::regex_replace(result, reg::templates, "");
-    result = std::regex_replace(result, reg::space, "_");
+    // result = std::regex_replace(result, reg::templates, "_");
+    result = std::regex_replace(result, reg::less, "_");
+    result = std::regex_replace(result, reg::more, "");
+    result = std::regex_replace(result, reg::space, "");
 
     return result;
 }
@@ -188,6 +192,27 @@ static std::string GetDateAndTime()
     return std::ctime(&end_time);
 }
 
+inline bool SymbolDefined(const std::string& symbolname)
+{
+    if(capisymbols.find(symbolname) != capisymbols.end())
+        return true;
+    else return false;
+}
+
+extern void HandleEnum(const EnumDecl* enumdecl);
+
+// Controls and generated type definitions if needed
+inline void HandleType(clang::QualType type)
+{
+    // Right now only forward-declared enums aren't allowed
+    // (msvc has extensions that make it work)
+    // we only need to pre-define enums before usage
+
+    if(type->isEnumeralType())
+    {
+        HandleEnum(dyn_cast<EnumDecl>(type->getAsTagDecl()));
+    }
+}
 
 struct Typedata
 {
@@ -206,6 +231,7 @@ struct Typedata
     Typedata* pointee = nullptr;
     std::string ctype;
     std::string forwardDecl;
+    // size_t elements = 0;
 
     Typedata(clang::QualType type, const clang::ASTContext& context)
     {
@@ -213,20 +239,31 @@ struct Typedata
             .getUnqualifiedType()
             .getDesugaredType(context);
 
+        HandleType(type);
+
         auto cpptypestr = type.getAsString();
         logd("// cpptype " << cpptypestr);
 
+        // if(type->isLValueReferenceType())
+        // {
+        //     logd("// IS LVALUE REFERENCE");
+        // }
+
         if(cpptypestr.find("std::") != std::string::npos)
         {
-            logd("// type is in STD\n");
+            logd("// type is in STD");
             ok = false;
             return;
         }
+        // TEMP
+        // else if (cpptypestr.find("(&)[") != std::string::npos) {
+        //     logd("// type is reference to sized array or something, cant do these ones yet chief");
+        //     ok = false;
+        //     return;
+        // }
+        // TEMP
         else if(type->isFunctionPointerType())
         {
-            // todo
-            // abort();
-
             logd("// function pointer");
             kind = FUNCTION_POINTER;
 
@@ -272,7 +309,8 @@ struct Typedata
         {
             logd("// enumaral type");
             kind = ENUMERAL;
-            forwardDecl = "enum ";
+            // forward declared enums not allowed
+            // forwardDecl = "enum ";
             ctype = ToCType(cpptypestr);
         }
         else if(type->isArrayType())
@@ -285,7 +323,14 @@ struct Typedata
                     .operator clang::QualType(),
                 context
             );
+            ok = pointee->ok;
             ctype = pointee->ctype+"*";
+
+            // Number of elements
+            // auto vectype = type->getAsArrayTypeUnsafe()
+            //     ->getAs<clang::VectorType>();
+            // elements = vectype->getNumElements();
+            // logd("// number of elements: " << std::to_string(elements));
 
             // get the bottom pointee's forwardDecl
             Typedata* bottomPointee = pointee;
@@ -298,7 +343,19 @@ struct Typedata
             logd("// Reference type");
             kind = REFERENCE;
             pointee = new Typedata(type->getPointeeType(), context);
-            ctype = pointee->ctype+"*";
+            if(!pointee->ok)
+            {
+                logd("// pointee was not ok");
+                return;
+            }
+            else if (pointee->kind == ARRAY)
+            {
+                logd("// array reference");
+                ctype = pointee->ctype;
+            }
+            else {
+                ctype = pointee->ctype+"*";
+            }
 
             // get the bottom pointee's forwardDecl
             Typedata* bottomPointee = pointee;
@@ -311,6 +368,11 @@ struct Typedata
             logd("// Pointer type");
             kind = POINTER;
             pointee = new Typedata(type->getPointeeType(), context);
+            if(!pointee->ok)
+            {
+                logd("// pointee was not ok");
+                return;
+            }
 
             ctype = pointee->ctype+"*";
 

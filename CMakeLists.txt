@@ -14,6 +14,7 @@ add_clang_executable(altv-api-tool
     src/templateClass.cpp
     src/templateAlias.cpp
     src/typedef.cpp
+    src/access.cpp
     src/fields.cpp
     src/methods.cpp
 )

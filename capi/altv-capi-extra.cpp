@@ -23,28 +23,28 @@ public:
     public:
 
 #ifdef ALT_SERVER_API
-        void(*MakeClientFn)(alt_IResource_CreationInfo*, alt_ArrayString*);
+        void(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*);
 #endif
-        _Bool(*InstantiateFn)();
-        _Bool(*StartFn)();
-        _Bool(*StopFn)();
-        _Bool(*OnEventFn)(alt_CEvent*);
-        void(*OnTickFn)();
-        void(*OnCreateBaseObjectFn)(alt_IBaseObject*);
-        void(*OnRemoveBaseObjectFn)(alt_IBaseObject*);
+        _Bool(*InstantiateFn)(alt_IResource*);
+        _Bool(*StartFn)(alt_IResource*);
+        _Bool(*StopFn)(alt_IResource*);
+        _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*);
+        void(*OnTickFn)(alt_IResource*);
+        void(*OnCreateBaseObjectFn)(alt_IResource*, alt_IBaseObject*);
+        void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_IBaseObject*);
 
         Resource(
             alt_IResource_CreationInfo* info,
-#ifdef ALT_SERVER_API
-            void(*MakeClientFn)(alt_IResource_CreationInfo*, alt_ArrayString*),
-#endif
-            _Bool(*InstantiateFn)(),
-            _Bool(*StartFn)(),
-            _Bool(*StopFn)(),
-            _Bool(*OnEventFn)(alt_CEvent*),
-            void(*OnTickFn)(),
-            void(*OnCreateBaseObjectFn)(alt_IBaseObject*),
-            void(*OnRemoveBaseObjectFn)(alt_IBaseObject*)
+    #ifdef ALT_SERVER_API
+            void(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*),
+    #endif
+            _Bool(*InstantiateFn)(alt_IResource*),
+            _Bool(*StartFn)(alt_IResource*),
+            _Bool(*StopFn)(alt_IResource*),
+            _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*),
+            void(*OnTickFn)(alt_IResource*),
+            void(*OnCreateBaseObjectFn)(alt_IResource*, alt_IBaseObject*),
+            void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_IBaseObject*)
         ) : alt::IResource((alt::IResource::CreationInfo*)info),
 #ifdef ALT_SERVER_API
             MakeClientFn(MakeClientFn),
@@ -61,74 +61,76 @@ public:
 #ifdef ALT_SERVER_API
 		virtual void MakeClient(CreationInfo* info, Array<String> files) 
         {
-            MakeClientFn((alt_IResource_CreationInfo*)info, (alt_ArrayString*)&files);
+            MakeClientFn((alt_IResource*)this, (alt_IResource_CreationInfo*)info, (alt_Array_String*)&files);
         }
 #endif
         
 		virtual bool Instantiate() {
             state = State::INSTANTIATING;
-            return InstantiateFn();
+            return InstantiateFn((alt_IResource*)this);
         }
 
 		virtual bool Start() {
             state = State::STARTED;
-            return StartFn();
+            return StartFn((alt_IResource*)this);
         };
 
 		virtual bool Stop() {
             state = State::STOPPED;
-            return StopFn; 
+            return StopFn((alt_IResource*)this); 
         };
 
 		virtual bool OnEvent(const alt::CEvent* ev) {
-            return OnEventFn((alt_CEvent*)ev);
+            return OnEventFn((alt_IResource*)this, (alt_CEvent*)ev);
         };
 
 		virtual void OnTick() {
-            OnTickFn();
+            OnTickFn((alt_IResource*)this);
         };
 
 		virtual void OnCreateBaseObject(alt::IBaseObject* object) {
-            OnCreateBaseObjectFn((alt_IBaseObject*)object);
+            OnCreateBaseObjectFn((alt_IResource*)this, (alt_IBaseObject*)object);
         };
 
 		virtual void OnRemoveBaseObject(alt::IBaseObject* object) {
-            OnRemoveBaseObjectFn((alt_IBaseObject*)object);
+            OnRemoveBaseObjectFn((alt_IResource*)this, (alt_IBaseObject*)object);
         };
     };
 
+
+    alt_IResource*(*CreateResourceFn)(alt_IScriptRuntime*, alt_IResource_CreationInfo*);
+    void(*RemoveResourceFn)(alt_IScriptRuntime*, alt_IResource*);
+    void(*OnTickFn)(alt_IScriptRuntime*);
+
     CAPIScriptRuntime(
-        alt_IResource*(*CreateResourceFn)(alt_IResource_CreationInfo*),
-        void(*RemoveResourceFn)(alt_IResource*),
-        void(*OnTickFn)()
+        alt_IResource*(*CreateResourceFn)(alt_IScriptRuntime*, alt_IResource_CreationInfo*),
+        void(*RemoveResourceFn)(alt_IScriptRuntime*, alt_IResource*),
+        void(*OnTickFn)(alt_IScriptRuntime*)
     ) : CreateResourceFn(CreateResourceFn),
         RemoveResourceFn(RemoveResourceFn),
         OnTickFn(OnTickFn)
     {}
-
-    alt_IResource*(*CreateResourceFn)(alt_IResource_CreationInfo*);
+    
     virtual alt::IResource* CreateResource(alt::IResource::CreationInfo* info) override
     {
-        return (alt::IResource*)CreateResourceFn((alt_IResource_CreationInfo*)info);
+        return (alt::IResource*)CreateResourceFn((alt_IScriptRuntime*)this, (alt_IResource_CreationInfo*)info);
     }
 
-    void(*RemoveResourceFn)(alt_IResource*);
     virtual void RemoveResource(alt::IResource* resource) override
     {
-        RemoveResourceFn((alt_IResource*)resource);
+        RemoveResourceFn((alt_IScriptRuntime*)this, (alt_IResource*)resource);
     }
 
-    void(*OnTickFn)();
     virtual void OnTick() override
     {
-        OnTickFn();
+        OnTickFn((alt_IScriptRuntime*)this);
     }
 };
 
-CAPI alt_IScriptRuntime* alt_IScriptRuntime_Create(
-    alt_IResource*(*CreateResourceFn)(alt_IResource_CreationInfo*),
-    void(*RemoveResourceFn)(alt_IResource*),
-    void(*OnTickFn)()
+CAPI alt_IScriptRuntime* alt_CAPI_IScriptRuntime_Create(
+    alt_IResource*(*CreateResourceFn)(alt_IScriptRuntime*, alt_IResource_CreationInfo*),
+    void(*RemoveResourceFn)(alt_IScriptRuntime*, alt_IResource*),
+    void(*OnTickFn)(alt_IScriptRuntime*)
 )
 {
     FnAssert(CreateResourceFn);
@@ -144,18 +146,18 @@ CAPI alt_IScriptRuntime* alt_IScriptRuntime_Create(
     );
 }
 
-CAPI alt_IResource* alt_IResource_Create(
+CAPI alt_IResource* alt_CAPI_IResource_Create(
     alt_IResource_CreationInfo* info,
 #ifdef ALT_SERVER_API
-    void(*MakeClientFn)(alt_IResource_CreationInfo*, alt_ArrayString*),
+    void(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*),
 #endif
-    _Bool(*InstantiateFn)(),
-    _Bool(*StartFn)(),
-    _Bool(*StopFn)(),
-    _Bool(*OnEventFn)(alt_CEvent*),
-    void(*OnTickFn)(),
-    void(*OnCreateBaseObjectFn)(alt_IBaseObject*),
-    void(*OnRemoveBaseObjectFn)(alt_IBaseObject*)
+    _Bool(*InstantiateFn)(alt_IResource*),
+    _Bool(*StartFn)(alt_IResource*),
+    _Bool(*StopFn)(alt_IResource*),
+    _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*),
+    void(*OnTickFn)(alt_IResource*),
+    void(*OnCreateBaseObjectFn)(alt_IResource*, alt_IBaseObject*),
+    void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_IBaseObject*)
 )
 {
 #ifdef ALT_SERVER_API

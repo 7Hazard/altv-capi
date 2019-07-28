@@ -78,14 +78,14 @@ std::string cppheaderstart = R"(
 
 const char* cheaderend = R"(
 
-#include "altv-capi-extra.h"
+#include "../altv-capi-extra.h"
 
 #endif // _CAPI_H_
 )";
 
 const char* cppheaderend = R"(
 
-#include "altv-capi-extra.h"
+#include "../altv-capi-extra.h"
 )";
 
 const char* sourcestart = R"(

@@ -35,7 +35,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
 
     auto loc = record->getLocation().printToString(*result.SourceManager);
     logd(
-        "// Record" << std::endl
+        "// Record fields" << std::endl
         << "// " << loc << std::endl
         << "// " << recordnameorig
     );
@@ -103,36 +103,8 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         for(auto field : r->fields())
         {
             auto fieldtype = field->getType().getCanonicalType();
+            auto fieldtypedata = Typedata(fieldtype, record->getASTContext());
             auto fieldname = field->getName().str();
-            std::string cfield;
-
-            if(fieldtype.getAsString().find("std::") != std::string::npos)
-            {
-                logd("// Has fields in STD\n");
-                return false;
-            }
-            if(fieldtype->isArrayType())
-            {
-                cfield = field->getType().getCanonicalType().getAsString();
-                cfield.insert(cfield.rfind(" [")+1, fieldname);
-            }
-            else if(fieldtype->isFundamentalType() || fieldtype->isBooleanType()
-                || (fieldtype->isPointerType() && fieldtype->getPointeeType()->isFundamentalType())
-                )
-            {
-                cfield = fieldtype.getAsString()+(" ")+fieldname;
-            }
-            else if(fieldtype->isEnumeralType())
-            {
-                cfield = ("enum ")+ToCIdentifier(fieldtype.getAsString())+(" ")+fieldname;
-            }
-            else {
-                auto ctype = ToCType(
-                    field->getType().getCanonicalType().getAsString()
-                );
-                
-                cfield = ("struct ")+ctype+(" ")+field->getCanonicalDecl()->getName().str();
-            }
             
             auto loc = field->getLocation().printToString(*result.SourceManager);
             logd( 
@@ -142,8 +114,9 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             );
 
             body 
-                << "    " << cfield
-                << ";\n";
+                << "    " << fieldtypedata.forwardDecl 
+                << " " << fieldtypedata.ctype 
+                << " " << fieldname << ";\n";
 
             capijson["structs"][cstructname]["fields"].push_back({
                 {"name", fieldname}
@@ -153,16 +126,18 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         return true;
     };
 
+    // Dont process if already defined
+    if(SymbolDefined(cstructname))
+    {
+        logd("// symbol already defined");
+        return;
+    }
+
     // Fields
     if(!dofields(record))
         return;
 
-    if(capisymbols.find(cstructname) != capisymbols.end())
-    {
-        logd("// symbol already declared");
-        return;
-    }
-
+    // Header
     capixheader("typedef ", "");
     capiheader("struct " << cstructname);
     if(body.str().empty())

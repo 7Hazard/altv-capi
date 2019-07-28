@@ -1,23 +1,20 @@
 #include "tool.hpp"
 
-static auto enumMatcher = enumDecl(
-
-    unless(isExpansionInSystemHeader())
-).bind("enum");
-
-static Handler enumHandler(enumMatcher, [](const MatchFinder::MatchResult& result){
-    auto enumdecl = result.Nodes.getNodeAs<EnumDecl>("enum");
-
+void HandleEnum(const EnumDecl* enumdecl)
+{
     // Data
     json enumjson;
     auto enumname = ToCIdentifier(enumdecl->getQualifiedNameAsString());
     //logfile << "Enum: " << enumname << std::endl;
 
-    // Write to header
-    capixheader("typedef ", "");
-    capiheader("enum " << enumname << " {\n");
+    if(SymbolDefined(enumname))
+    {
+        logd("// Symbol is already defined");
+        return;
+    }
 
     // enums
+    std::stringstream enumcontent;
     for(auto e = enumdecl->enumerator_begin(); e != enumdecl->enumerator_end(); )
     {
         // data
@@ -28,7 +25,7 @@ static Handler enumHandler(enumMatcher, [](const MatchFinder::MatchResult& resul
         // header
         std::string s = ("    ") + ename + (" = ") + std::to_string(eval);
         s += (++e != enumdecl->enumerator_end() ? ",\n" : "\n");
-        capiheader(s);
+        enumcontent << s;
 
         // json
         enumjson["enumerators"].push_back({
@@ -37,10 +34,28 @@ static Handler enumHandler(enumMatcher, [](const MatchFinder::MatchResult& resul
         });
     }
 
-    capiheader("};\n" << std::endl);
+    // Write to header
+    capixheader("typedef ", "");
+    capiheader("enum " << enumname << " {\n" 
+        << enumcontent.str() 
+        << "};\n" << std::endl);
+
 
     // json
     capijson["enums"][enumname] = enumjson;
+
+    capisymbols.emplace(enumname);
+}
+
+static auto enumMatcher = enumDecl(
+
+    unless(isExpansionInSystemHeader())
+).bind("enum");
+
+static Handler enumHandler(enumMatcher, [](const MatchFinder::MatchResult& result){
+    auto enumdecl = result.Nodes.getNodeAs<EnumDecl>("enum");
+
+    HandleEnum(enumdecl);
     
     // ast
     //enumdecl->dump(ast);

@@ -7,3 +7,5 @@ BUILD/*
 capi/BUILD/*
 *.log
 *.ast
+TEST
+TMP

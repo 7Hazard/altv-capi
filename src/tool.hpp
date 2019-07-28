@@ -49,6 +49,8 @@ extern std::ofstream capicppheader;
 extern std::ofstream capisource;
 extern std::unordered_set<std::string> capisymbols;
 
+extern clang::AccessSpecifier currentAccess;
+
 class Handler : public MatchFinder::MatchCallback
 {
 public:
