@@ -1,0 +1,316 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Parse client API",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "D:/src/llvm-project/A-BUILD-NINJA-RelWithDebInfo/bin/altv-api-tool.exe",
+            "args": [
+                // Files to parse
+                "../../cpp-sdk/SDK.h",
+                
+                "--",
+
+                // Includes
+                //"-Icpp-sdk",
+
+                // Defines
+                "-DUNICODE",
+                "-D_UNICODE",
+                //"-DALT_CLIENT",
+                "-DALT_CLIENT_API",
+
+                // Clang stuff
+                "-fms-compatibility",
+                "-fms-extensions",
+
+                "-Wno-deprecated-declarations",
+                "-Wno-switch-enum",
+                "-Wno-unused-command-line-argument",
+                "-Wno-macro-redefined",
+                "-Wno-inconsistent-missing-override",
+                "-Wno-deprecated-declarations",
+                "-Wno-return-type",
+                "-Wno-switch-enum",
+                "-Wno-switch",
+                "-Wno-parentheses",
+                "-Wno-unused-private-field",
+                "-Wno-unused-variable",
+                "-Wno-format",
+                "-Wno-reorder",
+                "-Wno-delete-non-virtual-dtor",
+                "-Wno-microsoft-cast",
+                "-Wno-unused-function",
+                "-Wno-unused-lambda-capture",
+                "-Wno-missing-braces",
+                "-Wno-unused-local-typedef",
+                "-Wno-tautological-constant-out-of-range-compare",
+                "-Wno-delete-incomplete",
+                "-Wno-c++11-narrowing",
+                "-Wno-comment",
+
+                "-xc++",
+                "-ferror-limit=0",
+                "-Wno-pragma-once-outside-header",
+                "-std=c++17",
+                "-Wno-switch-enum",
+                "-Wno-switch",
+
+                "-fparse-all-comments",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/capi/client",
+            "environment": [],
+            "externalConsole": false
+        },
+        {
+            "name": "Parse client API (DEBUG)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "D:/src/llvm-project/A-BUILD-NINJA-Debug/bin/altv-api-tool.exe",
+            "args": [
+                // Files to parse
+                "D:/src/llvm-project/clang-tools-extra/altv-capi/cpp-sdk/SDK.h",
+                
+                "--",
+
+                // Includes
+                //"-Icpp-sdk",
+
+                // Defines
+                "-DUNICODE",
+                "-D_UNICODE",
+                //"-DALT_CLIENT",
+                "-DALT_CLIENT_API",
+
+                // Clang stuff
+                "-fms-compatibility",
+                "-fms-extensions",
+
+                "-Wno-deprecated-declarations",
+                "-Wno-switch-enum",
+                "-Wno-unused-command-line-argument",
+                "-Wno-macro-redefined",
+                "-Wno-inconsistent-missing-override",
+                "-Wno-deprecated-declarations",
+                "-Wno-return-type",
+                "-Wno-switch-enum",
+                "-Wno-switch",
+                "-Wno-parentheses",
+                "-Wno-unused-private-field",
+                "-Wno-unused-variable",
+                "-Wno-format",
+                "-Wno-reorder",
+                "-Wno-delete-non-virtual-dtor",
+                "-Wno-microsoft-cast",
+                "-Wno-unused-function",
+                "-Wno-unused-lambda-capture",
+                "-Wno-missing-braces",
+                "-Wno-unused-local-typedef",
+                "-Wno-tautological-constant-out-of-range-compare",
+                "-Wno-delete-incomplete",
+                "-Wno-c++11-narrowing",
+                "-Wno-comment",
+
+                "-xc++",
+                "-ferror-limit=0",
+                "-Wno-pragma-once-outside-header",
+                "-std=c++17",
+                "-Wno-switch-enum",
+                "-Wno-switch",
+
+                "-fparse-all-comments",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/capi/client",
+            "environment": [],
+            "externalConsole": false
+        },
+        {
+            "name": "Parse server API",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "D:/src/llvm-project/A-BUILD-NINJA-RelWithDebInfo/bin/altv-api-tool.exe",
+            "args": [
+                // Files to parse
+                "D:/src/llvm-project/clang-tools-extra/altv-capi/cpp-sdk/SDK.h",
+                
+                "--",
+
+                // Includes
+                //"-Icpp-sdk",
+
+                // Defines
+                "-DUNICODE",
+                "-D_UNICODE",
+                "-DALT_SERVER_API",
+
+                // Clang stuff
+                "-fms-compatibility",
+                "-fms-extensions",
+
+                "-Wno-deprecated-declarations",
+                "-Wno-switch-enum",
+                "-Wno-unused-command-line-argument",
+                "-Wno-macro-redefined",
+                "-Wno-inconsistent-missing-override",
+                "-Wno-deprecated-declarations",
+                "-Wno-return-type",
+                "-Wno-switch-enum",
+                "-Wno-switch",
+                "-Wno-parentheses",
+                "-Wno-unused-private-field",
+                "-Wno-unused-variable",
+                "-Wno-format",
+                "-Wno-reorder",
+                "-Wno-delete-non-virtual-dtor",
+                "-Wno-microsoft-cast",
+                "-Wno-unused-function",
+                "-Wno-unused-lambda-capture",
+                "-Wno-missing-braces",
+                "-Wno-unused-local-typedef",
+                "-Wno-tautological-constant-out-of-range-compare",
+                "-Wno-delete-incomplete",
+                "-Wno-c++11-narrowing",
+                "-Wno-comment",
+
+                "-xc++",
+                "-ferror-limit=0",
+                "-Wno-pragma-once-outside-header",
+                "-std=c++17",
+                "-Wno-switch-enum",
+                "-Wno-switch",
+
+                "-fparse-all-comments",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/capi/server",
+            "environment": [],
+            "externalConsole": false
+        },
+        {
+            "name": "Parse server API (DEBUG)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "D:/src/llvm-project/A-BUILD-NINJA-Debug/bin/altv-api-tool.exe",
+            "args": [
+                // Files to parse
+                "D:/src/llvm-project/clang-tools-extra/altv-capi/cpp-sdk/SDK.h",
+                
+                "--",
+
+                // Includes
+                //"-Icpp-sdk",
+
+                // Defines
+                "-DUNICODE",
+                "-D_UNICODE",
+                "-DALT_SERVER_API",
+
+                // Clang stuff
+                "-fms-compatibility",
+                "-fms-extensions",
+
+                "-Wno-deprecated-declarations",
+                "-Wno-switch-enum",
+                "-Wno-unused-command-line-argument",
+                "-Wno-macro-redefined",
+                "-Wno-inconsistent-missing-override",
+                "-Wno-deprecated-declarations",
+                "-Wno-return-type",
+                "-Wno-switch-enum",
+                "-Wno-switch",
+                "-Wno-parentheses",
+                "-Wno-unused-private-field",
+                "-Wno-unused-variable",
+                "-Wno-format",
+                "-Wno-reorder",
+                "-Wno-delete-non-virtual-dtor",
+                "-Wno-microsoft-cast",
+                "-Wno-unused-function",
+                "-Wno-unused-lambda-capture",
+                "-Wno-missing-braces",
+                "-Wno-unused-local-typedef",
+                "-Wno-tautological-constant-out-of-range-compare",
+                "-Wno-delete-incomplete",
+                "-Wno-c++11-narrowing",
+                "-Wno-comment",
+
+                "-xc++",
+                "-ferror-limit=0",
+                "-Wno-pragma-once-outside-header",
+                "-std=c++17",
+                "-Wno-switch-enum",
+                "-Wno-switch",
+
+                "-fparse-all-comments",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/capi/server",
+            "environment": [],
+            "externalConsole": false
+        },
+        {
+            "name": "Parse Test (DEBUG)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "D:/src/llvm-project/A-BUILD-NINJA-Debug/bin/altv-api-tool.exe",
+            "args": [
+                // Files to parse
+                "D:/src/llvm-project/clang-tools-extra/altv-capi/TEST/TEST.HPP",
+                
+                "--",
+
+                // Defines
+                "-DUNICODE",
+                "-D_UNICODE",
+
+                // Clang stuff
+                "-fms-compatibility",
+                "-fms-extensions",
+
+                "-Wno-deprecated-declarations",
+                "-Wno-switch-enum",
+                "-Wno-unused-command-line-argument",
+                "-Wno-macro-redefined",
+                "-Wno-inconsistent-missing-override",
+                "-Wno-deprecated-declarations",
+                "-Wno-return-type",
+                "-Wno-switch-enum",
+                "-Wno-switch",
+                "-Wno-parentheses",
+                "-Wno-unused-private-field",
+                "-Wno-unused-variable",
+                "-Wno-format",
+                "-Wno-reorder",
+                "-Wno-delete-non-virtual-dtor",
+                "-Wno-microsoft-cast",
+                "-Wno-unused-function",
+                "-Wno-unused-lambda-capture",
+                "-Wno-missing-braces",
+                "-Wno-unused-local-typedef",
+                "-Wno-tautological-constant-out-of-range-compare",
+                "-Wno-delete-incomplete",
+                "-Wno-c++11-narrowing",
+                "-Wno-comment",
+
+                "-xc++",
+                "-ferror-limit=0",
+                "-Wno-pragma-once-outside-header",
+                "-std=c++17",
+                "-Wno-switch-enum",
+                "-Wno-switch",
+
+                "-fparse-all-comments",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/TEST",
+            "environment": [],
+            "externalConsole": false
+        }
+    ]
+}
