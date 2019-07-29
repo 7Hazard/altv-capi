@@ -1,0 +1,11 @@
+gen/*
+GEN/*
+.vscode/*
+capi/client/BUILD/*
+capi/server/BUILD/*
+BUILD/*
+capi/BUILD/*
+*.log
+*.ast
+TEST
+TMP

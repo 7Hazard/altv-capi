@@ -4,26 +4,42 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Generate (clang-cl)",
+            "label": "Build Parser Release",
             "type": "shell",
-            "command": "${workspaceFolder}/../../../../../../BUILD/gen-cmake.bat",
+            "command": "${workspaceFolder}/../../NINJA-WIN-RelWithDebInfo-BUILD.bat",
             "options": {
-                "cwd": "${workspaceFolder}/../../../../../../BUILD"
-            },
-            "args": []
-        },
-        {
-            "label": "Build (clang-cl)",
-            "type": "shell",
-            "command": "${workspaceFolder}/../../../../../../BUILD/build.bat",
-            "options": {
-                "cwd": "${workspaceFolder}/../../../../../../BUILD"
+                "cwd": "${workspaceFolder}/../../"
             },
             "args": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
+            "group": "build",
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Build Parser Debug",
+            "type": "shell",
+            "command": "${workspaceFolder}/../../NINJA-WIN-Debug-BUILD.bat",
+            "options": {
+                "cwd": "${workspaceFolder}/../../"
             },
+            "args": [],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Build CAPI",
+            "type": "shell",
+            "command": "${workspaceFolder}/capi/build.bat",
+            "options": {
+                "cwd": "${workspaceFolder}/capi"
+            },
+            "args": [],
+            "group": "build",
             "problemMatcher": [
                 "$gcc",
                 "$msCompile"
