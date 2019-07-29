@@ -7217,6 +7217,21 @@
             },
             "struct": "alt_IPlayer"
         },
+        "alt_IPlayer_GetAuthToken": {
+            "comment": "// Return ptr must be manually freed with alt_StringView_free()\n",
+            "params": [
+                {
+                    "kind": "pointer",
+                    "name": "_instance",
+                    "type": "alt_IPlayer*"
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "type": "alt_StringView*"
+            },
+            "struct": "alt_IPlayer"
+        },
         "alt_IPlayer_GetCurrentWeapon": {
             "comment": "",
             "params": [
@@ -7334,6 +7349,36 @@
             "returns": {
                 "kind": 0,
                 "type": "unsigned short"
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_GetHwidExHash": {
+            "comment": "",
+            "params": [
+                {
+                    "kind": "pointer",
+                    "name": "_instance",
+                    "type": "alt_IPlayer*"
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "type": "unsigned long long"
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_GetHwidHash": {
+            "comment": "",
+            "params": [
+                {
+                    "kind": "pointer",
+                    "name": "_instance",
+                    "type": "alt_IPlayer*"
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "type": "unsigned long long"
             },
             "struct": "alt_IPlayer"
         },
@@ -7519,6 +7564,21 @@
             "returns": {
                 "kind": 0,
                 "type": "unsigned char"
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_GetSocialID": {
+            "comment": "",
+            "params": [
+                {
+                    "kind": "pointer",
+                    "name": "_instance",
+                    "type": "alt_IPlayer*"
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "type": "unsigned long long"
             },
             "struct": "alt_IPlayer"
         },
@@ -7994,26 +8054,6 @@
                     "kind": 3,
                     "name": "val",
                     "type": "alt_MValue*"
-                }
-            ],
-            "returns": {
-                "kind": 0,
-                "type": "void"
-            },
-            "struct": "alt_IPlayer"
-        },
-        "alt_IPlayer_SetName": {
-            "comment": "",
-            "params": [
-                {
-                    "kind": "pointer",
-                    "name": "_instance",
-                    "type": "alt_IPlayer*"
-                },
-                {
-                    "kind": 3,
-                    "name": "name",
-                    "type": "alt_StringView*"
                 }
             ],
             "returns": {
@@ -11317,7 +11357,7 @@
             },
             "struct": "alt_IWorldObject"
         },
-        "alt_MValueDict_Access_String": {
+        "alt_MValueDict_Access_constMValue_StringRef": {
             "comment": "",
             "params": [
                 {
@@ -11326,7 +11366,7 @@
                     "type": "alt_MValueDict*"
                 },
                 {
-                    "kind": 3,
+                    "kind": 2,
                     "name": "key",
                     "type": "alt_String*"
                 }
@@ -11635,6 +11675,26 @@
             "returns": {
                 "kind": 3,
                 "type": "alt_MValueDict*"
+            },
+            "struct": "alt_MValueDict"
+        },
+        "alt_MValueDict_Delete": {
+            "comment": "",
+            "params": [
+                {
+                    "kind": "pointer",
+                    "name": "_instance",
+                    "type": "alt_MValueDict*"
+                },
+                {
+                    "kind": 2,
+                    "name": "key",
+                    "type": "alt_String*"
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "type": "void"
             },
             "struct": "alt_MValueDict"
         },
