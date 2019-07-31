@@ -69,21 +69,22 @@ public:
 #endif
         
 		virtual bool Instantiate() {
-            state = State::INSTANTIATING;
+            IResource::Instantiate();
             return InstantiateFn((alt_IResource*)this);
         }
 
 		virtual bool Start() {
-            state = State::STARTED;
+            IResource::Start();
             return StartFn((alt_IResource*)this);
         };
 
 		virtual bool Stop() {
-            state = State::STOPPED;
+            IResource::Stop();
             return StopFn((alt_IResource*)this); 
         };
 
 		virtual bool OnEvent(const alt::CEvent* ev) {
+            IResource::OnEvent(ev);
             return OnEventFn((alt_IResource*)this, (alt_CEvent*)ev);
         };
 
@@ -92,10 +93,12 @@ public:
         };
 
 		virtual void OnCreateBaseObject(alt::IBaseObject* object) {
+            IResource::OnCreateBaseObject(object);
             OnCreateBaseObjectFn((alt_IResource*)this, (alt_IBaseObject*)object);
         };
 
 		virtual void OnRemoveBaseObject(alt::IBaseObject* object) {
+            IResource::OnRemoveBaseObject(object);
             OnRemoveBaseObjectFn((alt_IResource*)this, (alt_IBaseObject*)object);
         };
     };
