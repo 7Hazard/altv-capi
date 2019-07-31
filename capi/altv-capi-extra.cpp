@@ -21,7 +21,7 @@ public:
     class Resource : public alt::IResource
     {
     public:
-
+        // Callbacks
 #ifdef ALT_SERVER_API
         void(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*);
 #endif
@@ -32,6 +32,9 @@ public:
         void(*OnTickFn)(alt_IResource*);
         void(*OnCreateBaseObjectFn)(alt_IResource*, alt_IBaseObject*);
         void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_IBaseObject*);
+
+        // Extras
+        void* extra;
 
         Resource(
             alt_IResource_CreationInfo* info,
@@ -59,7 +62,7 @@ public:
         {}
 
 #ifdef ALT_SERVER_API
-		virtual void MakeClient(CreationInfo* info, Array<String> files) 
+		virtual void MakeClient(CreationInfo* info, alt::Array<alt::String> files) 
         {
             MakeClientFn((alt_IResource*)this, (alt_IResource_CreationInfo*)info, (alt_Array_String*)&files);
         }
@@ -127,7 +130,7 @@ public:
     }
 };
 
-CAPI alt_IScriptRuntime* alt_CAPI_IScriptRuntime_Create(
+CAPI alt_IScriptRuntime* alt_CAPIScriptRuntime_Create(
     alt_IResource*(*CreateResourceFn)(alt_IScriptRuntime*, alt_IResource_CreationInfo*),
     void(*RemoveResourceFn)(alt_IScriptRuntime*, alt_IResource*),
     void(*OnTickFn)(alt_IScriptRuntime*)
@@ -146,7 +149,7 @@ CAPI alt_IScriptRuntime* alt_CAPI_IScriptRuntime_Create(
     );
 }
 
-CAPI alt_IResource* alt_CAPI_IResource_Create(
+CAPI alt_IResource* alt_CAPIResource_Create(
     alt_IResource_CreationInfo* info,
 #ifdef ALT_SERVER_API
     void(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*),
@@ -186,4 +189,14 @@ CAPI alt_IResource* alt_CAPI_IResource_Create(
             OnRemoveBaseObjectFn
         )
     );
+}
+
+CAPI void alt_CAPIResource_SetExtra(alt::IResource* resource, void* extra)
+{
+    static_cast<CAPIScriptRuntime::Resource*>(resource)->extra = extra;
+}
+
+CAPI void* alt_CAPIResource_GetExtra(alt::IResource* resource)
+{
+    return static_cast<CAPIScriptRuntime::Resource*>(resource)->extra;
 }

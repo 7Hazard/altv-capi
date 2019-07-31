@@ -10,13 +10,13 @@
 CAPI unsigned int alt_GetSDKVersion();
 #define CAPI_EXPORT_SDK_VERSION CAPI_EXPORT unsigned int GetSDKVersion() { return alt_GetSDKVersion(); }
 
-CAPI alt_IScriptRuntime* alt_CAPI_IScriptRuntime_Create(
+CAPI alt_IScriptRuntime* alt_CAPIScriptRuntime_Create(
     alt_IResource*(*CreateResourceFn)(alt_IScriptRuntime*, alt_IResource_CreationInfo*),
     void(*RemoveResourceFn)(alt_IScriptRuntime*, alt_IResource*),
     void(*OnTickFn)(alt_IScriptRuntime*)
 );
 
-CAPI alt_IResource* alt_CAPI_IResource_Create(
+CAPI alt_IResource* alt_CAPIResource_Create(
     alt_IResource_CreationInfo* info,
 #ifdef ALT_SERVER_API
     void(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*),
@@ -29,5 +29,8 @@ CAPI alt_IResource* alt_CAPI_IResource_Create(
     void(*OnCreateBaseObjectFn)(alt_IResource*, alt_IBaseObject*),
     void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_IBaseObject*)
 );
+
+CAPI void alt_CAPIResource_SetExtra(alt_IResource* resource, void* extra);
+CAPI void* alt_CAPIResource_GetExtra(alt_IResource* resource);
 
 #endif // _CAPI_EXTRA_H_
