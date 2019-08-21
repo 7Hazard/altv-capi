@@ -194,12 +194,12 @@ CAPI alt_IResource* alt_CAPIResource_Create(
     );
 }
 
-CAPI void alt_CAPIResource_SetExtra(alt::IResource* resource, void* extra)
+CAPI void alt_CAPIResource_SetExtra(alt_IResource* resource, void* extra)
 {
-    static_cast<CAPIScriptRuntime::Resource*>(resource)->extra = extra;
+    static_cast<CAPIScriptRuntime::Resource*>((alt::IResource*)resource)->extra = extra;
 }
 
-CAPI void* alt_CAPIResource_GetExtra(alt::IResource* resource)
+CAPI void* alt_CAPIResource_GetExtra(alt_IResource* resource)
 {
-    return static_cast<CAPIScriptRuntime::Resource*>(resource)->extra;
+    return static_cast<CAPIScriptRuntime::Resource*>((alt::IResource*)resource)->extra;
 }
