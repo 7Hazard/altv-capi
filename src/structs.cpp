@@ -119,7 +119,8 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 << " " << fieldname << ";\n";
 
             capijson["structs"][cstructname]["fields"].push_back({
-                {"name", fieldname}
+                {"name", fieldname},
+                {"type", fieldtypedata.json_data()}
             });
         }
 

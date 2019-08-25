@@ -218,7 +218,7 @@ struct Typedata
 {
     enum Kind
     {
-        FUNDEMENTAL,
+        FUNDAMENTAL,
         ENUMERAL,
         REFERENCE,
         POINTER,
@@ -226,6 +226,36 @@ struct Typedata
         FUNCTION_POINTER,
         STRUCT
     } kind;
+
+    std::string kind_str()
+    {
+        switch (kind)
+        {
+        case FUNDAMENTAL:
+            return "fundamental";
+        case ENUMERAL:
+            return "enumeral";
+        case REFERENCE:
+            return "reference";
+        case POINTER:
+            return "pointer";
+        case ARRAY:
+            return "array";
+        case FUNCTION_POINTER:
+            return "function_pointer";
+        case STRUCT:
+            return "struct";
+        }
+    }
+
+    json json_data()
+    {
+        return {
+            {"name", ctype},
+            {"kind", kind},
+            {"kind_str", kind_str()}
+        };
+    }
 
     bool ok = true;
     Typedata* pointee = nullptr;
@@ -302,7 +332,7 @@ struct Typedata
         else if(type->isFundamentalType() || type->isBooleanType())
         {
             logd("// fundamental");
-            kind = FUNDEMENTAL;
+            kind = FUNDAMENTAL;
             ctype = cpptypestr;
         }
         else if(type->isEnumeralType())
@@ -416,7 +446,7 @@ struct Typedata
             forwardDecl = bottomPointee->forwardDecl;
         } break;
 
-        case FUNDEMENTAL:
+        case FUNDAMENTAL:
         {
             ctype = _ctype;
             forwardDecl = "";

@@ -286,7 +286,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             }
             else if(methodname == "operator=")
             {
-                retdata = Typedata(retdata, Typedata::FUNDEMENTAL);
+                retdata = Typedata(retdata, Typedata::FUNDAMENTAL);
                 // cfuncbody <<  "    *((" << recordname << " *)_instance) = (";
             }
             else if(retdata.kind == Typedata::STRUCT)
@@ -361,16 +361,16 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 // json
                 cfuncjson["params"].push_back({
                     {"name", "_instance"},
-                    {"type", cparamtype},
-                    {"kind", "pointer"}
+                    {"type", {
+                        {"name", cparamtype},
+                        {"kind", Typedata::POINTER},
+                        {"kind_str", "pointer"}
+                    }}
                 });
             }
 
             // return json
-            cfuncjson["returns"] = {
-                {"type", retdata.ctype},
-                {"kind", retdata.kind}
-            };
+            cfuncjson["returns"] = retdata.json_data();
 
             // Params
             bool badparams = false;
@@ -422,8 +422,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
 
                 cfuncjson["params"].push_back({
                     {"name", paramname},
-                    {"type", typedata.ctype},
-                    {"kind", typedata.kind}
+                    {"type", typedata.json_data()}
                 });
             }
 

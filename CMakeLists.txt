@@ -15,7 +15,7 @@ add_clang_executable(altv-api-tool
     src/templateAlias.cpp
     src/typedef.cpp
     src/access.cpp
-    src/fields.cpp
+    src/structs.cpp
     src/methods.cpp
 )
 target_link_libraries(altv-api-tool PRIVATE
