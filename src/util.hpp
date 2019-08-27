@@ -250,20 +250,37 @@ struct Typedata
 
     json json_data()
     {
-        json pointee_data = pointee ? pointee->json_data() : json::object();
-        return {
+        json data = {
             {"name", ctype},
             {"kind", kind},
             {"kind_str", kind_str()},
-            {"pointee", pointee_data}
         };
+
+        if(pointee)
+        {
+            data["pointee"] = pointee->json_data();
+        }
+
+        if(kind == FUNCTION_POINTER)
+        {
+            data["returns"] = fn_return->json_data();
+            for(auto& p : fn_params)
+                data["params"].push_back(p.json_data());
+        }
+
+        return data;
     }
 
     bool ok = true;
-    Typedata* pointee = nullptr;
     std::string ctype;
     std::string forwardDecl;
-    // size_t elements = 0;
+
+    // pointer
+    Typedata* pointee = nullptr;
+
+    // function pointer
+    Typedata* fn_return = nullptr;
+    std::vector<Typedata> fn_params;
 
     Typedata(clang::QualType type, const clang::ASTContext& context)
     {
@@ -312,6 +329,8 @@ struct Typedata
                 if(!cfnparams.empty())
                     cfnparams+=", ";
                 cfnparams += paramtypedata.ctype;
+
+                fn_params.push_back(paramtypedata);
             }
 
             if(badparams)
@@ -322,14 +341,14 @@ struct Typedata
             }
 
             auto rettype = fn->getReturnType();
-            auto rettypedata = Typedata(rettype, context);
-            if(!rettypedata.ok)
+            fn_return = new Typedata(rettype, context);
+            if(!fn_return->ok)
             {
                 ok = false;
                 return;
             }
             
-            ctype = rettypedata.ctype+("(*)(")+cfnparams+(")");
+            ctype = fn_return->ctype+("(*)(")+cfnparams+(")");
         }
         else if(type->isFundamentalType() || type->isBooleanType())
         {
