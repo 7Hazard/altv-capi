@@ -250,10 +250,12 @@ struct Typedata
 
     json json_data()
     {
+        json pointee_data = pointee ? pointee->json_data() : json::object();
         return {
             {"name", ctype},
             {"kind", kind},
-            {"kind_str", kind_str()}
+            {"kind_str", kind_str()},
+            {"pointee", pointee_data}
         };
     }
 
@@ -423,7 +425,6 @@ struct Typedata
             logd("// Could not process type");
             ok = false;
             return;
-            // abort();
         }
     }
 
@@ -436,7 +437,7 @@ struct Typedata
         {
         case POINTER:
         {
-            pointee = &data;
+            pointee = new Typedata(data);
             ctype = pointee->ctype+"*";
             
             // get the bottom pointee's forwardDecl
