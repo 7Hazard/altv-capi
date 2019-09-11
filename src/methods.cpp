@@ -550,6 +550,25 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             else {
                 funcnames[freefuncname] = 1;
             }
+
+            // json
+            json cfuncjson;
+            cfuncjson["comment"] = "";
+            cfuncjson["struct"] = cstructname;
+            cfuncjson["params"].push_back({
+                {"name", "ptr"},
+                {"type", {
+                    {"name", cstructname+"*"},
+                    {"kind", Typedata::POINTER},
+                    {"kind_str", "pointer"}
+                }}
+            });
+            cfuncjson["returns"] = {
+                {"name", "void"},
+                {"kind", Typedata::FUNDAMENTAL},
+                {"kind_str", "fundamental"}
+            };
+            capijson["functions"][freefuncname] = cfuncjson;
         }
         else
         {
