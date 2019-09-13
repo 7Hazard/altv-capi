@@ -13,34 +13,34 @@ add_definitions(
 )
 
 # Client
-add_library(altv-capi-client-dll SHARED
+add_library(altv-capi-client SHARED
     client/altv-capi.cpp
 )
-target_compile_definitions(altv-capi-client-dll PRIVATE
+target_compile_definitions(altv-capi-client PRIVATE
     ALT_CLIENT_API
     CAPI_DLL
 )
 
-add_library(altv-capi-client STATIC
+add_library(altv-capi-client-static STATIC
     client/altv-capi.cpp
 )
-target_compile_definitions(altv-capi-client PRIVATE
+target_compile_definitions(altv-capi-client-static PRIVATE
     ALT_CLIENT_API
 )
 
 
 # Server
-add_library(altv-capi-server-dll SHARED
+add_library(altv-capi-server SHARED
     server/altv-capi.cpp
 )
-target_compile_definitions(altv-capi-server-dll PRIVATE
+target_compile_definitions(altv-capi-server PRIVATE
     ALT_SERVER_API
     CAPI_DLL
 )
 
-add_library(altv-capi-server STATIC
+add_library(altv-capi-server-static STATIC
     server/altv-capi.cpp
 )
-target_compile_definitions(altv-capi-server PRIVATE
+target_compile_definitions(altv-capi-server-static PRIVATE
     ALT_SERVER_API
 )
