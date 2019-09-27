@@ -4,10 +4,32 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Generate Release",
+            "type": "shell",
+            "windows": {
+                "command": "${workspaceFolder}/../../NINJA-WIN-RelWithDebInfo-GEN.bat",
+            },
+            "linux": {
+                "command": "cmake -G Ninja llvm -BA-BUILD-NINJA-RelWithDebInfo -DCMAKE_BUILD_TYPE=RelWithDebInfo -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra' -DLLVM_ENABLE_CXX1Z=ON -DLLVM_BUILD_TESTS=OFF",
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/../../"
+            },
+            "args": [],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
+        },
+        {
             "label": "Build Parser Release",
             "type": "shell",
             "windows": {
                 "command": "${workspaceFolder}/../../NINJA-WIN-RelWithDebInfo-BUILD.bat; Copy-Item '${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/bin/altv-api-tool.exe' '${workspaceFolder}/tools/altv-api-tool.exe'",
+            },
+            "linux": {
+                "command": "cmake --build A-BUILD-NINJA-RelWithDebInfo --config RelWithDebInfo",
             },
             "options": {
                 "cwd": "${workspaceFolder}/../../"
@@ -22,7 +44,9 @@
         {
             "label": "Build Parser Debug",
             "type": "shell",
-            "command": "${workspaceFolder}/../../NINJA-WIN-Debug-BUILD.bat",
+            "windows": {
+                "command": "${workspaceFolder}/../../NINJA-WIN-Debug-BUILD.bat",
+            },
             "options": {
                 "cwd": "${workspaceFolder}/../../"
             },
@@ -36,7 +60,12 @@
         {
             "label": "Build CAPI",
             "type": "shell",
-            "command": "${workspaceFolder}/capi/build.bat",
+            "windows": {
+                "command": "${workspaceFolder}/capi/build.bat",  
+            },
+            "linux": {
+                "command": "cmake . -BBUILD -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja && cmake --build BUILD --config RelWithDebInfo"
+            },
             "options": {
                 "cwd": "${workspaceFolder}/capi"
             },
