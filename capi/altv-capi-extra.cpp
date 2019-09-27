@@ -11,7 +11,7 @@
 
 CAPI unsigned int alt_GetSDKVersion()
 {
-    return ICore::SDK_VERSION;
+    return alt::ICore::SDK_VERSION;
 }
 
 class CAPIScriptRuntime : public alt::IScriptRuntime
@@ -48,6 +48,7 @@ public:
             void(*OnCreateBaseObjectFn)(alt_IResource*, alt_IBaseObject*),
             void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_IBaseObject*)
         ) : alt::IResource::Impl(),
+            resource(resource),
 #ifdef ALT_SERVER_API
             MakeClientFn(MakeClientFn),
 #endif
