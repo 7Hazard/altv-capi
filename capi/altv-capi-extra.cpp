@@ -11,21 +11,20 @@
 
 CAPI unsigned int alt_GetSDKVersion()
 {
-    return ALTV_SDK_VERSION;
+    return ICore::SDK_VERSION;
 }
 
 class CAPIScriptRuntime : public alt::IScriptRuntime
 {
 public:
 
-    class Resource : public alt::IResource
+    class Resource_Impl : public alt::IResource::Impl
     {
     public:
         // Callbacks
 #ifdef ALT_SERVER_API
-        void(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*);
+        _Bool(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*);
 #endif
-        _Bool(*InstantiateFn)(alt_IResource*);
         _Bool(*StartFn)(alt_IResource*);
         _Bool(*StopFn)(alt_IResource*);
         _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*);
@@ -33,26 +32,25 @@ public:
         void(*OnCreateBaseObjectFn)(alt_IResource*, alt_IBaseObject*);
         void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_IBaseObject*);
 
-        // Extras
+        // Data
+        alt_IResource* resource;
         void* extra;
 
-        Resource(
-            alt_IResource_CreationInfo* info,
+        Resource_Impl(
+            alt_IResource* resource,
     #ifdef ALT_SERVER_API
-            void(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*),
+            _Bool(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*),
     #endif
-            _Bool(*InstantiateFn)(alt_IResource*),
             _Bool(*StartFn)(alt_IResource*),
             _Bool(*StopFn)(alt_IResource*),
             _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*),
             void(*OnTickFn)(alt_IResource*),
             void(*OnCreateBaseObjectFn)(alt_IResource*, alt_IBaseObject*),
             void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_IBaseObject*)
-        ) : alt::IResource((alt::IResource::CreationInfo*)info),
+        ) : alt::IResource::Impl(),
 #ifdef ALT_SERVER_API
             MakeClientFn(MakeClientFn),
 #endif
-            InstantiateFn(InstantiateFn),
             StartFn(StartFn),
             StopFn(StopFn),
             OnEventFn(OnEventFn),
@@ -62,69 +60,59 @@ public:
         {}
 
 #ifdef ALT_SERVER_API
-		virtual void MakeClient(CreationInfo* info, alt::Array<alt::String> files) 
+		virtual bool MakeClient(alt::IResource::CreationInfo* info, alt::Array<alt::String> files) 
         {
-            MakeClientFn((alt_IResource*)this, (alt_IResource_CreationInfo*)info, (alt_Array_String*)&files);
+            return MakeClientFn((alt_IResource*)resource, (alt_IResource_CreationInfo*)info, (alt_Array_String*)&files);
         }
 #endif
-        
-		virtual bool Instantiate() {
-            IResource::Instantiate();
-            return InstantiateFn((alt_IResource*)this);
-        }
 
 		virtual bool Start() {
-            IResource::Start();
-            return StartFn((alt_IResource*)this);
+            return StartFn((alt_IResource*)resource);
         };
 
 		virtual bool Stop() {
-            IResource::Stop();
-            return StopFn((alt_IResource*)this); 
+            return StopFn((alt_IResource*)resource); 
         };
 
 		virtual bool OnEvent(const alt::CEvent* ev) {
-            IResource::OnEvent(ev);
-            return OnEventFn((alt_IResource*)this, (alt_CEvent*)ev);
+            return OnEventFn((alt_IResource*)resource, (alt_CEvent*)ev);
         };
 
 		virtual void OnTick() {
-            OnTickFn((alt_IResource*)this);
+            OnTickFn((alt_IResource*)resource);
         };
 
 		virtual void OnCreateBaseObject(alt::IBaseObject* object) {
-            IResource::OnCreateBaseObject(object);
-            OnCreateBaseObjectFn((alt_IResource*)this, (alt_IBaseObject*)object);
+            OnCreateBaseObjectFn((alt_IResource*)resource, (alt_IBaseObject*)object);
         };
 
 		virtual void OnRemoveBaseObject(alt::IBaseObject* object) {
-            IResource::OnRemoveBaseObject(object);
-            OnRemoveBaseObjectFn((alt_IResource*)this, (alt_IBaseObject*)object);
+            OnRemoveBaseObjectFn((alt_IResource*)resource, (alt_IBaseObject*)object);
         };
     };
 
 
-    alt_IResource*(*CreateResourceFn)(alt_IScriptRuntime*, alt_IResource_CreationInfo*);
-    void(*RemoveResourceFn)(alt_IScriptRuntime*, alt_IResource*);
+    alt_IResource_Impl*(*CreateImplFn)(alt_IScriptRuntime*, alt_IResource*);
+    void(*DestroyImplFn)(alt_IScriptRuntime*, alt_IResource_Impl*);
     void(*OnTickFn)(alt_IScriptRuntime*);
 
     CAPIScriptRuntime(
-        alt_IResource*(*CreateResourceFn)(alt_IScriptRuntime*, alt_IResource_CreationInfo*),
-        void(*RemoveResourceFn)(alt_IScriptRuntime*, alt_IResource*),
+        alt_IResource_Impl*(*CreateImplFn)(alt_IScriptRuntime*, alt_IResource*),
+        void(*DestroyImplFn)(alt_IScriptRuntime*, alt_IResource_Impl*),
         void(*OnTickFn)(alt_IScriptRuntime*)
-    ) : CreateResourceFn(CreateResourceFn),
-        RemoveResourceFn(RemoveResourceFn),
+    ) : CreateImplFn(CreateImplFn),
+        DestroyImplFn(DestroyImplFn),
         OnTickFn(OnTickFn)
     {}
     
-    virtual alt::IResource* CreateResource(alt::IResource::CreationInfo* info) override
+    virtual alt::IResource::Impl* CreateImpl(alt::IResource* resource) override
     {
-        return (alt::IResource*)CreateResourceFn((alt_IScriptRuntime*)this, (alt_IResource_CreationInfo*)info);
+        return (alt::IResource::Impl*)CreateImplFn((alt_IScriptRuntime*)this, (alt_IResource*)resource);
     }
 
-    virtual void RemoveResource(alt::IResource* resource) override
+    virtual void DestroyImpl(alt::IResource::Impl* impl) override
     {
-        RemoveResourceFn((alt_IScriptRuntime*)this, (alt_IResource*)resource);
+        DestroyImplFn((alt_IScriptRuntime*)this, (alt_IResource_Impl*)impl);
     }
 
     virtual void OnTick() override
@@ -134,30 +122,29 @@ public:
 };
 
 CAPI alt_IScriptRuntime* alt_CAPIScriptRuntime_Create(
-    alt_IResource*(*CreateResourceFn)(alt_IScriptRuntime*, alt_IResource_CreationInfo*),
-    void(*RemoveResourceFn)(alt_IScriptRuntime*, alt_IResource*),
+    alt_IResource_Impl*(*CreateImplFn)(alt_IScriptRuntime*, alt_IResource*),
+    void(*DestroyImplFn)(alt_IScriptRuntime*, alt_IResource_Impl*),
     void(*OnTickFn)(alt_IScriptRuntime*)
 )
 {
-    FnAssert(CreateResourceFn);
-    FnAssert(RemoveResourceFn);
+    FnAssert(CreateImplFn);
+    FnAssert(DestroyImplFn);
     FnAssert(OnTickFn);
 
     return (alt_IScriptRuntime*)static_cast<alt::IScriptRuntime*>(
         new CAPIScriptRuntime(
-            CreateResourceFn,
-            RemoveResourceFn,
+            CreateImplFn,
+            DestroyImplFn,
             OnTickFn
         )
     );
 }
 
-CAPI alt_IResource* alt_CAPIResource_Create(
-    alt_IResource_CreationInfo* info,
+CAPI alt_IResource_Impl* alt_CAPIResource_Impl_Create(
+    alt_IResource* resource,
 #ifdef ALT_SERVER_API
-    void(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*),
+    _Bool(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*),
 #endif
-    _Bool(*InstantiateFn)(alt_IResource*),
     _Bool(*StartFn)(alt_IResource*),
     _Bool(*StopFn)(alt_IResource*),
     _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*),
@@ -169,7 +156,6 @@ CAPI alt_IResource* alt_CAPIResource_Create(
 #ifdef ALT_SERVER_API
     FnAssert(MakeClientFn);
 #endif
-    FnAssert(InstantiateFn);
     FnAssert(StartFn);
     FnAssert(StopFn);
     FnAssert(OnEventFn);
@@ -177,13 +163,12 @@ CAPI alt_IResource* alt_CAPIResource_Create(
     FnAssert(OnCreateBaseObjectFn);
     FnAssert(OnRemoveBaseObjectFn);
 
-    return (alt_IResource*)static_cast<alt::IResource*>(
-        new CAPIScriptRuntime::Resource(
-            info,
+    return (alt_IResource_Impl*)static_cast<alt::IResource::Impl*>(
+        new CAPIScriptRuntime::Resource_Impl(
+            resource,
 #ifdef ALT_SERVER_API
             MakeClientFn,
 #endif
-            InstantiateFn,
             StartFn,
             StopFn,
             OnEventFn,
@@ -194,12 +179,12 @@ CAPI alt_IResource* alt_CAPIResource_Create(
     );
 }
 
-CAPI void alt_CAPIResource_SetExtra(alt_IResource* resource, void* extra)
+CAPI void alt_CAPIResource_Impl_SetExtra(alt_IResource_Impl* resource, void* extra)
 {
-    static_cast<CAPIScriptRuntime::Resource*>((alt::IResource*)resource)->extra = extra;
+    static_cast<CAPIScriptRuntime::Resource_Impl*>((alt::IResource::Impl*)resource)->extra = extra;
 }
 
-CAPI void* alt_CAPIResource_GetExtra(alt_IResource* resource)
+CAPI void* alt_CAPIResource_Impl_GetExtra(alt_IResource_Impl* resource)
 {
-    return static_cast<CAPIScriptRuntime::Resource*>((alt::IResource*)resource)->extra;
+    return static_cast<CAPIScriptRuntime::Resource_Impl*>((alt::IResource::Impl*)resource)->extra;
 }

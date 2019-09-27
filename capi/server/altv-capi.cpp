@@ -11,6 +11,56 @@
 
 using namespace alt;
 
+CAPI void alt_VectorLayout_float_3_free(struct alt_VectorLayout_float_3* ptr)
+{
+    delete (class alt::VectorLayout<float, 3> *)ptr;
+}
+
+CAPI struct alt_VectorLayout_float_3* alt_VectorLayout_float_3_Create()
+{
+    return (struct alt_VectorLayout_float_3*)new alt::VectorLayout<float, 3>();
+}
+
+CAPI struct alt_VectorLayout_float_3* alt_VectorLayout_float_3_Create_1(float* _elements)
+{
+    return (struct alt_VectorLayout_float_3*)new alt::VectorLayout<float, 3>((float const (&)[3])_elements);
+}
+
+CAPI struct alt_VectorLayout_float_3* alt_VectorLayout_float_3_Create_2(float* el)
+{
+    return (struct alt_VectorLayout_float_3*)new alt::VectorLayout<float, 3>((const float &)el);
+}
+
+CAPI float* alt_VectorLayout_float_3_Access_size_t(struct alt_VectorLayout_float_3* _instance, unsigned long long key)
+{
+    return (float*)&((alt::VectorLayout<float, 3> *)_instance)->operator[]((unsigned long long)key);
+}
+
+CAPI float* alt_VectorLayout_float_3_Access_size_t_1(struct alt_VectorLayout_float_3* _instance, unsigned long long key)
+{
+    return (float*)&((alt::VectorLayout<float, 3> *)_instance)->operator[]((unsigned long long)key);
+}
+
+CAPI struct alt_VectorLayout_float_3* alt_VectorLayout_float_3_Create_3(struct alt_VectorLayout_float_3* _p0)
+{
+    return (struct alt_VectorLayout_float_3*)new alt::VectorLayout<float, 3>((const class alt::VectorLayout<float, 3> &)_p0);
+}
+
+CAPI struct alt_VectorLayout_float_3* alt_VectorLayout_float_3_Create_4(struct alt_VectorLayout_float_3* _p0)
+{
+    return (struct alt_VectorLayout_float_3*)new alt::VectorLayout<float, 3>((class alt::VectorLayout<float, 3> &&)_p0);
+}
+
+CAPI void alt_VectorLayout_float_3_Assign_constVectorLayout_float_3Ref(struct alt_VectorLayout_float_3* _instance, struct alt_VectorLayout_float_3* _p0)
+{
+    ((alt::VectorLayout<float, 3> *)_instance)->operator=((const class alt::VectorLayout<float, 3> &)_p0);
+}
+
+CAPI void alt_VectorLayout_float_3_Assign_VectorLayout_float_3RefRef(struct alt_VectorLayout_float_3* _instance, struct alt_VectorLayout_float_3* _p0)
+{
+    ((alt::VectorLayout<float, 3> *)_instance)->operator=((class alt::VectorLayout<float, 3> &&)_p0);
+}
+
 CAPI void alt_VectorLayout_float_4_free(struct alt_VectorLayout_float_4* ptr)
 {
     delete (class alt::VectorLayout<float, 4> *)ptr;
@@ -59,6 +109,101 @@ CAPI void alt_VectorLayout_float_4_Assign_constVectorLayout_float_4Ref(struct al
 CAPI void alt_VectorLayout_float_4_Assign_VectorLayout_float_4RefRef(struct alt_VectorLayout_float_4* _instance, struct alt_VectorLayout_float_4* _p0)
 {
     ((alt::VectorLayout<float, 4> *)_instance)->operator=((class alt::VectorLayout<float, 4> &&)_p0);
+}
+
+CAPI void alt_Vector_float_3_VectorLayout_float_3_free(struct alt_Vector_float_3_VectorLayout_float_3* ptr)
+{
+    delete (class alt::Vector<float, 3, class alt::VectorLayout<float, 3> > *)ptr;
+}
+
+CAPI struct alt_Vector_float_3_VectorLayout_float_3* alt_Vector_float_3_VectorLayout_float_3_Create()
+{
+    return (struct alt_Vector_float_3_VectorLayout_float_3*)new alt::VectorLayout<float, 3>();
+}
+
+CAPI struct alt_Vector_float_3_VectorLayout_float_3* alt_Vector_float_3_VectorLayout_float_3_Create_1(float* _elements)
+{
+    return (struct alt_Vector_float_3_VectorLayout_float_3*)new alt::VectorLayout<float, 3>((float const (&)[3])_elements);
+}
+
+CAPI struct alt_Vector_float_3_VectorLayout_float_3* alt_Vector_float_3_VectorLayout_float_3_Create_2(float* el)
+{
+    return (struct alt_Vector_float_3_VectorLayout_float_3*)new alt::VectorLayout<float, 3>((const float &)el);
+}
+
+CAPI float* alt_Vector_float_3_VectorLayout_float_3_Access_size_t(struct alt_Vector_float_3_VectorLayout_float_3* _instance, unsigned long long key)
+{
+    return (float*)&static_cast<alt::VectorLayout<float, 3> *>((alt::Vector<float, 3, alt::VectorLayout<float, 3> > *)_instance)->operator[]((unsigned long long)key);
+}
+
+CAPI float* alt_Vector_float_3_VectorLayout_float_3_Access_size_t_1(struct alt_Vector_float_3_VectorLayout_float_3* _instance, unsigned long long key)
+{
+    return (float*)&static_cast<alt::VectorLayout<float, 3> *>((alt::Vector<float, 3, alt::VectorLayout<float, 3> > *)_instance)->operator[]((unsigned long long)key);
+}
+
+CAPI struct alt_Vector_float_3_VectorLayout_float_3* alt_Vector_float_3_VectorLayout_float_3_Create_3(struct alt_VectorLayout_float_3* _p0)
+{
+    return (struct alt_Vector_float_3_VectorLayout_float_3*)new alt::VectorLayout<float, 3>((const class alt::VectorLayout<float, 3> &)_p0);
+}
+
+CAPI struct alt_Vector_float_3_VectorLayout_float_3* alt_Vector_float_3_VectorLayout_float_3_Create_4(struct alt_VectorLayout_float_3* _p0)
+{
+    return (struct alt_Vector_float_3_VectorLayout_float_3*)new alt::VectorLayout<float, 3>((class alt::VectorLayout<float, 3> &&)_p0);
+}
+
+CAPI void alt_Vector_float_3_VectorLayout_float_3_Assign_constVectorLayout_float_3Ref(struct alt_Vector_float_3_VectorLayout_float_3* _instance, struct alt_VectorLayout_float_3* _p0)
+{
+    static_cast<alt::VectorLayout<float, 3> *>((alt::Vector<float, 3, alt::VectorLayout<float, 3> > *)_instance)->operator=((const class alt::VectorLayout<float, 3> &)_p0);
+}
+
+CAPI void alt_Vector_float_3_VectorLayout_float_3_Assign_VectorLayout_float_3RefRef(struct alt_Vector_float_3_VectorLayout_float_3* _instance, struct alt_VectorLayout_float_3* _p0)
+{
+    static_cast<alt::VectorLayout<float, 3> *>((alt::Vector<float, 3, alt::VectorLayout<float, 3> > *)_instance)->operator=((class alt::VectorLayout<float, 3> &&)_p0);
+}
+
+CAPI struct alt_Vector_float_3_VectorLayout_float_3* alt_Vector_float_3_VectorLayout_float_3_Create_5()
+{
+    return (struct alt_Vector_float_3_VectorLayout_float_3*)new alt::Vector<float, 3, alt::VectorLayout<float, 3> >();
+}
+
+CAPI struct alt_Vector_float_3_VectorLayout_float_3* alt_Vector_float_3_VectorLayout_float_3_Create_6(float* _elements)
+{
+    return (struct alt_Vector_float_3_VectorLayout_float_3*)new alt::Vector<float, 3, alt::VectorLayout<float, 3> >((float const (&)[3])_elements);
+}
+
+CAPI struct alt_Vector_float_3_VectorLayout_float_3* alt_Vector_float_3_VectorLayout_float_3_Create_7(struct alt_VectorLayout_float_3* layout)
+{
+    return (struct alt_Vector_float_3_VectorLayout_float_3*)new alt::Vector<float, 3, alt::VectorLayout<float, 3> >((const class alt::VectorLayout<float, 3> &)layout);
+}
+
+CAPI float alt_Vector_float_3_VectorLayout_float_3_LengthSqr(struct alt_Vector_float_3_VectorLayout_float_3* _instance)
+{
+    return (float)((alt::Vector<float, 3, alt::VectorLayout<float, 3> > *)_instance)->LengthSqr();
+}
+
+CAPI float alt_Vector_float_3_VectorLayout_float_3_Length(struct alt_Vector_float_3_VectorLayout_float_3* _instance)
+{
+    return (float)((alt::Vector<float, 3, alt::VectorLayout<float, 3> > *)_instance)->Length();
+}
+
+CAPI struct alt_Vector_float_3_VectorLayout_float_3* alt_Vector_float_3_VectorLayout_float_3_Create_8(struct alt_Vector_float_3_VectorLayout_float_3* _p0)
+{
+    return (struct alt_Vector_float_3_VectorLayout_float_3*)new alt::Vector<float, 3, alt::VectorLayout<float, 3> >((const class alt::Vector<float, 3, class alt::VectorLayout<float, 3> > &)_p0);
+}
+
+CAPI struct alt_Vector_float_3_VectorLayout_float_3* alt_Vector_float_3_VectorLayout_float_3_Create_9(struct alt_Vector_float_3_VectorLayout_float_3* _p0)
+{
+    return (struct alt_Vector_float_3_VectorLayout_float_3*)new alt::Vector<float, 3, alt::VectorLayout<float, 3> >((class alt::Vector<float, 3, class alt::VectorLayout<float, 3> > &&)_p0);
+}
+
+CAPI void alt_Vector_float_3_VectorLayout_float_3_Assign_constVector_float_3_VectorLayout_float_3Ref(struct alt_Vector_float_3_VectorLayout_float_3* _instance, struct alt_Vector_float_3_VectorLayout_float_3* _p0)
+{
+    ((alt::Vector<float, 3, alt::VectorLayout<float, 3> > *)_instance)->operator=((const class alt::Vector<float, 3, class alt::VectorLayout<float, 3> > &)_p0);
+}
+
+CAPI void alt_Vector_float_3_VectorLayout_float_3_Assign_Vector_float_3_VectorLayout_float_3RefRef(struct alt_Vector_float_3_VectorLayout_float_3* _instance, struct alt_Vector_float_3_VectorLayout_float_3* _p0)
+{
+    ((alt::Vector<float, 3, alt::VectorLayout<float, 3> > *)_instance)->operator=((class alt::Vector<float, 3, class alt::VectorLayout<float, 3> > &&)_p0);
 }
 
 CAPI void alt_Vector_float_4_VectorLayout_float_4_free(struct alt_Vector_float_4_VectorLayout_float_4* ptr)
@@ -156,6 +301,101 @@ CAPI void alt_Vector_float_4_VectorLayout_float_4_Assign_Vector_float_4_VectorLa
     ((alt::Vector<float, 4, alt::VectorLayout<float, 4> > *)_instance)->operator=((class alt::Vector<float, 4, class alt::VectorLayout<float, 4> > &&)_p0);
 }
 
+CAPI void alt_Vector_float_3_PointLayout_free(struct alt_Vector_float_3_PointLayout* ptr)
+{
+    delete (class alt::Vector<float, 3, class alt::PointLayout> *)ptr;
+}
+
+CAPI struct alt_Vector_float_3_PointLayout* alt_Vector_float_3_PointLayout_Create()
+{
+    return (struct alt_Vector_float_3_PointLayout*)new alt::PointLayout();
+}
+
+CAPI struct alt_Vector_float_3_PointLayout* alt_Vector_float_3_PointLayout_Create_1(float _x, float _y, float _z)
+{
+    return (struct alt_Vector_float_3_PointLayout*)new alt::PointLayout((float)_x, (float)_y, (float)_z);
+}
+
+CAPI struct alt_Vector_float_3_PointLayout* alt_Vector_float_3_PointLayout_Create_2(float* elements)
+{
+    return (struct alt_Vector_float_3_PointLayout*)new alt::PointLayout((float const (&)[3])elements);
+}
+
+CAPI float* alt_Vector_float_3_PointLayout_Access_size_t(struct alt_Vector_float_3_PointLayout* _instance, unsigned long long key)
+{
+    return (float*)&static_cast<alt::PointLayout *>((alt::Vector<float, 3, alt::PointLayout> *)_instance)->operator[]((unsigned long long)key);
+}
+
+CAPI float* alt_Vector_float_3_PointLayout_Access_size_t_1(struct alt_Vector_float_3_PointLayout* _instance, unsigned long long key)
+{
+    return (float*)&static_cast<alt::PointLayout *>((alt::Vector<float, 3, alt::PointLayout> *)_instance)->operator[]((unsigned long long)key);
+}
+
+CAPI struct alt_Vector_float_3_PointLayout* alt_Vector_float_3_PointLayout_Create_3(struct alt_PointLayout* _p0)
+{
+    return (struct alt_Vector_float_3_PointLayout*)new alt::PointLayout((const class alt::PointLayout &)_p0);
+}
+
+CAPI struct alt_Vector_float_3_PointLayout* alt_Vector_float_3_PointLayout_Create_4(struct alt_PointLayout* _p0)
+{
+    return (struct alt_Vector_float_3_PointLayout*)new alt::PointLayout((class alt::PointLayout &&)_p0);
+}
+
+CAPI void alt_Vector_float_3_PointLayout_Assign_constPointLayoutRef(struct alt_Vector_float_3_PointLayout* _instance, struct alt_PointLayout* _p0)
+{
+    static_cast<alt::PointLayout *>((alt::Vector<float, 3, alt::PointLayout> *)_instance)->operator=((const class alt::PointLayout &)_p0);
+}
+
+CAPI void alt_Vector_float_3_PointLayout_Assign_PointLayoutRefRef(struct alt_Vector_float_3_PointLayout* _instance, struct alt_PointLayout* _p0)
+{
+    static_cast<alt::PointLayout *>((alt::Vector<float, 3, alt::PointLayout> *)_instance)->operator=((class alt::PointLayout &&)_p0);
+}
+
+CAPI struct alt_Vector_float_3_PointLayout* alt_Vector_float_3_PointLayout_Create_5()
+{
+    return (struct alt_Vector_float_3_PointLayout*)new alt::Vector<float, 3, alt::PointLayout>();
+}
+
+CAPI struct alt_Vector_float_3_PointLayout* alt_Vector_float_3_PointLayout_Create_6(float* _elements)
+{
+    return (struct alt_Vector_float_3_PointLayout*)new alt::Vector<float, 3, alt::PointLayout>((float const (&)[3])_elements);
+}
+
+CAPI struct alt_Vector_float_3_PointLayout* alt_Vector_float_3_PointLayout_Create_7(struct alt_PointLayout* layout)
+{
+    return (struct alt_Vector_float_3_PointLayout*)new alt::Vector<float, 3, alt::PointLayout>((const class alt::PointLayout &)layout);
+}
+
+CAPI float alt_Vector_float_3_PointLayout_LengthSqr(struct alt_Vector_float_3_PointLayout* _instance)
+{
+    return (float)((alt::Vector<float, 3, alt::PointLayout> *)_instance)->LengthSqr();
+}
+
+CAPI float alt_Vector_float_3_PointLayout_Length(struct alt_Vector_float_3_PointLayout* _instance)
+{
+    return (float)((alt::Vector<float, 3, alt::PointLayout> *)_instance)->Length();
+}
+
+CAPI struct alt_Vector_float_3_PointLayout* alt_Vector_float_3_PointLayout_Create_8(struct alt_Vector_float_3_PointLayout* _p0)
+{
+    return (struct alt_Vector_float_3_PointLayout*)new alt::Vector<float, 3, alt::PointLayout>((const class alt::Vector<float, 3, class alt::PointLayout> &)_p0);
+}
+
+CAPI struct alt_Vector_float_3_PointLayout* alt_Vector_float_3_PointLayout_Create_9(struct alt_Vector_float_3_PointLayout* _p0)
+{
+    return (struct alt_Vector_float_3_PointLayout*)new alt::Vector<float, 3, alt::PointLayout>((class alt::Vector<float, 3, class alt::PointLayout> &&)_p0);
+}
+
+CAPI void alt_Vector_float_3_PointLayout_Assign_constVector_float_3_PointLayoutRef(struct alt_Vector_float_3_PointLayout* _instance, struct alt_Vector_float_3_PointLayout* _p0)
+{
+    ((alt::Vector<float, 3, alt::PointLayout> *)_instance)->operator=((const class alt::Vector<float, 3, class alt::PointLayout> &)_p0);
+}
+
+CAPI void alt_Vector_float_3_PointLayout_Assign_Vector_float_3_PointLayoutRefRef(struct alt_Vector_float_3_PointLayout* _instance, struct alt_Vector_float_3_PointLayout* _p0)
+{
+    ((alt::Vector<float, 3, alt::PointLayout> *)_instance)->operator=((class alt::Vector<float, 3, class alt::PointLayout> &&)_p0);
+}
+
 CAPI void alt_PointLayout_free(struct alt_PointLayout* ptr)
 {
     delete (class alt::PointLayout *)ptr;
@@ -196,6 +436,16 @@ CAPI struct alt_PointLayout* alt_PointLayout_Create_4(struct alt_PointLayout* _p
     return (struct alt_PointLayout*)new alt::PointLayout((class alt::PointLayout &&)_p0);
 }
 
+CAPI void alt_PointLayout_Assign_constPointLayoutRef(struct alt_PointLayout* _instance, struct alt_PointLayout* _p0)
+{
+    ((alt::PointLayout *)_instance)->operator=((const class alt::PointLayout &)_p0);
+}
+
+CAPI void alt_PointLayout_Assign_PointLayoutRefRef(struct alt_PointLayout* _instance, struct alt_PointLayout* _p0)
+{
+    ((alt::PointLayout *)_instance)->operator=((class alt::PointLayout &&)_p0);
+}
+
 CAPI void alt_PointPaddedLayout_free(struct alt_PointPaddedLayout* ptr)
 {
     delete (class alt::PointPaddedLayout *)ptr;
@@ -234,6 +484,16 @@ CAPI struct alt_PointPaddedLayout* alt_PointPaddedLayout_Create_3(struct alt_Poi
 CAPI struct alt_PointPaddedLayout* alt_PointPaddedLayout_Create_4(struct alt_PointLayout* _p0)
 {
     return (struct alt_PointPaddedLayout*)new alt::PointLayout((class alt::PointLayout &&)_p0);
+}
+
+CAPI void alt_PointPaddedLayout_Assign_constPointLayoutRef(struct alt_PointPaddedLayout* _instance, struct alt_PointLayout* _p0)
+{
+    static_cast<alt::PointLayout *>((alt::PointPaddedLayout *)_instance)->operator=((const class alt::PointLayout &)_p0);
+}
+
+CAPI void alt_PointPaddedLayout_Assign_PointLayoutRefRef(struct alt_PointPaddedLayout* _instance, struct alt_PointLayout* _p0)
+{
+    static_cast<alt::PointLayout *>((alt::PointPaddedLayout *)_instance)->operator=((class alt::PointLayout &&)_p0);
 }
 
 CAPI struct alt_PointPaddedLayout* alt_PointPaddedLayout_Create_5()
@@ -1276,14 +1536,14 @@ CAPI void alt_MValueDict_Assign_MValueDictRefRef(struct alt_MValueDict* _instanc
     ((alt::MValueDict *)_instance)->operator=((class alt::MValueDict &&)_p0);
 }
 
-CAPI void alt_MValueDict_Assign_constMValueDictRef(struct alt_MValueDict* _instance, struct alt_MValueDict* _p0)
+CAPI struct alt_IScriptRuntime* alt_IResource_GetRuntime(struct alt_IResource* _instance)
 {
-    ((alt::MValueDict *)_instance)->operator=((const class alt::MValueDict &)_p0);
+    return (alt_IScriptRuntime*)((alt::IResource *)_instance)->GetRuntime();
 }
 
-CAPI alt_IResource_State alt_IResource_GetState(struct alt_IResource* _instance)
+CAPI struct alt_IResource_Impl* alt_IResource_GetImpl(struct alt_IResource* _instance)
 {
-    return (alt_IResource_State)((alt::IResource *)_instance)->GetState();
+    return (alt_IResource_Impl*)((alt::IResource *)_instance)->GetImpl();
 }
 
 CAPI _Bool alt_IResource_IsStarted(struct alt_IResource* _instance)
@@ -1321,49 +1581,9 @@ CAPI struct alt_MValueDict* alt_IResource_GetExports(struct alt_IResource* _inst
     return (alt_MValueDict*)new class alt::MValueDict(((alt::IResource *)_instance)->GetExports());
 }
 
-CAPI void alt_IResource_MakeClient(struct alt_IResource* _instance, struct alt_IResource_CreationInfo* info, struct alt_Array_String* files)
+CAPI void alt_IResource_SetExports(struct alt_IResource* _instance, struct alt_MValueDict* exports)
 {
-    ((alt::IResource *)_instance)->MakeClient((struct alt::IResource::CreationInfo *)info, *(class alt::Array<class alt::String>*)files);
-}
-
-CAPI _Bool alt_IResource_Instantiate(struct alt_IResource* _instance)
-{
-    return (_Bool)((alt::IResource *)_instance)->Instantiate();
-}
-
-CAPI _Bool alt_IResource_Start(struct alt_IResource* _instance)
-{
-    return (_Bool)((alt::IResource *)_instance)->Start();
-}
-
-CAPI _Bool alt_IResource_Stop(struct alt_IResource* _instance)
-{
-    return (_Bool)((alt::IResource *)_instance)->Stop();
-}
-
-CAPI _Bool alt_IResource_OnEvent(struct alt_IResource* _instance, struct alt_CEvent* ev)
-{
-    return (_Bool)((alt::IResource *)_instance)->OnEvent((const class alt::CEvent *)ev);
-}
-
-CAPI void alt_IResource_OnTick(struct alt_IResource* _instance)
-{
-    ((alt::IResource *)_instance)->OnTick();
-}
-
-CAPI void alt_IResource_OnCreateBaseObject(struct alt_IResource* _instance, struct alt_IBaseObject* object)
-{
-    ((alt::IResource *)_instance)->OnCreateBaseObject((class alt::IBaseObject *)object);
-}
-
-CAPI void alt_IResource_OnRemoveBaseObject(struct alt_IResource* _instance, struct alt_IBaseObject* object)
-{
-    ((alt::IResource *)_instance)->OnRemoveBaseObject((class alt::IBaseObject *)object);
-}
-
-CAPI struct alt_IResource* alt_IResource_Create(struct alt_IResource* _p0)
-{
-    return (struct alt_IResource*)new alt::IResource((const class alt::IResource &)_p0);
+    ((alt::IResource *)_instance)->SetExports(*(class alt::MValueDict*)exports);
 }
 
 CAPI void alt_IResource_Assign_constIResourceRef(struct alt_IResource* _instance, struct alt_IResource* _p0)
@@ -1389,6 +1609,46 @@ CAPI struct alt_IResource_CreationInfo* alt_IResource_CreationInfo_Create_1(stru
 CAPI void alt_IResource_CreationInfo_Assign_IResource_CreationInfoRefRef(struct alt_IResource_CreationInfo* _instance, struct alt_IResource_CreationInfo* _p0)
 {
     ((alt::IResource::CreationInfo *)_instance)->operator=((struct alt::IResource::CreationInfo &&)_p0);
+}
+
+CAPI _Bool alt_IResource_Impl_MakeClient(struct alt_IResource_Impl* _instance, struct alt_IResource_CreationInfo* info, struct alt_Array_String* files)
+{
+    return (_Bool)((alt::IResource::Impl *)_instance)->MakeClient((struct alt::IResource::CreationInfo *)info, *(class alt::Array<class alt::String>*)files);
+}
+
+CAPI _Bool alt_IResource_Impl_Start(struct alt_IResource_Impl* _instance)
+{
+    return (_Bool)((alt::IResource::Impl *)_instance)->Start();
+}
+
+CAPI _Bool alt_IResource_Impl_Stop(struct alt_IResource_Impl* _instance)
+{
+    return (_Bool)((alt::IResource::Impl *)_instance)->Stop();
+}
+
+CAPI _Bool alt_IResource_Impl_OnEvent(struct alt_IResource_Impl* _instance, struct alt_CEvent* ev)
+{
+    return (_Bool)((alt::IResource::Impl *)_instance)->OnEvent((const class alt::CEvent *)ev);
+}
+
+CAPI void alt_IResource_Impl_OnTick(struct alt_IResource_Impl* _instance)
+{
+    ((alt::IResource::Impl *)_instance)->OnTick();
+}
+
+CAPI void alt_IResource_Impl_OnCreateBaseObject(struct alt_IResource_Impl* _instance, struct alt_IBaseObject* object)
+{
+    ((alt::IResource::Impl *)_instance)->OnCreateBaseObject((class alt::IBaseObject *)object);
+}
+
+CAPI void alt_IResource_Impl_OnRemoveBaseObject(struct alt_IResource_Impl* _instance, struct alt_IBaseObject* object)
+{
+    ((alt::IResource::Impl *)_instance)->OnRemoveBaseObject((class alt::IBaseObject *)object);
+}
+
+CAPI void alt_IResource_Impl_Assign_constIResource_ImplRef(struct alt_IResource_Impl* _instance, struct alt_IResource_Impl* _p0)
+{
+    ((alt::IResource::Impl *)_instance)->operator=((const class alt::IResource::Impl &)_p0);
 }
 
 CAPI void alt_MValueFunction_free(struct alt_MValueFunction* ptr)
@@ -4091,6 +4351,176 @@ CAPI void alt_CConsoleCommandEvent_Assign_CConsoleCommandEventRefRef(struct alt_
     ((alt::CConsoleCommandEvent *)_instance)->operator=((class alt::CConsoleCommandEvent &&)_p0);
 }
 
+CAPI void alt_CWeaponDamageEvent_free(struct alt_CWeaponDamageEvent* ptr)
+{
+    delete (class alt::CWeaponDamageEvent *)ptr;
+}
+
+CAPI struct alt_CWeaponDamageEvent* alt_CWeaponDamageEvent_Create(alt_CEvent_Type _type)
+{
+    return (struct alt_CWeaponDamageEvent*)new alt::CEvent((enum alt::CEvent::Type)_type);
+}
+
+CAPI alt_CEvent_Type alt_CWeaponDamageEvent_GetType(struct alt_CWeaponDamageEvent* _instance)
+{
+    return (alt_CEvent_Type)static_cast<alt::CEvent *>((alt::CWeaponDamageEvent *)_instance)->GetType();
+}
+
+CAPI _Bool alt_CWeaponDamageEvent_WasCancelled(struct alt_CWeaponDamageEvent* _instance)
+{
+    return (_Bool)static_cast<alt::CEvent *>((alt::CWeaponDamageEvent *)_instance)->WasCancelled();
+}
+
+CAPI void alt_CWeaponDamageEvent_Cancel(struct alt_CWeaponDamageEvent* _instance)
+{
+    static_cast<alt::CEvent *>((alt::CWeaponDamageEvent *)_instance)->Cancel();
+}
+
+CAPI struct alt_CWeaponDamageEvent* alt_CWeaponDamageEvent_Create_1(struct alt_CEvent* _p0)
+{
+    return (struct alt_CWeaponDamageEvent*)new alt::CEvent((const class alt::CEvent &)_p0);
+}
+
+CAPI void alt_CWeaponDamageEvent_Assign_constCEventRef(struct alt_CWeaponDamageEvent* _instance, struct alt_CEvent* _p0)
+{
+    static_cast<alt::CEvent *>((alt::CWeaponDamageEvent *)_instance)->operator=((const class alt::CEvent &)_p0);
+}
+
+CAPI struct alt_CWeaponDamageEvent* alt_CWeaponDamageEvent_Create_2(struct alt_CEvent* _p0)
+{
+    return (struct alt_CWeaponDamageEvent*)new alt::CEvent((class alt::CEvent &&)_p0);
+}
+
+CAPI void alt_CWeaponDamageEvent_Assign_CEventRefRef(struct alt_CWeaponDamageEvent* _instance, struct alt_CEvent* _p0)
+{
+    static_cast<alt::CEvent *>((alt::CWeaponDamageEvent *)_instance)->operator=((class alt::CEvent &&)_p0);
+}
+
+CAPI struct alt_CWeaponDamageEvent* alt_CWeaponDamageEvent_Create_3(struct alt_IPlayer* _source, struct alt_IEntity* _target, unsigned int _weaponHash, unsigned short _damageValue, struct alt_Vector_float_3_VectorLayout_float_3* _shotOffset, alt_CWeaponDamageEvent_BodyPart _bodyPart)
+{
+    return (struct alt_CWeaponDamageEvent*)new alt::CWeaponDamageEvent((class alt::IPlayer *)_source, (class alt::IEntity *)_target, (unsigned int)_weaponHash, (unsigned short)_damageValue, *(class alt::Vector<float, 3, class alt::VectorLayout<float, 3> >*)_shotOffset, (enum alt::CWeaponDamageEvent::BodyPart)_bodyPart);
+}
+
+CAPI struct alt_IPlayer* alt_CWeaponDamageEvent_GetSource(struct alt_CWeaponDamageEvent* _instance)
+{
+    return (alt_IPlayer*)((alt::CWeaponDamageEvent *)_instance)->GetSource();
+}
+
+CAPI struct alt_IEntity* alt_CWeaponDamageEvent_GetTarget(struct alt_CWeaponDamageEvent* _instance)
+{
+    return (alt_IEntity*)((alt::CWeaponDamageEvent *)_instance)->GetTarget();
+}
+
+CAPI unsigned int alt_CWeaponDamageEvent_GetWeaponHash(struct alt_CWeaponDamageEvent* _instance)
+{
+    return (unsigned int)((alt::CWeaponDamageEvent *)_instance)->GetWeaponHash();
+}
+
+CAPI unsigned short alt_CWeaponDamageEvent_GetDamageValue(struct alt_CWeaponDamageEvent* _instance)
+{
+    return (unsigned short)((alt::CWeaponDamageEvent *)_instance)->GetDamageValue();
+}
+
+CAPI struct alt_Vector_float_3_VectorLayout_float_3* alt_CWeaponDamageEvent_GetShotOffset(struct alt_CWeaponDamageEvent* _instance)
+{
+    return (alt_Vector_float_3_VectorLayout_float_3*)new class alt::Vector<float, 3, class alt::VectorLayout<float, 3> >(((alt::CWeaponDamageEvent *)_instance)->GetShotOffset());
+}
+
+CAPI alt_CWeaponDamageEvent_BodyPart alt_CWeaponDamageEvent_GetBodyPart(struct alt_CWeaponDamageEvent* _instance)
+{
+    return (alt_CWeaponDamageEvent_BodyPart)((alt::CWeaponDamageEvent *)_instance)->GetBodyPart();
+}
+
+CAPI struct alt_CWeaponDamageEvent* alt_CWeaponDamageEvent_Create_4(struct alt_CWeaponDamageEvent* _p0)
+{
+    return (struct alt_CWeaponDamageEvent*)new alt::CWeaponDamageEvent((const class alt::CWeaponDamageEvent &)_p0);
+}
+
+CAPI void alt_CWeaponDamageEvent_Assign_constCWeaponDamageEventRef(struct alt_CWeaponDamageEvent* _instance, struct alt_CWeaponDamageEvent* _p0)
+{
+    ((alt::CWeaponDamageEvent *)_instance)->operator=((const class alt::CWeaponDamageEvent &)_p0);
+}
+
+CAPI void alt_CExplosionEvent_free(struct alt_CExplosionEvent* ptr)
+{
+    delete (class alt::CExplosionEvent *)ptr;
+}
+
+CAPI struct alt_CExplosionEvent* alt_CExplosionEvent_Create(alt_CEvent_Type _type)
+{
+    return (struct alt_CExplosionEvent*)new alt::CEvent((enum alt::CEvent::Type)_type);
+}
+
+CAPI alt_CEvent_Type alt_CExplosionEvent_GetType(struct alt_CExplosionEvent* _instance)
+{
+    return (alt_CEvent_Type)static_cast<alt::CEvent *>((alt::CExplosionEvent *)_instance)->GetType();
+}
+
+CAPI _Bool alt_CExplosionEvent_WasCancelled(struct alt_CExplosionEvent* _instance)
+{
+    return (_Bool)static_cast<alt::CEvent *>((alt::CExplosionEvent *)_instance)->WasCancelled();
+}
+
+CAPI void alt_CExplosionEvent_Cancel(struct alt_CExplosionEvent* _instance)
+{
+    static_cast<alt::CEvent *>((alt::CExplosionEvent *)_instance)->Cancel();
+}
+
+CAPI struct alt_CExplosionEvent* alt_CExplosionEvent_Create_1(struct alt_CEvent* _p0)
+{
+    return (struct alt_CExplosionEvent*)new alt::CEvent((const class alt::CEvent &)_p0);
+}
+
+CAPI void alt_CExplosionEvent_Assign_constCEventRef(struct alt_CExplosionEvent* _instance, struct alt_CEvent* _p0)
+{
+    static_cast<alt::CEvent *>((alt::CExplosionEvent *)_instance)->operator=((const class alt::CEvent &)_p0);
+}
+
+CAPI struct alt_CExplosionEvent* alt_CExplosionEvent_Create_2(struct alt_CEvent* _p0)
+{
+    return (struct alt_CExplosionEvent*)new alt::CEvent((class alt::CEvent &&)_p0);
+}
+
+CAPI void alt_CExplosionEvent_Assign_CEventRefRef(struct alt_CExplosionEvent* _instance, struct alt_CEvent* _p0)
+{
+    static_cast<alt::CEvent *>((alt::CExplosionEvent *)_instance)->operator=((class alt::CEvent &&)_p0);
+}
+
+CAPI struct alt_CExplosionEvent* alt_CExplosionEvent_Create_3(struct alt_IPlayer* _source, alt_CExplosionEvent_ExplosionType _explosionType, struct alt_Vector_float_3_PointLayout* _position, unsigned int _explosionFX)
+{
+    return (struct alt_CExplosionEvent*)new alt::CExplosionEvent((class alt::IPlayer *)_source, (enum alt::CExplosionEvent::ExplosionType)_explosionType, *(class alt::Vector<float, 3, class alt::PointLayout>*)_position, (unsigned int)_explosionFX);
+}
+
+CAPI struct alt_IPlayer* alt_CExplosionEvent_GetSource(struct alt_CExplosionEvent* _instance)
+{
+    return (alt_IPlayer*)((alt::CExplosionEvent *)_instance)->GetSource();
+}
+
+CAPI alt_CExplosionEvent_ExplosionType alt_CExplosionEvent_GetExplosionType(struct alt_CExplosionEvent* _instance)
+{
+    return (alt_CExplosionEvent_ExplosionType)((alt::CExplosionEvent *)_instance)->GetExplosionType();
+}
+
+CAPI struct alt_Vector_float_3_PointLayout* alt_CExplosionEvent_GetPosition(struct alt_CExplosionEvent* _instance)
+{
+    return (alt_Vector_float_3_PointLayout*)new class alt::Vector<float, 3, class alt::PointLayout>(((alt::CExplosionEvent *)_instance)->GetPosition());
+}
+
+CAPI unsigned int alt_CExplosionEvent_GetExplosionFX(struct alt_CExplosionEvent* _instance)
+{
+    return (unsigned int)((alt::CExplosionEvent *)_instance)->GetExplosionFX();
+}
+
+CAPI struct alt_CExplosionEvent* alt_CExplosionEvent_Create_4(struct alt_CExplosionEvent* _p0)
+{
+    return (struct alt_CExplosionEvent*)new alt::CExplosionEvent((const class alt::CExplosionEvent &)_p0);
+}
+
+CAPI void alt_CExplosionEvent_Assign_constCExplosionEventRef(struct alt_CExplosionEvent* _instance, struct alt_CExplosionEvent* _p0)
+{
+    ((alt::CExplosionEvent *)_instance)->operator=((const class alt::CExplosionEvent &)_p0);
+}
+
 CAPI alt_IPackage_Mode alt_IPackage_GetMode(struct alt_IPackage* _instance)
 {
     return (alt_IPackage_Mode)((alt::IPackage *)_instance)->GetMode();
@@ -4141,14 +4571,14 @@ CAPI void alt_IPackage_File_Assign_constIPackage_FileRef(struct alt_IPackage_Fil
     ((alt::IPackage::File *)_instance)->operator=((const class alt::IPackage::File &)_p0);
 }
 
-CAPI struct alt_IResource* alt_IScriptRuntime_CreateResource(struct alt_IScriptRuntime* _instance, struct alt_IResource_CreationInfo* info)
+CAPI struct alt_IResource_Impl* alt_IScriptRuntime_CreateImpl(struct alt_IScriptRuntime* _instance, struct alt_IResource* resource)
 {
-    return (alt_IResource*)((alt::IScriptRuntime *)_instance)->CreateResource((struct alt::IResource::CreationInfo *)info);
+    return (alt_IResource_Impl*)((alt::IScriptRuntime *)_instance)->CreateImpl((class alt::IResource *)resource);
 }
 
-CAPI void alt_IScriptRuntime_RemoveResource(struct alt_IScriptRuntime* _instance, struct alt_IResource* resource)
+CAPI void alt_IScriptRuntime_DestroyImpl(struct alt_IScriptRuntime* _instance, struct alt_IResource_Impl* impl)
 {
-    ((alt::IScriptRuntime *)_instance)->RemoveResource((class alt::IResource *)resource);
+    ((alt::IScriptRuntime *)_instance)->DestroyImpl((class alt::IResource::Impl *)impl);
 }
 
 CAPI void alt_IScriptRuntime_OnTick(struct alt_IScriptRuntime* _instance)
@@ -4221,169 +4651,159 @@ CAPI void alt_IColShape_Assign_constIColShapeRef(struct alt_IColShape* _instance
     ((alt::IColShape *)_instance)->operator=((const class alt::IColShape &)_p0);
 }
 
-CAPI struct alt_StringView* alt_IServer_GetRootDirectory(struct alt_IServer* _instance)
+CAPI struct alt_IResource* alt_ICore_GetResource(struct alt_ICore* _instance, struct alt_StringView* name)
 {
-    return (alt_StringView*)new class alt::StringView(((alt::IServer *)_instance)->GetRootDirectory());
+    return (alt_IResource*)((alt::ICore *)_instance)->GetResource(*(class alt::StringView*)name);
 }
 
-CAPI struct alt_IResource* alt_IServer_GetResource(struct alt_IServer* _instance, struct alt_StringView* name)
+CAPI void alt_ICore_LogInfo(struct alt_ICore* _instance, struct alt_StringView* str)
 {
-    return (alt_IResource*)((alt::IServer *)_instance)->GetResource(*(class alt::StringView*)name);
+    ((alt::ICore *)_instance)->LogInfo(*(class alt::StringView*)str);
 }
 
-CAPI _Bool alt_IServer_RequireResource(struct alt_IServer* _instance, struct alt_IResource* referrer, struct alt_IResource* resource)
+CAPI void alt_ICore_LogDebug(struct alt_ICore* _instance, struct alt_StringView* str)
 {
-    return (_Bool)((alt::IServer *)_instance)->RequireResource((class alt::IResource *)referrer, (class alt::IResource *)resource);
+    ((alt::ICore *)_instance)->LogDebug(*(class alt::StringView*)str);
 }
 
-CAPI void alt_IServer_LogInfo(struct alt_IServer* _instance, struct alt_StringView* str)
+CAPI void alt_ICore_LogWarning(struct alt_ICore* _instance, struct alt_StringView* str)
 {
-    ((alt::IServer *)_instance)->LogInfo(*(class alt::StringView*)str);
+    ((alt::ICore *)_instance)->LogWarning(*(class alt::StringView*)str);
 }
 
-CAPI void alt_IServer_LogDebug(struct alt_IServer* _instance, struct alt_StringView* str)
+CAPI void alt_ICore_LogError(struct alt_ICore* _instance, struct alt_StringView* str)
 {
-    ((alt::IServer *)_instance)->LogDebug(*(class alt::StringView*)str);
+    ((alt::ICore *)_instance)->LogError(*(class alt::StringView*)str);
 }
 
-CAPI void alt_IServer_LogWarning(struct alt_IServer* _instance, struct alt_StringView* str)
+CAPI void alt_ICore_LogColored(struct alt_ICore* _instance, struct alt_StringView* str)
 {
-    ((alt::IServer *)_instance)->LogWarning(*(class alt::StringView*)str);
+    ((alt::ICore *)_instance)->LogColored(*(class alt::StringView*)str);
 }
 
-CAPI void alt_IServer_LogError(struct alt_IServer* _instance, struct alt_StringView* str)
+CAPI unsigned int alt_ICore_Hash(struct alt_ICore* _instance, struct alt_StringView* str)
 {
-    ((alt::IServer *)_instance)->LogError(*(class alt::StringView*)str);
+    return (unsigned int)((alt::ICore *)_instance)->Hash(*(class alt::StringView*)str);
 }
 
-CAPI void alt_IServer_LogColored(struct alt_IServer* _instance, struct alt_StringView* str)
+CAPI _Bool alt_ICore_RegisterScriptRuntime(struct alt_ICore* _instance, struct alt_StringView* resourceType, struct alt_IScriptRuntime* runtime)
 {
-    ((alt::IServer *)_instance)->LogColored(*(class alt::StringView*)str);
+    return (_Bool)((alt::ICore *)_instance)->RegisterScriptRuntime(*(class alt::StringView*)resourceType, (class alt::IScriptRuntime *)runtime);
 }
 
-CAPI unsigned int alt_IServer_Hash(struct alt_IServer* _instance, struct alt_StringView* str)
+CAPI struct alt_StringView* alt_ICore_GetRootDirectory(struct alt_ICore* _instance)
 {
-    return (unsigned int)((alt::IServer *)_instance)->Hash(*(class alt::StringView*)str);
+    return (alt_StringView*)new class alt::StringView(((alt::ICore *)_instance)->GetRootDirectory());
 }
 
-CAPI _Bool alt_IServer_RegisterScriptRuntime(struct alt_IServer* _instance, struct alt_StringView* resourceType, struct alt_IScriptRuntime* runtime)
+CAPI void alt_ICore_TriggerServerEvent(struct alt_ICore* _instance, struct alt_StringView* ev, struct alt_MValueList* args)
 {
-    return (_Bool)((alt::IServer *)_instance)->RegisterScriptRuntime(*(class alt::StringView*)resourceType, (class alt::IScriptRuntime *)runtime);
+    ((alt::ICore *)_instance)->TriggerServerEvent(*(class alt::StringView*)ev, *(class alt::MValueList*)args);
 }
 
-CAPI void alt_IServer_SubscribeTick(struct alt_IServer* _instance, void(*cb)())
+CAPI void alt_ICore_TriggerClientEvent(struct alt_ICore* _instance, struct alt_IPlayer* target, struct alt_StringView* ev, struct alt_MValueList* args)
 {
-    ((alt::IServer *)_instance)->SubscribeTick((void (*)(void))cb);
+    ((alt::ICore *)_instance)->TriggerClientEvent((class alt::IPlayer *)target, *(class alt::StringView*)ev, *(class alt::MValueList*)args);
 }
 
-CAPI void alt_IServer_TriggerServerEvent(struct alt_IServer* _instance, struct alt_StringView* ev, struct alt_MValueList* args)
+CAPI struct alt_IVehicle* alt_ICore_CreateVehicle(struct alt_ICore* _instance, unsigned int model, struct alt_Vector_float_3_PointLayout* pos, struct alt_Vector_float_3_RotationLayout* rot)
 {
-    ((alt::IServer *)_instance)->TriggerServerEvent(*(class alt::StringView*)ev, *(class alt::MValueList*)args);
+    return (alt_IVehicle*)((alt::ICore *)_instance)->CreateVehicle((unsigned int)model, *(class alt::Vector<float, 3, class alt::PointLayout>*)pos, *(class alt::Vector<float, 3, class alt::RotationLayout>*)rot);
 }
 
-CAPI void alt_IServer_TriggerClientEvent(struct alt_IServer* _instance, struct alt_IPlayer* target, struct alt_StringView* ev, struct alt_MValueList* args)
+CAPI struct alt_ICheckpoint* alt_ICore_CreateCheckpoint(struct alt_ICore* _instance, struct alt_IPlayer* target, unsigned char type, struct alt_Vector_float_3_PointLayout* pos, float radius, float height, struct alt_RGBA* color)
 {
-    ((alt::IServer *)_instance)->TriggerClientEvent((class alt::IPlayer *)target, *(class alt::StringView*)ev, *(class alt::MValueList*)args);
+    return (alt_ICheckpoint*)((alt::ICore *)_instance)->CreateCheckpoint((class alt::IPlayer *)target, (unsigned char)type, *(class alt::Vector<float, 3, class alt::PointLayout>*)pos, (float)radius, (float)height, *(struct alt::RGBA*)color);
 }
 
-CAPI struct alt_IVehicle* alt_IServer_CreateVehicle(struct alt_IServer* _instance, unsigned int model, struct alt_Vector_float_3_PointLayout* pos, struct alt_Vector_float_3_RotationLayout* rot)
+CAPI struct alt_IBlip* alt_ICore_CreateBlip(struct alt_ICore* _instance, struct alt_IPlayer* target, alt_IBlip_Type type, struct alt_Vector_float_3_PointLayout* pos)
 {
-    return (alt_IVehicle*)((alt::IServer *)_instance)->CreateVehicle((unsigned int)model, *(class alt::Vector<float, 3, class alt::PointLayout>*)pos, *(class alt::Vector<float, 3, class alt::RotationLayout>*)rot);
+    return (alt_IBlip*)((alt::ICore *)_instance)->CreateBlip((class alt::IPlayer *)target, (enum alt::IBlip::Type)type, *(class alt::Vector<float, 3, class alt::PointLayout>*)pos);
 }
 
-CAPI struct alt_ICheckpoint* alt_IServer_CreateCheckpoint(struct alt_IServer* _instance, struct alt_IPlayer* target, unsigned char type, struct alt_Vector_float_3_PointLayout* pos, float radius, float height, struct alt_RGBA* color)
+CAPI struct alt_IBlip* alt_ICore_CreateBlip_1(struct alt_ICore* _instance, struct alt_IPlayer* target, alt_IBlip_Type type, struct alt_IEntity* attachTo)
 {
-    return (alt_ICheckpoint*)((alt::IServer *)_instance)->CreateCheckpoint((class alt::IPlayer *)target, (unsigned char)type, *(class alt::Vector<float, 3, class alt::PointLayout>*)pos, (float)radius, (float)height, *(struct alt::RGBA*)color);
+    return (alt_IBlip*)((alt::ICore *)_instance)->CreateBlip((class alt::IPlayer *)target, (enum alt::IBlip::Type)type, (class alt::IEntity *)attachTo);
 }
 
-CAPI struct alt_IBlip* alt_IServer_CreateBlip(struct alt_IServer* _instance, struct alt_IPlayer* target, alt_IBlip_Type type, struct alt_Vector_float_3_PointLayout* pos)
+CAPI struct alt_IVoiceChannel* alt_ICore_CreateVoiceChannel(struct alt_ICore* _instance, _Bool spatial, float maxDistance)
 {
-    return (alt_IBlip*)((alt::IServer *)_instance)->CreateBlip((class alt::IPlayer *)target, (enum alt::IBlip::Type)type, *(class alt::Vector<float, 3, class alt::PointLayout>*)pos);
+    return (alt_IVoiceChannel*)((alt::ICore *)_instance)->CreateVoiceChannel((_Bool)spatial, (float)maxDistance);
 }
 
-CAPI struct alt_IBlip* alt_IServer_CreateBlip_1(struct alt_IServer* _instance, struct alt_IPlayer* target, alt_IBlip_Type type, struct alt_IEntity* attachTo)
+CAPI struct alt_IColShape* alt_ICore_CreateColShapeCylinder(struct alt_ICore* _instance, struct alt_Vector_float_3_PointLayout* pos, float radius, float height)
 {
-    return (alt_IBlip*)((alt::IServer *)_instance)->CreateBlip((class alt::IPlayer *)target, (enum alt::IBlip::Type)type, (class alt::IEntity *)attachTo);
+    return (alt_IColShape*)((alt::ICore *)_instance)->CreateColShapeCylinder(*(class alt::Vector<float, 3, class alt::PointLayout>*)pos, (float)radius, (float)height);
 }
 
-CAPI struct alt_IVoiceChannel* alt_IServer_CreateVoiceChannel(struct alt_IServer* _instance, _Bool spatial, float maxDistance)
+CAPI struct alt_IColShape* alt_ICore_CreateColShapeSphere(struct alt_ICore* _instance, struct alt_Vector_float_3_PointLayout* pos, float radius)
 {
-    return (alt_IVoiceChannel*)((alt::IServer *)_instance)->CreateVoiceChannel((_Bool)spatial, (float)maxDistance);
+    return (alt_IColShape*)((alt::ICore *)_instance)->CreateColShapeSphere(*(class alt::Vector<float, 3, class alt::PointLayout>*)pos, (float)radius);
 }
 
-CAPI struct alt_IColShape* alt_IServer_CreateColShapeCylinder(struct alt_IServer* _instance, struct alt_Vector_float_3_PointLayout* pos, float radius, float height)
+CAPI struct alt_IColShape* alt_ICore_CreateColShapeCircle(struct alt_ICore* _instance, struct alt_Vector_float_3_PointLayout* pos, float radius)
 {
-    return (alt_IColShape*)((alt::IServer *)_instance)->CreateColShapeCylinder(*(class alt::Vector<float, 3, class alt::PointLayout>*)pos, (float)radius, (float)height);
+    return (alt_IColShape*)((alt::ICore *)_instance)->CreateColShapeCircle(*(class alt::Vector<float, 3, class alt::PointLayout>*)pos, (float)radius);
 }
 
-CAPI struct alt_IColShape* alt_IServer_CreateColShapeSphere(struct alt_IServer* _instance, struct alt_Vector_float_3_PointLayout* pos, float radius)
+CAPI struct alt_IColShape* alt_ICore_CreateColShapeCube(struct alt_ICore* _instance, struct alt_Vector_float_3_PointLayout* pos, struct alt_Vector_float_3_PointLayout* pos2)
 {
-    return (alt_IColShape*)((alt::IServer *)_instance)->CreateColShapeSphere(*(class alt::Vector<float, 3, class alt::PointLayout>*)pos, (float)radius);
+    return (alt_IColShape*)((alt::ICore *)_instance)->CreateColShapeCube(*(class alt::Vector<float, 3, class alt::PointLayout>*)pos, *(class alt::Vector<float, 3, class alt::PointLayout>*)pos2);
 }
 
-CAPI struct alt_IColShape* alt_IServer_CreateColShapeCircle(struct alt_IServer* _instance, struct alt_Vector_float_3_PointLayout* pos, float radius)
+CAPI struct alt_IColShape* alt_ICore_CreateColShapeRectangle(struct alt_ICore* _instance, struct alt_Vector_float_3_PointLayout* pos, struct alt_Vector_float_3_PointLayout* pos2)
 {
-    return (alt_IColShape*)((alt::IServer *)_instance)->CreateColShapeCircle(*(class alt::Vector<float, 3, class alt::PointLayout>*)pos, (float)radius);
+    return (alt_IColShape*)((alt::ICore *)_instance)->CreateColShapeRectangle(*(class alt::Vector<float, 3, class alt::PointLayout>*)pos, *(class alt::Vector<float, 3, class alt::PointLayout>*)pos2);
 }
 
-CAPI struct alt_IColShape* alt_IServer_CreateColShapeCube(struct alt_IServer* _instance, struct alt_Vector_float_3_PointLayout* pos, struct alt_Vector_float_3_PointLayout* pos2)
+CAPI struct alt_IEntity* alt_ICore_GetEntityByID(struct alt_ICore* _instance, unsigned short id)
 {
-    return (alt_IColShape*)((alt::IServer *)_instance)->CreateColShapeCube(*(class alt::Vector<float, 3, class alt::PointLayout>*)pos, *(class alt::Vector<float, 3, class alt::PointLayout>*)pos2);
+    return (alt_IEntity*)((alt::ICore *)_instance)->GetEntityByID((unsigned short)id);
 }
 
-CAPI struct alt_IColShape* alt_IServer_CreateColShapeRectangle(struct alt_IServer* _instance, struct alt_Vector_float_3_PointLayout* pos, struct alt_Vector_float_3_PointLayout* pos2)
+CAPI void alt_ICore_DestroyBaseObject(struct alt_ICore* _instance, struct alt_IBaseObject* handle)
 {
-    return (alt_IColShape*)((alt::IServer *)_instance)->CreateColShapeRectangle(*(class alt::Vector<float, 3, class alt::PointLayout>*)pos, *(class alt::Vector<float, 3, class alt::PointLayout>*)pos2);
+    ((alt::ICore *)_instance)->DestroyBaseObject((class alt::IBaseObject *)handle);
 }
 
-CAPI struct alt_IEntity* alt_IServer_GetEntityByID(struct alt_IServer* _instance, unsigned short id)
+CAPI struct alt_Array_IPlayer** alt_ICore_GetPlayersByName(struct alt_ICore* _instance, struct alt_StringView* name)
 {
-    return (alt_IEntity*)((alt::IServer *)_instance)->GetEntityByID((unsigned short)id);
+    return (alt_Array_IPlayer**)new class alt::Array<class alt::IPlayer *>(((alt::ICore *)_instance)->GetPlayersByName(*(class alt::StringView*)name));
 }
 
-CAPI void alt_IServer_DestroyBaseObject(struct alt_IServer* _instance, struct alt_IBaseObject* handle)
+CAPI struct alt_Array_IEntity** alt_ICore_GetEntities(struct alt_ICore* _instance)
 {
-    ((alt::IServer *)_instance)->DestroyBaseObject((class alt::IBaseObject *)handle);
+    return (alt_Array_IEntity**)new class alt::Array<class alt::IEntity *>(((alt::ICore *)_instance)->GetEntities());
 }
 
-CAPI struct alt_Array_IPlayer** alt_IServer_GetPlayersByName(struct alt_IServer* _instance, struct alt_StringView* name)
+CAPI struct alt_Array_IPlayer** alt_ICore_GetPlayers(struct alt_ICore* _instance)
 {
-    return (alt_Array_IPlayer**)new class alt::Array<class alt::IPlayer *>(((alt::IServer *)_instance)->GetPlayersByName(*(class alt::StringView*)name));
+    return (alt_Array_IPlayer**)new class alt::Array<class alt::IPlayer *>(((alt::ICore *)_instance)->GetPlayers());
 }
 
-CAPI struct alt_Array_IEntity** alt_IServer_GetEntities(struct alt_IServer* _instance)
+CAPI struct alt_Array_IVehicle** alt_ICore_GetVehicles(struct alt_ICore* _instance)
 {
-    return (alt_Array_IEntity**)new class alt::Array<class alt::IEntity *>(((alt::IServer *)_instance)->GetEntities());
+    return (alt_Array_IVehicle**)new class alt::Array<class alt::IVehicle *>(((alt::ICore *)_instance)->GetVehicles());
 }
 
-CAPI struct alt_Array_IPlayer** alt_IServer_GetPlayers(struct alt_IServer* _instance)
+CAPI unsigned int alt_ICore_GetNetTime(struct alt_ICore* _instance)
 {
-    return (alt_Array_IPlayer**)new class alt::Array<class alt::IPlayer *>(((alt::IServer *)_instance)->GetPlayers());
+    return (unsigned int)((alt::ICore *)_instance)->GetNetTime();
 }
 
-CAPI struct alt_Array_IVehicle** alt_IServer_GetVehicles(struct alt_IServer* _instance)
+CAPI struct alt_ICore* alt_ICore_Instance()
 {
-    return (alt_Array_IVehicle**)new class alt::Array<class alt::IVehicle *>(((alt::IServer *)_instance)->GetVehicles());
+    return (alt_ICore*)&alt::ICore::Instance();
 }
 
-CAPI unsigned int alt_IServer_GetNetTime(struct alt_IServer* _instance)
+CAPI void alt_ICore_SetInstance(struct alt_ICore* server)
 {
-    return (unsigned int)((alt::IServer *)_instance)->GetNetTime();
+    alt::ICore::SetInstance((class alt::ICore *)server);
 }
 
-CAPI struct alt_IServer* alt_IServer_Instance()
+CAPI void alt_ICore_Assign_constICoreRef(struct alt_ICore* _instance, struct alt_ICore* _p0)
 {
-    return (alt_IServer*)&alt::IServer::Instance();
-}
-
-CAPI void alt_IServer_SetInstance(struct alt_IServer* server)
-{
-    alt::IServer::SetInstance((class alt::IServer *)server);
-}
-
-CAPI void alt_IServer_Assign_constIServerRef(struct alt_IServer* _instance, struct alt_IServer* _p0)
-{
-    ((alt::IServer *)_instance)->operator=((const class alt::IServer &)_p0);
+    ((alt::ICore *)_instance)->operator=((const class alt::ICore &)_p0);
 }
 
 

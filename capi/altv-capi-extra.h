@@ -11,17 +11,16 @@ CAPI unsigned int alt_GetSDKVersion();
 #define CAPI_EXPORT_SDK_VERSION CAPI_EXPORT unsigned int GetSDKVersion() { return alt_GetSDKVersion(); }
 
 CAPI alt_IScriptRuntime* alt_CAPIScriptRuntime_Create(
-    alt_IResource*(*CreateResourceFn)(alt_IScriptRuntime*, alt_IResource_CreationInfo*),
-    void(*RemoveResourceFn)(alt_IScriptRuntime*, alt_IResource*),
+    alt_IResource_Impl*(*CreateImplFn)(alt_IScriptRuntime*, alt_IResource*),
+    void(*DestroyImplFn)(alt_IScriptRuntime*, alt_IResource_Impl*),
     void(*OnTickFn)(alt_IScriptRuntime*)
 );
 
-CAPI alt_IResource* alt_CAPIResource_Create(
-    alt_IResource_CreationInfo* info,
+CAPI alt_IResource_Impl* alt_CAPIResource_Impl_Create(
+    alt_IResource* resource,
 #ifdef ALT_SERVER_API
-    void(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*),
+    _Bool(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*),
 #endif
-    _Bool(*InstantiateFn)(alt_IResource*),
     _Bool(*StartFn)(alt_IResource*),
     _Bool(*StopFn)(alt_IResource*),
     _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*),
@@ -30,7 +29,7 @@ CAPI alt_IResource* alt_CAPIResource_Create(
     void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_IBaseObject*)
 );
 
-CAPI void alt_CAPIResource_SetExtra(alt_IResource* resource, void* extra);
-CAPI void* alt_CAPIResource_GetExtra(alt_IResource* resource);
+CAPI void alt_CAPIResource_Impl_SetExtra(alt_IResource_Impl* resource, void* extra);
+CAPI void* alt_CAPIResource_Impl_GetExtra(alt_IResource_Impl* resource);
 
 #endif // _CAPI_EXTRA_H_
