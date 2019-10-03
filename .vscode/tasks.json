@@ -10,7 +10,7 @@
                 "command": "${workspaceFolder}/../../NINJA-WIN-RelWithDebInfo-GEN.bat",
             },
             "linux": {
-                "command": "cmake -G Ninja llvm -BA-BUILD-NINJA-RelWithDebInfo -DCMAKE_BUILD_TYPE=RelWithDebInfo -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra' -DLLVM_ENABLE_CXX1Z=ON -DLLVM_BUILD_TESTS=OFF",
+                "command": "cmake -G Ninja llvm -BA-BUILD-NINJA-RelWithDebInfo -DCMAKE_BUILD_TYPE=RelWithDebInfo -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra' -DLLVM_BUILD_TESTS=OFF -DLLVM_ENABLE_CXX1Z=ON -DCLANG_DEFAULT_CXX_STDLIB=libc++ -DLLVM_ENABLE_LIBCXX=ON -DLLVM_STATIC_LINK_CXX_STDLIB=OFF -DCMAKE_C_COMPILER='clang' -DCMAKE_CXX_COMPILER='clang++' -DCLANG_DEFAULT_LINKER='ld.lld' -DLLVM_ENABLE_LLD=ON",
             },
             "options": {
                 "cwd": "${workspaceFolder}/../../"
@@ -29,7 +29,7 @@
                 "command": "${workspaceFolder}/../../NINJA-WIN-RelWithDebInfo-BUILD.bat; Copy-Item '${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/bin/altv-api-tool.exe' '${workspaceFolder}/tools/altv-api-tool.exe'",
             },
             "linux": {
-                "command": "cmake --build A-BUILD-NINJA-RelWithDebInfo --config RelWithDebInfo",
+                "command": "cmake --build A-BUILD-NINJA-RelWithDebInfo --config RelWithDebInfo && cp '${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/bin/altv-api-tool' '${workspaceFolder}/tools/altv-api-tool'",
             },
             "options": {
                 "cwd": "${workspaceFolder}/../../"

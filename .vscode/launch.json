@@ -8,7 +8,15 @@
             "name": "Parse client API",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/tools/altv-api-tool.exe",
+            "windows": {
+                //"type": "cppvsdbg",
+                "program": "${workspaceFolder}/tools/altv-api-tool.exe",
+            },
+            "linux": {
+                "type": "cppdbg",
+                "program": "${workspaceFolder}/tools/altv-api-tool",
+                "miDebuggerPath": "/usr/bin/gdb"
+            },
             "args": [
                 // Files to parse
                 "${workspaceFolder}/cpp-sdk/SDK.h",
@@ -134,7 +142,15 @@
             "name": "Parse server API",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/tools/altv-api-tool.exe",
+            "windows": {
+                //"type": "cppvsdbg",
+                "program": "${workspaceFolder}/tools/altv-api-tool.exe",
+            },
+            "linux": {
+                "type": "cppdbg",
+                "program": "${workspaceFolder}/tools/altv-api-tool",
+                "miDebuggerPath": "/usr/bin/gdb"
+            },
             "args": [
                 // Files to parse
                 "${workspaceFolder}/cpp-sdk/SDK.h",

@@ -78,7 +78,8 @@
         "xlocmes": "cpp",
         "unordered_set": "cpp",
         "*.def": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "cstdbool": "cpp"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true
