@@ -64,7 +64,7 @@
                 "command": "${workspaceFolder}/capi/build.bat",  
             },
             "linux": {
-                "command": "cmake . -BBUILD -DCMAKE_BUILD_TYPE=RelWithDebInfo -GNinja && cmake --build BUILD --config RelWithDebInfo"
+                "command": "${workspaceFolder}/capi/build.sh"
             },
             "options": {
                 "cwd": "${workspaceFolder}/capi"

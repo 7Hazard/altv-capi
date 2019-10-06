@@ -11,65 +11,125 @@
             "windows": {
                 //"type": "cppvsdbg",
                 "program": "${workspaceFolder}/tools/altv-api-tool.exe",
+                "args": [
+                    // Files to parse
+                    "${workspaceFolder}/cpp-sdk/SDK.h",
+                    
+                    "--",
+
+                    // Includes
+                    //"-Icpp-sdk",
+
+                    // Defines
+                    "-DUNICODE",
+                    "-D_UNICODE",
+                    //"-DALT_CLIENT",
+                    "-DALT_CLIENT_API",
+
+                    // Clang stuff
+                    "-fms-compatibility",
+                    "-fms-extensions",
+
+                    "-Wno-deprecated-declarations",
+                    "-Wno-switch-enum",
+                    "-Wno-unused-command-line-argument",
+                    "-Wno-macro-redefined",
+                    "-Wno-inconsistent-missing-override",
+                    "-Wno-deprecated-declarations",
+                    "-Wno-return-type",
+                    "-Wno-switch-enum",
+                    "-Wno-switch",
+                    "-Wno-parentheses",
+                    "-Wno-unused-private-field",
+                    "-Wno-unused-variable",
+                    "-Wno-format",
+                    "-Wno-reorder",
+                    "-Wno-delete-non-virtual-dtor",
+                    "-Wno-microsoft-cast",
+                    "-Wno-unused-function",
+                    "-Wno-unused-lambda-capture",
+                    "-Wno-missing-braces",
+                    "-Wno-unused-local-typedef",
+                    "-Wno-tautological-constant-out-of-range-compare",
+                    "-Wno-delete-incomplete",
+                    "-Wno-c++11-narrowing",
+                    "-Wno-comment",
+
+                    "-xc++",
+                    "-ferror-limit=0",
+                    "-Wno-pragma-once-outside-header",
+                    "-std=c++17",
+                    "-Wno-switch-enum",
+                    "-Wno-switch",
+
+                    "-fparse-all-comments",
+                ],
             },
             "linux": {
                 "type": "cppdbg",
                 "program": "${workspaceFolder}/tools/altv-api-tool",
-                "miDebuggerPath": "/usr/bin/gdb"
+                "miDebuggerPath": "/usr/bin/gdb",
+                "args": [
+                    // Files to parse
+                    "${workspaceFolder}/cpp-sdk/SDK.h",
+                    
+                    "--",
+
+                    // Includes
+                    //"-Icpp-sdk",
+
+                    // Defines
+                    "-DUNICODE",
+                    "-D_UNICODE",
+                    //"-DALT_CLIENT",
+                    "-DALT_CLIENT_API",
+
+                    // Clang stuff
+                    "-fms-compatibility",
+                    "-fms-extensions",
+                    "-fdelayed-template-parsing",
+
+                    "-Wno-deprecated-declarations",
+                    "-Wno-switch-enum",
+                    "-Wno-unused-command-line-argument",
+                    "-Wno-macro-redefined",
+                    "-Wno-inconsistent-missing-override",
+                    "-Wno-deprecated-declarations",
+                    "-Wno-return-type",
+                    "-Wno-switch-enum",
+                    "-Wno-switch",
+                    "-Wno-parentheses",
+                    "-Wno-unused-private-field",
+                    "-Wno-unused-variable",
+                    "-Wno-format",
+                    "-Wno-reorder",
+                    "-Wno-delete-non-virtual-dtor",
+                    "-Wno-microsoft-cast",
+                    "-Wno-unused-function",
+                    "-Wno-unused-lambda-capture",
+                    "-Wno-missing-braces",
+                    "-Wno-unused-local-typedef",
+                    "-Wno-tautological-constant-out-of-range-compare",
+                    "-Wno-delete-incomplete",
+                    "-Wno-c++11-narrowing",
+                    "-Wno-comment",
+
+                    "-xc++",
+                    "-ferror-limit=0",
+                    "-Wno-pragma-once-outside-header",
+                    "-std=c++17",
+                    "-Wno-switch-enum",
+                    "-Wno-switch",
+
+                    "-fparse-all-comments",
+
+                    "-nostdinc",
+                    "-nostdinc++",
+                    //"-stdlib=libc++",
+                    //"-lc++abi",
+                    "-I /WINDOWS/VC/Tools/MSVC/14.16.27023/include"
+                ],
             },
-            "args": [
-                // Files to parse
-                "${workspaceFolder}/cpp-sdk/SDK.h",
-                
-                "--",
-
-                // Includes
-                //"-Icpp-sdk",
-
-                // Defines
-                "-DUNICODE",
-                "-D_UNICODE",
-                //"-DALT_CLIENT",
-                "-DALT_CLIENT_API",
-
-                // Clang stuff
-                "-fms-compatibility",
-                "-fms-extensions",
-
-                "-Wno-deprecated-declarations",
-                "-Wno-switch-enum",
-                "-Wno-unused-command-line-argument",
-                "-Wno-macro-redefined",
-                "-Wno-inconsistent-missing-override",
-                "-Wno-deprecated-declarations",
-                "-Wno-return-type",
-                "-Wno-switch-enum",
-                "-Wno-switch",
-                "-Wno-parentheses",
-                "-Wno-unused-private-field",
-                "-Wno-unused-variable",
-                "-Wno-format",
-                "-Wno-reorder",
-                "-Wno-delete-non-virtual-dtor",
-                "-Wno-microsoft-cast",
-                "-Wno-unused-function",
-                "-Wno-unused-lambda-capture",
-                "-Wno-missing-braces",
-                "-Wno-unused-local-typedef",
-                "-Wno-tautological-constant-out-of-range-compare",
-                "-Wno-delete-incomplete",
-                "-Wno-c++11-narrowing",
-                "-Wno-comment",
-
-                "-xc++",
-                "-ferror-limit=0",
-                "-Wno-pragma-once-outside-header",
-                "-std=c++17",
-                "-Wno-switch-enum",
-                "-Wno-switch",
-
-                "-fparse-all-comments",
-            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/capi/client",
             "environment": [],
