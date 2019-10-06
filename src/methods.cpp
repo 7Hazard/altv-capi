@@ -380,7 +380,8 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 auto paramname = param->getName().str();
                 if(paramname.empty())
                     paramname = ("_p")+std::to_string(param->getFunctionScopeIndex());
-                auto paramtype = param->getType().getCanonicalType()
+                auto origparamtype = param->getType().getUnqualifiedType();
+                auto paramtype = origparamtype.getCanonicalType()
                     .getUnqualifiedType();
                 auto typedata = Typedata(paramtype, record->getASTContext());
                 
@@ -416,7 +417,8 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 else {
                     headerparams += typedata.forwardDecl + typedata.ctype
                         + (" ") + paramname;
-                    sourceparams += ("(")+paramtype.getAsString()+(")")
+                    auto t = std::regex_replace(origparamtype.getAsString(), reg::classstructenum, "");
+                    sourceparams += ("(")+t+(")")
                         +paramname;
                 }
 
