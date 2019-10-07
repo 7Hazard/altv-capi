@@ -14,7 +14,7 @@ linux:
     - "cp capi/server/altv-capi.hpp capi/BUILD/altv-capi-server/include/server/altv-capi.hpp"
     - "cp capi/altv-capi-extra.h capi/BUILD/altv-capi-server/include/altv-capi-extra.h"
     - "cp capi/server/altv-capi.json capi/BUILD/altv-capi-server/altv-capi.json"
-    - "cd capi/BUILD && zip -r altv-capi-server-win32.zip altv-capi-server && cd ../../"
+    - "cd capi/BUILD && zip -r altv-capi-server-linux.zip altv-capi-server && cd ../../"
     
     # client packaging
     - "mkdir capi/BUILD/altv-capi-client/include"
@@ -23,13 +23,13 @@ linux:
     - "cp capi/client/altv-capi.hpp capi/BUILD/altv-capi-client/include/client/altv-capi.hpp"
     - "cp capi/altv-capi-extra.h capi/BUILD/altv-capi-client/include/altv-capi-extra.h"
     - "cp capi/client/altv-capi.json capi/BUILD/altv-capi-client/altv-capi.json"
-    - "cd capi/BUILD && zip -r altv-capi-client-win32.zip altv-capi-client && cd ../../"
+    - "cd capi/BUILD && zip -r altv-capi-client-linux.zip altv-capi-client && cd ../../"
     
     artifacts:
         name: "altv-capi-linux-${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}"
         paths:
-        - capi/BUILD/altv-capi-server-win32.zip
-        - capi/BUILD/altv-capi-client-win32.zip
+        - capi/BUILD/altv-capi-server-linux.zip
+        - capi/BUILD/altv-capi-client-linux.zip
     
     variables:
         GIT_SUBMODULE_STRATEGY: recursive
