@@ -4,7 +4,7 @@ win32:
     image: 7hazard/node-clang-win32-cross
     script:
     # build
-    - "./capi/build-win32.sh"
+    - "cd capi && ./capi/build-win32.sh"
     
     # server packaging
     - "mkdir capi/BUILD-WIN32/altv-capi-server/include"
