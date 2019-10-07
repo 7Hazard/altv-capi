@@ -2,6 +2,7 @@ win32:
     tags:
     - docker
     image: 7hazard/node-clang-win32-cross
+    
     script:
     # build
     - "cd capi && ./build-win32.sh"
@@ -29,4 +30,7 @@ win32:
         paths:
         - capi/BUILD-WIN32/altv-capi-server-win32.zip
         - capi/BUILD-WIN32/altv-capi-client-win32.zip
+    
+    variables:
+        GIT_SUBMODULE_STRATEGY: recursive
 
