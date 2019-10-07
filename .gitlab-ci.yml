@@ -1,3 +1,39 @@
+linux:
+    tags:
+    - docker
+    image: 7hazard/node-clang-win32-cross
+    
+    script:
+    # build
+    - "cd capi && ./build.sh && cd .."
+    
+    # server packaging
+    - "mkdir capi/BUILD/altv-capi-server/include"
+    - "mkdir capi/BUILD/altv-capi-server/include/server"
+    - "cp capi/server/altv-capi.h capi/BUILD/altv-capi-server/include/server/altv-capi.h"
+    - "cp capi/server/altv-capi.hpp capi/BUILD/altv-capi-server/include/server/altv-capi.hpp"
+    - "cp capi/altv-capi-extra.h capi/BUILD/altv-capi-server/include/altv-capi-extra.h"
+    - "cp capi/server/altv-capi.json capi/BUILD/altv-capi-server/altv-capi.json"
+    - "cd capi/BUILD && zip -r altv-capi-server-win32.zip altv-capi-server && cd ../../"
+    
+    # client packaging
+    - "mkdir capi/BUILD/altv-capi-client/include"
+    - "mkdir capi/BUILD/altv-capi-client/include/client"
+    - "cp capi/client/altv-capi.h capi/BUILD/altv-capi-client/include/client/altv-capi.h"
+    - "cp capi/client/altv-capi.hpp capi/BUILD/altv-capi-client/include/client/altv-capi.hpp"
+    - "cp capi/altv-capi-extra.h capi/BUILD/altv-capi-client/include/altv-capi-extra.h"
+    - "cp capi/client/altv-capi.json capi/BUILD/altv-capi-client/altv-capi.json"
+    - "cd capi/BUILD && zip -r altv-capi-client-win32.zip altv-capi-client && cd ../../"
+    
+    artifacts:
+        name: "altv-capi-linux-${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}"
+        paths:
+        - capi/BUILD/altv-capi-server-win32.zip
+        - capi/BUILD/altv-capi-client-win32.zip
+    
+    variables:
+        GIT_SUBMODULE_STRATEGY: recursive
+
 win32:
     tags:
     - docker
@@ -26,7 +62,7 @@ win32:
     - "cd capi/BUILD-WIN32 && zip -r altv-capi-client-win32.zip altv-capi-client && cd ../../"
     
     artifacts:
-        name: "altv-capi-${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}"
+        name: "altv-capi-win32-${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}"
         paths:
         - capi/BUILD-WIN32/altv-capi-server-win32.zip
         - capi/BUILD-WIN32/altv-capi-client-win32.zip
