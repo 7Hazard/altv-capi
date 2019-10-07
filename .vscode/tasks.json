@@ -75,6 +75,22 @@
                 "$gcc",
                 "$msCompile"
             ]
+        },
+        {
+            "label": "Build CAPI win32",
+            "type": "shell",
+            "linux": {
+                "command": "${workspaceFolder}/capi/build-win32.sh"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/capi"
+            },
+            "args": [],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
         }
     ]
 }

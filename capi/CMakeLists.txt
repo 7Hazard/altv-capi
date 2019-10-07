@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.12)
 
-#set(CMAKE_CXX_STANDARD 17)
+if(MSVC)
+    set(CMAKE_CXX_STANDARD 17)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
+endif()
 
 if (UNIX)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++17 -fms-extensions -fdelayed-template-parsing")
@@ -27,6 +30,11 @@ target_compile_definitions(altv-capi-client PRIVATE
 target_include_directories(altv-capi-client PRIVATE
     client
 )
+set_target_properties(altv-capi-client PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/lib
+    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/lib
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/bin
+)
 
 add_library(altv-capi-client-static STATIC
     client/altv-capi.cpp
@@ -36,6 +44,11 @@ target_compile_definitions(altv-capi-client-static PRIVATE
 )
 target_include_directories(altv-capi-client-static PRIVATE
     client
+)
+set_target_properties(altv-capi-client-static PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/lib
+    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/lib
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/bin
 )
 
 
@@ -50,6 +63,11 @@ target_compile_definitions(altv-capi-server PRIVATE
 target_include_directories(altv-capi-server PRIVATE
     server
 )
+set_target_properties(altv-capi-server PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server/lib
+    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server/lib
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server/bin
+)
 
 add_library(altv-capi-server-static STATIC
     server/altv-capi.cpp
@@ -59,4 +77,9 @@ target_compile_definitions(altv-capi-server-static PRIVATE
 )
 target_include_directories(altv-capi-server-static PRIVATE
     server
+)
+set_target_properties(altv-capi-server-static PROPERTIES
+    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server-static/lib
+    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server-static/lib
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server-static/bin
 )

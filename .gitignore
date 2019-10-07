@@ -4,6 +4,7 @@ capi/client/BUILD/*
 capi/server/BUILD/*
 BUILD/*
 capi/BUILD/*
+capi/BUILD-WIN32/*
 *.log
 *.ast
 TEST
