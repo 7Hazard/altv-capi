@@ -70,3 +70,16 @@ win32:
     variables:
         GIT_SUBMODULE_STRATEGY: recursive
 
+deploy:
+    tags:
+    - linux
+    
+    script:
+    - "curl --header 'Content-Type: application/json' --header 'PRIVATE-TOKEN: ${CI_GITLAB_API_PRIVATE_KEY}' \
+     --data '{ "name": "Build ${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}", "tag_name": "${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}", "description": "Build for ${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}", "milestones": ["v0"], "assets": { "links": [\
+        { "name": "client-win32", "url": "https://gitlab.com/7Hazard/altv-capi/-/jobs/${CI_JOB_ID}/artifacts/raw/capi/BUILD-WIN32/altv-capi-client-win32.zip?inline=false" }\
+        { "name": "server-win32", "url": "https://gitlab.com/7Hazard/altv-capi/-/jobs/${CI_JOB_ID}/artifacts/raw/capi/BUILD-WIN32/altv-capi-server-win32.zip?inline=false" }\
+        { "name": "client-linux", "url": "https://gitlab.com/7Hazard/altv-capi/-/jobs/${CI_JOB_ID}/artifacts/raw/capi/BUILD/altv-capi-client.zip?inline=false" }\
+        { "name": "server-linux", "url": "https://gitlab.com/7Hazard/altv-capi/-/jobs/${CI_JOB_ID}/artifacts/raw/capi/BUILD/altv-capi-server.zip?inline=false" }\
+     ] } }' \
+     --request POST https://gitlab.example.com/api/v4/projects/24/releases"
