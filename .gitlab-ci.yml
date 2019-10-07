@@ -1,7 +1,7 @@
 linux:
     tags:
     - docker
-    image: 7hazard/node-clang-win32-cross
+    image: 7hazard/node-clang-7
     
     script:
     # build
