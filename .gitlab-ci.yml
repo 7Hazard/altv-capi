@@ -1,4 +1,9 @@
+stages:
+- build
+- publish
+
 linux:
+    stage: build
     tags:
     - docker
     image: 7hazard/node-clang-7
@@ -35,6 +40,7 @@ linux:
         GIT_SUBMODULE_STRATEGY: recursive
 
 win32:
+    stage: build
     tags:
     - docker
     image: 7hazard/node-clang-win32-cross
@@ -71,6 +77,7 @@ win32:
         GIT_SUBMODULE_STRATEGY: recursive
 
 publish-binaries:
+    stage: publish
     tags:
     - linux
     
