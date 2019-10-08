@@ -38,7 +38,7 @@ build:linux:
         paths:
             # - capi/BUILD/altv-capi-client-linux/*
             # - capi/BUILD/altv-capi-client-static/*
-            - capi/BUILD/altv-capi-server-linux/*
+            - capi/BUILD/altv-capi-server/*
             - capi/BUILD/altv-capi-server-static/*
     
     variables:
