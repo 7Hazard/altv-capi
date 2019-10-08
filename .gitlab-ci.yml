@@ -126,8 +126,10 @@ build-and-publish:
         GIT_SUBMODULE_STRATEGY: recursive
     
     only:
-        variables:
-            - $CI_COMMIT_REF_PROTECTED # only protected branches
+        refs:
+            - master
+        # variables:
+        #     - $CI_COMMIT_REF_PROTECTED # only protected branches
 
 
 
