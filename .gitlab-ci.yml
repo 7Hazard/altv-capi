@@ -13,7 +13,10 @@ build:win32:
 
     artifacts:
         paths:
-            - "capi/BUILD-WIN32/*"
+            - capi/BUILD-WIN32/altv-capi-client/*
+            - capi/BUILD-WIN32/altv-capi-client-static/*
+            - capi/BUILD-WIN32/altv-capi-server/*
+            - capi/BUILD-WIN32/altv-capi-server-static/*
     
     variables:
         GIT_SUBMODULE_STRATEGY: recursive
@@ -33,7 +36,10 @@ build:linux:
 
     artifacts:
         paths:
-            - "capi/BUILD/*"
+            # - capi/BUILD/altv-capi-client-linux/*
+            # - capi/BUILD/altv-capi-client-static/*
+            - capi/BUILD/altv-capi-server-linux/*
+            - capi/BUILD/altv-capi-server-static/*
     
     variables:
         GIT_SUBMODULE_STRATEGY: recursive
@@ -46,7 +52,7 @@ publish:
     stage: publish
     tags:
         - docker
-    image: 7hazard/node-clang-win32-cross
+    image: 7hazard/node-clang-7
 
     dependencies:
         - build:win32
@@ -163,99 +169,3 @@ publish:
     only:
         refs:
             - master
-
-
-
-# linux:
-#     stage: build
-#     tags:
-#     - docker
-#     image: 7hazard/node-clang-7
-    
-#     script:
-#     # build
-#     - "cd capi && ./build.sh && cd .."
-    
-#     # server packaging
-#     - "mkdir capi/BUILD/altv-capi-server/include"
-#     - "mkdir capi/BUILD/altv-capi-server/include/server"
-#     - "cp capi/server/altv-capi.h capi/BUILD/altv-capi-server/include/server/altv-capi.h"
-#     - "cp capi/server/altv-capi.hpp capi/BUILD/altv-capi-server/include/server/altv-capi.hpp"
-#     - "cp capi/altv-capi-extra.h capi/BUILD/altv-capi-server/include/altv-capi-extra.h"
-#     - "cp capi/server/altv-capi.json capi/BUILD/altv-capi-server/altv-capi.json"
-#     - "cd capi/BUILD && zip -r altv-capi-server-linux.zip altv-capi-server && cd ../../"
-    
-#     # client packaging
-#     - "mkdir capi/BUILD/altv-capi-client/include"
-#     - "mkdir capi/BUILD/altv-capi-client/include/client"
-#     - "cp capi/client/altv-capi.h capi/BUILD/altv-capi-client/include/client/altv-capi.h"
-#     - "cp capi/client/altv-capi.hpp capi/BUILD/altv-capi-client/include/client/altv-capi.hpp"
-#     - "cp capi/altv-capi-extra.h capi/BUILD/altv-capi-client/include/altv-capi-extra.h"
-#     - "cp capi/client/altv-capi.json capi/BUILD/altv-capi-client/altv-capi.json"
-#     - "cd capi/BUILD && zip -r altv-capi-client-linux.zip altv-capi-client && cd ../../"
-    
-#     artifacts:
-#         name: "altv-capi-linux-${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}"
-#         paths:
-#         - capi/BUILD/altv-capi-server-linux.zip
-#         - capi/BUILD/altv-capi-client-linux.zip
-    
-#     variables:
-#         GIT_SUBMODULE_STRATEGY: recursive
-
-# win32:
-#     stage: build
-#     tags:
-#     - docker
-#     image: 7hazard/node-clang-win32-cross
-    
-#     script:
-#     # build
-#     - "cd capi && ./build-win32.sh && cd .."
-    
-#     # server packaging
-#     - "mkdir capi/BUILD-WIN32/altv-capi-server/include"
-#     - "mkdir capi/BUILD-WIN32/altv-capi-server/include/server"
-#     - "cp capi/server/altv-capi.h capi/BUILD-WIN32/altv-capi-server/include/server/altv-capi.h"
-#     - "cp capi/server/altv-capi.hpp capi/BUILD-WIN32/altv-capi-server/include/server/altv-capi.hpp"
-#     - "cp capi/altv-capi-extra.h capi/BUILD-WIN32/altv-capi-server/include/altv-capi-extra.h"
-#     - "cp capi/server/altv-capi.json capi/BUILD-WIN32/altv-capi-server/altv-capi.json"
-#     - "cd capi/BUILD-WIN32 && zip -r altv-capi-server-win32.zip altv-capi-server && cd ../../"
-    
-#     # client packaging
-#     - "mkdir capi/BUILD-WIN32/altv-capi-client/include"
-#     - "mkdir capi/BUILD-WIN32/altv-capi-client/include/client"
-#     - "cp capi/client/altv-capi.h capi/BUILD-WIN32/altv-capi-client/include/client/altv-capi.h"
-#     - "cp capi/client/altv-capi.hpp capi/BUILD-WIN32/altv-capi-client/include/client/altv-capi.hpp"
-#     - "cp capi/altv-capi-extra.h capi/BUILD-WIN32/altv-capi-client/include/altv-capi-extra.h"
-#     - "cp capi/client/altv-capi.json capi/BUILD-WIN32/altv-capi-client/altv-capi.json"
-#     - "cd capi/BUILD-WIN32 && zip -r altv-capi-client-win32.zip altv-capi-client && cd ../../"
-    
-#     artifacts:
-#         name: "altv-capi-win32-${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}"
-#         paths:
-#         - capi/BUILD-WIN32/altv-capi-server-win32.zip
-#         - capi/BUILD-WIN32/altv-capi-client-win32.zip
-    
-#     variables:
-#         GIT_SUBMODULE_STRATEGY: recursive
-
-# publish-binaries:
-#     stage: publish
-#     tags:
-#     - linux
-    
-#     script:
-#     - "echo TESTING ENV VARS: $CI_TEST_VAL '|' $CI_TEST_VAL_MASKED '|' ${CI_TEST_VAL} '|' ${CI_TEST_VAL_MASKED}"
-#     - "let LINUX_JOB_ID=${CI_JOB_ID}-2"
-#     - "let WIN32_JOB_ID=${CI_JOB_ID}-1"
-#     - "echo Build ${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID} '|' Project ID ${CI_PROJECT_ID} '|' Linux Job ID $LINUX_JOB_ID '|' Win32 Job ID $WI32_JOB_ID"
-#     - 'CURL_DATA="{ \"name\": \"${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}\", \"tag_name\": \"${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}\", \"ref\": \"${CI_COMMIT_REF_SLUG}\", \"description\": \"Build ${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}\", \"assets\": { \"links\": [
-#         { \"name\": \"client-win32\", \"url\": \"https://gitlab.com/7Hazard/altv-capi/-/jobs/$WIN32_JOB_ID/artifacts/raw/capi/BUILD-WIN32/altv-capi-client-win32.zip?inline=false\" }
-#         { \"name\": \"server-win32\", \"url\": \"https://gitlab.com/7Hazard/altv-capi/-/jobs/$WIN32_JOB_ID/artifacts/raw/capi/BUILD-WIN32/altv-capi-server-win32.zip?inline=false\" }
-#         { \"name\": \"client-linux\", \"url\": \"https://gitlab.com/7Hazard/altv-capi/-/jobs/$LINUX_JOB_ID/artifacts/raw/capi/BUILD/altv-capi-client.zip?inline=false\" }
-#         { \"name\": \"server-linux\", \"url\": \"https://gitlab.com/7Hazard/altv-capi/-/jobs/$LINUX_JOB_ID/artifacts/raw/capi/BUILD/altv-capi-server.zip?inline=false\" }
-#      ] } }"'
-#     - "curl --header 'Content-Type: application/json' --header \"PRIVATE-TOKEN: $CI_GITLAB_API_PRIVATE_KEY\" 
-#      --data \"$CURL_DATA\"
-#      --request POST https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/releases"
