@@ -1,20 +1,53 @@
-# stages:
-# - build
-# - publish
+stages:
+    - build
+    - publish
 
-build-and-publish:
-    # stage: build
+build:win32:
+    stage: build
     tags:
         - docker
     image: 7hazard/node-clang-win32-cross
+
+    script:
+        - "cd capi && ./build-win32.sh && cd .."
+
+    artifacts:
+        paths:
+            - "capi/BUILD-WIN32/*"
+    
+    variables:
+        GIT_SUBMODULE_STRATEGY: recursive
+
+build:linux:
+    stage: build
+    tags:
+        - docker
+    image: 7hazard/node-clang-7
+
+    script:
+        - "cd capi && ./build.sh && cd .."
+
+    artifacts:
+        paths:
+            - "capi/BUILD/*"
+    
+    variables:
+        GIT_SUBMODULE_STRATEGY: recursive
+
+publish:
+    stage: publish
+    tags:
+        - docker
+    image: 7hazard/node-clang-win32-cross
+
+    dependencies:
+        - build:win32
+        - build:linux
     
     script:
         - "echo Build ${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID} '|' Project ID ${CI_PROJECT_ID} '|' Job ID ${CI_JOB_ID} '|' API Key ${CI_GITLAB_API_PRIVATE_KEY}" 
         
         ## WIN32
-        # build
-        - "cd capi && ./build-win32.sh && cd .."
-        
         # client packaging
         - "mkdir capi/BUILD-WIN32/altv-capi-client/include"
         - "mkdir capi/BUILD-WIN32/altv-capi-client/include/client"
@@ -52,9 +85,6 @@ build-and-publish:
         - "cd capi/BUILD-WIN32 && zip -r altv-capi-server-static-win32.zip altv-capi-server-static && cd ../../"
 
         ## LINUX
-        # build
-        - "cd capi && ./build.sh && cd .."
-        
         # # client packaging
         # - "mkdir capi/BUILD/altv-capi-client/include"
         # - "mkdir capi/BUILD/altv-capi-client/include/client"
@@ -92,8 +122,8 @@ build-and-publish:
         - "cd capi/BUILD && zip -r altv-capi-server-static-linux.zip altv-capi-server-static && cd ../../"
 
         ## PUBLISH
-        - "echo TESTING ENV VARS: $CI_TEST_VAL '|' $CI_TEST_VAL_MASKED '|' ${CI_TEST_VAL} '|' ${CI_TEST_VAL_MASKED}"
-        - "echo PUBLISHING"
+        # - "echo TESTING ENV VARS: $CI_TEST_VAL '|' $CI_TEST_VAL_MASKED '|' ${CI_TEST_VAL} '|' ${CI_TEST_VAL_MASKED}"
+        # - "echo PUBLISHING"
         - "echo Build ${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID} '|' Project ID ${CI_PROJECT_ID} '|' Job ID ${CI_JOB_ID} '|' API Key ${CI_GITLAB_API_PRIVATE_KEY}" 
         
         # linux client builds, if there ever is a chance for that to be needed
@@ -105,7 +135,7 @@ build-and-publish:
             { \\\"name\\\": \\\"client-win32-static\\\", \\\"url\\\": \\\"https://gitlab.com/7Hazard/altv-capi/-/jobs/${CI_JOB_ID}/artifacts/raw/capi/BUILD-WIN32/altv-capi-client-static-win32.zip?inline=false\\\" },
             { \\\"name\\\": \\\"server-win32\\\", \\\"url\\\": \\\"https://gitlab.com/7Hazard/altv-capi/-/jobs/${CI_JOB_ID}/artifacts/raw/capi/BUILD-WIN32/altv-capi-server-win32.zip?inline=false\\\" },
             { \\\"name\\\": \\\"server-win32-static\\\", \\\"url\\\": \\\"https://gitlab.com/7Hazard/altv-capi/-/jobs/${CI_JOB_ID}/artifacts/raw/capi/BUILD-WIN32/altv-capi-server-static-win32.zip?inline=false\\\" },
-            { \\\"name\\\": \\\"server-linux\\\", \\\"url\\\": \\\"https://gitlab.com/7Hazard/altv-capi/-/jobs/${CI_JOB_ID}/artifacts/raw/capi/BUILD/altv-capi-server.zip?inline=false\\\" },
+            { \\\"name\\\": \\\"server-linux\\\", \\\"url\\\": \\\"https://gitlab.com/7Hazard/altv-capi/-/jobs/${CI_JOB_ID}/artifacts/raw/capi/BUILD/altv-capi-server-linux.zip?inline=false\\\" },
             { \\\"name\\\": \\\"server-linux-static\\\", \\\"url\\\": \\\"https://gitlab.com/7Hazard/altv-capi/-/jobs/${CI_JOB_ID}/artifacts/raw/capi/BUILD/altv-capi-server-static-linux.zip?inline=false\\\" }
         ]} }\"
         --request POST https://gitlab.com/api/v4/projects/${CI_PROJECT_ID}/releases"
@@ -122,14 +152,9 @@ build-and-publish:
             - capi/BUILD/altv-capi-server-linux.zip
             - capi/BUILD/altv-capi-server-static-linux.zip
     
-    variables:
-        GIT_SUBMODULE_STRATEGY: recursive
-    
     only:
         refs:
             - master
-        # variables:
-        #     - $CI_COMMIT_REF_PROTECTED # only protected branches
 
 
 
