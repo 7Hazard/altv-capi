@@ -15,104 +15,116 @@
                     "value": 2
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_SERVER_SCRIPT_EVENT",
+                    "name": "ALT_CEVENT_TYPE_RESOURCE_START",
                     "value": 3
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_CLIENT_SCRIPT_EVENT",
+                    "name": "ALT_CEVENT_TYPE_RESOURCE_STOP",
                     "value": 4
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_META_CHANGE",
+                    "name": "ALT_CEVENT_TYPE_RESOURCE_ERROR",
                     "value": 5
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_SYNCED_META_CHANGE",
+                    "name": "ALT_CEVENT_TYPE_SERVER_SCRIPT_EVENT",
                     "value": 6
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_PLAYER_DAMAGE",
+                    "name": "ALT_CEVENT_TYPE_CLIENT_SCRIPT_EVENT",
                     "value": 7
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_PLAYER_DEATH",
+                    "name": "ALT_CEVENT_TYPE_META_CHANGE",
                     "value": 8
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_FIRE_EVENT",
+                    "name": "ALT_CEVENT_TYPE_SYNCED_META_CHANGE",
                     "value": 9
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_EXPLOSION_EVENT",
+                    "name": "ALT_CEVENT_TYPE_PLAYER_DAMAGE",
                     "value": 10
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_WEAPON_DAMAGE_EVENT",
+                    "name": "ALT_CEVENT_TYPE_PLAYER_DEATH",
                     "value": 11
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_CHECKPOINT_EVENT",
+                    "name": "ALT_CEVENT_TYPE_FIRE_EVENT",
                     "value": 12
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_COLSHAPE_EVENT",
+                    "name": "ALT_CEVENT_TYPE_EXPLOSION_EVENT",
                     "value": 13
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_PLAYER_ENTER_VEHICLE",
+                    "name": "ALT_CEVENT_TYPE_WEAPON_DAMAGE_EVENT",
                     "value": 14
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_PLAYER_LEAVE_VEHICLE",
+                    "name": "ALT_CEVENT_TYPE_CHECKPOINT_EVENT",
                     "value": 15
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_PLAYER_CHANGE_VEHICLE_SEAT",
+                    "name": "ALT_CEVENT_TYPE_COLSHAPE_EVENT",
                     "value": 16
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_REMOVE_ENTITY_EVENT",
+                    "name": "ALT_CEVENT_TYPE_PLAYER_ENTER_VEHICLE",
                     "value": 17
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_DATA_NODE_RECEIVED_EVENT",
+                    "name": "ALT_CEVENT_TYPE_PLAYER_LEAVE_VEHICLE",
                     "value": 18
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_CONSOLE_COMMAND_EVENT",
+                    "name": "ALT_CEVENT_TYPE_PLAYER_CHANGE_VEHICLE_SEAT",
                     "value": 19
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_CONNECTION_COMPLETE",
+                    "name": "ALT_CEVENT_TYPE_REMOVE_ENTITY_EVENT",
                     "value": 20
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_DISCONNECT_EVENT",
+                    "name": "ALT_CEVENT_TYPE_DATA_NODE_RECEIVED_EVENT",
                     "value": 21
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_WEB_VIEW_EVENT",
+                    "name": "ALT_CEVENT_TYPE_CONSOLE_COMMAND_EVENT",
                     "value": 22
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_KEYBOARD_EVENT",
+                    "name": "ALT_CEVENT_TYPE_CONNECTION_COMPLETE",
                     "value": 23
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_GAME_ENTITY_CREATE",
+                    "name": "ALT_CEVENT_TYPE_DISCONNECT_EVENT",
                     "value": 24
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_GAME_ENTITY_DESTROY",
+                    "name": "ALT_CEVENT_TYPE_WEB_VIEW_EVENT",
                     "value": 25
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_ALL",
+                    "name": "ALT_CEVENT_TYPE_KEYBOARD_EVENT",
                     "value": 26
                 },
                 {
-                    "name": "ALT_CEVENT_TYPE_SIZE",
+                    "name": "ALT_CEVENT_TYPE_GAME_ENTITY_CREATE",
                     "value": 27
+                },
+                {
+                    "name": "ALT_CEVENT_TYPE_GAME_ENTITY_DESTROY",
+                    "value": 28
+                },
+                {
+                    "name": "ALT_CEVENT_TYPE_ALL",
+                    "value": 29
+                },
+                {
+                    "name": "ALT_CEVENT_TYPE_SIZE",
+                    "value": 30
                 }
             ]
         },
@@ -1395,421 +1407,6 @@
                 }
             },
             "struct": "alt_Array_StringView"
-        },
-        "alt_Array_String_Access_uint64_t": {
-            "comment": "",
-            "params": [
-                {
-                    "name": "_instance",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_Array_String*"
-                    }
-                },
-                {
-                    "name": "key",
-                    "type": {
-                        "kind": 0,
-                        "kind_str": "fundamental",
-                        "name": "unsigned long long"
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 2,
-                "kind_str": "reference",
-                "name": "alt_String*",
-                "pointee": {
-                    "kind": 6,
-                    "kind_str": "struct",
-                    "name": "alt_String"
-                }
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_Access_uint64_t_1": {
-            "comment": "",
-            "params": [
-                {
-                    "name": "_instance",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_Array_String*"
-                    }
-                },
-                {
-                    "name": "key",
-                    "type": {
-                        "kind": 0,
-                        "kind_str": "fundamental",
-                        "name": "unsigned long long"
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 2,
-                "kind_str": "reference",
-                "name": "alt_String*",
-                "pointee": {
-                    "kind": 6,
-                    "kind_str": "struct",
-                    "name": "alt_String"
-                }
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_Assign_Array_StringRefRef": {
-            "comment": "",
-            "params": [
-                {
-                    "name": "_instance",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_Array_String*"
-                    }
-                },
-                {
-                    "name": "that",
-                    "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
-                        "name": "alt_Array_String*",
-                        "pointee": {
-                            "kind": 6,
-                            "kind_str": "struct",
-                            "name": "alt_Array_String"
-                        }
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 0,
-                "kind_str": "fundamental",
-                "name": "void"
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_Assign_constArray_StringRef": {
-            "comment": "",
-            "params": [
-                {
-                    "name": "_instance",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_Array_String*"
-                    }
-                },
-                {
-                    "name": "that",
-                    "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
-                        "name": "alt_Array_String*",
-                        "pointee": {
-                            "kind": 6,
-                            "kind_str": "struct",
-                            "name": "alt_Array_String"
-                        }
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 0,
-                "kind_str": "fundamental",
-                "name": "void"
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_Create": {
-            "comment": "// Return ptr must be manually freed with alt_Array_String_free()\n",
-            "returns": {
-                "kind": 3,
-                "kind_str": "pointer",
-                "name": "alt_Array_String*"
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_Create_1": {
-            "comment": "// Return ptr must be manually freed with alt_Array_String_free()\n",
-            "params": [
-                {
-                    "name": "_data",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_String*",
-                        "pointee": {
-                            "kind": 6,
-                            "kind_str": "struct",
-                            "name": "alt_String"
-                        }
-                    }
-                },
-                {
-                    "name": "_size",
-                    "type": {
-                        "kind": 0,
-                        "kind_str": "fundamental",
-                        "name": "unsigned long long"
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 3,
-                "kind_str": "pointer",
-                "name": "alt_Array_String*"
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_Create_2": {
-            "comment": "// Return ptr must be manually freed with alt_Array_String_free()\n",
-            "params": [
-                {
-                    "name": "_size",
-                    "type": {
-                        "kind": 0,
-                        "kind_str": "fundamental",
-                        "name": "unsigned long long"
-                    }
-                },
-                {
-                    "name": "fill",
-                    "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
-                        "name": "alt_String*",
-                        "pointee": {
-                            "kind": 6,
-                            "kind_str": "struct",
-                            "name": "alt_String"
-                        }
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 3,
-                "kind_str": "pointer",
-                "name": "alt_Array_String*"
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_Create_3": {
-            "comment": "// Return ptr must be manually freed with alt_Array_String_free()\n",
-            "params": [
-                {
-                    "name": "that",
-                    "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
-                        "name": "alt_Array_String*",
-                        "pointee": {
-                            "kind": 6,
-                            "kind_str": "struct",
-                            "name": "alt_Array_String"
-                        }
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 3,
-                "kind_str": "pointer",
-                "name": "alt_Array_String*"
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_Create_4": {
-            "comment": "// Return ptr must be manually freed with alt_Array_String_free()\n",
-            "params": [
-                {
-                    "name": "that",
-                    "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
-                        "name": "alt_Array_String*",
-                        "pointee": {
-                            "kind": 6,
-                            "kind_str": "struct",
-                            "name": "alt_Array_String"
-                        }
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 3,
-                "kind_str": "pointer",
-                "name": "alt_Array_String*"
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_GetCapacity": {
-            "comment": "",
-            "params": [
-                {
-                    "name": "_instance",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_Array_String*"
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 0,
-                "kind_str": "fundamental",
-                "name": "unsigned long long"
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_GetSize": {
-            "comment": "",
-            "params": [
-                {
-                    "name": "_instance",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_Array_String*"
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 0,
-                "kind_str": "fundamental",
-                "name": "unsigned long long"
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_Push": {
-            "comment": "",
-            "params": [
-                {
-                    "name": "_instance",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_Array_String*"
-                    }
-                },
-                {
-                    "name": "el",
-                    "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
-                        "name": "alt_String*",
-                        "pointee": {
-                            "kind": 6,
-                            "kind_str": "struct",
-                            "name": "alt_String"
-                        }
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 0,
-                "kind_str": "fundamental",
-                "name": "void"
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_begin": {
-            "comment": "",
-            "params": [
-                {
-                    "name": "_instance",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_Array_String*"
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 3,
-                "kind_str": "pointer",
-                "name": "alt_String*",
-                "pointee": {
-                    "kind": 6,
-                    "kind_str": "struct",
-                    "name": "alt_String"
-                }
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_begin_1": {
-            "comment": "",
-            "params": [
-                {
-                    "name": "_instance",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_Array_String*"
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 3,
-                "kind_str": "pointer",
-                "name": "alt_String*",
-                "pointee": {
-                    "kind": 6,
-                    "kind_str": "struct",
-                    "name": "alt_String"
-                }
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_end": {
-            "comment": "",
-            "params": [
-                {
-                    "name": "_instance",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_Array_String*"
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 3,
-                "kind_str": "pointer",
-                "name": "alt_String*",
-                "pointee": {
-                    "kind": 6,
-                    "kind_str": "struct",
-                    "name": "alt_String"
-                }
-            },
-            "struct": "alt_Array_String"
-        },
-        "alt_Array_String_end_1": {
-            "comment": "",
-            "params": [
-                {
-                    "name": "_instance",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_Array_String*"
-                    }
-                }
-            ],
-            "returns": {
-                "kind": 3,
-                "kind_str": "pointer",
-                "name": "alt_String*",
-                "pointee": {
-                    "kind": 6,
-                    "kind_str": "struct",
-                    "name": "alt_String"
-                }
-            },
-            "struct": "alt_Array_String"
         },
         "alt_CCheckpointEvent_Assign_CEventRefRef": {
             "comment": "",
@@ -8943,6 +8540,939 @@
             },
             "struct": "alt_CRemoveEntityEvent"
         },
+        "alt_CResourceErrorEvent_Assign_CEventRefRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceErrorEvent*"
+                    }
+                },
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceErrorEvent_Assign_constCEventRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceErrorEvent*"
+                    }
+                },
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceErrorEvent_Assign_constCResourceErrorEventRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceErrorEvent*"
+                    }
+                },
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CResourceErrorEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CResourceErrorEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceErrorEvent_Cancel": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceErrorEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceErrorEvent_Create": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceErrorEvent_free()\n",
+            "params": [
+                {
+                    "name": "_type",
+                    "type": {
+                        "kind": 1,
+                        "kind_str": "enumeral",
+                        "name": "alt_CEvent_Type"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceErrorEvent*"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceErrorEvent_Create_1": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceErrorEvent_free()\n",
+            "params": [
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceErrorEvent*"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceErrorEvent_Create_2": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceErrorEvent_free()\n",
+            "params": [
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceErrorEvent*"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceErrorEvent_Create_3": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceErrorEvent_free()\n",
+            "params": [
+                {
+                    "name": "_resource",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IResource*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IResource"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceErrorEvent*"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceErrorEvent_Create_4": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceErrorEvent_free()\n",
+            "params": [
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CResourceErrorEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CResourceErrorEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceErrorEvent*"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceErrorEvent_GetResource": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceErrorEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IResource*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_IResource"
+                }
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceErrorEvent_GetType": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceErrorEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 1,
+                "kind_str": "enumeral",
+                "name": "alt_CEvent_Type"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceErrorEvent_WasCancelled": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceErrorEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceErrorEvent_free": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "ptr",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceErrorEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
+        "alt_CResourceStartEvent_Assign_CEventRefRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStartEvent*"
+                    }
+                },
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStartEvent_Assign_constCEventRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStartEvent*"
+                    }
+                },
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStartEvent_Assign_constCResourceStartEventRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStartEvent*"
+                    }
+                },
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CResourceStartEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CResourceStartEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStartEvent_Cancel": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStartEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStartEvent_Create": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceStartEvent_free()\n",
+            "params": [
+                {
+                    "name": "_type",
+                    "type": {
+                        "kind": 1,
+                        "kind_str": "enumeral",
+                        "name": "alt_CEvent_Type"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceStartEvent*"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStartEvent_Create_1": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceStartEvent_free()\n",
+            "params": [
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceStartEvent*"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStartEvent_Create_2": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceStartEvent_free()\n",
+            "params": [
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceStartEvent*"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStartEvent_Create_3": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceStartEvent_free()\n",
+            "params": [
+                {
+                    "name": "_resource",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IResource*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IResource"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceStartEvent*"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStartEvent_Create_4": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceStartEvent_free()\n",
+            "params": [
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CResourceStartEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CResourceStartEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceStartEvent*"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStartEvent_GetResource": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStartEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IResource*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_IResource"
+                }
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStartEvent_GetType": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStartEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 1,
+                "kind_str": "enumeral",
+                "name": "alt_CEvent_Type"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStartEvent_WasCancelled": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStartEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStartEvent_free": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "ptr",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStartEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
+        "alt_CResourceStopEvent_Assign_CEventRefRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStopEvent*"
+                    }
+                },
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_Assign_constCEventRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStopEvent*"
+                    }
+                },
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_Assign_constCResourceStopEventRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStopEvent*"
+                    }
+                },
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CResourceStopEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CResourceStopEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_Cancel": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStopEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_Create": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceStopEvent_free()\n",
+            "params": [
+                {
+                    "name": "_type",
+                    "type": {
+                        "kind": 1,
+                        "kind_str": "enumeral",
+                        "name": "alt_CEvent_Type"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceStopEvent*"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_Create_1": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceStopEvent_free()\n",
+            "params": [
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceStopEvent*"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_Create_2": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceStopEvent_free()\n",
+            "params": [
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceStopEvent*"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_Create_3": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceStopEvent_free()\n",
+            "params": [
+                {
+                    "name": "_resource",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IResource*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IResource"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceStopEvent*"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_Create_4": {
+            "comment": "// Return ptr must be manually freed with alt_CResourceStopEvent_free()\n",
+            "params": [
+                {
+                    "name": "_p0",
+                    "type": {
+                        "kind": 2,
+                        "kind_str": "reference",
+                        "name": "alt_CResourceStopEvent*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_CResourceStopEvent"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceStopEvent*"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_GetResource": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStopEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IResource*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_IResource"
+                }
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_GetType": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStopEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 1,
+                "kind_str": "enumeral",
+                "name": "alt_CEvent_Type"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_WasCancelled": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStopEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_free": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "ptr",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStopEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
         "alt_CServerScriptEvent_Assign_CEventRefRef": {
             "comment": "",
             "params": [
@@ -12061,6 +12591,30 @@
             },
             "struct": "alt_IEntity"
         },
+        "alt_IEntity_GetNetworkOwner": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IEntity*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IPlayer*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_IPlayer"
+                }
+            },
+            "struct": "alt_IEntity"
+        },
         "alt_IEntity_GetPosition": {
             "comment": "// Return ptr must be manually freed with alt_Vector_float_3_PointLayout_free()\n",
             "params": [
@@ -13266,6 +13820,30 @@
                     "kind": 6,
                     "kind_str": "struct",
                     "name": "alt_StringView"
+                }
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_GetNetworkOwner": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IPlayer*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IPlayer*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_IPlayer"
                 }
             },
             "struct": "alt_IPlayer"
@@ -15730,6 +16308,30 @@
                     "kind": 6,
                     "kind_str": "struct",
                     "name": "alt_RGBA"
+                }
+            },
+            "struct": "alt_IVehicle"
+        },
+        "alt_IVehicle_GetNetworkOwner": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVehicle*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IPlayer*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_IPlayer"
                 }
             },
             "struct": "alt_IVehicle"
@@ -26118,39 +26720,6 @@
                 }
             ]
         },
-        "alt_Array_String": {
-            "fields": [
-                {
-                    "name": "data",
-                    "type": {
-                        "kind": 3,
-                        "kind_str": "pointer",
-                        "name": "alt_String*",
-                        "pointee": {
-                            "kind": 6,
-                            "kind_str": "struct",
-                            "name": "alt_String"
-                        }
-                    }
-                },
-                {
-                    "name": "size",
-                    "type": {
-                        "kind": 0,
-                        "kind_str": "fundamental",
-                        "name": "unsigned long long"
-                    }
-                },
-                {
-                    "name": "capacity",
-                    "type": {
-                        "kind": 0,
-                        "kind_str": "fundamental",
-                        "name": "unsigned long long"
-                    }
-                }
-            ]
-        },
         "alt_Array_StringView": {
             "fields": [
                 {
@@ -27020,6 +27589,105 @@
                 }
             ]
         },
+        "alt_CResourceErrorEvent": {
+            "fields": [
+                {
+                    "name": "type",
+                    "type": {
+                        "kind": 1,
+                        "kind_str": "enumeral",
+                        "name": "alt_CEvent_Type"
+                    }
+                },
+                {
+                    "name": "cancelled",
+                    "type": {
+                        "kind": 0,
+                        "kind_str": "fundamental",
+                        "name": "_Bool"
+                    }
+                },
+                {
+                    "name": "resource",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IResource*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IResource"
+                        }
+                    }
+                }
+            ]
+        },
+        "alt_CResourceStartEvent": {
+            "fields": [
+                {
+                    "name": "type",
+                    "type": {
+                        "kind": 1,
+                        "kind_str": "enumeral",
+                        "name": "alt_CEvent_Type"
+                    }
+                },
+                {
+                    "name": "cancelled",
+                    "type": {
+                        "kind": 0,
+                        "kind_str": "fundamental",
+                        "name": "_Bool"
+                    }
+                },
+                {
+                    "name": "resource",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IResource*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IResource"
+                        }
+                    }
+                }
+            ]
+        },
+        "alt_CResourceStopEvent": {
+            "fields": [
+                {
+                    "name": "type",
+                    "type": {
+                        "kind": 1,
+                        "kind_str": "enumeral",
+                        "name": "alt_CEvent_Type"
+                    }
+                },
+                {
+                    "name": "cancelled",
+                    "type": {
+                        "kind": 0,
+                        "kind_str": "fundamental",
+                        "name": "_Bool"
+                    }
+                },
+                {
+                    "name": "resource",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IResource*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IResource"
+                        }
+                    }
+                }
+            ]
+        },
         "alt_CServerScriptEvent": {
             "fields": [
                 {
@@ -27202,27 +27870,11 @@
                     }
                 },
                 {
-                    "name": "path",
-                    "type": {
-                        "kind": 6,
-                        "kind_str": "struct",
-                        "name": "alt_String"
-                    }
-                },
-                {
                     "name": "main",
                     "type": {
                         "kind": 6,
                         "kind_str": "struct",
                         "name": "alt_String"
-                    }
-                },
-                {
-                    "name": "deps",
-                    "type": {
-                        "kind": 6,
-                        "kind_str": "struct",
-                        "name": "alt_Array_String"
                     }
                 },
                 {
