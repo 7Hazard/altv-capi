@@ -1,4 +1,9 @@
+# stages:
+# - build
+# - publish
+
 build-and-publish:
+    # stage: build
     tags:
         - docker
     image: 7hazard/node-clang-win32-cross
@@ -120,13 +125,11 @@ build-and-publish:
     variables:
         GIT_SUBMODULE_STRATEGY: recursive
     
-    rules:
-        - if: '$CI_GITLAB_API_PRIVATE_KEY' # only run if api key is set, meaning only protected branches
+    only:
+        variables:
+            - $CI_COMMIT_REF_PROTECTED # only protected branches
 
 
-# stages:
-# - build
-# - publish
 
 # linux:
 #     stage: build
