@@ -18,6 +18,10 @@ build:win32:
     variables:
         GIT_SUBMODULE_STRATEGY: recursive
 
+    except:
+        refs:
+            - tags
+
 build:linux:
     stage: build
     tags:
@@ -33,6 +37,10 @@ build:linux:
     
     variables:
         GIT_SUBMODULE_STRATEGY: recursive
+
+    except:
+        refs:
+            - tags
 
 publish:
     stage: publish
