@@ -19,37 +19,41 @@ add_definitions(
     -DUNICODE
 )
 
-# Client
-add_library(altv-capi-client SHARED
-    client/altv-capi.cpp
-)
-target_compile_definitions(altv-capi-client PRIVATE
-    ALT_CLIENT_API
-    CAPI_DLL
-)
-target_include_directories(altv-capi-client PRIVATE
-    client
-)
-set_target_properties(altv-capi-client PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/lib
-    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/lib
-    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/bin
-)
+if(MSVC)
+    # Client (only Windows)
+    add_library(altv-capi-client SHARED
+        client/altv-capi.cpp
+    )
+    target_compile_definitions(altv-capi-client PRIVATE
+        ALT_CLIENT_API
+        CAPI_DLL
+    )
+    target_include_directories(altv-capi-client PRIVATE
+        client
+    )
+    set_target_properties(altv-capi-client PROPERTIES
+        ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/lib
+        LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/lib
+        RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/bin
+    )
 
-add_library(altv-capi-client-static STATIC
-    client/altv-capi.cpp
-)
-target_compile_definitions(altv-capi-client-static PRIVATE
-    ALT_CLIENT_API
-)
-target_include_directories(altv-capi-client-static PRIVATE
-    client
-)
-set_target_properties(altv-capi-client-static PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/lib
-    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/lib
-    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/bin
-)
+    # Client static
+    add_library(altv-capi-client-static STATIC
+        client/altv-capi.cpp
+    )
+    target_compile_definitions(altv-capi-client-static PRIVATE
+        ALT_CLIENT_API
+    )
+    target_include_directories(altv-capi-client-static PRIVATE
+        client
+    )
+    set_target_properties(altv-capi-client-static PROPERTIES
+        ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/lib
+        LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/lib
+        RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/bin
+    )
+endif(MSVC)
+
 
 
 # Server
@@ -69,6 +73,7 @@ set_target_properties(altv-capi-server PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server/bin
 )
 
+# Server static
 add_library(altv-capi-server-static STATIC
     server/altv-capi.cpp
 )
