@@ -120,9 +120,6 @@ build-and-publish:
     variables:
         GIT_SUBMODULE_STRATEGY: recursive
     
-    only:
-        refs:
-            - branches
     rules:
         - if: '$CI_GITLAB_API_PRIVATE_KEY' # only run if api key is set, meaning only protected branches
 
