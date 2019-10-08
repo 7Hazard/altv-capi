@@ -82,8 +82,8 @@ publish-binaries:
     - linux
     
     script:
-    - "echo TESTING ENV VARS: $CI_TEST_VAL $CI_TEST_VAL_MASKED ${CI_TEST_VAL} ${CI_TEST_VAL_MASKED}"
-    - "echo Build ${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID} | Project ID ${CI_PROJECT_ID} | CI Job ID ${CI_JOB_ID}"
+    - "echo TESTING ENV VARS: '$CI_TEST_VAL | $CI_TEST_VAL_MASKED | ${CI_TEST_VAL} | ${CI_TEST_VAL_MASKED}'"
+    - "echo 'Build ${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID} | Project ID ${CI_PROJECT_ID} | CI Job ID ${CI_JOB_ID}'"
     - "curl --header 'Content-Type: application/json' --header 'PRIVATE-TOKEN: $CI_GITLAB_API_PRIVATE_KEY' 
      --data '{ \"name\": \"${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}\", \"tag_name\": \"${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}\", \"ref\": \"${CI_COMMIT_REF_SLUG}\", \"description\": \"Build ${CI_COMMIT_REF_SLUG}-${CI_PIPELINE_IID}\", \"assets\": { \"links\": [
         { \"name\": \"client-win32\", \"url\": \"https://gitlab.com/7Hazard/altv-capi/-/jobs/${CI_JOB_ID}/artifacts/raw/capi/BUILD-WIN32/altv-capi-client-win32.zip?inline=false\" }
