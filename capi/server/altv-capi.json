@@ -11347,6 +11347,75 @@
             },
             "struct": "alt_ICore"
         },
+        "alt_ICore_FileExists": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_ICore*"
+                    }
+                },
+                {
+                    "name": "path",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
+            },
+            "struct": "alt_ICore"
+        },
+        "alt_ICore_FileRead": {
+            "comment": "// Return ptr must be manually freed with alt_String_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_ICore*"
+                    }
+                },
+                {
+                    "name": "path",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_String*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_String"
+                }
+            },
+            "struct": "alt_ICore"
+        },
         "alt_ICore_GetEntities": {
             "comment": "// Return ptr must be manually freed with alt_Array_IEntityPtr_free()\n",
             "params": [
