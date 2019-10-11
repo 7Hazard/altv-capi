@@ -79,7 +79,10 @@
         "unordered_set": "cpp",
         "*.def": "cpp",
         "queue": "cpp",
-        "cstdbool": "cpp"
+        "cstdbool": "cpp",
+        "cctype": "cpp",
+        "condition_variable": "cpp",
+        "shared_mutex": "cpp"
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true

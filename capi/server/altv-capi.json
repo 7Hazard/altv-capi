@@ -2186,6 +2186,25 @@
             },
             "struct": "alt_CCheckpointEvent"
         },
+        "alt_CCheckpointEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CCheckpointEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
+            },
+            "struct": "alt_CCheckpointEvent"
+        },
         "alt_CClientScriptEvent_Assign_CClientScriptEventRefRef": {
             "comment": "",
             "params": [
@@ -2627,6 +2646,25 @@
             },
             "struct": "alt_CClientScriptEvent"
         },
+        "alt_CClientScriptEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CClientScriptEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
+            },
+            "struct": "alt_CClientScriptEvent"
+        },
         "alt_CColShapeEvent_Assign_CEventRefRef": {
             "comment": "",
             "params": [
@@ -2999,6 +3037,25 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_CColShapeEvent"
+        },
+        "alt_CColShapeEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CColShapeEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
             },
             "struct": "alt_CColShapeEvent"
         },
@@ -3406,6 +3463,25 @@
             },
             "struct": "alt_CConsoleCommandEvent"
         },
+        "alt_CConsoleCommandEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CConsoleCommandEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
+            },
+            "struct": "alt_CConsoleCommandEvent"
+        },
         "alt_CDataNodeReceivedEvent_Assign_CDataNodeReceivedEventRefRef": {
             "comment": "",
             "params": [
@@ -3810,6 +3886,25 @@
             },
             "struct": "alt_CDataNodeReceivedEvent"
         },
+        "alt_CDataNodeReceivedEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CDataNodeReceivedEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
+            },
+            "struct": "alt_CDataNodeReceivedEvent"
+        },
         "alt_CEvent_Assign_CEventRefRef": {
             "comment": "",
             "params": [
@@ -4014,6 +4109,367 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CCheckpointEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CCheckpointEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CClientScriptEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CClientScriptEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CColShapeEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CColShapeEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CConsoleCommandEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CConsoleCommandEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CDataNodeReceivedEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CDataNodeReceivedEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CExplosionEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CExplosionEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CPlayerChangeVehicleSeatEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CPlayerChangeVehicleSeatEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CPlayerConnectEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CPlayerConnectEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CPlayerDamageEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CPlayerDamageEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CPlayerDeathEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CPlayerDeathEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CPlayerDisconnectEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CPlayerDisconnectEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CPlayerEnterVehicleEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CPlayerEnterVehicleEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CPlayerLeaveVehicleEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CPlayerLeaveVehicleEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CRemoveEntityEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CRemoveEntityEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CResourceErrorEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceErrorEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CResourceStartEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceStartEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CResourceStopEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CResourceStopEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CServerScriptEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CServerScriptEvent*"
+            },
+            "struct": "alt_CEvent"
+        },
+        "alt_CEvent_to_alt_CWeaponDamageEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CWeaponDamageEvent*"
             },
             "struct": "alt_CEvent"
         },
@@ -4419,6 +4875,25 @@
             },
             "struct": "alt_CExplosionEvent"
         },
+        "alt_CExplosionEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CExplosionEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
+            },
+            "struct": "alt_CExplosionEvent"
+        },
         "alt_CPlayerChangeVehicleSeatEvent_Assign_CEventRefRef": {
             "comment": "",
             "params": [
@@ -4818,6 +5293,25 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_CPlayerChangeVehicleSeatEvent"
+        },
+        "alt_CPlayerChangeVehicleSeatEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CPlayerChangeVehicleSeatEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
             },
             "struct": "alt_CPlayerChangeVehicleSeatEvent"
         },
@@ -5244,6 +5738,25 @@
             },
             "struct": "alt_CPlayerConnectEvent"
         },
+        "alt_CPlayerConnectEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CPlayerConnectEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
+            },
+            "struct": "alt_CPlayerConnectEvent"
+        },
         "alt_CPlayerDamageEvent_Assign_CEventRefRef": {
             "comment": "",
             "params": [
@@ -5646,6 +6159,25 @@
             },
             "struct": "alt_CPlayerDamageEvent"
         },
+        "alt_CPlayerDamageEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CPlayerDamageEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
+            },
+            "struct": "alt_CPlayerDamageEvent"
+        },
         "alt_CPlayerDeathEvent_Assign_CEventRefRef": {
             "comment": "",
             "params": [
@@ -6018,6 +6550,25 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_CPlayerDeathEvent"
+        },
+        "alt_CPlayerDeathEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CPlayerDeathEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
             },
             "struct": "alt_CPlayerDeathEvent"
         },
@@ -6425,6 +6976,25 @@
             },
             "struct": "alt_CPlayerDisconnectEvent"
         },
+        "alt_CPlayerDisconnectEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CPlayerDisconnectEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
+            },
+            "struct": "alt_CPlayerDisconnectEvent"
+        },
         "alt_CPlayerEnterVehicleEvent_Assign_CEventRefRef": {
             "comment": "",
             "params": [
@@ -6797,6 +7367,25 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_CPlayerEnterVehicleEvent"
+        },
+        "alt_CPlayerEnterVehicleEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CPlayerEnterVehicleEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
             },
             "struct": "alt_CPlayerEnterVehicleEvent"
         },
@@ -7175,6 +7764,25 @@
             },
             "struct": "alt_CPlayerLeaveVehicleEvent"
         },
+        "alt_CPlayerLeaveVehicleEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CPlayerLeaveVehicleEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
+            },
+            "struct": "alt_CPlayerLeaveVehicleEvent"
+        },
         "alt_CRemoveEntityEvent_Assign_CEventRefRef": {
             "comment": "",
             "params": [
@@ -7483,6 +8091,25 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_CRemoveEntityEvent"
+        },
+        "alt_CRemoveEntityEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CRemoveEntityEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
             },
             "struct": "alt_CRemoveEntityEvent"
         },
@@ -7797,6 +8424,25 @@
             },
             "struct": "alt_CResourceErrorEvent"
         },
+        "alt_CResourceErrorEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceErrorEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
+            },
+            "struct": "alt_CResourceErrorEvent"
+        },
         "alt_CResourceStartEvent_Assign_CEventRefRef": {
             "comment": "",
             "params": [
@@ -8108,6 +8754,25 @@
             },
             "struct": "alt_CResourceStartEvent"
         },
+        "alt_CResourceStartEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStartEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
+            },
+            "struct": "alt_CResourceStartEvent"
+        },
         "alt_CResourceStopEvent_Assign_CEventRefRef": {
             "comment": "",
             "params": [
@@ -8416,6 +9081,25 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_CResourceStopEvent"
+        },
+        "alt_CResourceStopEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CResourceStopEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
             },
             "struct": "alt_CResourceStopEvent"
         },
@@ -8820,6 +9504,25 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_CServerScriptEvent"
+        },
+        "alt_CServerScriptEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CServerScriptEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
             },
             "struct": "alt_CServerScriptEvent"
         },
@@ -9289,6 +9992,25 @@
             },
             "struct": "alt_CWeaponDamageEvent"
         },
+        "alt_CWeaponDamageEvent_to_alt_CEvent": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CWeaponDamageEvent*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CEvent*"
+            },
+            "struct": "alt_CWeaponDamageEvent"
+        },
         "alt_IBaseObject_Assign_constIBaseObjectRef": {
             "comment": "",
             "params": [
@@ -9419,6 +10141,158 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_IBaseObject"
+        },
+        "alt_IBaseObject_to_alt_IBlip": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBaseObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IBlip*"
+            },
+            "struct": "alt_IBaseObject"
+        },
+        "alt_IBaseObject_to_alt_ICheckpoint": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBaseObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_ICheckpoint*"
+            },
+            "struct": "alt_IBaseObject"
+        },
+        "alt_IBaseObject_to_alt_IColShape": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBaseObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IColShape*"
+            },
+            "struct": "alt_IBaseObject"
+        },
+        "alt_IBaseObject_to_alt_IEntity": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBaseObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IEntity*"
+            },
+            "struct": "alt_IBaseObject"
+        },
+        "alt_IBaseObject_to_alt_IPlayer": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBaseObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IPlayer*"
+            },
+            "struct": "alt_IBaseObject"
+        },
+        "alt_IBaseObject_to_alt_IVehicle": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBaseObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IVehicle*"
+            },
+            "struct": "alt_IBaseObject"
+        },
+        "alt_IBaseObject_to_alt_IVoiceChannel": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBaseObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IVoiceChannel*"
+            },
+            "struct": "alt_IBaseObject"
+        },
+        "alt_IBaseObject_to_alt_IWorldObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBaseObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IWorldObject*"
             },
             "struct": "alt_IBaseObject"
         },
@@ -9934,6 +10808,44 @@
             },
             "struct": "alt_IBlip"
         },
+        "alt_IBlip_to_alt_IBaseObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBlip*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IBaseObject*"
+            },
+            "struct": "alt_IBlip"
+        },
+        "alt_IBlip_to_alt_IWorldObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBlip*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IWorldObject*"
+            },
+            "struct": "alt_IBlip"
+        },
         "alt_ICheckpoint_Assign_constIBaseObjectRef": {
             "comment": "",
             "params": [
@@ -10389,6 +11301,44 @@
             },
             "struct": "alt_ICheckpoint"
         },
+        "alt_ICheckpoint_to_alt_IBaseObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_ICheckpoint*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IBaseObject*"
+            },
+            "struct": "alt_ICheckpoint"
+        },
+        "alt_ICheckpoint_to_alt_IWorldObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_ICheckpoint*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IWorldObject*"
+            },
+            "struct": "alt_ICheckpoint"
+        },
         "alt_IColShape_Assign_constIBaseObjectRef": {
             "comment": "",
             "params": [
@@ -10736,6 +11686,44 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_IColShape"
+        },
+        "alt_IColShape_to_alt_IBaseObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IColShape*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IBaseObject*"
+            },
+            "struct": "alt_IColShape"
+        },
+        "alt_IColShape_to_alt_IWorldObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IColShape*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IWorldObject*"
             },
             "struct": "alt_IColShape"
         },
@@ -12617,6 +13605,82 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_IEntity"
+        },
+        "alt_IEntity_to_alt_IBaseObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IEntity*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IBaseObject*"
+            },
+            "struct": "alt_IEntity"
+        },
+        "alt_IEntity_to_alt_IPlayer": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IEntity*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IPlayer*"
+            },
+            "struct": "alt_IEntity"
+        },
+        "alt_IEntity_to_alt_IVehicle": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IEntity*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IVehicle*"
+            },
+            "struct": "alt_IEntity"
+        },
+        "alt_IEntity_to_alt_IWorldObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IEntity*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IWorldObject*"
             },
             "struct": "alt_IEntity"
         },
@@ -14712,6 +15776,63 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_to_alt_IBaseObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IPlayer*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IBaseObject*"
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_to_alt_IEntity": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IPlayer*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IEntity*"
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_to_alt_IWorldObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IPlayer*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IWorldObject*"
             },
             "struct": "alt_IPlayer"
         },
@@ -19130,6 +20251,63 @@
             },
             "struct": "alt_IVehicle"
         },
+        "alt_IVehicle_to_alt_IBaseObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVehicle*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IBaseObject*"
+            },
+            "struct": "alt_IVehicle"
+        },
+        "alt_IVehicle_to_alt_IEntity": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVehicle*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IEntity*"
+            },
+            "struct": "alt_IVehicle"
+        },
+        "alt_IVehicle_to_alt_IWorldObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVehicle*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IWorldObject*"
+            },
+            "struct": "alt_IVehicle"
+        },
         "alt_IVoiceChannel_AddPlayer": {
             "comment": "",
             "params": [
@@ -19525,6 +20703,25 @@
             },
             "struct": "alt_IVoiceChannel"
         },
+        "alt_IVoiceChannel_to_alt_IBaseObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVoiceChannel*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IBaseObject*"
+            },
+            "struct": "alt_IVoiceChannel"
+        },
         "alt_IWorldObject_Assign_constIBaseObjectRef": {
             "comment": "",
             "params": [
@@ -19789,6 +20986,139 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_IWorldObject"
+        },
+        "alt_IWorldObject_to_alt_IBaseObject": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWorldObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IBaseObject*"
+            },
+            "struct": "alt_IWorldObject"
+        },
+        "alt_IWorldObject_to_alt_IBlip": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWorldObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IBlip*"
+            },
+            "struct": "alt_IWorldObject"
+        },
+        "alt_IWorldObject_to_alt_ICheckpoint": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWorldObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_ICheckpoint*"
+            },
+            "struct": "alt_IWorldObject"
+        },
+        "alt_IWorldObject_to_alt_IColShape": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWorldObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IColShape*"
+            },
+            "struct": "alt_IWorldObject"
+        },
+        "alt_IWorldObject_to_alt_IEntity": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWorldObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IEntity*"
+            },
+            "struct": "alt_IWorldObject"
+        },
+        "alt_IWorldObject_to_alt_IPlayer": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWorldObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IPlayer*"
+            },
+            "struct": "alt_IWorldObject"
+        },
+        "alt_IWorldObject_to_alt_IVehicle": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWorldObject*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IVehicle*"
             },
             "struct": "alt_IWorldObject"
         },
@@ -20414,6 +21744,25 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_MValueDict"
+        },
+        "alt_MValueDict_to_alt_MValue": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_MValueDict*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_MValue*"
             },
             "struct": "alt_MValueDict"
         },
@@ -21156,6 +22505,25 @@
             },
             "struct": "alt_MValueFunction"
         },
+        "alt_MValueFunction_to_alt_MValue": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_MValueFunction*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_MValue*"
+            },
+            "struct": "alt_MValueFunction"
+        },
         "alt_MValueList_Access_uint64_t": {
             "comment": "",
             "params": [
@@ -21894,6 +23262,25 @@
             },
             "struct": "alt_MValueList"
         },
+        "alt_MValueList_to_alt_MValue": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_MValueList*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_MValue*"
+            },
+            "struct": "alt_MValueList"
+        },
         "alt_MValue_Assign_constMValueRef": {
             "comment": "",
             "params": [
@@ -22622,6 +24009,63 @@
             },
             "struct": "alt_MValue_TypeMismatchException"
         },
+        "alt_MValue_to_alt_MValueDict": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_MValue*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_MValueDict*"
+            },
+            "struct": "alt_MValue"
+        },
+        "alt_MValue_to_alt_MValueFunction": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_MValue*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_MValueFunction*"
+            },
+            "struct": "alt_MValue"
+        },
+        "alt_MValue_to_alt_MValueList": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_MValue*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_MValueList*"
+            },
+            "struct": "alt_MValue"
+        },
         "alt_PointLayout_Access_size_t": {
             "comment": "",
             "params": [
@@ -22887,6 +24331,44 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_PointLayout"
+        },
+        "alt_PointLayout_to_alt_PointPaddedLayout": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_PointLayout*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_PointPaddedLayout*"
+            },
+            "struct": "alt_PointLayout"
+        },
+        "alt_PointLayout_to_alt_Vector_float_3_PointLayout": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_PointLayout*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_Vector_float_3_PointLayout*"
             },
             "struct": "alt_PointLayout"
         },
@@ -23231,6 +24713,25 @@
             },
             "struct": "alt_PointPaddedLayout"
         },
+        "alt_PointPaddedLayout_to_alt_PointLayout": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_PointPaddedLayout*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_PointLayout*"
+            },
+            "struct": "alt_PointPaddedLayout"
+        },
         "alt_RGBA_Create": {
             "comment": "// Return ptr must be manually freed with alt_RGBA_free()\n",
             "returns": {
@@ -23522,6 +25023,25 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_RotationLayout"
+        },
+        "alt_RotationLayout_to_alt_RotationPaddedLayout": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_RotationLayout*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_RotationPaddedLayout*"
             },
             "struct": "alt_RotationLayout"
         },
@@ -23818,6 +25338,25 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_RotationPaddedLayout"
+        },
+        "alt_RotationPaddedLayout_to_alt_RotationLayout": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_RotationPaddedLayout*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_RotationLayout*"
             },
             "struct": "alt_RotationPaddedLayout"
         },
@@ -24936,6 +26475,25 @@
             },
             "struct": "alt_VectorLayout_float_3"
         },
+        "alt_VectorLayout_float_3_to_alt_Vector_float_3_VectorLayout_float_3": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_VectorLayout_float_3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_Vector_float_3_VectorLayout_float_3*"
+            },
+            "struct": "alt_VectorLayout_float_3"
+        },
         "alt_VectorLayout_float_4_Access_size_t": {
             "comment": "",
             "params": [
@@ -25190,6 +26748,25 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_VectorLayout_float_4"
+        },
+        "alt_VectorLayout_float_4_to_alt_Vector_float_4_VectorLayout_float_4": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_VectorLayout_float_4*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_Vector_float_4_VectorLayout_float_4*"
             },
             "struct": "alt_VectorLayout_float_4"
         },
@@ -25673,6 +27250,25 @@
             },
             "struct": "alt_Vector_float_3_PointLayout"
         },
+        "alt_Vector_float_3_PointLayout_to_alt_PointLayout": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_Vector_float_3_PointLayout*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_PointLayout*"
+            },
+            "struct": "alt_Vector_float_3_PointLayout"
+        },
         "alt_Vector_float_3_VectorLayout_float_3_Access_size_t": {
             "comment": "",
             "params": [
@@ -26142,6 +27738,25 @@
             },
             "struct": "alt_Vector_float_3_VectorLayout_float_3"
         },
+        "alt_Vector_float_3_VectorLayout_float_3_to_alt_VectorLayout_float_3": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_Vector_float_3_VectorLayout_float_3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_VectorLayout_float_3*"
+            },
+            "struct": "alt_Vector_float_3_VectorLayout_float_3"
+        },
         "alt_Vector_float_4_VectorLayout_float_4_Access_size_t": {
             "comment": "",
             "params": [
@@ -26608,6 +28223,25 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_Vector_float_4_VectorLayout_float_4"
+        },
+        "alt_Vector_float_4_VectorLayout_float_4_to_alt_VectorLayout_float_4": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_Vector_float_4_VectorLayout_float_4*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_VectorLayout_float_4*"
             },
             "struct": "alt_Vector_float_4_VectorLayout_float_4"
         },

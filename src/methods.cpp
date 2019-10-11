@@ -139,14 +139,93 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             ->getLocallyUnqualifiedSingleStepDesugaredType()
             .getAsString();
         recordname = std::regex_replace(recordname, reg::classstructenum, "");
+        auto crecordname = ToCIdentifier(recordname);
+        // auto crecordname_altless = std::regex_replace(crecordname, reg::alt_, "");
         
-        std::string derivedname;
+        std::string derivedname, cderivedname, cderivedname_altless;
         if(derived)
         {
             derivedname = derived->getTypeForDecl()
                 ->getLocallyUnqualifiedSingleStepDesugaredType()
                 .getAsString();
             derivedname = std::regex_replace(derivedname, reg::classstructenum, "");
+            cderivedname = ToCIdentifier(derivedname);
+            // cderivedname_altless = std::regex_replace(cderivedname, reg::alt_, "");
+
+            // Add conversion methods
+            {
+                // to derived
+                auto convfuncname = crecordname + ("_to_") + cderivedname;
+                auto convfuncsig = ("CAPI struct ") + cderivedname + ("* ") + 
+                    convfuncname + ("(struct ") + crecordname + ("* from)");
+                capiheader(convfuncsig << ";\n\n");
+                capisource << convfuncsig << "\n{\n    return (" << cderivedname;
+                if(derived->isPolymorphic())
+                    capisource << "*)dynamic_cast<";
+                else capisource << "*)static_cast<";
+                capisource << derivedname << "*>((" 
+                    << recordname << "*)from);\n}\n\n";
+
+                if(funcnames.find(convfuncname) != funcnames.end())
+                    convfuncname+=("_")+std::to_string(funcnames[convfuncname]++);
+                else {
+                    funcnames[convfuncname] = 1;
+                }
+
+                // json
+                json cfuncjson;
+                cfuncjson["comment"] = "";
+                cfuncjson["struct"] = crecordname;
+                cfuncjson["params"].push_back({
+                    {"name", "from"},
+                    {"type", {
+                        {"name", crecordname+"*"},
+                        {"kind", Typedata::POINTER},
+                        {"kind_str", "pointer"}
+                    }}
+                });
+                cfuncjson["returns"] = {
+                    {"name", cderivedname+"*"},
+                    {"kind", Typedata::POINTER},
+                    {"kind_str", "pointer"}
+                };
+                capijson["functions"][convfuncname] = cfuncjson;
+            }
+            {
+                // to parent
+                auto convfuncname = cderivedname + ("_to_") + crecordname;
+                auto convfuncsig = ("CAPI struct ") + crecordname + ("* ") + 
+                    convfuncname + ("(struct ") + cderivedname + ("* from)");
+                capiheader(convfuncsig << ";\n\n");
+                capisource << convfuncsig << "\n{\n    return (" << crecordname 
+                    << "*)static_cast<" << recordname << "*>((" 
+                    << derivedname << "*)from);\n}\n\n";
+
+                if(funcnames.find(convfuncname) != funcnames.end())
+                    convfuncname+=("_")+std::to_string(funcnames[convfuncname]++);
+                else {
+                    funcnames[convfuncname] = 1;
+                }
+
+                // json
+                json cfuncjson;
+                cfuncjson["comment"] = "";
+                cfuncjson["struct"] = cderivedname;
+                cfuncjson["params"].push_back({
+                    {"name", "from"},
+                    {"type", {
+                        {"name", cderivedname+"*"},
+                        {"kind", Typedata::POINTER},
+                        {"kind_str", "pointer"}
+                    }}
+                });
+                cfuncjson["returns"] = {
+                    {"name", crecordname+"*"},
+                    {"kind", Typedata::POINTER},
+                    {"kind_str", "pointer"}
+                };
+                capijson["functions"][convfuncname] = cfuncjson;
+            }
         }
 
         for(auto method : r->methods())
@@ -574,7 +653,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         }
         else
         {
-            logd("// has no accessible destructor for 'free' function\n");
+            logd("// has no accessible destructor for 'Free' function\n");
         }
 
         domethods(record, nullptr);
