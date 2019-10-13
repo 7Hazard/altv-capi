@@ -617,7 +617,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         logd("// functions from " << recordnameorig);
 
         // free function
-        if(!record->hasIrrelevantDestructor() && !record->needsOverloadResolutionForDestructor() && record->getDestructor()->getAccessUnsafe() == AccessSpecifier::AS_public)
+        if(record->hasSimpleDestructor() || (!record->hasIrrelevantDestructor() && !record->needsOverloadResolutionForDestructor() && record->getDestructor()->getAccessUnsafe() == AccessSpecifier::AS_public))
         {
             // Destructor is accessible
             auto freefuncname = cstructname + ("_free");
