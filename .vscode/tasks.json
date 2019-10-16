@@ -77,6 +77,38 @@
             ]
         },
         {
+            "label": "Build CAPI Debug",
+            "type": "shell",
+            "windows": {
+                "command": "${workspaceFolder}/capi/build-debug.bat",  
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/capi"
+            },
+            "args": [],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Build CAPI MSVC",
+            "type": "shell",
+            "windows": {
+                "command": "cmake . -BBUILD-MSVC -DCMAKE_BUILD_TYPE=RelWithDebInfo -G'Visual Studio 15 2017 Win64'; cmake --build BUILD-MSVC --config RelWithDebInfo",
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/capi"
+            },
+            "args": [],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
+        },
+        {
             "label": "Build CAPI win32",
             "type": "shell",
             "linux": {

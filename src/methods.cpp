@@ -484,6 +484,16 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                     sourceparams += ("*(")+paramtype.getAsString()+("*)")
                         +paramname;
                 }
+                else if(typedata.kind == Typedata::REFERENCE)
+                {
+                    // make it a pointer
+                    typedata.kind = Typedata::POINTER;
+                    // take a pointer to the value and dereference it on use
+                    headerparams += typedata.forwardDecl + typedata.ctype
+                        + (" ") + paramname;
+                    sourceparams += ("*(")+std::regex_replace(paramtype.getAsString(), reg::ref, "*")+(")")
+                        +paramname;
+                }
                 else if(typedata.kind == Typedata::FUNCTION_POINTER)
                 {
                     auto fn = typedata.forwardDecl + typedata.ctype;

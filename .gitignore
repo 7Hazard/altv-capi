@@ -5,6 +5,8 @@ capi/server/BUILD/*
 BUILD/*
 capi/BUILD/*
 capi/BUILD-WIN32/*
+capi/BUILD-MSVC/*
+capi/BUILD-DEBUG/*
 *.log
 *.ast
 TEST

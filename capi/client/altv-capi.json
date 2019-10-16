@@ -656,8 +656,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -688,8 +688,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -761,8 +761,8 @@
                 {
                     "name": "fill",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -785,8 +785,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -809,8 +809,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -879,8 +879,8 @@
                 {
                     "name": "el",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -1090,8 +1090,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_StringView*",
                         "pointee": {
                             "kind": 6,
@@ -1122,8 +1122,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_StringView*",
                         "pointee": {
                             "kind": 6,
@@ -1195,8 +1195,8 @@
                 {
                     "name": "fill",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_StringView*",
                         "pointee": {
                             "kind": 6,
@@ -1219,8 +1219,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_StringView*",
                         "pointee": {
                             "kind": 6,
@@ -1243,8 +1243,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_StringView*",
                         "pointee": {
                             "kind": 6,
@@ -1313,8 +1313,8 @@
                 {
                     "name": "el",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_StringView*",
                         "pointee": {
                             "kind": 6,
@@ -1460,8 +1460,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -1492,8 +1492,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CCheckpointEvent*",
                         "pointee": {
                             "kind": 6,
@@ -1524,8 +1524,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -1586,8 +1586,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -1610,8 +1610,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -1679,8 +1679,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CCheckpointEvent*",
                         "pointee": {
                             "kind": 6,
@@ -1854,8 +1854,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CClientScriptEvent*",
                         "pointee": {
                             "kind": 6,
@@ -1886,8 +1886,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -1918,8 +1918,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CClientScriptEvent*",
                         "pointee": {
                             "kind": 6,
@@ -1950,8 +1950,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2012,8 +2012,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2036,8 +2036,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2097,8 +2097,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CClientScriptEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2121,8 +2121,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CClientScriptEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2277,8 +2277,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2309,8 +2309,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CColShapeEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2341,8 +2341,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2403,8 +2403,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2427,8 +2427,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2496,8 +2496,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CColShapeEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2671,8 +2671,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2703,8 +2703,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CConnectionCompleteEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2735,8 +2735,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2797,8 +2797,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2821,8 +2821,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2854,8 +2854,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CConnectionCompleteEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2962,8 +2962,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CConsoleCommandEvent*",
                         "pointee": {
                             "kind": 6,
@@ -2994,8 +2994,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3026,8 +3026,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CConsoleCommandEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3058,8 +3058,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3120,8 +3120,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3144,8 +3144,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3205,8 +3205,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CConsoleCommandEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3229,8 +3229,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CConsoleCommandEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3385,8 +3385,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CDataNodeReceivedEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3417,8 +3417,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3449,8 +3449,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CDataNodeReceivedEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3481,8 +3481,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3543,8 +3543,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3567,8 +3567,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3628,8 +3628,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CDataNodeReceivedEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3652,8 +3652,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CDataNodeReceivedEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3808,8 +3808,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3840,8 +3840,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CDisconnectEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3872,8 +3872,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3934,8 +3934,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3958,8 +3958,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -3991,8 +3991,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CDisconnectEvent*",
                         "pointee": {
                             "kind": 6,
@@ -4099,8 +4099,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -4131,8 +4131,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -4193,8 +4193,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -4217,8 +4217,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -4781,8 +4781,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -4813,8 +4813,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -4845,8 +4845,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CExplosionEvent*",
                         "pointee": {
                             "kind": 6,
@@ -4907,8 +4907,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -4931,8 +4931,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5008,8 +5008,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CExplosionEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5202,8 +5202,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5234,8 +5234,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5266,8 +5266,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CGameEntityCreateEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5328,8 +5328,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5352,8 +5352,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5400,8 +5400,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CGameEntityCreateEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5532,8 +5532,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5564,8 +5564,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5596,8 +5596,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CGameEntityDestroyEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5658,8 +5658,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5682,8 +5682,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5730,8 +5730,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CGameEntityDestroyEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5862,8 +5862,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5894,8 +5894,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5926,8 +5926,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CKeyboardEvent*",
                         "pointee": {
                             "kind": 6,
@@ -5988,8 +5988,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6012,8 +6012,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6063,8 +6063,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CKeyboardEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6209,8 +6209,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6241,8 +6241,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6273,8 +6273,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerChangeVehicleSeatEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6335,8 +6335,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6359,8 +6359,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6436,8 +6436,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerChangeVehicleSeatEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6630,8 +6630,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6662,8 +6662,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerConnectEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6694,8 +6694,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6726,8 +6726,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerConnectEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6820,8 +6820,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6844,8 +6844,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6892,8 +6892,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerConnectEvent*",
                         "pointee": {
                             "kind": 6,
@@ -6916,8 +6916,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerConnectEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7072,8 +7072,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7104,8 +7104,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7136,8 +7136,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerDamageEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7198,8 +7198,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7222,8 +7222,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7299,8 +7299,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerDamageEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7493,8 +7493,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7525,8 +7525,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7557,8 +7557,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerDeathEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7619,8 +7619,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7643,8 +7643,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7712,8 +7712,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerDeathEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7887,8 +7887,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7919,8 +7919,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerDisconnectEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7951,8 +7951,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -7983,8 +7983,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerDisconnectEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8045,8 +8045,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8069,8 +8069,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8130,8 +8130,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerDisconnectEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8154,8 +8154,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerDisconnectEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8310,8 +8310,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8342,8 +8342,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8374,8 +8374,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerEnterVehicleEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8436,8 +8436,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8460,8 +8460,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8529,8 +8529,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerEnterVehicleEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8704,8 +8704,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8736,8 +8736,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8768,8 +8768,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerLeaveVehicleEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8830,8 +8830,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8854,8 +8854,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -8923,8 +8923,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CPlayerLeaveVehicleEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9098,8 +9098,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9130,8 +9130,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9162,8 +9162,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CRemoveEntityEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9224,8 +9224,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9248,8 +9248,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9296,8 +9296,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CRemoveEntityEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9428,8 +9428,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9460,8 +9460,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9492,8 +9492,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CResourceErrorEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9554,8 +9554,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9578,8 +9578,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9626,8 +9626,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CResourceErrorEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9758,8 +9758,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9790,8 +9790,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9822,8 +9822,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CResourceStartEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9884,8 +9884,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9908,8 +9908,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -9956,8 +9956,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CResourceStartEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10088,8 +10088,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10120,8 +10120,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10152,8 +10152,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CResourceStopEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10214,8 +10214,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10238,8 +10238,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10286,8 +10286,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CResourceStopEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10418,8 +10418,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10450,8 +10450,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CServerScriptEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10482,8 +10482,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10514,8 +10514,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CServerScriptEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10576,8 +10576,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10600,8 +10600,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10661,8 +10661,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CServerScriptEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10685,8 +10685,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CServerScriptEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10841,8 +10841,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10873,8 +10873,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10905,8 +10905,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CWeaponDamageEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10967,8 +10967,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -10991,8 +10991,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -11089,8 +11089,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CWeaponDamageEvent*",
                         "pointee": {
                             "kind": 6,
@@ -11326,8 +11326,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -11358,8 +11358,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CWebViewEvent*",
                         "pointee": {
                             "kind": 6,
@@ -11390,8 +11390,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -11422,8 +11422,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CWebViewEvent*",
                         "pointee": {
                             "kind": 6,
@@ -11484,8 +11484,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -11508,8 +11508,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CEvent*",
                         "pointee": {
                             "kind": 6,
@@ -11582,8 +11582,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CWebViewEvent*",
                         "pointee": {
                             "kind": 6,
@@ -11606,8 +11606,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_CWebViewEvent*",
                         "pointee": {
                             "kind": 6,
@@ -11786,8 +11786,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject*",
                         "pointee": {
                             "kind": 6,
@@ -12071,8 +12071,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject*",
                         "pointee": {
                             "kind": 6,
@@ -12103,8 +12103,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBlip*",
                         "pointee": {
                             "kind": 6,
@@ -12135,8 +12135,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IWorldObject*",
                         "pointee": {
                             "kind": 6,
@@ -12562,8 +12562,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject*",
                         "pointee": {
                             "kind": 6,
@@ -12594,8 +12594,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_ICheckpoint*",
                         "pointee": {
                             "kind": 6,
@@ -12626,8 +12626,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IWorldObject*",
                         "pointee": {
                             "kind": 6,
@@ -12996,8 +12996,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject*",
                         "pointee": {
                             "kind": 6,
@@ -13028,8 +13028,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IColShape*",
                         "pointee": {
                             "kind": 6,
@@ -13060,8 +13060,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IWorldObject*",
                         "pointee": {
                             "kind": 6,
@@ -13325,8 +13325,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_ICore*",
                         "pointee": {
                             "kind": 6,
@@ -13738,8 +13738,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject*",
                         "pointee": {
                             "kind": 6,
@@ -13770,8 +13770,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IEntity*",
                         "pointee": {
                             "kind": 6,
@@ -13802,8 +13802,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IWorldObject*",
                         "pointee": {
                             "kind": 6,
@@ -14273,8 +14273,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IPackage_File*",
                         "pointee": {
                             "kind": 6,
@@ -14652,8 +14652,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject*",
                         "pointee": {
                             "kind": 6,
@@ -14684,8 +14684,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IEntity*",
                         "pointee": {
                             "kind": 6,
@@ -14716,8 +14716,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IPlayer*",
                         "pointee": {
                             "kind": 6,
@@ -14748,8 +14748,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IWorldObject*",
                         "pointee": {
                             "kind": 6,
@@ -16268,8 +16268,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IResource*",
                         "pointee": {
                             "kind": 6,
@@ -16300,8 +16300,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IResource_CreationInfo*",
                         "pointee": {
                             "kind": 6,
@@ -16324,8 +16324,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IResource_CreationInfo*",
                         "pointee": {
                             "kind": 6,
@@ -16348,8 +16348,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IResource_CreationInfo*",
                         "pointee": {
                             "kind": 6,
@@ -16591,8 +16591,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IResource_Impl*",
                         "pointee": {
                             "kind": 6,
@@ -16846,8 +16846,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IScriptRuntime*",
                         "pointee": {
                             "kind": 6,
@@ -16985,8 +16985,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject*",
                         "pointee": {
                             "kind": 6,
@@ -17017,8 +17017,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IEntity*",
                         "pointee": {
                             "kind": 6,
@@ -17049,8 +17049,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IVehicle*",
                         "pointee": {
                             "kind": 6,
@@ -17081,8 +17081,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IWorldObject*",
                         "pointee": {
                             "kind": 6,
@@ -20661,8 +20661,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject*",
                         "pointee": {
                             "kind": 6,
@@ -20693,8 +20693,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IVoiceChannel*",
                         "pointee": {
                             "kind": 6,
@@ -21043,8 +21043,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject*",
                         "pointee": {
                             "kind": 6,
@@ -21075,8 +21075,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IWorldObject*",
                         "pointee": {
                             "kind": 6,
@@ -21384,8 +21384,8 @@
                 {
                     "name": "key",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_String*",
                         "pointee": {
                             "kind": 6,
@@ -21421,8 +21421,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValueDict*",
                         "pointee": {
                             "kind": 6,
@@ -21453,8 +21453,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -21486,8 +21486,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "_Bool*",
                         "pointee": {
                             "kind": 0,
@@ -21572,8 +21572,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -21629,8 +21629,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValueDict*",
                         "pointee": {
                             "kind": 6,
@@ -21653,8 +21653,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValueDict*",
                         "pointee": {
                             "kind": 6,
@@ -21677,8 +21677,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "long long*",
                         "pointee": {
                             "kind": 0,
@@ -21701,8 +21701,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "unsigned long long*",
                         "pointee": {
                             "kind": 0,
@@ -21725,8 +21725,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "double*",
                         "pointee": {
                             "kind": 0,
@@ -21749,8 +21749,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_String*",
                         "pointee": {
                             "kind": 6,
@@ -21773,8 +21773,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -21797,8 +21797,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject**",
                         "pointee": {
                             "kind": 3,
@@ -21826,8 +21826,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_Function*",
                         "pointee": {
                             "kind": 6,
@@ -21858,8 +21858,8 @@
                 {
                     "name": "key",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_String*",
                         "pointee": {
                             "kind": 6,
@@ -22028,8 +22028,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValueFunction*",
                         "pointee": {
                             "kind": 6,
@@ -22060,8 +22060,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -22093,8 +22093,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "_Bool*",
                         "pointee": {
                             "kind": 0,
@@ -22179,8 +22179,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -22203,8 +22203,8 @@
                 {
                     "name": "func",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_Function*",
                         "pointee": {
                             "kind": 6,
@@ -22275,8 +22275,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValueFunction*",
                         "pointee": {
                             "kind": 6,
@@ -22299,8 +22299,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValueFunction*",
                         "pointee": {
                             "kind": 6,
@@ -22323,8 +22323,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "long long*",
                         "pointee": {
                             "kind": 0,
@@ -22347,8 +22347,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "unsigned long long*",
                         "pointee": {
                             "kind": 0,
@@ -22371,8 +22371,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "double*",
                         "pointee": {
                             "kind": 0,
@@ -22395,8 +22395,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_String*",
                         "pointee": {
                             "kind": 6,
@@ -22419,8 +22419,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -22443,8 +22443,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject**",
                         "pointee": {
                             "kind": 3,
@@ -22472,8 +22472,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_Function*",
                         "pointee": {
                             "kind": 6,
@@ -22547,8 +22547,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValueFunction_Invoker*",
                         "pointee": {
                             "kind": 6,
@@ -22579,8 +22579,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValueFunction_Invoker*",
                         "pointee": {
                             "kind": 6,
@@ -22818,8 +22818,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValueList*",
                         "pointee": {
                             "kind": 6,
@@ -22850,8 +22850,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValueList*",
                         "pointee": {
                             "kind": 6,
@@ -22882,8 +22882,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -22915,8 +22915,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "_Bool*",
                         "pointee": {
                             "kind": 0,
@@ -23001,8 +23001,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -23053,8 +23053,8 @@
                 {
                     "name": "list",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -23101,8 +23101,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValueList*",
                         "pointee": {
                             "kind": 6,
@@ -23125,8 +23125,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "long long*",
                         "pointee": {
                             "kind": 0,
@@ -23149,8 +23149,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValueList*",
                         "pointee": {
                             "kind": 6,
@@ -23173,8 +23173,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "unsigned long long*",
                         "pointee": {
                             "kind": 0,
@@ -23197,8 +23197,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "double*",
                         "pointee": {
                             "kind": 0,
@@ -23221,8 +23221,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_String*",
                         "pointee": {
                             "kind": 6,
@@ -23245,8 +23245,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -23269,8 +23269,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject**",
                         "pointee": {
                             "kind": 3,
@@ -23298,8 +23298,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_Function*",
                         "pointee": {
                             "kind": 6,
@@ -23543,8 +23543,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -23576,8 +23576,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "_Bool*",
                         "pointee": {
                             "kind": 0,
@@ -23662,8 +23662,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -23686,8 +23686,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "long long*",
                         "pointee": {
                             "kind": 0,
@@ -23710,8 +23710,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "unsigned long long*",
                         "pointee": {
                             "kind": 0,
@@ -23734,8 +23734,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "double*",
                         "pointee": {
                             "kind": 0,
@@ -23758,8 +23758,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_String*",
                         "pointee": {
                             "kind": 6,
@@ -23782,8 +23782,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Array_MValue*",
                         "pointee": {
                             "kind": 6,
@@ -23806,8 +23806,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_IBaseObject**",
                         "pointee": {
                             "kind": 3,
@@ -23835,8 +23835,8 @@
                 {
                     "name": "val",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_Function*",
                         "pointee": {
                             "kind": 6,
@@ -23867,8 +23867,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_Function*",
                         "pointee": {
                             "kind": 6,
@@ -23899,8 +23899,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_Function*",
                         "pointee": {
                             "kind": 6,
@@ -23932,8 +23932,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_Function*",
                         "pointee": {
                             "kind": 6,
@@ -23956,8 +23956,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_Function*",
                         "pointee": {
                             "kind": 6,
@@ -24107,8 +24107,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_TypeMismatchException*",
                         "pointee": {
                             "kind": 6,
@@ -24139,8 +24139,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_TypeMismatchException*",
                         "pointee": {
                             "kind": 6,
@@ -24163,8 +24163,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_TypeMismatchException*",
                         "pointee": {
                             "kind": 6,
@@ -24187,8 +24187,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_MValue_TypeMismatchException*",
                         "pointee": {
                             "kind": 6,
@@ -24411,8 +24411,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -24443,8 +24443,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -24511,8 +24511,8 @@
                 {
                     "name": "elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -24540,8 +24540,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -24564,8 +24564,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -24717,8 +24717,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -24749,8 +24749,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -24817,8 +24817,8 @@
                 {
                     "name": "elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -24846,8 +24846,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -24870,8 +24870,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -24938,8 +24938,8 @@
                 {
                     "name": "elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -25184,8 +25184,8 @@
                 {
                     "name": "elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -25213,8 +25213,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_RotationLayout*",
                         "pointee": {
                             "kind": 6,
@@ -25237,8 +25237,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_RotationLayout*",
                         "pointee": {
                             "kind": 6,
@@ -25426,8 +25426,8 @@
                 {
                     "name": "elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -25455,8 +25455,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_RotationLayout*",
                         "pointee": {
                             "kind": 6,
@@ -25479,8 +25479,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_RotationLayout*",
                         "pointee": {
                             "kind": 6,
@@ -25547,8 +25547,8 @@
                 {
                     "name": "elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -25668,8 +25668,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_StringView*",
                         "pointee": {
                             "kind": 6,
@@ -25700,8 +25700,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_StringView*",
                         "pointee": {
                             "kind": 6,
@@ -25813,8 +25813,8 @@
                 {
                     "name": "_str",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_String*",
                         "pointee": {
                             "kind": 6,
@@ -25837,8 +25837,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_StringView*",
                         "pointee": {
                             "kind": 6,
@@ -25861,8 +25861,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_StringView*",
                         "pointee": {
                             "kind": 6,
@@ -26121,8 +26121,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_String*",
                         "pointee": {
                             "kind": 6,
@@ -26153,8 +26153,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_String*",
                         "pointee": {
                             "kind": 6,
@@ -26293,8 +26293,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_String*",
                         "pointee": {
                             "kind": 6,
@@ -26317,8 +26317,8 @@
                 {
                     "name": "that",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_String*",
                         "pointee": {
                             "kind": 6,
@@ -26485,6 +26485,33 @@
             },
             "struct": "alt_String"
         },
+        "alt_String_Resize": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_String*"
+                    }
+                },
+                {
+                    "name": "new_size",
+                    "type": {
+                        "kind": 0,
+                        "kind_str": "fundamental",
+                        "name": "unsigned long long"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_String"
+        },
         "alt_String_free": {
             "comment": "",
             "params": [
@@ -26582,8 +26609,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -26614,8 +26641,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -26647,8 +26674,8 @@
                 {
                     "name": "_elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -26676,8 +26703,8 @@
                 {
                     "name": "el",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 0,
@@ -26700,8 +26727,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -26724,8 +26751,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -26858,8 +26885,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -26890,8 +26917,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -26923,8 +26950,8 @@
                 {
                     "name": "_elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -26952,8 +26979,8 @@
                 {
                     "name": "el",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 0,
@@ -26976,8 +27003,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -27000,8 +27027,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -27134,8 +27161,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -27166,8 +27193,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_3_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -27198,8 +27225,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -27230,8 +27257,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_3_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -27298,8 +27325,8 @@
                 {
                     "name": "elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -27327,8 +27354,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -27351,8 +27378,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -27384,8 +27411,8 @@
                 {
                     "name": "_elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -27413,8 +27440,8 @@
                 {
                     "name": "layout",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -27437,8 +27464,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_3_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -27461,8 +27488,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_3_PointLayout*",
                         "pointee": {
                             "kind": 6,
@@ -27633,8 +27660,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -27665,8 +27692,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_3_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -27697,8 +27724,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -27729,8 +27756,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_3_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -27762,8 +27789,8 @@
                 {
                     "name": "_elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -27791,8 +27818,8 @@
                 {
                     "name": "el",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 0,
@@ -27815,8 +27842,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -27839,8 +27866,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -27872,8 +27899,8 @@
                 {
                     "name": "_elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -27901,8 +27928,8 @@
                 {
                     "name": "layout",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -27925,8 +27952,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_3_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -27949,8 +27976,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_3_VectorLayout_float_3*",
                         "pointee": {
                             "kind": 6,
@@ -28121,8 +28148,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28153,8 +28180,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_4_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28185,8 +28212,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28217,8 +28244,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_4_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28250,8 +28277,8 @@
                 {
                     "name": "_elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -28279,8 +28306,8 @@
                 {
                     "name": "el",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 0,
@@ -28303,8 +28330,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28327,8 +28354,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28360,8 +28387,8 @@
                 {
                     "name": "_elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -28389,8 +28416,8 @@
                 {
                     "name": "layout",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28413,8 +28440,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_4_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28437,8 +28464,8 @@
                 {
                     "name": "_p0",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_4_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28610,8 +28637,8 @@
                 {
                     "name": "_rows",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_4_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 4,
@@ -28639,8 +28666,8 @@
                 {
                     "name": "row",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_4_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28663,8 +28690,8 @@
                 {
                     "name": "elements",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "float*",
                         "pointee": {
                             "kind": 4,
@@ -28692,8 +28719,8 @@
                 {
                     "name": "_right",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_4_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28705,8 +28732,8 @@
                 {
                     "name": "_up",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_4_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28718,8 +28745,8 @@
                 {
                     "name": "_forward",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_4_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
@@ -28731,8 +28758,8 @@
                 {
                     "name": "_pos",
                     "type": {
-                        "kind": 2,
-                        "kind_str": "reference",
+                        "kind": 3,
+                        "kind_str": "pointer",
                         "name": "alt_Vector_float_4_VectorLayout_float_4*",
                         "pointee": {
                             "kind": 6,
