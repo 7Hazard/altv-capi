@@ -1,14 +1,15 @@
 cmake_minimum_required(VERSION 3.12)
 
-if(MSVC)
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(CMAKE_CXX_STANDARD 17)
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} /EHsc /MDd")
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} /EHsc /MD")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
+    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
 endif()
 
-if (UNIX)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++17 -fms-extensions -fdelayed-template-parsing")
-endif (UNIX)
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++17 -fms-extensions -fdelayed-template-parsing -fexceptions")
+endif()
 
 include_directories(
     ./
@@ -20,7 +21,7 @@ add_definitions(
     -DUNICODE
 )
 
-if(MSVC)
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Client (only Windows)
     add_library(altv-capi-client SHARED
         client/altv-capi.cpp
@@ -53,7 +54,7 @@ if(MSVC)
         LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/lib
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/bin
     )
-endif(MSVC)
+endif()
 
 
 
