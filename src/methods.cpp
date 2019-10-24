@@ -460,6 +460,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 if(paramname.empty())
                     paramname = ("_p")+std::to_string(param->getFunctionScopeIndex());
                 auto origparamtype = param->getType().getUnqualifiedType();
+                auto origparamtypestr = std::regex_replace(origparamtype.getAsString(), reg::classstructenum, "");
                 auto paramtype = origparamtype.getCanonicalType()
                     .getUnqualifiedType();
                 auto typedata = Typedata(paramtype, record->getASTContext());
@@ -481,7 +482,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                     typedata = Typedata(typedata, Typedata::POINTER);
                     headerparams += typedata.forwardDecl + typedata.ctype
                         + (" ") + paramname;
-                    sourceparams += ("*(")+paramtype.getAsString()+("*)")
+                    sourceparams += ("*(")+origparamtypestr+("*)")
                         +paramname;
                 }
                 else if(typedata.kind == Typedata::REFERENCE)
@@ -491,7 +492,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                     // take a pointer to the value and dereference it on use
                     headerparams += typedata.forwardDecl + typedata.ctype
                         + (" ") + paramname;
-                    sourceparams += ("*(")+std::regex_replace(paramtype.getAsString(), reg::ref, "*")+(")")
+                    sourceparams += ("*(")+std::regex_replace(origparamtypestr, reg::ref, "*")+(")")
                         +paramname;
                 }
                 else if(typedata.kind == Typedata::FUNCTION_POINTER)
@@ -500,14 +501,13 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                     fn = std::regex_replace(fn, reg::fnptrname, ("(*")+paramname+")");
                     
                     headerparams += fn;
-                    sourceparams += ("(")+paramtype.getAsString()+(")")
+                    sourceparams += ("(")+origparamtypestr+(")")
                         +paramname;
                 }
                 else {
                     headerparams += typedata.forwardDecl + typedata.ctype
                         + (" ") + paramname;
-                    auto t = std::regex_replace(origparamtype.getAsString(), reg::classstructenum, "");
-                    sourceparams += ("(")+t+(")")
+                    sourceparams += ("(")+origparamtypestr+(")")
                         +paramname;
                 }
 
