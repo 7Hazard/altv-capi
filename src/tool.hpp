@@ -5,12 +5,6 @@
 #define sastdump(node) static bool dump_##node = false; \
     if(!dump_##node) { node->dump(ast); ast << "\n--- END OF NODE ---\n\n"; dump_##node = true; } 
 
-#ifdef _DEBUG
-#define logd(x) capicheader << x << std::endl; capicppheader << x << std::endl
-#else
-#define logd(x)
-#endif
-
 #define capiheader(x) capicheader << x; capicppheader << x
 #define capixheader(c, cpp) capicheader << c; capicppheader << cpp
 
@@ -35,6 +29,11 @@ using namespace clang;
 using namespace clang::ast_matchers;
 using namespace clang::tooling;
 using namespace llvm;
+
+// flags
+extern llvm::cl::opt<bool> debugEnabled;
+// inline void logd(std::string x) { if(debugEnabled.getValue()) { capicheader << x << std::endl; capicppheader << x << std::endl; } }
+#define logd(x) if(debugEnabled.getValue()) { capicheader << x << std::endl; capicppheader << x << std::endl; }
 
 extern PrintingPolicy pp;
 extern std::error_code ec;

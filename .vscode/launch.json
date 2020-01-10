@@ -12,6 +12,7 @@
                 //"type": "cppvsdbg",
                 "program": "${workspaceFolder}/tools/altv-api-tool.exe",
                 "args": [
+                    "--debug",
                     // Files to parse
                     "${workspaceFolder}/cpp-sdk/SDK.h",
                     
@@ -212,6 +213,7 @@
                 "miDebuggerPath": "/usr/bin/gdb"
             },
             "args": [
+                "--debug",
                 // Files to parse
                 "${workspaceFolder}/cpp-sdk/SDK.h",
                 

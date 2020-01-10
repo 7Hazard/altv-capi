@@ -252,6 +252,12 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 continue;
             }
 
+            if(method->isDeleted())
+            {
+                logd("// Deleted");
+                continue;
+            }
+
             if(method->getKind() == Decl::Kind::CXXConstructor)
             {
                 logd("// Constructor");

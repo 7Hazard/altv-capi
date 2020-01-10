@@ -40,9 +40,11 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         << "// " << recordnameorig
     );
     
+    
+
     if(recordnameorig.find("std::") != std::string::npos)
     {
-        logd("// Has relations with STD namespace\n");  
+        logd("// Has relations with STD namespace\n");
         return;
     }
     else if(record->getDeclKind() == Decl::Kind::ClassTemplatePartialSpecialization)
@@ -102,9 +104,15 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
 
         for(auto field : r->fields())
         {
-            auto fieldtype = field->getType().getCanonicalType();
+            auto fieldtype = field->getType();//.getCanonicalType();
             auto fieldtypedata = Typedata(fieldtype, record->getASTContext());
             auto fieldname = field->getName().str();
+
+            if(fieldtypedata.ok == false)
+            {
+                logd("// Could not retrieve field type\n");
+                return false;
+            }
             
             auto loc = field->getLocation().printToString(*result.SourceManager);
             logd( 
@@ -113,10 +121,14 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 " " << field->getName().str() << std::endl
             );
 
-            body 
-                << "    " << fieldtypedata.forwardDecl 
-                << fieldtypedata.ctype 
-                << " " << fieldname << ";\n";
+            if(!fieldtypedata.ok)
+            {
+                // do sized padding
+                fieldtypedata = Typedata::GetSizedPadding(fieldtype, record->getASTContext());
+                if(!fieldtypedata.ok) // if its still bad
+                    return false;
+            }
+            body << "    " << fieldtypedata.GetCTypeWithName(fieldname) << ";\n";
 
             capijson["structs"][cstructname]["fields"].push_back({
                 {"name", fieldname},

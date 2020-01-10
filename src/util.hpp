@@ -84,7 +84,7 @@ static std::string ToCType(const std::string& str, const std::string& suffix = "
     std::string result = str;
 
     result = std::regex_replace(result, reg::coloncolon_, "_");
-    result = std::regex_replace(result, reg::sugarquals, "");
+    result = std::regex_replace(result, reg::classstructenum, "");
     result = std::regex_replace(result, reg::spaceampersand, "*");
     result = std::regex_replace(result, reg::spacestar, "*");
     //result = std::regex_replace(result, reg::star, "*");
@@ -216,6 +216,23 @@ inline void HandleType(clang::QualType type)
 
 struct Typedata
 {
+    static Typedata GetSizedPadding(clang::QualType type, const clang::ASTContext& context)
+    {
+        logd("// Placing as sized padding instead");
+        Typedata data;
+        data.kind = Typedata::ARRAY;
+        data.forwardDecl = "";
+        data.ctype = "char";
+        data.array_size = context.getTypeSizeInCharsIfKnown(type).getValueOr(CharUnits::fromQuantity(0)).getQuantity();
+        if(data.array_size == 0)
+        {
+            data.ok = false;
+            logd("// Could not retrieve proper type size");
+        }
+
+        return data;
+    };
+
     enum Kind
     {
         FUNDAMENTAL,
@@ -267,6 +284,10 @@ struct Typedata
             for(auto& p : fn_params)
                 data["params"].push_back(p.json_data());
         }
+        else if(kind == ARRAY)
+        {
+            data["array_size"] = array_size;
+        }
 
         return data;
     }
@@ -282,11 +303,17 @@ struct Typedata
     Typedata* fn_return = nullptr;
     std::vector<Typedata> fn_params;
 
+    // array
+    size_t array_size = 0;
+    
+    Typedata() {};
     Typedata(clang::QualType type, const clang::ASTContext& context)
     {
-        type = type.getCanonicalType()
-            .getUnqualifiedType()
-            .getDesugaredType(context);
+        type = 
+            type->getCanonicalTypeInternal()
+            // .getUnqualifiedType()
+            // .getDesugaredType(context)
+            ;
 
         HandleType(type);
 
@@ -311,7 +338,7 @@ struct Typedata
         //     return;
         // }
         // TEMP
-        else if(type->isFunctionPointerType())
+        if(type->isFunctionPointerType())
         {
             logd("// function pointer");
             kind = FUNCTION_POINTER;
@@ -366,6 +393,9 @@ struct Typedata
         }
         else if(type->isArrayType())
         {
+            // logd("// NOT IMPLEMENTED");
+            // auto arraytype = context.getAsDependentSizedArrayType(type);
+
             logd("// array type");
             kind = ARRAY;
             pointee = new Typedata(
@@ -441,7 +471,8 @@ struct Typedata
         }
         else
         {
-            logd("// Could not process type");
+            logd("// Could not determine ctype for " + cpptypestr);
+
             ok = false;
             return;
         }
@@ -478,5 +509,24 @@ struct Typedata
             abort();
         } break;
         }
+    }
+
+    std::string GetCTypeWithName(const std::string& name)
+    {
+        if(kind == ARRAY)
+        {
+            if(array_size > 0)
+            {
+                // ok
+                return forwardDecl+ctype+" "+name+"["+std::to_string(array_size)+"]";
+            }
+            else {
+                logd("// ARRAY SIZE WAS 0, outputting as simple pointer");
+                return forwardDecl+ctype+"* "+name;
+            }
+        }
+
+        // just return normally
+        return forwardDecl+ctype+" "+name;
     }
 };

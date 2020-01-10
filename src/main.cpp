@@ -11,6 +11,8 @@
 #define CPPHeaderFileName "altv-capi.hpp"
 #define SourceFileName "altv-capi.cpp"
 
+// bool debugEnabled = false;
+
 std::string cheaderstart = R"(
 /**
  * CAPI API Header for C
@@ -189,12 +191,19 @@ std::unique_ptr<ASTUnit> get_ast_unit(int argc, const char **argv) {
 std::unique_ptr<ASTUnit> unit;
 Sema* semma;
 
+
+cl::OptionCategory category("capi generator options");
+llvm::cl::opt<bool> debugEnabled(
+    "debug",
+    cl::desc("Outputs debug info in headers"),
+    cl::init(false), cl::cat(category)
+);
+
 int main(int argc, const char **argv)
 {
     pp.SuppressTagKeyword = true;
     pp.FullyQualifiedName = true;
 
-    cl::OptionCategory category("apt-tool options");
     CommonOptionsParser optionsParser(argc, argv, category, 0);
 
     // Get Sema
