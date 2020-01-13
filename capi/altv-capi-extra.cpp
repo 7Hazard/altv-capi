@@ -29,8 +29,8 @@ public:
         _Bool(*StopFn)(alt_IResource*);
         _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*);
         void(*OnTickFn)(alt_IResource*);
-        void(*OnCreateBaseObjectFn)(alt_IResource*, alt_IBaseObject*);
-        void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_IBaseObject*);
+        OnCreateBaseObjectFnType OnCreateBaseObjectFn;
+        OnRemoveBaseObjectFnType OnRemoveBaseObjectFn;
 
         // Data
         alt_IResource* resource;
@@ -45,8 +45,8 @@ public:
             _Bool(*StopFn)(alt_IResource*),
             _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*),
             void(*OnTickFn)(alt_IResource*),
-            void(*OnCreateBaseObjectFn)(alt_IResource*, alt_IBaseObject*),
-            void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_IBaseObject*)
+            OnCreateBaseObjectFnType OnCreateBaseObjectFn,
+            OnRemoveBaseObjectFnType OnRemoveBaseObjectFn
         ) : alt::IResource::Impl(),
             resource(resource),
 #ifdef ALT_SERVER_API
@@ -67,28 +67,28 @@ public:
         }
 #endif
 
-		virtual bool Start() {
+		virtual bool Start() override {
             return StartFn((alt_IResource*)resource);
         };
 
-		virtual bool Stop() {
+		virtual bool Stop() override {
             return StopFn((alt_IResource*)resource); 
         };
 
-		virtual bool OnEvent(const alt::CEvent* ev) {
+		virtual bool OnEvent(const alt::CEvent* ev) override {
             return OnEventFn((alt_IResource*)resource, (alt_CEvent*)ev);
         };
 
-		virtual void OnTick() {
+		virtual void OnTick() override {
             OnTickFn((alt_IResource*)resource);
         };
 
-		virtual void OnCreateBaseObject(alt::IBaseObject* object) {
-            OnCreateBaseObjectFn((alt_IResource*)resource, (alt_IBaseObject*)object);
+		virtual void OnCreateBaseObject(alt::Ref<alt::IBaseObject> object) override {
+            OnCreateBaseObjectFn((alt_IResource*)resource, (alt_RefBase_RefStore_IBaseObject*)&object);
         };
 
-		virtual void OnRemoveBaseObject(alt::IBaseObject* object) {
-            OnRemoveBaseObjectFn((alt_IResource*)resource, (alt_IBaseObject*)object);
+		virtual void OnRemoveBaseObject(alt::Ref<alt::IBaseObject> object) override {
+            OnRemoveBaseObjectFn((alt_IResource*)resource, (alt_RefBase_RefStore_IBaseObject*)&object);
         };
     };
 
@@ -150,8 +150,8 @@ CAPI alt_IResource_Impl* alt_CAPIResource_Impl_Create(
     _Bool(*StopFn)(alt_IResource*),
     _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*),
     void(*OnTickFn)(alt_IResource*),
-    void(*OnCreateBaseObjectFn)(alt_IResource*, alt_IBaseObject*),
-    void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_IBaseObject*)
+    OnCreateBaseObjectFnType OnCreateBaseObjectFn,
+    OnRemoveBaseObjectFnType OnRemoveBaseObjectFn
 )
 {
 #ifdef ALT_SERVER_API
