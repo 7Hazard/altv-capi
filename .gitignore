@@ -7,6 +7,8 @@ capi/BUILD/*
 capi/BUILD-WIN32/*
 capi/BUILD-MSVC/*
 capi/BUILD-DEBUG/*
+capi/BUILD-VS2017/*
+capi/BUILD-VS2019/*
 *.log
 *.ast
 TEST

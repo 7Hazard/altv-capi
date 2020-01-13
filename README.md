@@ -16,6 +16,9 @@ Binaries for client-linux does not exist.
 **NOTE: If the download to latest refers to a 404, it is because the latest build failed!**  
 Either chose an older successful build from Releases (report if necessary).
 
+When using CAPI on windows, you must run the same CRT version as altv-server.exe or the client  
+The build flag `/MD` should be used with Visual Studio and clang-cl for altv-server.exe
+
 If you want to build the parser:
 * Set-up LLVM
 * Clone this repo into clang-tools-extra

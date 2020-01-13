@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
+project(altv-capi)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(CMAKE_CXX_STANDARD 17)

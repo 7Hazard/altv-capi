@@ -93,10 +93,26 @@
             ]
         },
         {
-            "label": "Build CAPI MSVC",
+            "label": "Build CAPI VS2017",
             "type": "shell",
             "windows": {
-                "command": "cmake . -BBUILD-MSVC -DCMAKE_BUILD_TYPE=RelWithDebInfo -G'Visual Studio 15 2017 Win64'; cmake --build BUILD-MSVC --config RelWithDebInfo",
+                "command": "cmake . -BBUILD-VS2017 -DCMAKE_BUILD_TYPE=RelWithDebInfo -G'Visual Studio 15 2017 Win64'; cmake --build BUILD-VS2017 --config RelWithDebInfo",
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/capi"
+            },
+            "args": [],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Build CAPI VS2017 Debug",
+            "type": "shell",
+            "windows": {
+                "command": "cmake . -BBUILD-VS2017 -DCMAKE_BUILD_TYPE=Debug -G'Visual Studio 15 2017 Win64'; cmake --build BUILD-VS2017 --config Debug",
             },
             "options": {
                 "cwd": "${workspaceFolder}/capi"
