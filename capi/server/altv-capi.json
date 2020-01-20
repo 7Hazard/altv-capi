@@ -499,44 +499,60 @@
         "alt_IMValue_Type": {
             "enumerators": [
                 {
-                    "name": "ALT_IMVALUE_TYPE_NIL",
+                    "name": "ALT_IMVALUE_TYPE_NONE",
                     "value": 0
                 },
                 {
-                    "name": "ALT_IMVALUE_TYPE_BOOL",
+                    "name": "ALT_IMVALUE_TYPE_NIL",
                     "value": 1
                 },
                 {
-                    "name": "ALT_IMVALUE_TYPE_INT",
+                    "name": "ALT_IMVALUE_TYPE_BOOL",
                     "value": 2
                 },
                 {
-                    "name": "ALT_IMVALUE_TYPE_UINT",
+                    "name": "ALT_IMVALUE_TYPE_INT",
                     "value": 3
                 },
                 {
-                    "name": "ALT_IMVALUE_TYPE_DOUBLE",
+                    "name": "ALT_IMVALUE_TYPE_UINT",
                     "value": 4
                 },
                 {
-                    "name": "ALT_IMVALUE_TYPE_STRING",
+                    "name": "ALT_IMVALUE_TYPE_DOUBLE",
                     "value": 5
                 },
                 {
-                    "name": "ALT_IMVALUE_TYPE_LIST",
+                    "name": "ALT_IMVALUE_TYPE_STRING",
                     "value": 6
                 },
                 {
-                    "name": "ALT_IMVALUE_TYPE_DICT",
+                    "name": "ALT_IMVALUE_TYPE_LIST",
                     "value": 7
                 },
                 {
-                    "name": "ALT_IMVALUE_TYPE_BASE_OBJECT",
+                    "name": "ALT_IMVALUE_TYPE_DICT",
                     "value": 8
                 },
                 {
-                    "name": "ALT_IMVALUE_TYPE_FUNCTION",
+                    "name": "ALT_IMVALUE_TYPE_BASE_OBJECT",
                     "value": 9
+                },
+                {
+                    "name": "ALT_IMVALUE_TYPE_FUNCTION",
+                    "value": 10
+                },
+                {
+                    "name": "ALT_IMVALUE_TYPE_VECTOR3",
+                    "value": 11
+                },
+                {
+                    "name": "ALT_IMVALUE_TYPE_RGBA",
+                    "value": 12
+                },
+                {
+                    "name": "ALT_IMVALUE_TYPE_BYTE_ARRAY",
+                    "value": 13
                 }
             ]
         },
@@ -8115,6 +8131,25 @@
             },
             "struct": "alt_CRefCountable"
         },
+        "alt_CRefCountable_to_alt_IMValueByteArray": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CRefCountable*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IMValueByteArray*"
+            },
+            "struct": "alt_CRefCountable"
+        },
         "alt_CRefCountable_to_alt_IMValueDict": {
             "comment": "",
             "params": [
@@ -8229,6 +8264,44 @@
             },
             "struct": "alt_CRefCountable"
         },
+        "alt_CRefCountable_to_alt_IMValueNone": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CRefCountable*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IMValueNone*"
+            },
+            "struct": "alt_CRefCountable"
+        },
+        "alt_CRefCountable_to_alt_IMValueRGBA": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CRefCountable*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IMValueRGBA*"
+            },
+            "struct": "alt_CRefCountable"
+        },
         "alt_CRefCountable_to_alt_IMValueString": {
             "comment": "",
             "params": [
@@ -8264,6 +8337,25 @@
                 "kind": 3,
                 "kind_str": "pointer",
                 "name": "alt_IMValueUInt*"
+            },
+            "struct": "alt_CRefCountable"
+        },
+        "alt_CRefCountable_to_alt_IMValueVector3": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_CRefCountable*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IMValueVector3*"
             },
             "struct": "alt_CRefCountable"
         },
@@ -11293,6 +11385,38 @@
             },
             "struct": "alt_IBaseObject"
         },
+        "alt_IBaseObject_DeleteMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBaseObject*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IBaseObject"
+        },
         "alt_IBaseObject_GetMetaData": {
             "comment": "// Return ptr must be manually freed with alt_RefBase_RefStore_constIMValue_free()\n",
             "params": [
@@ -11365,6 +11489,38 @@
                 "kind": 1,
                 "kind_str": "enumeral",
                 "name": "alt_IBaseObject_Type"
+            },
+            "struct": "alt_IBaseObject"
+        },
+        "alt_IBaseObject_HasMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBaseObject*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
             },
             "struct": "alt_IBaseObject"
         },
@@ -11710,6 +11866,38 @@
             },
             "struct": "alt_IBlip"
         },
+        "alt_IBlip_DeleteMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBlip*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IBlip"
+        },
         "alt_IBlip_GetBlipType": {
             "comment": "",
             "params": [
@@ -11868,6 +12056,38 @@
                 "kind": 1,
                 "kind_str": "enumeral",
                 "name": "alt_IBaseObject_Type"
+            },
+            "struct": "alt_IBlip"
+        },
+        "alt_IBlip_HasMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IBlip*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
             },
             "struct": "alt_IBlip"
         },
@@ -12280,6 +12500,38 @@
             },
             "struct": "alt_ICheckpoint"
         },
+        "alt_ICheckpoint_DeleteMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_ICheckpoint*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_ICheckpoint"
+        },
         "alt_ICheckpoint_GetCheckpointType": {
             "comment": "",
             "params": [
@@ -12495,6 +12747,38 @@
                 "kind": 1,
                 "kind_str": "enumeral",
                 "name": "alt_IBaseObject_Type"
+            },
+            "struct": "alt_ICheckpoint"
+        },
+        "alt_ICheckpoint_HasMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_ICheckpoint*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
             },
             "struct": "alt_ICheckpoint"
         },
@@ -12844,6 +13128,38 @@
             },
             "struct": "alt_IColShape"
         },
+        "alt_IColShape_DeleteMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IColShape*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IColShape"
+        },
         "alt_IColShape_GetColshapeType": {
             "comment": "",
             "params": [
@@ -12978,6 +13294,38 @@
                 "kind": 1,
                 "kind_str": "enumeral",
                 "name": "alt_IBaseObject_Type"
+            },
+            "struct": "alt_IColShape"
+        },
+        "alt_IColShape_HasMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IColShape*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
             },
             "struct": "alt_IColShape"
         },
@@ -13824,6 +14172,83 @@
             },
             "struct": "alt_ICore"
         },
+        "alt_ICore_CreateMValueByteArray": {
+            "comment": "// Return ptr must be manually freed with alt_RefBase_RefStore_IMValueByteArray_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_ICore*"
+                    }
+                },
+                {
+                    "name": "data",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "unsigned char*",
+                        "pointee": {
+                            "kind": 0,
+                            "kind_str": "fundamental",
+                            "name": "unsigned char"
+                        }
+                    }
+                },
+                {
+                    "name": "size",
+                    "type": {
+                        "kind": 0,
+                        "kind_str": "fundamental",
+                        "name": "unsigned long long"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_RefBase_RefStore_IMValueByteArray*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_RefBase_RefStore_IMValueByteArray"
+                }
+            },
+            "struct": "alt_ICore"
+        },
+        "alt_ICore_CreateMValueByteArray_1": {
+            "comment": "// Return ptr must be manually freed with alt_RefBase_RefStore_IMValueByteArray_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_ICore*"
+                    }
+                },
+                {
+                    "name": "size",
+                    "type": {
+                        "kind": 0,
+                        "kind_str": "fundamental",
+                        "name": "unsigned long long"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_RefBase_RefStore_IMValueByteArray*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_RefBase_RefStore_IMValueByteArray"
+                }
+            },
+            "struct": "alt_ICore"
+        },
         "alt_ICore_CreateMValueDict": {
             "comment": "// Return ptr must be manually freed with alt_RefBase_RefStore_IMValueDict_free()\n",
             "params": [
@@ -14005,6 +14430,67 @@
             },
             "struct": "alt_ICore"
         },
+        "alt_ICore_CreateMValueNone": {
+            "comment": "// Return ptr must be manually freed with alt_RefBase_RefStore_IMValueNone_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_ICore*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_RefBase_RefStore_IMValueNone*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_RefBase_RefStore_IMValueNone"
+                }
+            },
+            "struct": "alt_ICore"
+        },
+        "alt_ICore_CreateMValueRGBA": {
+            "comment": "// Return ptr must be manually freed with alt_RefBase_RefStore_IMValueRGBA_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_ICore*"
+                    }
+                },
+                {
+                    "name": "val",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_RGBA*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_RGBA"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_RefBase_RefStore_IMValueRGBA*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_RefBase_RefStore_IMValueRGBA"
+                }
+            },
+            "struct": "alt_ICore"
+        },
         "alt_ICore_CreateMValueString": {
             "comment": "// Return ptr must be manually freed with alt_RefBase_RefStore_IMValueString_free()\n",
             "params": [
@@ -14070,6 +14556,43 @@
                     "kind": 6,
                     "kind_str": "struct",
                     "name": "alt_RefBase_RefStore_IMValueUInt"
+                }
+            },
+            "struct": "alt_ICore"
+        },
+        "alt_ICore_CreateMValueVector3": {
+            "comment": "// Return ptr must be manually freed with alt_RefBase_RefStore_IMValueVector3_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_ICore*"
+                    }
+                },
+                {
+                    "name": "val",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_Vector_float_3_VectorLayout_float_3*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_Vector_float_3_VectorLayout_float_3"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_RefBase_RefStore_IMValueVector3*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_RefBase_RefStore_IMValueVector3"
                 }
             },
             "struct": "alt_ICore"
@@ -15029,6 +15552,102 @@
             },
             "struct": "alt_IEntity"
         },
+        "alt_IEntity_DeleteMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IEntity*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IEntity"
+        },
+        "alt_IEntity_DeleteStreamSyncedMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IEntity*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IEntity"
+        },
+        "alt_IEntity_DeleteSyncedMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IEntity*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IEntity"
+        },
         "alt_IEntity_GetDimension": {
             "comment": "",
             "params": [
@@ -15304,6 +15923,102 @@
                 "kind": 1,
                 "kind_str": "enumeral",
                 "name": "alt_IBaseObject_Type"
+            },
+            "struct": "alt_IEntity"
+        },
+        "alt_IEntity_HasMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IEntity*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
+            },
+            "struct": "alt_IEntity"
+        },
+        "alt_IEntity_HasStreamSyncedMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IEntity*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
+            },
+            "struct": "alt_IEntity"
+        },
+        "alt_IEntity_HasSyncedMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IEntity*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
             },
             "struct": "alt_IEntity"
         },
@@ -16249,6 +16964,337 @@
                 "name": "alt_IMValue*"
             },
             "struct": "alt_IMValueBool"
+        },
+        "alt_IMValueByteArray_AddRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_AddWeakRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                },
+                {
+                    "name": "ref",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWeakRef*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IWeakRef"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_Clone": {
+            "comment": "// Return ptr must be manually freed with alt_RefBase_RefStore_IMValue_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_RefBase_RefStore_IMValue*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_RefBase_RefStore_IMValue"
+                }
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_GetData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "unsigned char*",
+                "pointee": {
+                    "kind": 0,
+                    "kind_str": "fundamental",
+                    "name": "unsigned char"
+                }
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_GetData_1": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "unsigned char*",
+                "pointee": {
+                    "kind": 0,
+                    "kind_str": "fundamental",
+                    "name": "unsigned char"
+                }
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_GetRefCount": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "unsigned long long"
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_GetSize": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "unsigned long long"
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_GetType": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 1,
+                "kind_str": "enumeral",
+                "name": "alt_IMValue_Type"
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_RemoveRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_RemoveWeakRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                },
+                {
+                    "name": "ref",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWeakRef*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IWeakRef"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_ToNumber": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "double"
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_ToString": {
+            "comment": "// Return ptr must be manually freed with alt_String_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_String*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_String"
+                }
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_free": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "ptr",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_to_alt_CRefCountable": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CRefCountable*"
+            },
+            "struct": "alt_IMValueByteArray"
+        },
+        "alt_IMValueByteArray_to_alt_IMValue": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueByteArray*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IMValue*"
+            },
+            "struct": "alt_IMValueByteArray"
         },
         "alt_IMValueDict_AddRef": {
             "comment": "",
@@ -18637,6 +19683,558 @@
             },
             "struct": "alt_IMValueNil"
         },
+        "alt_IMValueNone_AddRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueNone*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueNone"
+        },
+        "alt_IMValueNone_AddWeakRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueNone*"
+                    }
+                },
+                {
+                    "name": "ref",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWeakRef*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IWeakRef"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueNone"
+        },
+        "alt_IMValueNone_Clone": {
+            "comment": "// Return ptr must be manually freed with alt_RefBase_RefStore_IMValue_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueNone*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_RefBase_RefStore_IMValue*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_RefBase_RefStore_IMValue"
+                }
+            },
+            "struct": "alt_IMValueNone"
+        },
+        "alt_IMValueNone_GetRefCount": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueNone*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "unsigned long long"
+            },
+            "struct": "alt_IMValueNone"
+        },
+        "alt_IMValueNone_GetType": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueNone*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 1,
+                "kind_str": "enumeral",
+                "name": "alt_IMValue_Type"
+            },
+            "struct": "alt_IMValueNone"
+        },
+        "alt_IMValueNone_RemoveRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueNone*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueNone"
+        },
+        "alt_IMValueNone_RemoveWeakRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueNone*"
+                    }
+                },
+                {
+                    "name": "ref",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWeakRef*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IWeakRef"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueNone"
+        },
+        "alt_IMValueNone_ToNumber": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueNone*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "double"
+            },
+            "struct": "alt_IMValueNone"
+        },
+        "alt_IMValueNone_ToString": {
+            "comment": "// Return ptr must be manually freed with alt_String_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueNone*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_String*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_String"
+                }
+            },
+            "struct": "alt_IMValueNone"
+        },
+        "alt_IMValueNone_free": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "ptr",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueNone*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueNone"
+        },
+        "alt_IMValueNone_to_alt_CRefCountable": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueNone*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CRefCountable*"
+            },
+            "struct": "alt_IMValueNone"
+        },
+        "alt_IMValueNone_to_alt_IMValue": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueNone*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IMValue*"
+            },
+            "struct": "alt_IMValueNone"
+        },
+        "alt_IMValueRGBA_AddRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueRGBA"
+        },
+        "alt_IMValueRGBA_AddWeakRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                },
+                {
+                    "name": "ref",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWeakRef*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IWeakRef"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueRGBA"
+        },
+        "alt_IMValueRGBA_Clone": {
+            "comment": "// Return ptr must be manually freed with alt_RefBase_RefStore_IMValue_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_RefBase_RefStore_IMValue*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_RefBase_RefStore_IMValue"
+                }
+            },
+            "struct": "alt_IMValueRGBA"
+        },
+        "alt_IMValueRGBA_GetRefCount": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "unsigned long long"
+            },
+            "struct": "alt_IMValueRGBA"
+        },
+        "alt_IMValueRGBA_GetType": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 1,
+                "kind_str": "enumeral",
+                "name": "alt_IMValue_Type"
+            },
+            "struct": "alt_IMValueRGBA"
+        },
+        "alt_IMValueRGBA_RemoveRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueRGBA"
+        },
+        "alt_IMValueRGBA_RemoveWeakRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                },
+                {
+                    "name": "ref",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWeakRef*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IWeakRef"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueRGBA"
+        },
+        "alt_IMValueRGBA_ToNumber": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "double"
+            },
+            "struct": "alt_IMValueRGBA"
+        },
+        "alt_IMValueRGBA_ToString": {
+            "comment": "// Return ptr must be manually freed with alt_String_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_String*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_String"
+                }
+            },
+            "struct": "alt_IMValueRGBA"
+        },
+        "alt_IMValueRGBA_Value": {
+            "comment": "// Return ptr must be manually freed with alt_RGBA_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_RGBA*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_RGBA"
+                }
+            },
+            "struct": "alt_IMValueRGBA"
+        },
+        "alt_IMValueRGBA_free": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "ptr",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueRGBA"
+        },
+        "alt_IMValueRGBA_to_alt_CRefCountable": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CRefCountable*"
+            },
+            "struct": "alt_IMValueRGBA"
+        },
+        "alt_IMValueRGBA_to_alt_IMValue": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueRGBA*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IMValue*"
+            },
+            "struct": "alt_IMValueRGBA"
+        },
         "alt_IMValueString_AddRef": {
             "comment": "",
             "params": [
@@ -19208,6 +20806,294 @@
             },
             "struct": "alt_IMValueUInt"
         },
+        "alt_IMValueVector3_AddRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueVector3"
+        },
+        "alt_IMValueVector3_AddWeakRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                },
+                {
+                    "name": "ref",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWeakRef*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IWeakRef"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueVector3"
+        },
+        "alt_IMValueVector3_Clone": {
+            "comment": "// Return ptr must be manually freed with alt_RefBase_RefStore_IMValue_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_RefBase_RefStore_IMValue*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_RefBase_RefStore_IMValue"
+                }
+            },
+            "struct": "alt_IMValueVector3"
+        },
+        "alt_IMValueVector3_GetRefCount": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "unsigned long long"
+            },
+            "struct": "alt_IMValueVector3"
+        },
+        "alt_IMValueVector3_GetType": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 1,
+                "kind_str": "enumeral",
+                "name": "alt_IMValue_Type"
+            },
+            "struct": "alt_IMValueVector3"
+        },
+        "alt_IMValueVector3_RemoveRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueVector3"
+        },
+        "alt_IMValueVector3_RemoveWeakRef": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                },
+                {
+                    "name": "ref",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWeakRef*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_IWeakRef"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueVector3"
+        },
+        "alt_IMValueVector3_ToNumber": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "double"
+            },
+            "struct": "alt_IMValueVector3"
+        },
+        "alt_IMValueVector3_ToString": {
+            "comment": "// Return ptr must be manually freed with alt_String_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_String*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_String"
+                }
+            },
+            "struct": "alt_IMValueVector3"
+        },
+        "alt_IMValueVector3_Value": {
+            "comment": "// Return ptr must be manually freed with alt_Vector_float_3_VectorLayout_float_3_free()\n",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_Vector_float_3_VectorLayout_float_3*",
+                "pointee": {
+                    "kind": 6,
+                    "kind_str": "struct",
+                    "name": "alt_Vector_float_3_VectorLayout_float_3"
+                }
+            },
+            "struct": "alt_IMValueVector3"
+        },
+        "alt_IMValueVector3_free": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "ptr",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IMValueVector3"
+        },
+        "alt_IMValueVector3_to_alt_CRefCountable": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_CRefCountable*"
+            },
+            "struct": "alt_IMValueVector3"
+        },
+        "alt_IMValueVector3_to_alt_IMValue": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValueVector3*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IMValue*"
+            },
+            "struct": "alt_IMValueVector3"
+        },
         "alt_IMValue_AddRef": {
             "comment": "",
             "params": [
@@ -19472,6 +21358,25 @@
             },
             "struct": "alt_IMValue"
         },
+        "alt_IMValue_to_alt_IMValueByteArray": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValue*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IMValueByteArray*"
+            },
+            "struct": "alt_IMValue"
+        },
         "alt_IMValue_to_alt_IMValueDict": {
             "comment": "",
             "params": [
@@ -19586,6 +21491,44 @@
             },
             "struct": "alt_IMValue"
         },
+        "alt_IMValue_to_alt_IMValueNone": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValue*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IMValueNone*"
+            },
+            "struct": "alt_IMValue"
+        },
+        "alt_IMValue_to_alt_IMValueRGBA": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValue*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IMValueRGBA*"
+            },
+            "struct": "alt_IMValue"
+        },
         "alt_IMValue_to_alt_IMValueString": {
             "comment": "",
             "params": [
@@ -19621,6 +21564,25 @@
                 "kind": 3,
                 "kind_str": "pointer",
                 "name": "alt_IMValueUInt*"
+            },
+            "struct": "alt_IMValue"
+        },
+        "alt_IMValue_to_alt_IMValueVector3": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "from",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IMValue*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 3,
+                "kind_str": "pointer",
+                "name": "alt_IMValueVector3*"
             },
             "struct": "alt_IMValue"
         },
@@ -20108,6 +22070,102 @@
                         "kind": 0,
                         "kind_str": "fundamental",
                         "name": "unsigned int"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_DeleteMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IPlayer*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_DeleteStreamSyncedMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IPlayer*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_DeleteSyncedMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IPlayer*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
                     }
                 }
             ],
@@ -20937,6 +22995,102 @@
                 "kind": 0,
                 "kind_str": "fundamental",
                 "name": "void"
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_HasMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IPlayer*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_HasStreamSyncedMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IPlayer*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
+            },
+            "struct": "alt_IPlayer"
+        },
+        "alt_IPlayer_HasSyncedMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IPlayer*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
             },
             "struct": "alt_IPlayer"
         },
@@ -22740,6 +24894,102 @@
             },
             "struct": "alt_IVehicle"
         },
+        "alt_IVehicle_DeleteMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVehicle*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IVehicle"
+        },
+        "alt_IVehicle_DeleteStreamSyncedMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVehicle*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IVehicle"
+        },
+        "alt_IVehicle_DeleteSyncedMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVehicle*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IVehicle"
+        },
         "alt_IVehicle_DoesWheelHasTire": {
             "comment": "",
             "params": [
@@ -24164,6 +26414,102 @@
                         "kind": 3,
                         "kind_str": "pointer",
                         "name": "alt_IVehicle*"
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
+            },
+            "struct": "alt_IVehicle"
+        },
+        "alt_IVehicle_HasMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVehicle*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
+            },
+            "struct": "alt_IVehicle"
+        },
+        "alt_IVehicle_HasStreamSyncedMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVehicle*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
+            },
+            "struct": "alt_IVehicle"
+        },
+        "alt_IVehicle_HasSyncedMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVehicle*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
                     }
                 }
             ],
@@ -26784,6 +29130,38 @@
             },
             "struct": "alt_IVoiceChannel"
         },
+        "alt_IVoiceChannel_DeleteMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVoiceChannel*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IVoiceChannel"
+        },
         "alt_IVoiceChannel_GetMaxDistance": {
             "comment": "",
             "params": [
@@ -26875,6 +29253,38 @@
                 "kind": 1,
                 "kind_str": "enumeral",
                 "name": "alt_IBaseObject_Type"
+            },
+            "struct": "alt_IVoiceChannel"
+        },
+        "alt_IVoiceChannel_HasMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IVoiceChannel*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
             },
             "struct": "alt_IVoiceChannel"
         },
@@ -27344,6 +29754,38 @@
             },
             "struct": "alt_IWorldObject"
         },
+        "alt_IWorldObject_DeleteMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWorldObject*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "void"
+            },
+            "struct": "alt_IWorldObject"
+        },
         "alt_IWorldObject_GetDimension": {
             "comment": "",
             "params": [
@@ -27459,6 +29901,38 @@
                 "kind": 1,
                 "kind_str": "enumeral",
                 "name": "alt_IBaseObject_Type"
+            },
+            "struct": "alt_IWorldObject"
+        },
+        "alt_IWorldObject_HasMetaData": {
+            "comment": "",
+            "params": [
+                {
+                    "name": "_instance",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_IWorldObject*"
+                    }
+                },
+                {
+                    "name": "key",
+                    "type": {
+                        "kind": 3,
+                        "kind_str": "pointer",
+                        "name": "alt_StringView*",
+                        "pointee": {
+                            "kind": 6,
+                            "kind_str": "struct",
+                            "name": "alt_StringView"
+                        }
+                    }
+                }
+            ],
+            "returns": {
+                "kind": 0,
+                "kind_str": "fundamental",
+                "name": "_Bool"
             },
             "struct": "alt_IWorldObject"
         },
