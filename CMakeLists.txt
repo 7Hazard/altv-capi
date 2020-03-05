@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.10)
 
 set(LLVM_LINK_COMPONENTS support)
 set(LLVM_ENABLE_CXX1Z ON)
