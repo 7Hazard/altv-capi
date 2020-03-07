@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "GENERATING CLIENT CAPI CODE"
+
 rm -f -r client
 mkdir -p client
 cd client

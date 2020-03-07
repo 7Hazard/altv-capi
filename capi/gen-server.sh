@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "GENERATING SERVER CAPI CODE"
+
 rm -f -r server
 mkdir -p server
 cd server
