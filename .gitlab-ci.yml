@@ -7,7 +7,10 @@ build:win32:
     tags:
         - docker
     image: 7hazard/node-clang-win32-cross
-
+    
+    before_script:
+        - bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+        - apt install clang-tools-9
     script:
         - "cd capi && ./build-win32.sh && cd .."
 
@@ -30,7 +33,9 @@ build:linux:
     tags:
         - docker
     image: 7hazard/node-clang-7
-
+    
+    before_script:
+        - bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
     script:
         - "cd capi && ./build.sh && cd .."
 

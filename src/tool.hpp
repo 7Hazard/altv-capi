@@ -31,9 +31,9 @@ using namespace clang::tooling;
 using namespace llvm;
 
 // flags
-extern llvm::cl::opt<bool> debugEnabled;
+extern bool isDebugEnabled();
 // inline void logd(std::string x) { if(debugEnabled.getValue()) { capicheader << x << std::endl; capicppheader << x << std::endl; } }
-#define logd(x) if(debugEnabled.getValue()) { capicheader << x << std::endl; capicppheader << x << std::endl; }
+#define logd(x) if(isDebugEnabled()) { capicheader << x << std::endl; capicppheader << x << std::endl; }
 
 extern PrintingPolicy pp;
 extern std::error_code ec;

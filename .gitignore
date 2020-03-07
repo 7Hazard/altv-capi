@@ -1,7 +1,7 @@
 gen/*
 GEN/*
-capi/client/BUILD/*
-capi/server/BUILD/*
+capi/client/*
+capi/server/*
 BUILD/*
 capi/BUILD/*
 capi/BUILD-WIN32/*

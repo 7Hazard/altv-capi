@@ -11,8 +11,6 @@
 #define CPPHeaderFileName "altv-capi.hpp"
 #define SourceFileName "altv-capi.cpp"
 
-// bool debugEnabled = false;
-
 std::string cheaderstart = R"(
 /**
  * CAPI API Header for C
@@ -191,13 +189,20 @@ std::unique_ptr<ASTUnit> get_ast_unit(int argc, const char **argv) {
 std::unique_ptr<ASTUnit> unit;
 Sema* semma;
 
-
 cl::OptionCategory category("capi generator options");
-llvm::cl::opt<bool> debugEnabled(
-    "debug",
-    cl::desc("Outputs debug info in headers"),
-    cl::init(false), cl::cat(category)
-);
+
+// BUGGED ON LINUX, MAYBE CAUSE OF MULTIPLE INSTALLED VERSIONS OF LLVM/CLANG
+// llvm::cl::opt<bool> debugEnabled(
+//     "debug",
+//     cl::desc("Outputs debug info in headers"),
+//     cl::init(false), cl::cat(category)
+// );
+
+bool isDebugEnabled()
+{
+    // return debugEnabled.getValue();
+    return false;
+}
 
 int main(int argc, const char **argv)
 {
