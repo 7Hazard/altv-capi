@@ -12,6 +12,7 @@ build:win32:
         - curl -sL "https://apt.llvm.org/llvm.sh" | bash
         - apt install -y clang-tools-9
     script:
+        - "./tools/get-cppsdk.sh"
         - "cd capi && ./gen-client.sh && ./gen-server.sh && ./build-win32.sh && cd .."
 
     artifacts:
@@ -34,7 +35,11 @@ build:linux:
         - docker
     image: 7hazard/node-clang-7
 
+    before_script:
+        - curl -sL "https://apt.llvm.org/llvm.sh" | bash
+        - apt install -y clang-tools-9
     script:
+        - "./tools/get-cppsdk.sh"
         - "cd capi && ./gen-client.sh && ./gen-server.sh && ./build.sh && cd .."
 
     artifacts:
