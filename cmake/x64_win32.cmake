@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.13)
+cmake_minimum_required (VERSION 3.10)
 
 # https://github.com/llvm-mirror/llvm/blob/master/cmake/platforms/WinMsvc.cmake
 
@@ -109,13 +109,15 @@ function(generate_winsdk_lib_symlinks winsdk_um_lib_dir output_dir)
   endforeach()
 endfunction()
 
-set(CMAKE_ASM_COMPILER clang-cl)
-set(CMAKE_C_COMPILER clang-cl)
-set(CMAKE_CXX_COMPILER clang-cl)
-set(CMAKE_LINKER lld-link)
+set(CMAKE_ASM_COMPILER clang-cl-${CWIN_LLVM_VERSION})
+set(CMAKE_C_COMPILER clang-cl-${CWIN_LLVM_VERSION})
+set(CMAKE_CXX_COMPILER clang-cl-${CWIN_LLVM_VERSION})
+set(CMAKE_LINKER lld-link-${CWIN_LLVM_VERSION})
+set(CMAKE_C_LINK_EXECUTABLE lld-link-${CWIN_LLVM_VERSION})
+set(CMAKE_CXX_LINK_EXECUTABLE lld-link-${CWIN_LLVM_VERSION})
 
 set(CMAKE_NINJA_DEPTYPE_RC msvc)
-set(CMAKE_RC_COMPILER ${CMAKE_SOURCE_DIR}/deps/buildtools/llvm-rc)
+set(CMAKE_RC_COMPILER llvm-rc-${CWIN_LLVM_VERSION})
 
 #set(CMAKE_C_COMPILER_TARGET ${TARGET_TRIPLE})
 #set(CMAKE_CXX_COMPILER_TARGET ${TARGET_TRIPLE})
