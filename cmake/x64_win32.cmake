@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.10)
+﻿cmake_minimum_required (VERSION 3.13) # REALLY IMPORTANT DONT CHANGE VERSION
 
 # https://github.com/llvm-mirror/llvm/blob/master/cmake/platforms/WinMsvc.cmake
 
@@ -118,6 +118,8 @@ set(CMAKE_CXX_LINK_EXECUTABLE lld-link-${CWIN_LLVM_VERSION})
 
 set(CMAKE_NINJA_DEPTYPE_RC msvc)
 set(CMAKE_RC_COMPILER llvm-rc-${CWIN_LLVM_VERSION})
+set(CMAKE_RC_COMPILER_INIT llvm-rc-${CWIN_LLVM_VERSION})
+set(CMAKE_GENERATOR_RC llvm-rc-${CWIN_LLVM_VERSION})
 
 #set(CMAKE_C_COMPILER_TARGET ${TARGET_TRIPLE})
 #set(CMAKE_CXX_COMPILER_TARGET ${TARGET_TRIPLE})
