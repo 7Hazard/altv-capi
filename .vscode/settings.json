@@ -85,5 +85,6 @@
         "shared_mutex": "cpp"
     },
     "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true
+    "files.trimFinalNewlines": true,
+    "git.ignoreLimitWarning": true
 }

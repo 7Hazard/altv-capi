@@ -8,4 +8,6 @@
 #define CAPI CAPI_EXTERN
 #endif // CAPI_DLL
 
+using nullptr_t = std::nullptr_t;
+
 #include "altv-capi.hpp"
