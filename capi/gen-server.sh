@@ -53,5 +53,11 @@ cd server
 -fparse-all-comments \
  \
 -nostdinc \
--nostdinc++ \
--I /WINDOWS/VC/Tools/MSVC/14.16.27023/include
+-fms-compatibility-version=19.11 \
+/premissive- \
+--target=x86_64-windows-msvc \
+-isystem/WINDOWS/SDK/Include/10.0.17763.0/ucrt \
+-isystem/WINDOWS/SDK/Include/10.0.17763.0/shared \
+-isystem/WINDOWS/SDK/Include/10.0.17763.0/um \
+-isystem/WINDOWS/SDK/Include/10.0.17763.0/winrt \
+-isystem/WINDOWS/VC/Tools/MSVC/14.16.27023/include

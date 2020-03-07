@@ -9,8 +9,6 @@ build:win32:
     image: 7hazard/node-clang-win32-cross
 
     before_script:
-        - apt update -y
-        - apt install -y software-properties-common
         - curl -sL "https://apt.llvm.org/llvm.sh" | bash
         - apt install -y clang-tools-9
     script:
