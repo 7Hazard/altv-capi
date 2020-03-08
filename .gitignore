@@ -13,3 +13,4 @@ capi/BUILD-VS2019/*
 *.ast
 TEST
 TMP
+cpp-sdk/*

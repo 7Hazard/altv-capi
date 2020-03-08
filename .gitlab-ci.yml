@@ -40,7 +40,7 @@ build:linux:
         - apt install -y clang-tools-9
     script:
         - "./tools/get-cppsdk.sh"
-        - "cd capi && ./gen-client.sh && ./gen-server.sh && ./build.sh && cd .."
+        - "cd capi && ./gen-server.sh && ./build.sh && cd .."
 
     artifacts:
         paths:
