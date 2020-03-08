@@ -33,7 +33,8 @@ build:linux:
     stage: build
     tags:
         - docker
-    image: 7hazard/node-clang-7
+    # image: 7hazard/node-clang-7
+    image: 7hazard/node-clang-win32-cross
 
     before_script:
         - curl -sL "https://apt.llvm.org/llvm.sh" | bash
