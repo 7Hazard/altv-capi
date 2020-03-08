@@ -21,6 +21,7 @@ build:win32:
             - capi/BUILD-WIN32/altv-capi-client-static/*
             - capi/BUILD-WIN32/altv-capi-server/*
             - capi/BUILD-WIN32/altv-capi-server-static/*
+            - capi/client/* # linux uploads server
     
     variables:
         GIT_SUBMODULE_STRATEGY: recursive
@@ -49,6 +50,7 @@ build:linux:
             # - capi/BUILD/altv-capi-client-static/*
             - capi/BUILD/altv-capi-server/*
             - capi/BUILD/altv-capi-server-static/*
+            - capi/server/* # win32 uploads client
     
     variables:
         GIT_SUBMODULE_STRATEGY: recursive
