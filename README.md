@@ -28,6 +28,6 @@ If you want to build the parser:
 * Build through tasks and running configs in VS Code
 
 Requirements:
-* CMake
+* CMake 3.13+
 * Clang
 * Ninja
