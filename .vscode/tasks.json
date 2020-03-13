@@ -4,6 +4,45 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Fetch C++ SDK",
+            "type": "shell",
+            "command": "./tools/get-cppsdk",
+            "args": [],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Generate Client Wrappings",
+            "type": "shell",
+            "command": "./gen-client",
+            "options": {
+                "cwd": "${workspaceFolder}/capi"
+            },
+            "args": [],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
+        },
+        {
+            "label": "Generate Server Wrappings",
+            "type": "shell",
+            "command": "./gen-server",
+            "options": {
+                "cwd": "${workspaceFolder}/capi"
+            },
+            "args": [],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
+        },
+        {
             "label": "Generate Release",
             "type": "shell",
             "windows": {
