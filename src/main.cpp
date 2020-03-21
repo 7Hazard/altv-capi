@@ -23,24 +23,7 @@ std::string cheaderstart = R"(
 #ifndef _CAPI_H_
 #define _CAPI_H_
 
-#include <stdbool.h>
-#define CAPI_EXTERN
-
-#ifdef _WIN32
-#define CAPI_EXPORT CAPI_EXTERN __declspec(dllexport)
-#define CAPI_IMPORT CAPI_EXTERN __declspec(dllimport)
-#else
-#define CAPI_EXPORT CAPI_EXTERN
-#define CAPI_IMPORT CAPI_EXTERN
-#endif
-
-#ifndef CAPI
-#ifdef CAPI_DLL
-#define CAPI CAPI_IMPORT
-#else
-#define CAPI CAPI_EXTERN
-#endif // CAPI_DLL
-#endif // CAPI
+#include "../altv-capi-predefines.h"
 
 )";
 
@@ -55,24 +38,7 @@ std::string cppheaderstart = R"(
 
 #pragma once
 
-#define _Bool bool
-#define CAPI_EXTERN extern "C"
-
-#ifdef _WIN32
-#define CAPI_EXPORT CAPI_EXTERN __declspec(dllexport)
-#define CAPI_IMPORT CAPI_EXTERN __declspec(dllimport)
-#else
-#define CAPI_EXPORT CAPI_EXTERN
-#define CAPI_IMPORT CAPI_EXTERN
-#endif
-
-#ifndef CAPI
-#ifdef CAPI_DLL
-#define CAPI CAPI_IMPORT
-#else
-#define CAPI CAPI_EXTERN
-#endif // CAPI_DLL
-#endif // CAPI
+#include "../altv-capi-predefines.h"
 
 )";
 
