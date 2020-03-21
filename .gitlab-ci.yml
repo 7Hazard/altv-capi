@@ -79,7 +79,7 @@ publish:
         - "cp capi/client/altv-capi.h capi/BUILD-WIN32/altv-capi-client/include/client/altv-capi.h"
         - "cp capi/client/altv-capi.hpp capi/BUILD-WIN32/altv-capi-client/include/client/altv-capi.hpp"
         - "cp capi/altv-capi-extra.h capi/BUILD-WIN32/altv-capi-client/include/altv-capi-extra.h"
-        - "cp capi/altv-capi-extra.h capi/BUILD-WIN32/altv-capi-client/include/altv-capi-predefines.h"
+        - "cp capi/altv-capi-predefines.h capi/BUILD-WIN32/altv-capi-client/include/altv-capi-predefines.h"
         - "cp capi/client/altv-capi.json capi/BUILD-WIN32/altv-capi-client/altv-capi.json"
         - "cd capi/BUILD-WIN32 && zip -r altv-capi-client-win32.zip altv-capi-client && cd ../../"
         
@@ -89,7 +89,7 @@ publish:
         - "cp capi/client/altv-capi.h capi/BUILD-WIN32/altv-capi-client-static/include/client/altv-capi.h"
         - "cp capi/client/altv-capi.hpp capi/BUILD-WIN32/altv-capi-client-static/include/client/altv-capi.hpp"
         - "cp capi/altv-capi-extra.h capi/BUILD-WIN32/altv-capi-client-static/include/altv-capi-extra.h"
-        - "cp capi/altv-capi-extra.h capi/BUILD-WIN32/altv-capi-client-static/include/altv-capi-predefines.h"
+        - "cp capi/altv-capi-predefines.h capi/BUILD-WIN32/altv-capi-client-static/include/altv-capi-predefines.h"
         - "cp capi/client/altv-capi.json capi/BUILD-WIN32/altv-capi-client-static/altv-capi.json"
         - "cd capi/BUILD-WIN32 && zip -r altv-capi-client-static-win32.zip altv-capi-client-static && cd ../../"
         
@@ -99,7 +99,7 @@ publish:
         - "cp capi/server/altv-capi.h capi/BUILD-WIN32/altv-capi-server/include/server/altv-capi.h"
         - "cp capi/server/altv-capi.hpp capi/BUILD-WIN32/altv-capi-server/include/server/altv-capi.hpp"
         - "cp capi/altv-capi-extra.h capi/BUILD-WIN32/altv-capi-server/include/altv-capi-extra.h"
-        - "cp capi/altv-capi-extra.h capi/BUILD-WIN32/altv-capi-server/include/altv-capi-predefines.h"
+        - "cp capi/altv-capi-predefines.h capi/BUILD-WIN32/altv-capi-server/include/altv-capi-predefines.h"
         - "cp capi/server/altv-capi.json capi/BUILD-WIN32/altv-capi-server/altv-capi.json"
         - "cd capi/BUILD-WIN32 && zip -r altv-capi-server-win32.zip altv-capi-server && cd ../../"
         
@@ -109,7 +109,7 @@ publish:
         - "cp capi/server/altv-capi.h capi/BUILD-WIN32/altv-capi-server-static/include/server/altv-capi.h"
         - "cp capi/server/altv-capi.hpp capi/BUILD-WIN32/altv-capi-server-static/include/server/altv-capi.hpp"
         - "cp capi/altv-capi-extra.h capi/BUILD-WIN32/altv-capi-server-static/include/altv-capi-extra.h"
-        - "cp capi/altv-capi-extra.h capi/BUILD-WIN32/altv-capi-server-static/include/altv-capi-predefines.h"
+        - "cp capi/altv-capi-predefines.h capi/BUILD-WIN32/altv-capi-server-static/include/altv-capi-predefines.h"
         - "cp capi/server/altv-capi.json capi/BUILD-WIN32/altv-capi-server-static/altv-capi.json"
         - "cd capi/BUILD-WIN32 && zip -r altv-capi-server-static-win32.zip altv-capi-server-static && cd ../../"
 
@@ -120,7 +120,7 @@ publish:
         - "cp capi/server/altv-capi.h capi/BUILD/altv-capi-server/include/server/altv-capi.h"
         - "cp capi/server/altv-capi.hpp capi/BUILD/altv-capi-server/include/server/altv-capi.hpp"
         - "cp capi/altv-capi-extra.h capi/BUILD/altv-capi-server/include/altv-capi-extra.h"
-        - "cp capi/altv-capi-extra.h capi/BUILD/altv-capi-server/include/altv-capi-predefines.h"
+        - "cp capi/altv-capi-predefines.h capi/BUILD/altv-capi-server/include/altv-capi-predefines.h"
         - "cp capi/server/altv-capi.json capi/BUILD/altv-capi-server/altv-capi.json"
         - "cd capi/BUILD && zip -r altv-capi-server-linux.zip altv-capi-server && cd ../../"
         
@@ -130,7 +130,7 @@ publish:
         - "cp capi/server/altv-capi.h capi/BUILD/altv-capi-server-static/include/server/altv-capi.h"
         - "cp capi/server/altv-capi.hpp capi/BUILD/altv-capi-server-static/include/server/altv-capi.hpp"
         - "cp capi/altv-capi-extra.h capi/BUILD/altv-capi-server-static/include/altv-capi-extra.h"
-        - "cp capi/altv-capi-extra.h capi/BUILD/altv-capi-server-static/include/altv-capi-predefines.h"
+        - "cp capi/altv-capi-predefines.h capi/BUILD/altv-capi-server-static/include/altv-capi-predefines.h"
         - "cp capi/server/altv-capi.json capi/BUILD/altv-capi-server-static/altv-capi.json"
         - "cd capi/BUILD && zip -r altv-capi-server-static-linux.zip altv-capi-server-static && cd ../../"
 
