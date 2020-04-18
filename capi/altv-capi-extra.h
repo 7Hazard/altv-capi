@@ -11,8 +11,11 @@
 using nullptr_t = std::nullptr_t;
 #endif
 
+#ifdef ALTV_SERVER // Not available in the altv-server executable
 CAPI unsigned int alt_GetSDKVersion();
 #define CAPI_EXPORT_SDK_VERSION CAPI_EXPORT unsigned int GetSDKVersion() { return alt_GetSDKVersion(); }
+#endif
+#define CAPI_SKIP_VERSION_CHECK CAPI_EXPORT void SkipSDKVersionCheck() { }
 
 typedef void(*OnCreateBaseObjectFnType)(alt_IResource*, alt_RefBase_RefStore_IBaseObject*);
 typedef void(*OnRemoveBaseObjectFnType)(alt_IResource*, alt_RefBase_RefStore_IBaseObject*);
