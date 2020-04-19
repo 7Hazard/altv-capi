@@ -13,9 +13,11 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
 endif()
 
 file(GLOB_RECURSE CAPI_FILES_WATCH
-    "../**/*.h"
-    "../**/*.hpp"
-    "../**/*.hpp"
+    "../cpp-sdk/**/*.h"
+    "../cpp-sdk/**/*.hpp"
+    "../src/**/*.h"
+    "../src/**/*.hpp"
+    "../src/**/*.cpp"
 )
 
 include_directories(
@@ -32,7 +34,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Client (only Windows)
     add_custom_command(
         OUTPUT ${CMAKE_SOURCE_DIR}/client/altv-capi.cpp
-        IMPLICIT_DEPENDS CXX ${ALTV_CPPSDK_HEADERS}
+        IMPLICIT_DEPENDS CXX ${CAPI_FILES_WATCH}
         COMMAND gen-client
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     )
@@ -75,14 +77,14 @@ endif()
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     add_custom_command(
         OUTPUT ${CMAKE_SOURCE_DIR}/server/altv-capi.cpp
-        IMPLICIT_DEPENDS CXX ${ALTV_CPPSDK_HEADERS}
+        IMPLICIT_DEPENDS CXX ${CAPI_FILES_WATCH}
         COMMAND gen-server
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     )
 else()
     add_custom_command(
         OUTPUT ${CMAKE_SOURCE_DIR}/server/altv-capi.cpp
-        IMPLICIT_DEPENDS CXX ${ALTV_CPPSDK_HEADERS}
+        IMPLICIT_DEPENDS CXX ${CAPI_FILES_WATCH}
         COMMAND ./gen-server.sh
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     )

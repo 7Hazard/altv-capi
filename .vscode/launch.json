@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "Parse client API",
-            // "type": "cppvsdbg",
+            "type": "cppvsdbg",
             "request": "launch",
             "windows": {
                 //"type": "cppvsdbg",

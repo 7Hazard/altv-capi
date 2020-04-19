@@ -232,10 +232,18 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         {
             auto methodname = method->getNameInfo().getAsString();
             auto methodQualifiedName = method->getQualifiedNameAsString();
+
+            std::stringstream csharedfuncbody;
+            std::stringstream csharedfunccomment;
+
             std::string cfuncname;
             std::stringstream cfuncbody;
             std::stringstream cfunccomment;
             json cfuncjson;
+
+            bool hasHeapFunc = false;
+            std::stringstream cheapfuncbody;
+            std::stringstream cheapfunccomment;
 
             bool isTypecastOverload = methodname.find("operator ") != std::string::npos;
 
@@ -351,23 +359,33 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             logd("// Return type");
 
             auto retdata = Typedata(rettype, record->getASTContext());
+            auto heapretdata = Typedata(rettype, record->getASTContext());
             if(!retdata.ok)
                 continue;
 
             std::string stmtclose = ");";
+            std::string heapstmtclose = ");";
             if(method->getKind() == Decl::Kind::CXXConstructor)
             {
-                retdata.kind = Typedata::POINTER;
-                retdata.ctype = cstructname+"*";
-                retdata.forwardDecl = "struct ";
                 // TODO, maybe set pointee value in retdata?
 
-                cfuncbody << "return (" << retdata.forwardDecl
-                    << retdata.ctype << ")new " << recordname << "(";
+                // Stack version
+                retdata.kind = Typedata::FUNDAMENTAL;
+                retdata.ctype = "void";
+                retdata.forwardDecl = "";
+                cfuncbody << "*((" << recordname << "*)_returnValue) = " << recordname << "(";
+
+                // Heap version
+                hasHeapFunc = true;
+                heapretdata.kind = Typedata::POINTER;
+                heapretdata.ctype = cstructname+"*";
+                heapretdata.forwardDecl = "struct ";
+                cheapfuncbody << "return (" << heapretdata.forwardDecl
+                    << heapretdata.ctype << ")new " << recordname << "(";
 
                 // Has to have accompanying free function for the type
-                auto freefuncsig = cstructname+("_free()");
-                cfunccomment << ("// Return ptr must be manually freed with ") + freefuncsig + "\n";
+                auto freefuncsig = cstructname+("_Free()");
+                cheapfunccomment << ("// Return ptr must be manually freed with ") + freefuncsig + "\n";
             }
             else if(methodname == "operator=")
             {
@@ -389,14 +407,22 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                     // cross your fingers and hope that the type has a copy constructor
                     // heap allocate type via copy ctor, requires manual freeing
 
-                    retdata = Typedata(retdata, Typedata::POINTER);
+                    heapretdata = Typedata(retdata, Typedata::POINTER);
                     
-                    cfuncbody << "return (" << retdata.ctype << ")new " << rettype.getAsString() << "(";
-                    stmtclose = "));";
+                    // Stack version
+                    retdata.kind = Typedata::FUNDAMENTAL;
+                    retdata.ctype = "void";
+                    retdata.forwardDecl = "";
+                    cfuncbody << "*((" << rettype.getAsString() << "*)_returnValue) = ";
+                    
+                    // Heap version
+                    hasHeapFunc = true;
+                    cheapfuncbody << "return (" << heapretdata.ctype << ")new " << rettype.getAsString() << "(";
+                    heapstmtclose = "));";
 
                     // Has to have accompanying free function for the type
-                    auto freefuncsig = ToCIdentifier(rettype.getAsString())+("_free()");
-                    cfunccomment << "// Return ptr must be manually freed with " << freefuncsig << "\n";
+                    auto freefuncsig = ToCIdentifier(rettype.getAsString())+("_Free()");
+                    cheapfunccomment << "// Return ptr must be manually freed with " << freefuncsig << "\n";
                 }
             }
             else if(retdata.kind == Typedata::REFERENCE)
@@ -424,9 +450,9 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             {
                 logd("// Static method");
                 if(derived)
-                    cfuncbody << derivedname << "::" << methodname << "(";
+                    csharedfuncbody << derivedname << "::" << methodname << "(";
                 else 
-                    cfuncbody << recordname << "::" << methodname << "(";
+                    csharedfuncbody << recordname << "::" << methodname << "(";
             }
             else {
                 std::string cparamtype = cstructname+"*";
@@ -434,12 +460,12 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
 
                 if(derived)
                 {
-                    cfuncbody << "static_cast<" << recordname << " *>((" << derivedname 
+                    csharedfuncbody << "static_cast<" << recordname << " *>((" << derivedname 
                         << " *)_instance)->" << methodname << "(";
                 }
                 else
                 {
-                    cfuncbody << "((" << recordname 
+                    csharedfuncbody << "((" << recordname 
                         << " *)_instance)->" << methodname << "(";
                 }
 
@@ -526,11 +552,6 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             if(badparams)
                 continue;
 
-            cfuncbody << sourceparams;
-
-
-            cfuncbody << stmtclose;
-
             // Parametric return type
             // if(retdata.kind == Typedata::STRUCT
             //     && rettype.isTriviallyCopyableType(method->getASTContext()))
@@ -541,6 +562,25 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             //     // TODO ADD JSON TO PARAMS
             //     cfuncsource << ";\n    memcpy(_return, &addr, sizeof(" << rettype.getAsString() << "))";
             // }
+
+            csharedfuncbody << sourceparams;
+
+            // If has heap function, then func is a stack version
+            // Handle parameters accordingly
+            auto cheapheaderparams = headerparams;
+            json cheapfuncjson;
+            if(hasHeapFunc)
+            {
+                cheapfuncjson = cfuncjson;
+                cfuncjson["params"].push_back({
+                    {"name", "returnValue"},
+                    {"type", heapretdata.json_data()}
+                });
+                if(!headerparams.empty()) headerparams += ", ";
+                headerparams += heapretdata.forwardDecl + heapretdata.ctype + " _returnValue";
+            }
+
+            cfuncbody << csharedfuncbody.str() << stmtclose;
 
             auto funcsig = ("CAPI ") 
                 + retdata.forwardDecl
@@ -554,13 +594,40 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 << std::endl << std::endl);
 
             // Source
-            capisource << funcsig 
-                << "\n{\n    " << cfuncbody.str() << "\n}\n\n";
+            capisource
+                << funcsig << "\n{\n    " << cfuncbody.str() << "\n}\n\n";
 
             // json
             cfuncjson["comment"] = cfunccomment.str();
             cfuncjson["struct"] = cstructname;
             capijson["functions"][cfuncname] = cfuncjson;
+
+            if(hasHeapFunc)
+            {
+                cfuncname += "_Heap";
+                cheapfuncbody << csharedfuncbody.str() << heapstmtclose;
+                auto heapfuncsig = ("CAPI ")
+                    + heapretdata.forwardDecl
+                    + heapretdata.ctype
+                    + " " + cfuncname
+                    + '(' + cheapheaderparams + ")";
+
+                // Header
+                capiheader(cheapfunccomment.str()
+                    << heapfuncsig << ";" 
+                    << std::endl << std::endl);
+
+                // Source
+                capisource
+                    << heapfuncsig << "\n{\n    " << cheapfuncbody.str() << "\n}\n\n";
+
+                // json
+                cheapfuncjson["comment"] = cheapfunccomment.str();
+                cheapfuncjson["struct"] = cstructname;
+                capijson["functions"][cfuncname] = cheapfuncjson;
+
+                funcnames[cfuncname] = 1;
+            }
         }
 
         capiheader("\n");
@@ -636,7 +703,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         if(record->hasSimpleDestructor() || (!record->hasIrrelevantDestructor() && !record->needsOverloadResolutionForDestructor() && record->getDestructor()->getAccessUnsafe() == AccessSpecifier::AS_public))
         {
             // Destructor is accessible
-            auto freefuncname = cstructname + ("_free");
+            auto freefuncname = cstructname + ("_Free");
             auto cfreefuncsig = ("CAPI void ") + freefuncname + ("(struct ") + cstructname + ("* ptr)");
             capiheader(cfreefuncsig << ";\n\n");
             capisource << cfreefuncsig << "\n{\n    delete (" 
