@@ -12,6 +12,12 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++17 -fms-extensions -fdelayed-template-parsing -fexceptions")
 endif()
 
+file(GLOB_RECURSE CAPI_FILES_WATCH
+    "../**/*.h"
+    "../**/*.hpp"
+    "../**/*.hpp"
+)
+
 include_directories(
     ./
     ../
@@ -24,8 +30,14 @@ add_definitions(
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Client (only Windows)
+    add_custom_command(
+        OUTPUT ${CMAKE_SOURCE_DIR}/client/altv-capi.cpp
+        IMPLICIT_DEPENDS CXX ${ALTV_CPPSDK_HEADERS}
+        COMMAND gen-client
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    )
     add_library(altv-capi-client SHARED
-        client/altv-capi.cpp
+        ${CMAKE_SOURCE_DIR}/client/altv-capi.cpp
     )
     target_compile_definitions(altv-capi-client PRIVATE
         ALT_CLIENT_API
@@ -42,7 +54,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 
     # Client static
     add_library(altv-capi-client-static STATIC
-        client/altv-capi.cpp
+        ${CMAKE_SOURCE_DIR}/client/altv-capi.cpp
     )
     target_compile_definitions(altv-capi-client-static PRIVATE
         ALT_CLIENT_API
@@ -60,8 +72,23 @@ endif()
 
 
 # Server
+if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+    add_custom_command(
+        OUTPUT ${CMAKE_SOURCE_DIR}/server/altv-capi.cpp
+        IMPLICIT_DEPENDS CXX ${ALTV_CPPSDK_HEADERS}
+        COMMAND gen-server
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    )
+else()
+    add_custom_command(
+        OUTPUT ${CMAKE_SOURCE_DIR}/server/altv-capi.cpp
+        IMPLICIT_DEPENDS CXX ${ALTV_CPPSDK_HEADERS}
+        COMMAND ./gen-server.sh
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    )
+endif()
 add_library(altv-capi-server SHARED
-    server/altv-capi.cpp
+    ${CMAKE_SOURCE_DIR}/server/altv-capi.cpp
 )
 target_compile_definitions(altv-capi-server PRIVATE
     ALT_SERVER_API
@@ -78,7 +105,7 @@ set_target_properties(altv-capi-server PROPERTIES
 
 # Server static
 add_library(altv-capi-server-static STATIC
-    server/altv-capi.cpp
+    ${CMAKE_SOURCE_DIR}/server/altv-capi.cpp
 )
 target_compile_definitions(altv-capi-server-static PRIVATE
     ALT_SERVER_API

@@ -128,11 +128,23 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 if(!fieldtypedata.ok) // if its still bad
                     return false;
             }
-            body << "    " << fieldtypedata.GetCTypeWithName(fieldname) << ";\n";
+            body << "    " << fieldtypedata.GetCTypeWithName(fieldname);
+
+            bool isbitfield = field->isBitField();
+            int bitwidth = 0;
+            if(isbitfield)
+            {
+                bitwidth = field->getBitWidthValue(record->getASTContext());
+                body << " : " << bitwidth;
+            }
+
+            body << ";\n";
 
             capijson["structs"][cstructname]["fields"].push_back({
                 {"name", fieldname},
-                {"type", fieldtypedata.json_data()}
+                {"type", fieldtypedata.json_data()},
+                {"isBitField", isbitfield},
+                {"bitWidth", bitwidth}
             });
         }
 
