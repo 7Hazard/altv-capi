@@ -8,4 +8,3 @@
 #define CAPI CAPI_EXTERN
 #endif // CAPI_DLL
 
-#include "altv-capi.hpp"

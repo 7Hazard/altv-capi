@@ -5,8 +5,7 @@
 #define sastdump(node) static bool dump_##node = false; \
     if(!dump_##node) { node->dump(ast); ast << "\n--- END OF NODE ---\n\n"; dump_##node = true; } 
 
-#define capiheader(x) capicheader << x; capicppheader << x
-#define capixheader(c, cpp) capicheader << c; capicppheader << cpp
+#define capiheader(x) capicheader << x
 
 #include <iostream>
 #include <fstream>
@@ -32,8 +31,8 @@ using namespace llvm;
 
 // flags
 extern bool isDebugEnabled();
-// inline void logd(std::string x) { if(debugEnabled.getValue()) { capicheader << x << std::endl; capicppheader << x << std::endl; } }
-#define logd(x) if(isDebugEnabled()) { capicheader << x << std::endl; capicppheader << x << std::endl; }
+// inline void logd(std::string x) { if(debugEnabled.getValue()) { capicheader << x << std::endl; } }
+#define logd(x) if(isDebugEnabled()) { capicheader << x << std::endl; }
 
 extern PrintingPolicy pp;
 extern std::error_code ec;
@@ -44,7 +43,6 @@ extern raw_fd_ostream ast;
 extern std::ofstream logfile;
 extern json capijson;
 extern std::ofstream capicheader;
-extern std::ofstream capicppheader;
 extern std::ofstream capisource;
 extern std::unordered_set<std::string> capisymbols;
 

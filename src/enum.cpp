@@ -35,8 +35,7 @@ void HandleEnum(const EnumDecl* enumdecl)
     }
 
     // Write to header
-    capixheader("typedef ", "");
-    capiheader("enum " << enumname << " {\n" 
+    capiheader("typedef enum " << enumname << " {\n" 
         << enumcontent.str() 
         << "};\n" << std::endl);
 

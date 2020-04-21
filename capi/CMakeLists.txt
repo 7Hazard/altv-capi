@@ -39,14 +39,14 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     )
     add_library(altv-capi-client SHARED
-        ${CMAKE_SOURCE_DIR}/client/altv-capi.cpp
+        ${CMAKE_SOURCE_DIR}/altv-capi-client.cpp
     )
     target_compile_definitions(altv-capi-client PRIVATE
         ALT_CLIENT_API
         CAPI_DLL
     )
     target_include_directories(altv-capi-client PRIVATE
-        client
+
     )
     set_target_properties(altv-capi-client PROPERTIES
         ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/lib
@@ -56,13 +56,13 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 
     # Client static
     add_library(altv-capi-client-static STATIC
-        ${CMAKE_SOURCE_DIR}/client/altv-capi.cpp
+        ${CMAKE_SOURCE_DIR}/altv-capi-client.cpp
     )
     target_compile_definitions(altv-capi-client-static PRIVATE
         ALT_CLIENT_API
     )
     target_include_directories(altv-capi-client-static PRIVATE
-        client
+
     )
     set_target_properties(altv-capi-client-static PROPERTIES
         ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/lib
@@ -90,14 +90,14 @@ else()
     )
 endif()
 add_library(altv-capi-server SHARED
-    ${CMAKE_SOURCE_DIR}/server/altv-capi.cpp
+    ${CMAKE_SOURCE_DIR}/altv-capi-server.cpp
 )
 target_compile_definitions(altv-capi-server PRIVATE
     ALT_SERVER_API
     CAPI_DLL
 )
 target_include_directories(altv-capi-server PRIVATE
-    server
+
 )
 set_target_properties(altv-capi-server PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server/lib
@@ -107,13 +107,13 @@ set_target_properties(altv-capi-server PROPERTIES
 
 # Server static
 add_library(altv-capi-server-static STATIC
-    ${CMAKE_SOURCE_DIR}/server/altv-capi.cpp
+    ${CMAKE_SOURCE_DIR}/altv-capi-server.cpp
 )
 target_compile_definitions(altv-capi-server-static PRIVATE
     ALT_SERVER_API
 )
 target_include_directories(altv-capi-server-static PRIVATE
-    server
+
 )
 set_target_properties(altv-capi-server-static PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server-static/lib

@@ -163,19 +163,15 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         return;
 
     // Header
-    capixheader("typedef ", "");
-    capiheader("struct " << cstructname);
+    capiheader("typedef struct " << cstructname);
     if(body.str().empty())
     {
         // capiheader(" " << cstructname << ";\n" << std::endl);
-        capixheader(" " << cstructname << ";\n" << std::endl, " {};\n\n");
+        capiheader(" " << cstructname << ";\n" << std::endl);
     }
     else
     {
-        capixheader(
-            " {\n" << body.str() << "} " << cstructname << ";\n" << std::endl,
-            " {\n" << body.str() << "};\n" << std::endl
-        );
+        capiheader(" {\n" << body.str() << "} " << cstructname << ";\n" << std::endl);
     }
 
     // Add record to bookkept symbols
