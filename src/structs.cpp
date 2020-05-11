@@ -86,6 +86,25 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
 
     std::stringstream body;
 
+    if(record->isPolymorphic()) { // if vtable
+        auto fieldtypedata = Typedata();
+        fieldtypedata.ok = true;
+        fieldtypedata.kind = Typedata::FUNDAMENTAL;
+        fieldtypedata.ctype = "unsigned long long";
+
+        auto fieldname = "vtable";
+
+        body << "    " << fieldtypedata.GetCTypeWithName(fieldname) << ";\n";
+        
+        capijson["structs"][cstructname]["fields"].push_back({
+            {"name", fieldname},
+            {"type", fieldtypedata.json_data()},
+            {"isBitField", false},
+            {"bitWidth", 0}
+        });
+        capijson["structs"][cstructname]["isVirtual"] = true;
+    }
+
     std::function<bool(const CXXRecordDecl*)> dofields = [&](const CXXRecordDecl* r){
         // Inherited fields
         for(auto parent: r->bases())
