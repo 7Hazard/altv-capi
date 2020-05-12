@@ -356,6 +356,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
             std::string headerparams;
 
             auto rettype = method->getReturnType().getCanonicalType();
+            auto rettypeUnqualified = method->getReturnType().getCanonicalType().getUnqualifiedType();
             logd("// Return type");
 
             auto retdata = Typedata(rettype, record->getASTContext());
@@ -413,7 +414,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                     retdata.kind = Typedata::FUNDAMENTAL;
                     retdata.ctype = "void";
                     retdata.forwardDecl = "";
-                    cfuncbody << "*((" << rettype.getAsString() << "*)_returnValue) = ";
+                    cfuncbody << "*((" << rettypeUnqualified.getAsString() << "*)_returnValue) = ";
                     
                     // Heap version
                     hasHeapFunc = true;
