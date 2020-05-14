@@ -52,6 +52,11 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         logd("// Is ClassTemplatePartialSpecialization.\n");
         return;
     }
+    else if(record->isLambda())
+    {
+        logd("// is lambda\n");
+        return;
+    }
     //else if(record->getDeclKind() == Decl::Kind::ClassTemplateSpecialization
     //    && (record->getTemplateSpecializationKind() != TemplateSpecializationKind::TSK_ExplicitInstantiationDefinition
     //    || record->getTemplateSpecializationKind() != TemplateSpecializationKind::TSK_ExplicitInstantiationDeclaration))

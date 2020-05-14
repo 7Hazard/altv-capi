@@ -686,6 +686,10 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         //     rn
         // );
     }
+    else if(record->isLambda())
+    {
+        logd("// record is a lambda\n")
+    }
     else
     // if(
     //     (record->isStruct() && currentAccess == AccessSpecifier::AS_none)
