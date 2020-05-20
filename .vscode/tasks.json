@@ -68,7 +68,7 @@
                 "command": "${workspaceFolder}/../../NINJA-WIN-RelWithDebInfo-BUILD.bat; Copy-Item '${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/bin/altv-api-tool.exe' '${workspaceFolder}/tools/altv-api-tool.exe'",
             },
             "linux": {
-                "command": "cmake --build A-BUILD-NINJA-RelWithDebInfo --config RelWithDebInfo && cp '${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/bin/altv-api-tool' '${workspaceFolder}/tools/altv-api-tool'",
+                "command": "cmake --build A-BUILD-NINJA-RelWithDebInfo --config RelWithDebInfo --target altv-api-tool && cp '${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/bin/altv-api-tool' '${workspaceFolder}/tools/altv-api-tool'",
             },
             "options": {
                 "cwd": "${workspaceFolder}/../../"
