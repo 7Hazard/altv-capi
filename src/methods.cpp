@@ -623,6 +623,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                     << heapfuncsig << "\n{\n    " << cheapfuncbody.str() << "\n}\n\n";
 
                 // json
+                cheapfuncjson["returns"] = heapretdata.json_data();
                 cheapfuncjson["comment"] = cheapfunccomment.str();
                 cheapfuncjson["struct"] = cstructname;
                 capijson["functions"][cfuncname] = cheapfuncjson;
