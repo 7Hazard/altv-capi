@@ -94,8 +94,8 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
     if(record->isPolymorphic()) { // if vtable
         auto fieldtypedata = Typedata();
         fieldtypedata.ok = true;
-        fieldtypedata.kind = Typedata::FUNDAMENTAL;
-        fieldtypedata.ctype = "void*";
+        fieldtypedata.kind = Typedata::POINTER;
+        fieldtypedata.ctype = "void";
 
         auto fieldname = "vtable";
 
