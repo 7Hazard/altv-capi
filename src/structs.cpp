@@ -95,7 +95,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         auto fieldtypedata = Typedata();
         fieldtypedata.ok = true;
         fieldtypedata.kind = Typedata::POINTER;
-        fieldtypedata.ctype = "void";
+        fieldtypedata.ctype = "void*";
 
         auto fieldname = "vtable";
 
