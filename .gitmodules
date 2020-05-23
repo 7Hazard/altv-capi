@@ -1,0 +1,3 @@
+[submodule "alt-config"]
+	path = alt-config
+	url = https://github.com/altmp/alt-config.git
