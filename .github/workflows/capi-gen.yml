@@ -1,0 +1,186 @@
+name: Build CAPI generator
+
+on:
+  push:
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-18.04
+    defaults:
+      run:
+        shell: bash
+    
+    steps:
+    - run: |
+        sudo chmod 777 /
+        sudo chmod 777 /usr/bin
+    
+      # clang
+      # can't cache individual files
+#     - name: Cache clang-cl
+#       id: cache-clang-cl
+#       uses: actions/cache@v1
+#       with:
+#         path: /usr/bin/*clang-cl /usr/bin/*lld-link
+#         key: clang-cl-1
+    - name: Install clang-cl & lld-link
+#       if: steps.cache-clang-cl.outputs.cache-hit != 'true'
+      run: |
+        sudo apt install -y clang-tools-9
+
+    # llvm-project
+    - name: Cache LLVM build files
+      id: cache-llvm
+      uses: actions/cache@v1
+      with:
+        path: llvm-project
+        key: llvm-project
+    - name: Fetch LLVM Project
+      if: steps.cache-llvm.outputs.cache-hit != 'true'
+      run: "git clone --depth 1 -j8 https://github.com/llvm/llvm-project.git"
+
+    - uses: actions/checkout@v2
+      with:
+        path: llvm-project/clang-tools-extra/altv-capi
+    
+    - name: Install ninja-build tool
+      uses: seanmiddleditch/gha-setup-ninja@v1
+      
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v1.4.2
+      
+    # write the cmakelists file
+    - run: "echo -e 'include(CMakeDependentOption)\nadd_subdirectory(altv-capi)' >> CMakeLists.txt"
+      if: steps.cache-llvm.outputs.cache-hit != 'true'
+      working-directory: llvm-project/clang-tools-extra
+      
+    # Linux
+    - name: Generate
+      run: "cmake -G Ninja llvm -BA-BUILD-NINJA-RelWithDebInfo -DCMAKE_BUILD_TYPE=RelWithDebInfo -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra' -DLLVM_BUILD_TESTS=OFF -DLLVM_ENABLE_CXX1Z=ON -DCLANG_DEFAULT_CXX_STDLIB=libc++ -DLLVM_ENABLE_LIBCXX=ON -DLLVM_STATIC_LINK_CXX_STDLIB=OFF -DCMAKE_C_COMPILER='clang-9' -DCMAKE_ASM_COMPILER='clang-9' -DCMAKE_CXX_COMPILER='clang++-9' -DCLANG_DEFAULT_LINKER='ld.lld' -DLLVM_ENABLE_LLD=ON"
+      working-directory: llvm-project
+    - name: Build
+      run: "cmake --build A-BUILD-NINJA-RelWithDebInfo --config RelWithDebInfo --target altv-api-tool"
+      working-directory: llvm-project
+  
+    - name: Linux artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: altv-capi-gen
+        # A file, directory or wildcard pattern that describes what to upload
+        path: llvm-project/A-BUILD-NINJA-RelWithDebInfo/bin/altv-api-tool
+  
+  build-win32:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: cmd
+
+    steps:
+#     - uses: rlespinasse/github-slug-action@2.0.0
+    
+    - name: Install ninja-build tool
+      uses: seanmiddleditch/gha-setup-ninja@v1
+      
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v1.4.2
+    
+    - name: Cache LLVM chocolatey
+      id: cache-llvm-choco
+      uses: actions/cache@v1
+      with:
+        path: "C:/Program Files/LLVM"
+        key: llvm-choco
+    - run: choco install llvm -y --no-progress
+      if: steps.cache-llvm-choco.outputs.cache-hit != 'true'
+    
+    # llvm-project
+    - name: Cache LLVM Project files
+      id: cache-llvm
+      uses: actions/cache@v1
+      with:
+        path: llvm-project
+        key: llvm-project-win32
+    - name: Fetch LLVM Project
+      if: steps.cache-llvm.outputs.cache-hit != 'true'
+      run: "git clone --depth 1 -j8 https://github.com/llvm/llvm-project.git"
+
+    - uses: actions/checkout@v2
+      with:
+        path: llvm-project/clang-tools-extra/altv-capi
+      
+    # write the cmakelists file
+    - run: "echo include(CMakeDependentOption) > CMakeLists.txt && echo add_subdirectory(altv-capi) >> CMakeLists.txt"
+      if: steps.cache-llvm.outputs.cache-hit != 'true'
+      working-directory: llvm-project/clang-tools-extra
+      
+    # Parser
+    - name: Generate
+      run: "clang-tools-extra\\altv-capi\\tools\\NINJA-vs2019e-RelWithDebInfo-GEN.bat"
+      working-directory: llvm-project
+    - name: Build
+      run: "clang-tools-extra\\altv-capi\\tools\\NINJA-vs2019e-RelWithDebInfo-BUILD.bat"
+      working-directory: llvm-project
+    
+    - name: Win32 artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        # Artifact name
+        name: altv-capi-gen.exe
+        # A file, directory or wildcard pattern that describes what to upload
+        path: llvm-project/A-BUILD-NINJA-VS2019-RelWithDebInfo/bin/altv-api-tool.exe
+
+  release:
+    runs-on: ubuntu-18.04
+    needs: [build-linux, build-win32]
+    defaults:
+      run:
+        shell: bash
+    
+    steps:
+    - uses: rlespinasse/github-slug-action@2.0.0
+      
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ env.GITHUB_REF_SLUG }}-${{ github.run_number }}
+        release_name: ${{ env.GITHUB_REF_SLUG }}-${{ github.run_number }}
+    
+    # linux
+    - name: Download linux artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-gen
+    - name: Upload linux parser
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: altv-api-tool
+        asset_name: altv-capi-gen
+        asset_content_type: application/zip
+      
+    # win32
+    - name: Download win32 artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-gen.exe
+    - name: Upload windows parser
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: altv-api-tool.exe
+        asset_name: altv-capi-gen.exe
+        asset_content_type: application/zip
+      
+    - uses: kolpav/purge-artifacts-action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        expire-in: 1min
+          
