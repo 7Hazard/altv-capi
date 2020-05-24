@@ -385,7 +385,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                     << heapretdata.ctype << ")new " << recordname << "(";
 
                 // Has to have accompanying free function for the type
-                auto freefuncsig = cstructname+("_Free()");
+                auto freefuncsig = cstructname+("_CAPI_Free()");
                 cheapfunccomment << ("// Return ptr must be manually freed with ") + freefuncsig + "\n";
             }
             else if(methodname == "operator=")
@@ -422,7 +422,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                     heapstmtclose = "));";
 
                     // Has to have accompanying free function for the type
-                    auto freefuncsig = ToCIdentifier(rettype.getAsString())+("_Free()");
+                    auto freefuncsig = ToCIdentifier(rettype.getAsString())+("_CAPI_Free()");
                     cheapfunccomment << "// Return ptr must be manually freed with " << freefuncsig << "\n";
                 }
             }
@@ -605,7 +605,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
 
             if(hasHeapFunc)
             {
-                cfuncname += "_Heap";
+                cfuncname += "_CAPI_Heap";
                 cheapfuncbody << csharedfuncbody.str() << heapstmtclose;
                 auto heapfuncsig = ("CAPI ")
                     + heapretdata.forwardDecl
@@ -709,7 +709,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
         if(record->hasSimpleDestructor() || (!record->hasIrrelevantDestructor() && !record->needsOverloadResolutionForDestructor() && record->getDestructor()->getAccessUnsafe() == AccessSpecifier::AS_public))
         {
             // Destructor is accessible
-            auto freefuncname = cstructname + ("_Free");
+            auto freefuncname = cstructname + ("_CAPI_Free");
             auto cfreefuncsig = ("CAPI void ") + freefuncname + ("(struct ") + cstructname + ("* ptr)");
             capiheader(cfreefuncsig << ";\n\n");
             capisource << cfreefuncsig << "\n{\n    delete (" 
