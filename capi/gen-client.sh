@@ -7,7 +7,7 @@ mkdir -p client
 cd client
 
 ../../tools/altv-api-tool \
-../../cpp-sdk/SDK.h \
+../../src/CAPI.h \
  \
 -- \
  \
