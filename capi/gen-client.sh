@@ -6,7 +6,7 @@ rm -f -r client
 mkdir -p client
 cd client
 
-../../tools/altv-api-tool \
+../../tools/altv-capi-gen \
 ../../src/CAPI.h \
  \
 -- \

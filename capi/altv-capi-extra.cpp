@@ -40,9 +40,9 @@ public:
 
         Resource_Impl(
             alt_IResource* resource,
-    #ifdef ALT_SERVER_API
+#ifdef ALT_SERVER_API
             _Bool(*MakeClientFn)(alt_IResource*, alt_IResource_CreationInfo*, alt_Array_String*),
-    #endif
+#endif
             _Bool(*StartFn)(alt_IResource*),
             _Bool(*StopFn)(alt_IResource*),
             _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*),
@@ -63,7 +63,7 @@ public:
         {}
 
 #ifdef ALT_SERVER_API
-		virtual bool MakeClient(alt::IResource::CreationInfo* info, alt::Array<alt::String> files) 
+		virtual bool MakeClient(alt::IResource::CreationInfo* info, alt::Array<alt::String> files) override 
         {
             return MakeClientFn((alt_IResource*)resource, (alt_IResource_CreationInfo*)info, (alt_Array_String*)&files);
         }

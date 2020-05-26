@@ -9,4 +9,4 @@ cd /d %curdir%
 set CFLAGS=-m64
 set CXXFLAGS=-m64
 
-cmake --build A-BUILD-NINJA-RelWithDebInfo --config RelWithDebInfo --target altv-api-tool
+cmake --build A-BUILD-NINJA-RelWithDebInfo --config RelWithDebInfo --target altv-capi-gen

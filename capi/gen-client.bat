@@ -6,7 +6,7 @@ if exist client rd /s /q client
 mkdir client
 cd client
 
-"../../tools/altv-api-tool" ^
+"../../tools/altv-capi-gen" ^
 ../../src/CAPI.h.h ^
  ^
 -- ^

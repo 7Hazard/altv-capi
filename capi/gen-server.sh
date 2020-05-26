@@ -6,7 +6,7 @@ rm -f -r server
 mkdir -p server
 cd server
 
-../../tools/altv-api-tool \
+../../tools/altv-capi-gen \
 ../../src/CAPI.h \
  \
 -- \

@@ -7,18 +7,18 @@ include_directories(
     src
 )
 
-add_clang_executable(altv-api-tool
+add_clang_executable(altv-capi-gen
     src/main.cpp
     
     src/enum.cpp
     src/templateClass.cpp
-    src/templateAlias.cpp
-    src/typedef.cpp
+    # src/templateAlias.cpp
+    # src/typedef.cpp
     src/access.cpp
     src/structs.cpp
     src/methods.cpp
 )
-target_link_libraries(altv-api-tool PRIVATE
+target_link_libraries(altv-capi-gen PRIVATE
     clangTooling
     clangBasic
     clangASTMatchers

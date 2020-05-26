@@ -10,7 +10,7 @@
             "request": "launch",
             "windows": {
                 //"type": "cppvsdbg",
-                "program": "${workspaceFolder}/tools/altv-api-tool.exe",
+                "program": "${workspaceFolder}/tools/altv-capi-gen.exe",
                 "args": [
                     // "--debug",
                     // Files to parse
@@ -68,7 +68,7 @@
             },
             "linux": {
                 "type": "cppdbg",
-                "program": "${workspaceFolder}/tools/altv-api-tool",
+                "program": "${workspaceFolder}/tools/altv-capi-gen",
                 "miDebuggerPath": "/usr/bin/gdb",
                 "args": [
                     // Files to parse
@@ -142,11 +142,11 @@
             "request": "launch",
             "windows": {
                 //"type": "cppvsdbg",
-                "program": "${workspaceFolder}/tools/altv-api-tool.exe",
+                "program": "${workspaceFolder}/tools/altv-capi-gen.exe",
             },
             "linux": {
                 "type": "cppdbg",
-                "program": "${workspaceFolder}/tools/altv-api-tool",
+                "program": "${workspaceFolder}/tools/altv-capi-gen",
                 "miDebuggerPath": "/usr/bin/gdb"
             },
             "args": [
@@ -211,7 +211,7 @@
             "name": "Parse client API (DEBUG)",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/../../A-BUILD-NINJA-Debug/bin/altv-api-tool.exe",
+            "program": "${workspaceFolder}/../../A-BUILD-NINJA-Debug/bin/altv-capi-gen.exe",
             "args": [
                 // Files to parse
                 "${workspaceFolder}/cpp-sdk/SDK.h",
@@ -274,7 +274,7 @@
             "name": "Parse server API (DEBUG)",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/../../A-BUILD-NINJA-Debug/bin/altv-api-tool.exe",
+            "program": "${workspaceFolder}/../../A-BUILD-NINJA-Debug/bin/altv-capi-gen.exe",
             "args": [
                 // Files to parse
                 "${workspaceFolder}/cpp-sdk/SDK.h",
@@ -336,7 +336,7 @@
             "name": "Parse Test (DEBUG)",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/../../A-BUILD-NINJA-Debug/bin/altv-api-tool.exe",
+            "program": "${workspaceFolder}/../../A-BUILD-NINJA-Debug/bin/altv-capi-gen.exe",
             "args": [
                 // Files to parse
                 "D:/src/llvm-project/clang-tools-extra/altv-capi/TEST/TEST.HPP",
