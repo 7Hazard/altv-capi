@@ -46,7 +46,7 @@
             "label": "Generate Release",
             "type": "shell",
             "windows": {
-                "command": "${workspaceFolder}/../../NINJA-WIN-RelWithDebInfo-GEN.bat",
+                "command": "${workspaceFolder}/tools/NINJA-WIN-RelWithDebInfo-GEN.bat",
             },
             "linux": {
                 "command": "cmake -G Ninja llvm -BA-BUILD-NINJA-RelWithDebInfo -DCMAKE_BUILD_TYPE=RelWithDebInfo -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra' -DLLVM_BUILD_TESTS=OFF -DLLVM_ENABLE_CXX1Z=ON -DCLANG_DEFAULT_CXX_STDLIB=libc++ -DLLVM_ENABLE_LIBCXX=ON -DLLVM_STATIC_LINK_CXX_STDLIB=OFF -DCMAKE_C_COMPILER='clang-9' -DCMAKE_ASM_COMPILER='clang-9' -DCMAKE_CXX_COMPILER='clang++-9' -DCLANG_DEFAULT_LINKER='ld.lld' -DLLVM_ENABLE_LLD=ON",
@@ -65,7 +65,7 @@
             "label": "Build Parser Release",
             "type": "shell",
             "windows": {
-                "command": "${workspaceFolder}/../../NINJA-WIN-RelWithDebInfo-BUILD.bat; Copy-Item '${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/bin/altv-capi-gen.exe' '${workspaceFolder}/tools/altv-capi-gen.exe'",
+                "command": "${workspaceFolder}/tools/NINJA-WIN-RelWithDebInfo-BUILD.bat; Copy-Item '${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/bin/altv-capi-gen.exe' '${workspaceFolder}/tools/altv-capi-gen.exe'",
             },
             "linux": {
                 "command": "cmake --build A-BUILD-NINJA-RelWithDebInfo --config RelWithDebInfo --target altv-capi-gen && cp '${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/bin/altv-capi-gen' '${workspaceFolder}/tools/altv-capi-gen'",
@@ -84,7 +84,7 @@
             "label": "Build Parser Debug",
             "type": "shell",
             "windows": {
-                "command": "${workspaceFolder}/../../NINJA-WIN-Debug-BUILD.bat",
+                "command": "${workspaceFolder}/tools/NINJA-WIN-Debug-BUILD.bat",
             },
             "options": {
                 "cwd": "${workspaceFolder}/../../"

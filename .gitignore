@@ -16,3 +16,4 @@ TMP
 cpp-sdk/*
 /cpp-sdk
 *.exe
+/tools/altv-capi-gen
