@@ -34,7 +34,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: llvm-project
-        key: llvm-project
+        key: llvm-project-linux2
     - name: Fetch LLVM Project
       if: steps.cache-llvm.outputs.cache-hit != 'true'
       run: "git clone --depth 1 -j8 https://github.com/llvm/llvm-project.git"
@@ -56,10 +56,10 @@ jobs:
       
     # Linux
     - name: Generate
-      run: "cmake -G Ninja llvm -BA-BUILD-NINJA-RelWithDebInfo -DCMAKE_BUILD_TYPE=RelWithDebInfo -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra' -DLLVM_BUILD_TESTS=OFF -DLLVM_ENABLE_CXX1Z=ON -DCLANG_DEFAULT_CXX_STDLIB=libc++ -DLLVM_ENABLE_LIBCXX=ON -DLLVM_STATIC_LINK_CXX_STDLIB=OFF -DCMAKE_C_COMPILER='clang-9' -DCMAKE_ASM_COMPILER='clang-9' -DCMAKE_CXX_COMPILER='clang++-9' -DCLANG_DEFAULT_LINKER='ld.lld' -DLLVM_ENABLE_LLD=ON"
+      run: "cmake -G Ninja llvm -B'A-BUILD-NINJA-Release' -DCMAKE_BUILD_TYPE='Release' -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra' -DLLVM_BUILD_TESTS=OFF -DLLVM_ENABLE_CXX1Z=ON -DLLVM_ENABLE_LIBCXX=ON -DLLVM_STATIC_LINK_CXX_STDLIB=OFF -DCMAKE_C_COMPILER='clang-9' -DCMAKE_ASM_COMPILER='clang-9' -DCMAKE_CXX_COMPILER='clang++-9' -DCLANG_DEFAULT_LINKER='ld.lld' -DLLVM_ENABLE_LLD=ON"
       working-directory: llvm-project
     - name: Build
-      run: "cmake --build A-BUILD-NINJA-RelWithDebInfo --config RelWithDebInfo --target altv-api-tool"
+      run: "cmake --build A-BUILD-NINJA-Release --config Release --target altv-api-tool"
       working-directory: llvm-project
   
     - name: Linux artifacts
@@ -68,7 +68,7 @@ jobs:
         # Artifact name
         name: altv-capi-gen
         # A file, directory or wildcard pattern that describes what to upload
-        path: llvm-project/A-BUILD-NINJA-RelWithDebInfo/bin/altv-api-tool
+        path: llvm-project/A-BUILD-NINJA-Release/bin/altv-api-tool
   
   build-win32:
     runs-on: windows-latest
@@ -178,9 +178,8 @@ jobs:
         asset_path: altv-api-tool.exe
         asset_name: altv-capi-gen.exe
         asset_content_type: application/zip
-      
-    - uses: kolpav/purge-artifacts-action@v1
+
+    - name: Remove old artifacts
+      uses: c-hive/gha-remove-artifacts@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        expire-in: 1min
-          
+        age: '1 minute'
