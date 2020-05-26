@@ -7,7 +7,7 @@ mkdir client
 cd client
 
 "../../tools/altv-capi-gen" ^
-../../src/CAPI.h.h ^
+../../src/CAPI.h ^
  ^
 -- ^
  ^
