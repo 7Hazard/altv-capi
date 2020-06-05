@@ -36,6 +36,29 @@
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
+                "ALT_SERVER_API",
+                "_WIN32"
+            ],
+            "windowsSdkVersion": "10.0.16299.0",
+            "compilerPath": "C:/Program Files/LLVM/bin/clang-cl.exe",
+            "cStandard": "c11",
+            "intelliSenseMode": "${default}"
+        },
+        {
+            "name": "CAPI Server Unix",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/../../clang/include",
+                "${workspaceFolder}/../../llvm/include",
+                "${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/tools/clang/include",
+                "${workspaceFolder}/../../A-BUILD-NINJA-RelWithDebInfo/include",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/capi"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
                 "ALT_SERVER_API"
             ],
             "windowsSdkVersion": "10.0.16299.0",

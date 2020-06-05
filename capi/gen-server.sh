@@ -16,10 +16,6 @@ cd server
 -DALT_SERVER \
 -DALT_SERVER_API \
  \
--fms-compatibility \
--fms-extensions \
--fdelayed-template-parsing \
- \
 -Wno-deprecated-declarations \
 -Wno-switch-enum \
 -Wno-unused-command-line-argument \
@@ -44,22 +40,15 @@ cd server
 -Wno-delete-incomplete \
 -Wno-c++11-narrowing \
 -Wno-comment \
- \
--xc++ \
--ferror-limit=0 \
 -Wno-pragma-once-outside-header \
--std=c++17 \
 -Wno-switch-enum \
 -Wno-switch \
  \
+-xc++ \
+-ferror-limit=0 \
+-std=c++17 \
 -fparse-all-comments \
  \
--nostdinc \
--fms-compatibility-version=19.11 \
-/premissive- \
---target=x86_64-windows-msvc \
--isystem/WINDOWS/SDK/Include/10.0.17763.0/ucrt \
--isystem/WINDOWS/SDK/Include/10.0.17763.0/shared \
--isystem/WINDOWS/SDK/Include/10.0.17763.0/um \
--isystem/WINDOWS/SDK/Include/10.0.17763.0/winrt \
--isystem/WINDOWS/VC/Tools/MSVC/14.16.27023/include
+-isystem'/usr/include/c++/8' \
+-isystem'/usr/include/x86_64-linux-gnu/c++/8' \
+-isystem'/usr/include/clang/7/include' \
