@@ -43,6 +43,25 @@
             ]
         },
         {
+            "label": "Generate Debug",
+            "type": "shell",
+            "windows": {
+                "command": "${workspaceFolder}/tools/NINJA-WIN-Debug-GEN.bat",
+            },
+            "linux": {
+                "command": "cmake -G Ninja llvm -BA-BUILD-NINJA-Debug -DCMAKE_BUILD_TYPE=Debug -DLLVM_ENABLE_PROJECTS='clang;clang-tools-extra' -DLLVM_BUILD_TESTS=OFF -DLLVM_ENABLE_CXX1Z=ON -DCLANG_DEFAULT_CXX_STDLIB=libc++ -DLLVM_ENABLE_LIBCXX=ON -DLLVM_STATIC_LINK_CXX_STDLIB=OFF -DCMAKE_C_COMPILER='clang-9' -DCMAKE_ASM_COMPILER='clang-9' -DCMAKE_CXX_COMPILER='clang++-9' -DCLANG_DEFAULT_LINKER='ld.lld' -DLLVM_ENABLE_LLD=ON",
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/../../"
+            },
+            "args": [],
+            "group": "build",
+            "problemMatcher": [
+                "$gcc",
+                "$msCompile"
+            ]
+        },
+        {
             "label": "Generate Release",
             "type": "shell",
             "windows": {

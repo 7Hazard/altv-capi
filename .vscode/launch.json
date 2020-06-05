@@ -152,22 +152,20 @@
             "args": [
                 // "--debug",
                 // Files to parse
-                "${workspaceFolder}/cpp-sdk/SDK.h",
+                "${workspaceFolder}/src/CAPI.h",
                 
                 "--",
 
-                // Includes
-                //"-Icpp-sdk",
-
-                // Defines
+                "-DALT_SERVER",
+                "-DALT_SERVER_API",
+                
                 "-DUNICODE",
                 "-D_UNICODE",
-                "-DALT_SERVER_API",
-
-                // Clang stuff
+                
                 "-fms-compatibility",
                 "-fms-extensions",
-
+                "-fdelayed-template-parsing",
+                
                 "-Wno-deprecated-declarations",
                 "-Wno-switch-enum",
                 "-Wno-unused-command-line-argument",
@@ -192,15 +190,15 @@
                 "-Wno-delete-incomplete",
                 "-Wno-c++11-narrowing",
                 "-Wno-comment",
-
+                
                 "-xc++",
                 "-ferror-limit=0",
                 "-Wno-pragma-once-outside-header",
                 "-std=c++17",
                 "-Wno-switch-enum",
                 "-Wno-switch",
-
-                "-fparse-all-comments",
+                
+                "-fparse-all-comments"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/capi/server",
@@ -277,22 +275,20 @@
             "program": "${workspaceFolder}/../../A-BUILD-NINJA-Debug/bin/altv-capi-gen.exe",
             "args": [
                 // Files to parse
-                "${workspaceFolder}/cpp-sdk/SDK.h",
+                "${workspaceFolder}/src/CAPI.h",
                 
                 "--",
 
-                // Includes
-                //"-Icpp-sdk",
-
-                // Defines
-                "-DUNICODE",
-                "-D_UNICODE",
+                "-DALT_SERVER",
                 "-DALT_SERVER_API",
 
-                // Clang stuff
+                "-DUNICODE",
+                "-D_UNICODE",
+                
                 "-fms-compatibility",
                 "-fms-extensions",
-
+                "-fdelayed-template-parsing",
+                
                 "-Wno-deprecated-declarations",
                 "-Wno-switch-enum",
                 "-Wno-unused-command-line-argument",
@@ -317,15 +313,15 @@
                 "-Wno-delete-incomplete",
                 "-Wno-c++11-narrowing",
                 "-Wno-comment",
-
+                
                 "-xc++",
                 "-ferror-limit=0",
                 "-Wno-pragma-once-outside-header",
                 "-std=c++17",
                 "-Wno-switch-enum",
                 "-Wno-switch",
-
-                "-fparse-all-comments",
+                
+                "-fparse-all-comments"
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/capi/server",
