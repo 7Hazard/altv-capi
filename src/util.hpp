@@ -83,6 +83,11 @@ static std::string ToCType(const std::string& str, const std::string& suffix = "
 {
     std::string result = str;
 
+    // differences between windows and unix
+// #ifndef _WIN32
+//     result = std::regex_replace(result, reg::stdcoloncolon, "");
+// #endif
+
     result = std::regex_replace(result, reg::coloncolon_, "_");
     result = std::regex_replace(result, reg::classstructenum, "");
     result = std::regex_replace(result, reg::spaceampersand, "*");
@@ -381,6 +386,15 @@ struct Typedata
         {
             logd("// fundamental");
             kind = FUNDAMENTAL;
+#ifndef _WIN32
+            {
+                auto count = reg::count_matches(cpptypestr, reg::long_);
+                if(count <= 1 && count > 0)
+                {
+                    cpptypestr = std::regex_replace(cpptypestr, reg::long_, "long long");
+                }
+            }
+#endif
             ctype = cpptypestr;
         }
         else if(type->isEnumeralType())

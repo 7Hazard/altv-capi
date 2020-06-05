@@ -330,12 +330,16 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 }
                 else if(methodname == "operator[]")
                 {
-                    auto info = ToCIdentifier(
-                        method->getParamDecl(0)->getType()
-                            ->getLocallyUnqualifiedSingleStepDesugaredType()
-                            .getAsString()
+                    // auto info = ToCIdentifier(
+                    //     method->getParamDecl(0)->getType()
+                    //         ->getLocallyUnqualifiedSingleStepDesugaredType()
+                    //         .getAsString()
+                    // );
+                    auto type = Typedata(
+                        method->getParamDecl(0)->getType()->getLocallyUnqualifiedSingleStepDesugaredType(),
+                        record->getASTContext()
                     );
-                    cfuncname = cstructname+"_Access_"+info;
+                    cfuncname = cstructname+"_Access_"+type.ctype;
                 }
                 else {    
                     continue;

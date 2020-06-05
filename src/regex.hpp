@@ -25,5 +25,13 @@ namespace reg
     static std::regex coloncolon_("::_|::");
     static std::regex coloncolon("::");
     static std::regex alt_("alt_.*\\w");
+    static std::regex stdcoloncolon("std::");
+    static std::regex long_("long");
 
+    inline size_t count_matches(std::string text, std::regex expression)
+    {
+        return std::distance(
+            std::sregex_iterator(text.begin(), text.end(), expression),
+            std::sregex_iterator());
+    }
 }
