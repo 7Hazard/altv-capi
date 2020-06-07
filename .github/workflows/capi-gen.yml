@@ -225,11 +225,13 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-server-linux
+        path: altv-capi-server-linux
     
     - name: Download altv-capi-server-static-linux artifact
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-server-static-linux
+        path: altv-capi-server-static-linux
     
     # win32 dl
     - name: Download altv-capi-gen-win32 artifact
@@ -241,23 +243,26 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-server-win32
+        path: altv-capi-server-win32
     
     - name: Download altv-capi-server-static-win32 artifact
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-server-static-win32
+        path: altv-capi-server-static-win32
     
     - name: Download altv-capi-client-win32 artifact
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-client-win32
+        path: altv-capi-client-win32
     
     - name: Download altv-capi-client-static-win32 artifact
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-client-static-win32
-    
-    - run: ls -1
+        path: altv-capi-client-static-win32
+
     # linux zips
     - run: zip -r altv-capi-server-linux.zip altv-capi-server-linux
     - run: zip -r altv-capi-server-static-linux.zip altv-capi-server-static-linux
