@@ -63,7 +63,7 @@ jobs:
       working-directory: llvm-project
   
     - name: Symlink generator
-      run: ln -s llvm-project/A-BUILD-NINJA-Release/bin/altv-capi-gen llvm-project/clang-tools-extra/altv-capi/tools/altv-capi-gen
+      run: ln -s "./llvm-project/A-BUILD-NINJA-Release/bin/altv-capi-gen" "./llvm-project/clang-tools-extra/altv-capi/tools/altv-capi-gen"
   
     - name: Build server CAPI
       run: |
@@ -135,7 +135,7 @@ jobs:
       working-directory: llvm-project
 
     - name: Symlink generator
-      run: mklink llvm-project/clang-tools-extra/altv-capi/tools/altv-capi-gen llvm-project/A-BUILD-NINJA-Release/bin/altv-capi-gen.exe
+      run: mklink "llvm-project\\clang-tools-extra\\altv-capi\\tools\\altv-capi-gen.exe" "llvm-project\\A-BUILD-NINJA-Release\\bin\\altv-capi-gen.exe"
 
     - name: Build server CAPI
       run: |
