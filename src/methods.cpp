@@ -339,7 +339,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                         method->getParamDecl(0)->getType()->getLocallyUnqualifiedSingleStepDesugaredType(),
                         record->getASTContext()
                     );
-                    cfuncname = cstructname+"_Access_"+type.ctype;
+                    cfuncname = cstructname+"_Access_"+ToCIdentifier(type.ctype);
                 }
                 else {    
                     continue;

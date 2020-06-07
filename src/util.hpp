@@ -44,6 +44,7 @@ static std::string ToCIdentifier(const std::string& str, const std::string& suff
     result = std::regex_replace(result, reg::classstructenum, "");
     result = std::regex_replace(result, reg::ampersand, "Ref");
     result = std::regex_replace(result, reg::spacestar, "Ptr");
+    result = std::regex_replace(result, reg::star, "Ptr");
     result = std::regex_replace(result, reg::commaspace, "_");
     result = std::regex_replace(result, reg::notstartwithalt_, "");
     // result = std::regex_replace(result, reg::templates, "_");

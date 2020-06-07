@@ -17,6 +17,7 @@ namespace reg
     static std::regex spaceampersand(" &");
     static std::regex ref("&&|&");
     static std::regex spacestar(" \\*");
+    static std::regex star("\\*");
     static std::regex alt_t("(alt_.*(?= ))|(alt_.*)");
     static std::regex __more("__+");
     static std::regex trailing_("_+$");
