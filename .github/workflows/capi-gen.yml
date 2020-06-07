@@ -148,7 +148,7 @@ jobs:
       working-directory: llvm-project
 
     - name: Symlink generator
-      run: cp "./llvm-project/A-BUILD-NINJA-Release/bin/altv-capi-gen" "./llvm-project/clang-tools-extra/altv-capi/tools/altv-capi-gen"
+      run: cp "./llvm-project/A-BUILD-NINJA-Release/bin/altv-capi-gen.exe" "./llvm-project/clang-tools-extra/altv-capi/tools/altv-capi-gen.exe"
       shell: bash
 
     - name: Get CPP-SDK
