@@ -62,13 +62,22 @@ jobs:
       run: "cmake --build A-BUILD-NINJA-Release --config Release --target altv-capi-gen"
       working-directory: llvm-project
   
+    - name: Build server CAPI
+      run: |
+        ./gen-server.sh
+        ./build.sh
+      working-directory: llvm-project/clang-tools-extra/altv-capi/capi
+    
     - name: Linux artifacts
       uses: actions/upload-artifact@v2
       with:
         # Artifact name
-        name: altv-capi-gen
+        name: altv-capi-linux
         # A file, directory or wildcard pattern that describes what to upload
-        path: llvm-project/A-BUILD-NINJA-Release/bin/altv-capi-gen
+        path: |
+          llvm-project/A-BUILD-NINJA-Release/bin/altv-capi-gen
+          llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-server
+          llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-server-static
   
   build-win32:
     runs-on: windows-latest
@@ -121,14 +130,26 @@ jobs:
     - name: Build
       run: "clang-tools-extra\\altv-capi\\tools\\NINJA-vs2019e-RelWithDebInfo-BUILD.bat"
       working-directory: llvm-project
+
+    - name: Build server CAPI
+      run: |
+        gen-server.bat
+        gen-client.bat
+        build.bat
+      working-directory: llvm-project/clang-tools-extra/altv-capi/capi
     
     - name: Win32 artifacts
       uses: actions/upload-artifact@v2
       with:
         # Artifact name
-        name: altv-capi-gen.exe
+        name: altv-capi-win32
         # A file, directory or wildcard pattern that describes what to upload
-        path: llvm-project/A-BUILD-NINJA-VS2019-RelWithDebInfo/bin/altv-capi-gen.exe
+        path: |
+          llvm-project/A-BUILD-NINJA-VS2019-RelWithDebInfo/bin/altv-capi-gen.exe
+          llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-server
+          llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-server-static
+          llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-client
+          llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-client-static
 
   release:
     runs-on: ubuntu-18.04
@@ -154,7 +175,7 @@ jobs:
     - name: Download linux artifact
       uses: actions/download-artifact@v2
       with:
-        name: altv-capi-gen
+        name: altv-capi-linux
     - name: Upload linux parser
       uses: actions/upload-release-asset@v1
       env:
@@ -169,7 +190,7 @@ jobs:
     - name: Download win32 artifact
       uses: actions/download-artifact@v2
       with:
-        name: altv-capi-gen.exe
+        name: altv-capi-win32
     - name: Upload windows parser
       uses: actions/upload-release-asset@v1
       env:
