@@ -62,6 +62,9 @@ jobs:
       run: "cmake --build A-BUILD-NINJA-Release --config Release --target altv-capi-gen"
       working-directory: llvm-project
   
+    - name: Symlink generator
+      run: ln -s llvm-project/A-BUILD-NINJA-Release/bin/altv-capi-gen llvm-project/clang-tools-extra/altv-capi/tools/altv-capi-gen
+  
     - name: Build server CAPI
       run: |
         ./gen-server.sh
@@ -130,6 +133,9 @@ jobs:
     - name: Build
       run: "clang-tools-extra\\altv-capi\\tools\\NINJA-vs2019e-RelWithDebInfo-BUILD.bat"
       working-directory: llvm-project
+
+    - name: Symlink generator
+      run: mklink llvm-project/clang-tools-extra/altv-capi/tools/altv-capi-gen llvm-project/A-BUILD-NINJA-Release/bin/altv-capi-gen.exe
 
     - name: Build server CAPI
       run: |
