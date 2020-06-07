@@ -76,17 +76,24 @@ jobs:
         ./build.sh
       working-directory: llvm-project/clang-tools-extra/altv-capi/capi
     
-    - name: Linux artifacts
+    - name: Linux altv-capi-gen artifacts
       uses: actions/upload-artifact@v2
       with:
-        # Artifact name
-        name: altv-capi-linux
-        # A file, directory or wildcard pattern that describes what to upload
-        path: |
-          llvm-project/A-BUILD-NINJA-Release/bin/altv-capi-gen
-          llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-server
-          llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-server-static
-  
+        name: altv-capi-gen-linux
+        path: llvm-project/A-BUILD-NINJA-Release/bin/altv-capi-gen
+    
+    - name: Linux altv-capi-server artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: altv-capi-server-linux
+        path: llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-server
+    
+    - name: Linux altv-capi-server-static artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: altv-capi-server-static-linux
+        path: llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-server-static
+
   build-win32:
     runs-on: windows-latest
     defaults:
@@ -141,7 +148,7 @@ jobs:
       working-directory: llvm-project
 
     - name: Symlink generator
-      run: mklink /h llvm-project\A-BUILD-NINJA-Release\bin\altv-capi-gen.exe llvm-project\clang-tools-extra\altv-capi\tools\altv-capi-gen.exe
+      run: mklink /h llvm-project\clang-tools-extra\altv-capi\tools\altv-capi-gen.exe llvm-project\A-BUILD-NINJA-Release\bin\altv-capi-gen.exe
 
     - name: Get CPP-SDK
       run: "tools/get-cppsdk.bat"
@@ -154,18 +161,35 @@ jobs:
         build.bat
       working-directory: llvm-project/clang-tools-extra/altv-capi/capi
     
-    - name: Win32 artifacts
+    - name: Win32 altv-capi-gen artifacts
       uses: actions/upload-artifact@v2
       with:
-        # Artifact name
-        name: altv-capi-win32
-        # A file, directory or wildcard pattern that describes what to upload
-        path: |
-          llvm-project/A-BUILD-NINJA-VS2019-RelWithDebInfo/bin/altv-capi-gen.exe
-          llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-server
-          llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-server-static
-          llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-client
-          llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-client-static
+        name: altv-capi-gen-win32
+        path: llvm-project/A-BUILD-NINJA-VS2019-RelWithDebInfo/bin/altv-capi-gen.exe
+    
+    - name: Win32 altv-capi-server artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: altv-capi-server-win32
+        path: llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-server
+    
+    - name: Win32 altv-capi-server-static artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: altv-capi-server-static-win32
+        path: llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-server-static
+    
+    - name: Win32 altv-capi-client artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: altv-capi-client-win32
+        path: llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-client
+    
+    - name: Win32 altv-capi-client-static artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: altv-capi-client-static-win32
+        path: llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-client-static
 
   release:
     runs-on: ubuntu-18.04
@@ -187,11 +211,21 @@ jobs:
         tag_name: ${{ env.GITHUB_REF_SLUG }}-${{ github.run_number }}
         release_name: ${{ env.GITHUB_REF_SLUG }}-${{ github.run_number }}
     
-    # linux
-    - name: Download linux artifact
+    # linux dl
+    - name: Download altv-capi-gen-linux artifact
       uses: actions/download-artifact@v2
       with:
-        name: altv-capi-linux
+        name: altv-capi-gen-linux
+    - name: Download altv-capi-server-linux artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-server-linux
+    - name: Download altv-capi-server-static-linux artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-server-static-linux
+    
+    # linux rel
     - name: Upload linux parser
       uses: actions/upload-release-asset@v1
       env:
@@ -202,11 +236,29 @@ jobs:
         asset_name: altv-capi-gen
         asset_content_type: application/zip
       
-    # win32
-    - name: Download win32 artifact
+    # win32 dl
+    - name: Download altv-capi-gen-win32 artifact
       uses: actions/download-artifact@v2
       with:
-        name: altv-capi-win32
+        name: altv-capi-gen-win32
+    - name: Download altv-capi-server-win32 artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-server-win32
+    - name: Download altv-capi-server-static-win32 artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-server-static-win32
+    - name: Download altv-capi-client-win32 artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-client-win32
+    - name: Download altv-capi-client-static-win32 artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-client-static-win32
+    
+    # win32 rel
     - name: Upload windows parser
       uses: actions/upload-release-asset@v1
       env:
@@ -216,6 +268,16 @@ jobs:
         asset_path: altv-capi-gen.exe
         asset_name: altv-capi-gen.exe
         asset_content_type: application/zip
+    - run: ls -1
+#     - name: Upload altv-capi-server-win32
+#       uses: actions/upload-release-asset@v1
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       with:
+#         upload_url: ${{ steps.create_release.outputs.upload_url }}
+#         asset_path: altv-capi-gen.exe
+#         asset_name: altv-capi-gen.exe
+#         asset_content_type: application/zip
 
     - name: Remove old artifacts
       uses: c-hive/gha-remove-artifacts@v1
