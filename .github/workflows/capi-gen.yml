@@ -220,17 +220,49 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-gen-linux
+    
     - name: Download altv-capi-server-linux artifact
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-server-linux
+    
     - name: Download altv-capi-server-static-linux artifact
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-server-static-linux
     
+    # linux zips
+    - run: zip -r altv-capi-server-linux.zip altv-capi-server-linux
+    - run: zip -r altv-capi-server-static-linux.zip altv-capi-server-static-linux
+    
+    # win32 dl
+    - name: Download altv-capi-gen-win32 artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-gen-win32
+    
+    - name: Download altv-capi-server-win32 artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-server-win32
+    
+    - name: Download altv-capi-server-static-win32 artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-server-static-win32
+    
+    - name: Download altv-capi-client-win32 artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-client-win32
+    
+    - name: Download altv-capi-client-static-win32 artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-client-static-win32
+    
     # linux rel
-    - name: Upload linux parser
+    - name: Upload altv-capi-gen-linux
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -239,29 +271,27 @@ jobs:
         asset_path: altv-capi-gen
         asset_name: altv-capi-gen
         asset_content_type: application/zip
-      
-    # win32 dl
-    - name: Download altv-capi-gen-win32 artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: altv-capi-gen-win32
-    - name: Download altv-capi-server-win32 artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: altv-capi-server-win32
-    - name: Download altv-capi-server-static-win32 artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: altv-capi-server-static-win32
-    - name: Download altv-capi-client-win32 artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: altv-capi-client-win32
-    - name: Download altv-capi-client-static-win32 artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: altv-capi-client-static-win32
     
+    - name: Upload altv-capi-server-linux
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: altv-capi-server-linux.zip
+        asset_name: altv-capi-server-linux
+        asset_content_type: application/zip
+    
+    - name: Upload altv-capi-server-static-linux
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: altv-capi-server-static-linux.zip
+        asset_name: altv-capi-server-static-linux
+        asset_content_type: application/zip
+      
     # win32 rel
     - name: Upload windows parser
       uses: actions/upload-release-asset@v1
@@ -272,18 +302,43 @@ jobs:
         asset_path: altv-capi-gen.exe
         asset_name: altv-capi-gen.exe
         asset_content_type: application/zip
-    - run: ls -1
-#     - name: Upload altv-capi-server-win32
-#       uses: actions/upload-release-asset@v1
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         upload_url: ${{ steps.create_release.outputs.upload_url }}
-#         asset_path: altv-capi-gen.exe
-#         asset_name: altv-capi-gen.exe
-#         asset_content_type: application/zip
-
-    - name: Remove old artifacts
-      uses: c-hive/gha-remove-artifacts@v1
+    
+    - name: Upload altv-capi-server-win32
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        age: '1 minute'
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: altv-capi-server-win32.zip
+        asset_name: altv-capi-server-win32
+        asset_content_type: application/zip
+
+    - name: Upload altv-capi-server-static-win32
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: altv-capi-server-static-win32.zip
+        asset_name: altv-capi-server-static-win32
+        asset_content_type: application/zip
+
+    - name: Upload altv-capi-client-win32
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: altv-capi-client-win32.zip
+        asset_name: altv-capi-client-win32
+        asset_content_type: application/zip
+
+    - name: Upload altv-capi-client-static-win32
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: altv-capi-client-static-win32.zip
+        asset_name: altv-capi-client-static-win32
+        asset_content_type: application/zip
