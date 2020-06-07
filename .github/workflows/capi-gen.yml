@@ -155,8 +155,14 @@ jobs:
       run: "tools/get-cppsdk.bat"
       working-directory: llvm-project/clang-tools-extra/altv-capi
 
-    - name: Build server CAPI
-      run: gen-server.bat & gen-client.bat && build.bat
+    - name: Gen server CAPI
+      run: gen-server.bat
+      working-directory: llvm-project/clang-tools-extra/altv-capi/capi
+    - name: Gen client CAPI
+      run: gen-client.bat
+      working-directory: llvm-project/clang-tools-extra/altv-capi/capi
+    - name: Build CAPI
+      run: build.bat
       working-directory: llvm-project/clang-tools-extra/altv-capi/capi
     
     - name: Win32 altv-capi-gen artifacts
