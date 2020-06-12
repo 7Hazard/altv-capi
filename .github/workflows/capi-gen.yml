@@ -354,3 +354,16 @@ jobs:
         asset_path: altv-capi-client-static-win32.zip
         asset_name: altv-capi-client-static-win32
         asset_content_type: application/zip
+
+    - name: Delete artifacts
+      uses: geekyeggo/delete-artifact@v1
+      with:
+        name: |
+          altv-capi-gen-linux
+          altv-capi-server-linux
+          altv-capi-server-static-linux
+          altv-capi-gen-win32
+          altv-capi-server-win32
+          altv-capi-server-static-win32
+          altv-capi-client-win32
+          altv-capi-client-static-win32
