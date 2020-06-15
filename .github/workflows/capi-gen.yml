@@ -255,11 +255,13 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-client.json
+        path: client
 
     - name: Download altv-capi-server.json artifact
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-server.json
+        path: server
 
     - name: Download altv-capi-server-win32 artifact
       uses: actions/download-artifact@v2
@@ -383,7 +385,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: altv-capi-client.json
+        asset_path: client/altv-capi.json
         asset_name: altv-capi-client.json
         asset_content_type: application/zip
 
@@ -393,7 +395,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: altv-capi-server.json
+        asset_path: server/altv-capi.json
         asset_name: altv-capi-server.json
         asset_content_type: application/zip
 
