@@ -171,6 +171,18 @@ jobs:
         name: altv-capi-gen-win32
         path: llvm-project/A-BUILD-NINJA-VS2019-RelWithDebInfo/bin/altv-capi-gen.exe
     
+    - name: Win32 altv-capi-client.json artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: altv-capi-client.json
+        path: llvm-project/clang-tools-extra/altv-capi/capi/client/altv-capi.json
+    
+    - name: Win32 altv-capi-server.json artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: altv-capi-server.json
+        path: llvm-project/clang-tools-extra/altv-capi/capi/server/altv-capi.json
+    
     - name: Win32 altv-capi-server artifacts
       uses: actions/upload-artifact@v2
       with:
@@ -238,7 +250,19 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-gen-win32
-    
+
+    - name: Download altv-capi-client.json artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-client.json
+        path: altv-capi-client.json
+
+    - name: Download altv-capi-server.json artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-server.json
+        path: altv-capi-server.json
+
     - name: Download altv-capi-server-win32 artifact
       uses: actions/download-artifact@v2
       with:
@@ -355,6 +379,26 @@ jobs:
         asset_name: altv-capi-client-static-win32.zip
         asset_content_type: application/zip
 
+    - name: Upload client json
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: altv-capi-client.json
+        asset_name: altv-capi-client.json
+        asset_content_type: application/zip
+
+    - name: Upload server json
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: altv-capi-server.json
+        asset_name: altv-capi-server.json
+        asset_content_type: application/zip
+
     - name: Delete artifacts
       uses: geekyeggo/delete-artifact@v1
       with:
@@ -363,6 +407,8 @@ jobs:
           altv-capi-server-linux
           altv-capi-server-static-linux
           altv-capi-gen-win32
+          altv-capi-client.json
+          altv-capi-server.json
           altv-capi-server-win32
           altv-capi-server-static-win32
           altv-capi-client-win32
