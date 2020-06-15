@@ -53,6 +53,10 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/lib
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/bin
     )
+    add_custom_command(TARGET altv-capi-client POST_BUILD # POST BUILD COMMANDS
+        # copy json to output
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/server/altv-capi.json ${PROJECT_BINARY_DIR}/altv-capi-client/altv-capi.json
+    )
 
     # Client static
     add_library(altv-capi-client-static STATIC
@@ -69,6 +73,10 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/lib
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/bin
         POSITION_INDEPENDENT_CODE ON
+    )
+    add_custom_command(TARGET altv-capi-client-static POST_BUILD # POST BUILD COMMANDS
+        # copy json to output
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/server/altv-capi.json ${PROJECT_BINARY_DIR}/altv-capi-client-static/altv-capi.json
     )
 endif()
 
@@ -105,6 +113,10 @@ set_target_properties(altv-capi-server PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server/lib
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server/bin
 )
+add_custom_command(TARGET altv-capi-server POST_BUILD # POST BUILD COMMANDS
+    # copy json to output
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/server/altv-capi.json ${PROJECT_BINARY_DIR}/altv-capi-server/altv-capi.json
+)
 
 # Server static
 add_library(altv-capi-server-static STATIC
@@ -121,4 +133,8 @@ set_target_properties(altv-capi-server-static PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server-static/lib
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server-static/bin
     POSITION_INDEPENDENT_CODE ON
+)
+add_custom_command(TARGET altv-capi-server POST_BUILD # POST BUILD COMMANDS
+    # copy json to output
+    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/server/altv-capi.json ${PROJECT_BINARY_DIR}/altv-capi-server-static/altv-capi.json
 )
