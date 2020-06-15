@@ -255,13 +255,11 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-client.json
-        path: altv-capi-client.json
 
     - name: Download altv-capi-server.json artifact
       uses: actions/download-artifact@v2
       with:
         name: altv-capi-server.json
-        path: altv-capi-server.json
 
     - name: Download altv-capi-server-win32 artifact
       uses: actions/download-artifact@v2
@@ -400,6 +398,7 @@ jobs:
         asset_content_type: application/zip
 
     - name: Delete artifacts
+      if: ${{ always() }}
       uses: geekyeggo/delete-artifact@v1
       with:
         name: |
