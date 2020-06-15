@@ -54,7 +54,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/bin
     )
     add_custom_command(TARGET altv-capi-client POST_BUILD # POST BUILD COMMANDS
-        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/client/altv-capi.json  ${PROJECT_BINARY_DIR}/altv-capi-client/altv-capi.json
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/client/altv-capi.h     ${PROJECT_BINARY_DIR}/altv-capi-client/include/client/altv-capi.h
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-client.h     ${PROJECT_BINARY_DIR}/altv-capi-client/include/altv-capi-client.h
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-predefines.h ${PROJECT_BINARY_DIR}/altv-capi-client/include/altv-capi-predefines.h
@@ -78,7 +77,6 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         POSITION_INDEPENDENT_CODE ON
     )
     add_custom_command(TARGET altv-capi-client-static POST_BUILD # POST BUILD COMMANDS
-        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/client/altv-capi.json  ${PROJECT_BINARY_DIR}/altv-capi-client-static/altv-capi.json
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/client/altv-capi.h     ${PROJECT_BINARY_DIR}/altv-capi-client-static/include/client/altv-capi.h
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-client.h     ${PROJECT_BINARY_DIR}/altv-capi-client-static/include/altv-capi-client.h
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-predefines.h ${PROJECT_BINARY_DIR}/altv-capi-client-static/include/altv-capi-predefines.h
@@ -120,7 +118,6 @@ set_target_properties(altv-capi-server PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server/bin
 )
 add_custom_command(TARGET altv-capi-server POST_BUILD # POST BUILD COMMANDS
-    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/server/altv-capi.json  ${PROJECT_BINARY_DIR}/altv-capi-server/altv-capi.json
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/server/altv-capi.h     ${PROJECT_BINARY_DIR}/altv-capi-server/include/server/altv-capi.h
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-server.h     ${PROJECT_BINARY_DIR}/altv-capi-server/include/altv-capi-server.h
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-predefines.h ${PROJECT_BINARY_DIR}/altv-capi-server/include/altv-capi-predefines.h
@@ -144,7 +141,6 @@ set_target_properties(altv-capi-server-static PROPERTIES
     POSITION_INDEPENDENT_CODE ON
 )
 add_custom_command(TARGET altv-capi-server POST_BUILD # POST BUILD COMMANDS
-    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/server/altv-capi.json  ${PROJECT_BINARY_DIR}/altv-capi-server-static/altv-capi.json
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/server/altv-capi.h     ${PROJECT_BINARY_DIR}/altv-capi-server-static/include/server/altv-capi.h
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-server.h     ${PROJECT_BINARY_DIR}/altv-capi-server-static/include/altv-capi-server.h
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-predefines.h ${PROJECT_BINARY_DIR}/altv-capi-server-static/include/altv-capi-predefines.h
