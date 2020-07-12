@@ -18,7 +18,6 @@ cd server
  ^
 -fms-compatibility ^
 -fms-extensions ^
--fdelayed-template-parsing ^
  ^
 -Wno-deprecated-declarations ^
 -Wno-switch-enum ^

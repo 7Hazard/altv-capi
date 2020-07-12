@@ -70,61 +70,57 @@ std::ofstream capisource(SourceFileName);
 // 
 std::unordered_set<std::string> capisymbols;
 
-/**
- * Fix some errors in the compiler invocation before sending it to clang.
- *
- * This is a hack! Some header search path by default is incorrect. It causes
- * libclang not able to find stddef.h. This method is only tested on Arch Linux.
- */
-// void fix_invocation(CompilerInvocation& invoc) {
-//     for (auto& entry : invoc.getHeaderSearchOpts().UserEntries) {
-//         if (entry.IsInternal) {
-//             if (!boost::filesystem::is_directory(entry.Path)) {
-//                 entry.Path = "/usr/bin/" + entry.Path;
-//             }
-//         }
-//     }
-// }
+CompilerInstance* comp;
 
-/**
- * Get the AST unit from the files provided in the command line.
- */
-std::unique_ptr<ASTUnit> get_ast_unit(int argc, const char **argv) {
-    DiagnosticOptions diag_opts;
-    diag_opts.ShowColors = true;
+void Handler::ExecuteAll(int argc, const char **argv)
+{
+    std::cout << "Executing handlers..." << std::endl;
+    std::cout << "Amount of handlers: " << Handlers().size() << std::endl;
 
-    auto diags = CompilerInstance::createDiagnostics(&diag_opts);
+    MatchFinder finder;
 
-    std::vector<const char*> command_args_vector{
-        "-std=c++17",
-        "-x", "c++"
-    };
-    std::copy_n(argv + 1, argc - 1, std::back_inserter(command_args_vector));
+    for(auto handler : Handlers())
+    {
+        if(handler->stmtmatcher)
+            finder.addMatcher(*handler->stmtmatcher, handler);
+        else if(handler->declmatcher)
+            finder.addMatcher(*handler->declmatcher, handler);
+    }
+
+    auto actionfac = newFrontendActionFactory(&finder);
+    
+    DiagnosticOptions* diag_opts = new DiagnosticOptions();
+    diag_opts->ShowColors = true;
+
+    auto diags = CompilerInstance::createDiagnostics(diag_opts);
+
+    std::vector<const char*> command_args_vector;
+    std::copy_n(argv, argc, std::back_inserter(command_args_vector));
 
     auto command_args = llvm::makeArrayRef(command_args_vector);
     auto invoc = clang::createInvocationFromCommandLine(command_args, diags);
 
     if (invoc == nullptr) {
-        return nullptr;
+        return;
     }
-
-    //fix_invocation(*invoc);
     
-    //PCHContainerOperations pchops;
     auto filemgr = new FileManager(invoc->getFileSystemOpts());
-    auto gg = std::shared_ptr<PCHContainerOperations>(new PCHContainerOperations());
-    auto gg2 = std::shared_ptr<CompilerInvocation>(invoc.release());
-    auto raw_unit = ASTUnit::LoadFromCompilerInvocation(
-        gg2,
-        gg,
-        diags,
-        filemgr
-    );
-    return raw_unit;
-}
+    auto compilerInvocation = std::shared_ptr<CompilerInvocation>(invoc.release());
+    auto pch = std::shared_ptr<PCHContainerOperations>(new PCHContainerOperations());
 
-std::unique_ptr<ASTUnit> unit;
-Sema* semma;
+    CompilerInstance compiler(std::move(pch));
+    compiler.setInvocation(std::move(compilerInvocation));
+    compiler.setFileManager(filemgr);
+    compiler.setDiagnostics(diags.get());
+
+    auto action = actionfac->create();
+    comp = &compiler;
+    if(!compiler.ExecuteAction(*action))
+    {
+        std::cout << "ACTION NOT SUCCESS" << std::endl;
+        return;
+    }
+}
 
 cl::OptionCategory category("capi generator options");
 
@@ -148,9 +144,25 @@ int main(int argc, const char **argv)
 
     CommonOptionsParser optionsParser(argc, argv, category, 0);
 
-    // Get Sema
-    // unit = get_ast_unit(argc, argv);
-    // semma = &unit->getSema();
+    std::set<std::string> compilerOptions;
+    for (const auto& file : optionsParser.getSourcePathList()) {
+        auto Commands = optionsParser.getCompilations().getCompileCommands(file);
+        for (auto opt : Commands[0].CommandLine) {
+            compilerOptions.emplace(opt);
+        }
+    }
+    std::vector<const char*> compilerOptionsCStr;
+    for(auto opt : compilerOptions)
+    {
+        auto str = new char[opt.length()];
+        strcpy(str, opt.c_str());
+        compilerOptionsCStr.push_back(str);
+    }
+    {
+        // auto g = *(compilerOptionsCStr.end() - 1);
+        // delete g;
+        compilerOptionsCStr.erase(compilerOptionsCStr.end() - 1);
+    }
 
     std::cout << "Generating CAPI..." << std::endl;
 
@@ -159,9 +171,10 @@ int main(int argc, const char **argv)
     capisource << sourcestart;
 
     // Run handlers
-    ClangTool tool(optionsParser.getCompilations(),
-                    optionsParser.getSourcePathList());
-    Handler::ExecuteAll(tool);
+    // ClangTool tool(optionsParser.getCompilations(),
+    //                 optionsParser.getSourcePathList());
+    // Handler::ExecuteAll(tool);
+    Handler::ExecuteAll(compilerOptionsCStr.size(), compilerOptionsCStr.data());
     
     // Header/Source end
     capiheader(cheaderend);

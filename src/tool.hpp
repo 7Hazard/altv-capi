@@ -16,13 +16,14 @@
 #include "nlohmann/json.hpp"
 using nlohmann::json;
 
-#include "clang/ASTMatchers/ASTMatchFinder.h"
-#include "clang/ASTMatchers/ASTMatchers.h"
-#include "clang/Frontend/FrontendActions.h"
-#include "clang/Tooling/CommonOptionsParser.h"
-#include "clang/Tooling/Tooling.h"
-#include "llvm/Support/CommandLine.h"
-#include "clang/Sema/Template.h"
+#include <clang/ASTMatchers/ASTMatchFinder.h>
+#include <clang/ASTMatchers/ASTMatchers.h>
+#include <clang/Frontend/FrontendActions.h>
+#include <clang/Tooling/CommonOptionsParser.h>
+#include <clang/Tooling/Tooling.h>
+#include <llvm/Support/CommandLine.h>
+#include <clang/Sema/Template.h>
+#include <clang/Frontend/CompilerInstance.h>
 
 using namespace clang;
 using namespace clang::ast_matchers;
@@ -36,7 +37,6 @@ extern bool isDebugEnabled();
 
 extern PrintingPolicy pp;
 extern std::error_code ec;
-extern std::unique_ptr<ASTUnit> unit;
 extern Sema* semma;
 
 extern raw_fd_ostream ast;
@@ -80,8 +80,9 @@ public:
 
         auto action = newFrontendActionFactory(&finder);
         tool.run(action.get());
-        
     }
+
+    static void ExecuteAll(int argc, const char **argv);
 
     Handler(StatementMatcher& matcher, HandlerFn fn)
         : stmtmatcher(&matcher), fn(fn)
