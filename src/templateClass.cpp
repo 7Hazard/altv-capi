@@ -22,7 +22,7 @@ static Handler templateClassHandler(templateClassMatcher, [](const MatchFinder::
     auto recordnameorig = qualType.getAsString();
     std::string cstructname = ToCIdentifier(recordnameorig);
 
-    capiheader("// TEMPLATE CLASS: " << recordnameorig << " | CAPI: " << cstructname << std::endl);
+    logd("// TEMPLATE CLASS: " << recordnameorig << " | CAPI: " << cstructname << std::endl);
 
     if(temprecord->getDeclKind() == Decl::Kind::ClassTemplate)
     {

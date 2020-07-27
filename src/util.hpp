@@ -356,7 +356,7 @@ struct Typedata
             for(auto paramtype : fn->param_types())
             {
                 auto paramtypedata = Typedata(paramtype, context);
-                if(paramtypedata.ok)
+                if(!paramtypedata.ok)
                     badparams = true;
 
                 if(!cfnparams.empty())
