@@ -9,6 +9,7 @@ using nullptr_t = std::nullptr_t;
 #define CAPI_EXTERN extern "C"
 #else
 #include <stdbool.h>
+typedef void* nullptr_t;
 #define CAPI_EXTERN
 #endif
 
