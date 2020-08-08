@@ -403,7 +403,7 @@ struct Typedata
             logd("// enumaral type");
             kind = ENUMERAL;
             // forward declared enums not allowed
-            // forwardDecl = "enum ";
+            forwardDecl = "enum ";
             ctype = ToCType(cpptypestr);
         }
         else if(type->isArrayType())
