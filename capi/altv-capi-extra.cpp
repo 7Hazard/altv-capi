@@ -31,8 +31,8 @@ public:
         _Bool(*StopFn)(alt_IResource*);
         _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*);
         void(*OnTickFn)(alt_IResource*);
-        OnCreateBaseObjectFnType OnCreateBaseObjectFn;
-        OnRemoveBaseObjectFnType OnRemoveBaseObjectFn;
+        void(*OnCreateBaseObjectFn)(alt_IResource*, alt_RefBase_RefStore_IBaseObject*);
+        void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_RefBase_RefStore_IBaseObject*);
 
         // Data
         alt_IResource* resource;
@@ -47,8 +47,8 @@ public:
             _Bool(*StopFn)(alt_IResource*),
             _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*),
             void(*OnTickFn)(alt_IResource*),
-            OnCreateBaseObjectFnType OnCreateBaseObjectFn,
-            OnRemoveBaseObjectFnType OnRemoveBaseObjectFn
+            void(*OnCreateBaseObjectFn)(alt_IResource*, alt_RefBase_RefStore_IBaseObject*),
+            void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_RefBase_RefStore_IBaseObject*)
         ) : alt::IResource::Impl(),
             resource(resource),
 #ifdef ALT_SERVER_API
@@ -152,8 +152,8 @@ CAPI alt_IResource_Impl* alt_CAPIResource_Impl_Create(
     _Bool(*StopFn)(alt_IResource*),
     _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*),
     void(*OnTickFn)(alt_IResource*),
-    OnCreateBaseObjectFnType OnCreateBaseObjectFn,
-    OnRemoveBaseObjectFnType OnRemoveBaseObjectFn
+    void(*OnCreateBaseObjectFn)(alt_IResource*, alt_RefBase_RefStore_IBaseObject*),
+    void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_RefBase_RefStore_IBaseObject*)
 )
 {
 #ifdef ALT_SERVER_API

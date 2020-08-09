@@ -13,9 +13,6 @@ CAPI unsigned int alt_GetSDKVersion();
 #endif
 #define CAPI_SKIP_VERSION_CHECK CAPI_EXPORT void SkipSDKVersionCheck() { }
 
-typedef void(*OnCreateBaseObjectFnType)(alt_IResource*, alt_RefBase_RefStore_IBaseObject*);
-typedef void(*OnRemoveBaseObjectFnType)(alt_IResource*, alt_RefBase_RefStore_IBaseObject*);
-
 CAPI alt_IScriptRuntime* alt_CAPIScriptRuntime_Create(
     alt_IResource_Impl*(*CreateImplFn)(alt_IScriptRuntime*, alt_IResource*),
     void(*DestroyImplFn)(alt_IScriptRuntime*, alt_IResource_Impl*),
@@ -31,8 +28,8 @@ CAPI alt_IResource_Impl* alt_CAPIResource_Impl_Create(
     _Bool(*StopFn)(alt_IResource*),
     _Bool(*OnEventFn)(alt_IResource*, alt_CEvent*),
     void(*OnTickFn)(alt_IResource*),
-    OnCreateBaseObjectFnType OnCreateBaseObjectFn,
-    OnRemoveBaseObjectFnType OnRemoveBaseObjectFn
+    void(*OnCreateBaseObjectFn)(alt_IResource*, alt_RefBase_RefStore_IBaseObject*),
+    void(*OnRemoveBaseObjectFn)(alt_IResource*, alt_RefBase_RefStore_IBaseObject*)
 );
 
 CAPI void alt_CAPIResource_Impl_SetExtra(alt_IResource_Impl* resource, void* extra);
