@@ -7,10 +7,6 @@
 #ifndef _CAPI_EXTRA_H_
 #define _CAPI_EXTRA_H_
 
-#ifdef __cplusplus
-using nullptr_t = std::nullptr_t;
-#endif
-
 #ifdef ALTV_SERVER // Not available in the altv-server executable
 CAPI unsigned int alt_GetSDKVersion();
 #define CAPI_EXPORT_SDK_VERSION CAPI_EXPORT unsigned int GetSDKVersion() { return alt_GetSDKVersion(); }
