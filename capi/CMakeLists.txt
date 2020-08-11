@@ -4,8 +4,6 @@ project(altv-capi)
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(CMAKE_CXX_STANDARD 17)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
-    set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MDd")
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MD")
 endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
@@ -53,6 +51,9 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/lib
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client/bin
     )
+    target_compile_options(altv-capi-client PRIVATE
+        $<IF:$<CONFIG:Debug>,/MTd,/MT>
+    )
     add_custom_command(TARGET altv-capi-client POST_BUILD # POST BUILD COMMANDS
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/client/altv-capi.h     ${PROJECT_BINARY_DIR}/altv-capi-client/include/client/altv-capi.h
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-client.h     ${PROJECT_BINARY_DIR}/altv-capi-client/include/altv-capi-client.h
@@ -75,6 +76,9 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/lib
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static/bin
         POSITION_INDEPENDENT_CODE ON
+    )
+    target_compile_options(altv-capi-client-static PRIVATE
+        $<IF:$<CONFIG:Debug>,/MTd,/MT>
     )
     add_custom_command(TARGET altv-capi-client-static POST_BUILD # POST BUILD COMMANDS
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/client/altv-capi.h     ${PROJECT_BINARY_DIR}/altv-capi-client-static/include/client/altv-capi.h
@@ -102,6 +106,7 @@ else()
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     )
 endif()
+
 add_library(altv-capi-server SHARED
     ${CMAKE_SOURCE_DIR}/altv-capi-server.cpp
 )
@@ -116,6 +121,12 @@ set_target_properties(altv-capi-server PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server/lib
     LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server/lib
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server/bin
+)
+target_compile_options(altv-capi-server PRIVATE
+    $<$<AND:$<PLATFORM_ID:Windows>,$<CONFIG:>>:/MD>
+    $<$<AND:$<PLATFORM_ID:Windows>,$<CONFIG:Debug>>:/MDd>
+    $<$<AND:$<PLATFORM_ID:Windows>,$<CONFIG:Release>>:/MD>
+    $<$<AND:$<PLATFORM_ID:Windows>,$<CONFIG:RelWithDebInfo>>:/MD>
 )
 add_custom_command(TARGET altv-capi-server POST_BUILD # POST BUILD COMMANDS
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/server/altv-capi.h     ${PROJECT_BINARY_DIR}/altv-capi-server/include/server/altv-capi.h
@@ -139,6 +150,12 @@ set_target_properties(altv-capi-server-static PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server-static/lib
     RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-server-static/bin
     POSITION_INDEPENDENT_CODE ON
+)
+target_compile_options(altv-capi-server-static PRIVATE
+    $<$<AND:$<PLATFORM_ID:Windows>,$<CONFIG:>>:/MD>
+    $<$<AND:$<PLATFORM_ID:Windows>,$<CONFIG:Debug>>:/MDd>
+    $<$<AND:$<PLATFORM_ID:Windows>,$<CONFIG:Release>>:/MD>
+    $<$<AND:$<PLATFORM_ID:Windows>,$<CONFIG:RelWithDebInfo>>:/MD>
 )
 add_custom_command(TARGET altv-capi-server POST_BUILD # POST BUILD COMMANDS
     COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/server/altv-capi.h     ${PROJECT_BINARY_DIR}/altv-capi-server-static/include/server/altv-capi.h
