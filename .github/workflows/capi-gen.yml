@@ -206,6 +206,12 @@ jobs:
       with:
         name: altv-capi-client-static-win32
         path: llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-client-static
+    
+    - name: Win32 altv-capi-client-static-mtd artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: altv-capi-client-static-mtd-win32
+        path: llvm-project/clang-tools-extra/altv-capi/capi/BUILD/altv-capi-client-static-mtd
 
   release:
     runs-on: ubuntu-18.04
@@ -286,6 +292,12 @@ jobs:
       with:
         name: altv-capi-client-static-win32
         path: altv-capi-client-static-win32
+    
+    - name: Download altv-capi-client-static-mtd-win32 artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: altv-capi-client-static-mtd-win32
+        path: altv-capi-client-static-mtd-win32
 
     # linux zips
     - run: zip -r altv-capi-server-linux.zip altv-capi-server-linux
@@ -296,6 +308,7 @@ jobs:
     - run: zip -r altv-capi-server-static-win32.zip altv-capi-server-static-win32
     - run: zip -r altv-capi-client-win32.zip altv-capi-client-win32
     - run: zip -r altv-capi-client-static-win32.zip altv-capi-client-static-win32
+    - run: zip -r altv-capi-client-static-mtd-win32.zip altv-capi-client-static-mtd-win32
     
     # linux rel
     - name: Upload altv-capi-gen-linux
@@ -379,6 +392,16 @@ jobs:
         asset_name: altv-capi-client-static-win32.zip
         asset_content_type: application/zip
 
+    - name: Upload altv-capi-client-static-mtd-win32
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: altv-capi-client-static-mtd-win32.zip
+        asset_name: altv-capi-client-static-mtd-win32.zip
+        asset_content_type: application/zip
+
     - name: Upload client json
       uses: actions/upload-release-asset@v1
       env:
@@ -414,3 +437,4 @@ jobs:
           altv-capi-server-static-win32
           altv-capi-client-win32
           altv-capi-client-static-win32
+          altv-capi-client-static-mtd-win32

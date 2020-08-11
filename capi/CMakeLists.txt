@@ -61,7 +61,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-extra.h      ${PROJECT_BINARY_DIR}/altv-capi-client/include/altv-capi-extra.h
     )
 
-    # Client static
+    # Client static /MT
     add_library(altv-capi-client-static STATIC
         ${CMAKE_SOURCE_DIR}/altv-capi-client.cpp
     )
@@ -78,13 +78,39 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
         POSITION_INDEPENDENT_CODE ON
     )
     target_compile_options(altv-capi-client-static PRIVATE
-        $<IF:$<CONFIG:Debug>,/MTd,/MT>
+        /MT
     )
     add_custom_command(TARGET altv-capi-client-static POST_BUILD # POST BUILD COMMANDS
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/client/altv-capi.h     ${PROJECT_BINARY_DIR}/altv-capi-client-static/include/client/altv-capi.h
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-client.h     ${PROJECT_BINARY_DIR}/altv-capi-client-static/include/altv-capi-client.h
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-predefines.h ${PROJECT_BINARY_DIR}/altv-capi-client-static/include/altv-capi-predefines.h
         COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-extra.h      ${PROJECT_BINARY_DIR}/altv-capi-client-static/include/altv-capi-extra.h
+    )
+
+    # Client static /MTd
+    add_library(altv-capi-client-static-mtd STATIC
+        ${CMAKE_SOURCE_DIR}/altv-capi-client.cpp
+    )
+    target_compile_definitions(altv-capi-client-static-mtd PRIVATE
+        ALT_CLIENT_API
+    )
+    target_include_directories(altv-capi-client-static-mtd PRIVATE
+
+    )
+    set_target_properties(altv-capi-client-static-mtd PROPERTIES
+        ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static-mtd/lib
+        LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static-mtd/lib
+        RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/altv-capi-client-static-mtd/bin
+        POSITION_INDEPENDENT_CODE ON
+    )
+    target_compile_options(altv-capi-client-static-mtd PRIVATE
+        /MTd
+    )
+    add_custom_command(TARGET altv-capi-client-static-mtd POST_BUILD # POST BUILD COMMANDS
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/client/altv-capi.h     ${PROJECT_BINARY_DIR}/altv-capi-client-static-mtd/include/client/altv-capi.h
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-client.h     ${PROJECT_BINARY_DIR}/altv-capi-client-static-mtd/include/altv-capi-client.h
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-predefines.h ${PROJECT_BINARY_DIR}/altv-capi-client-static-mtd/include/altv-capi-predefines.h
+        COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_SOURCE_DIR}/altv-capi-extra.h      ${PROJECT_BINARY_DIR}/altv-capi-client-static-mtd/include/altv-capi-extra.h
     )
 endif()
 
