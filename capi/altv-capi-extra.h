@@ -10,8 +10,8 @@
 #ifdef ALT_SERVER_API // Not available in the altv-server executable
 CAPI unsigned int alt_GetSDKVersion();
 #define CAPI_EXPORT_SDK_VERSION CAPI_EXPORT unsigned int GetSDKVersion() { return alt_GetSDKVersion(); }
-#endif
 #define CAPI_SKIP_VERSION_CHECK CAPI_EXPORT void SkipSDKVersionCheck() { }
+#endif
 
 CAPI alt_IScriptRuntime* alt_CAPIScriptRuntime_Create(
     alt_IResource_Impl*(*CreateImplFn)(alt_IScriptRuntime*, alt_IResource*),
