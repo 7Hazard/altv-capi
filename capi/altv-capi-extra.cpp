@@ -9,7 +9,7 @@
 #include <cassert>
 #define FnAssert(fn) assert(fn && #fn " has to be a valid callback function")
 
-#ifdef ALTV_SERVER // Don't export if altv-server executable
+#ifdef ALT_SERVER_API // Don't export if altv-server executable
 CAPI unsigned int alt_GetSDKVersion()
 {
     return alt::ICore::SDK_VERSION;
