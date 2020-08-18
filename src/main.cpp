@@ -19,14 +19,14 @@ std::string cheaderstart = R"(
  * Include header for alt:V C API
  */
 
-#ifndef _CAPI_H_
-#define _CAPI_H_
+#ifndef _ALTV_CAPI_H_
+#define _ALTV_CAPI_H_
 
 )";
 
 const char* cheaderend = R"(
 
-#endif // _CAPI_H_
+#endif // _ALTV_CAPI_H_
 )";
 
 std::string sourcestart = R"(
