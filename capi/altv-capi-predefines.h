@@ -3,8 +3,7 @@
 
 /// special types
 #ifdef __cplusplus
-#include <cstddef>
-using nullptr_t = std::nullptr_t;
+typedef decltype(nullptr) nullptr_t;
 #define _Bool bool
 #define CAPI_EXTERN extern "C"
 #else
