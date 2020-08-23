@@ -422,11 +422,15 @@ jobs:
         asset_name: altv-capi-server.json
         asset_content_type: application/zip
 
-    - name: Delete artifacts
-      if: ${{ always() }}
-      uses: geekyeggo/delete-artifact@v1
-      with:
-        name: |
+  delete-artifacts:
+    name: Delete artifacts
+    runs-on: ubuntu-18.04
+    needs: [release]
+    if: ${{ always() }}
+    steps:
+      - name: Delete artifacts
+        uses: geekyeggo/delete-artifact@v1
+        with: |
           altv-capi-gen-linux
           altv-capi-server-linux
           altv-capi-server-static-linux
@@ -438,3 +442,4 @@ jobs:
           altv-capi-client-win32
           altv-capi-client-static-win32
           altv-capi-client-static-mtd-win32
+          
