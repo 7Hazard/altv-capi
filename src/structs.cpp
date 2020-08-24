@@ -92,10 +92,16 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
     std::stringstream body;
 
     if(record->isPolymorphic()) { // if vtable
+        auto pointeetypedata = Typedata();
+        pointeetypedata.ok = true;
+        pointeetypedata.kind = Typedata::FUNDAMENTAL;
+        pointeetypedata.ctype = "void";
+
         auto fieldtypedata = Typedata();
         fieldtypedata.ok = true;
         fieldtypedata.kind = Typedata::POINTER;
         fieldtypedata.ctype = "void*";
+        fieldtypedata.pointee = &pointeetypedata;
 
         auto fieldname = "vtable";
 
