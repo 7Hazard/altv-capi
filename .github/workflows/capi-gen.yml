@@ -124,7 +124,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: llvm-project
-        key: llvm-project-win32
+        key: llvm-project-win32-2
     - name: Fetch LLVM Project
       if: steps.cache-llvm.outputs.cache-hit != 'true'
       run: "git clone --depth 1 -j8 https://github.com/llvm/llvm-project.git"
