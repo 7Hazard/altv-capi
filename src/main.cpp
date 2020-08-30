@@ -134,7 +134,11 @@ cl::OptionCategory category("capi generator options");
 bool isDebugEnabled()
 {
     // return debugEnabled.getValue();
+#ifdef NDEBUG
     return false;
+#else
+    return true;
+#endif
 }
 
 int main(int argc, const char **argv)

@@ -536,8 +536,8 @@ struct Typedata
                 return forwardDecl+ctype+" "+name+"["+std::to_string(array_size)+"]";
             }
             else {
-                logd("// ARRAY SIZE WAS 0, outputting as simple pointer");
-                return forwardDecl+ctype+"* "+name;
+                // logd("// ARRAY SIZE WAS 0, outputting as simple pointer");
+                return forwardDecl+ctype+" "+name;
             }
         }
 
