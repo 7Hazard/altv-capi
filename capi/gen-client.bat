@@ -53,3 +53,5 @@ cd client
 -Wno-switch ^
  ^
 -fparse-all-comments
+
+cd ..

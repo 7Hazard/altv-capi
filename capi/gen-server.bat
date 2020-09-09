@@ -52,3 +52,5 @@ cd server
 -Wno-switch ^
  ^
 -fparse-all-comments
+
+cd ..
