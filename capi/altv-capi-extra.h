@@ -7,9 +7,10 @@
 #ifndef _CAPI_EXTRA_H_
 #define _CAPI_EXTRA_H_
 
-#ifdef ALT_SERVER_API // Not available in the altv-server executable
 CAPI unsigned int alt_GetSDKVersion();
 #define CAPI_EXPORT_SDK_VERSION CAPI_EXPORT unsigned int GetSDKVersion() { return alt_GetSDKVersion(); }
+
+#ifdef ALT_SERVER_API // Not available in the altv-server executable
 #define CAPI_SKIP_VERSION_CHECK CAPI_EXPORT void SkipSDKVersionCheck() { }
 #endif
 
