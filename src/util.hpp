@@ -300,6 +300,7 @@ struct Typedata
 
     bool ok = true;
     std::string ctype;
+    std::string cpptypestr;
     std::string forwardDecl;
 
     // pointer
@@ -323,7 +324,7 @@ struct Typedata
 
         HandleType(type);
 
-        auto cpptypestr = type.getAsString();
+        cpptypestr = type.getAsString();
         logd("// cpptype " << cpptypestr);
 
         // if(type->isLValueReferenceType())
@@ -543,5 +544,13 @@ struct Typedata
 
         // just return normally
         return forwardDecl+ctype+" "+name;
+    }
+
+    std::string GetStructCTypeWithName(const std::string& name)
+    {
+        if(kind == STRUCT || kind == ENUMERAL)
+            return "typedef "+GetCTypeWithName(name);
+
+        return GetCTypeWithName(name);
     }
 };

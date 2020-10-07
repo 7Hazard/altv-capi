@@ -222,7 +222,7 @@
                 // Defines
                 "-DUNICODE",
                 "-D_UNICODE",
-                //"-DALT_CLIENT",
+                "-DALT_CLIENT",
                 "-DALT_CLIENT_API",
 
                 // Clang stuff

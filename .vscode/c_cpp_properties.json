@@ -81,6 +81,7 @@
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE",
+                "ALT_CLIENT",
                 "ALT_CLIENT_API",
                 "_WIN32"
             ],

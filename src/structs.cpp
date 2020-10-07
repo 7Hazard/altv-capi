@@ -158,7 +158,7 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 if(!fieldtypedata.ok) // if its still bad
                     return false;
             }
-            body << "    " << fieldtypedata.GetCTypeWithName(fieldname);
+            body << "    " << fieldtypedata.GetStructCTypeWithName(fieldname);
 
             bool isbitfield = field->isBitField();
             int bitwidth = 0;
