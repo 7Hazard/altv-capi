@@ -497,11 +497,10 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 if(paramname.empty())
                     paramname = ("_p")+std::to_string(param->getFunctionScopeIndex());
                 auto origparamtype = param->getType().getUnqualifiedType();
-                // auto origparamtypestr = std::regex_replace(origparamtype.getAsString(), reg::classstructenum, "");
                 auto paramtype = origparamtype.getCanonicalType()
                     .getUnqualifiedType();
                 auto typedata = Typedata(paramtype, record->getASTContext());
-                auto origparamtypestr = typedata.cpptypestr;
+                auto origparamtypestr = std::regex_replace(param->getType().getAsString(), reg::classstructenum, "");
                 
                 if(!typedata.ok)
                 {
