@@ -13,7 +13,7 @@ if(NOT ALTV_CAPI_CPP_SDK)
   git_clone(
     PROJECT_NAME    cpp-sdk
     GIT_URL         https://github.com/altmp/cpp-sdk
-    GIT_TAG         v40
+    GIT_BRANCH      master
     DIRECTORY       ${CMAKE_CURRENT_SOURCE_DIR}/../
   )
   set(ALTV_CAPI_CPP_SDK ${CMAKE_CURRENT_SOURCE_DIR}/../cpp-sdk)
