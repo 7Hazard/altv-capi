@@ -1,5 +1,25 @@
 cmake_minimum_required(VERSION 3.10)
 project(altv-capi)
+include(../cmake/GitUtils.cmake)
+include(FetchContent)
+
+set(ALTV_CAPI_GEN_EXE ${CMAKE_CURRENT_SOURCE_DIR}/../tools/altv-capi-gen.exe)
+if(NOT EXISTS ${ALTV_CAPI_GEN_EXE})
+    message("alt:V CAPI - Fetching generator")
+    file(DOWNLOAD https://github.com/7hazard/altv-capi/releases/latest/download/altv-capi-gen.exe ${ALTV_CAPI_GEN_EXE} SHOW_PROGRESS)
+endif()
+
+if(NOT ALTV_CAPI_CPP_SDK)
+  git_clone(
+    PROJECT_NAME    cpp-sdk
+    GIT_URL         https://github.com/altmp/cpp-sdk
+    GIT_TAG         v40
+    DIRECTORY       ${CMAKE_CURRENT_SOURCE_DIR}/../
+  )
+  set(ALTV_CAPI_CPP_SDK ${CMAKE_CURRENT_SOURCE_DIR}/../cpp-sdk)
+else()
+  message("alt:V CAPI - Skipping fetching cpp-sdk")
+endif()
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     set(CMAKE_CXX_STANDARD 17)
@@ -11,8 +31,8 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
 endif()
 
 file(GLOB_RECURSE CAPI_FILES_WATCH
-    "../cpp-sdk/**/*.h"
-    "../cpp-sdk/**/*.hpp"
+    "../${ALTV_CAPI_CPP_SDK}/**/*.h"
+    "../${ALTV_CAPI_CPP_SDK}/**/*.hpp"
     "../src/**/*.h"
     "../src/**/*.hpp"
     "../src/**/*.cpp"
@@ -31,7 +51,7 @@ add_definitions(
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     # Client (only Windows)
     add_custom_command(
-        OUTPUT ${CMAKE_SOURCE_DIR}/client/altv-capi.cpp
+        OUTPUT ${CMAKE_SOURCE_DIR}/altv-capi-client.cpp
         IMPLICIT_DEPENDS CXX ${CAPI_FILES_WATCH}
         COMMAND gen-client
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
@@ -119,14 +139,14 @@ endif()
 # Server
 if(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     add_custom_command(
-        OUTPUT ${CMAKE_SOURCE_DIR}/server/altv-capi.cpp
+        OUTPUT ${CMAKE_SOURCE_DIR}/altv-capi-server.cpp
         IMPLICIT_DEPENDS CXX ${CAPI_FILES_WATCH}
         COMMAND gen-server
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     )
 else()
     add_custom_command(
-        OUTPUT ${CMAKE_SOURCE_DIR}/server/altv-capi.cpp
+        OUTPUT ${CMAKE_SOURCE_DIR}/altv-capi-server.cpp
         IMPLICIT_DEPENDS CXX ${CAPI_FILES_WATCH}
         COMMAND ./gen-server.sh
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
