@@ -31,7 +31,7 @@
         {
             "label": "Generate Server Wrappings",
             "type": "shell",
-            "command": "./gen-server.sh",
+            "command": "./gen-server",
             "options": {
                 "cwd": "${workspaceFolder}/capi"
             },
