@@ -104,8 +104,9 @@ jobs:
 #     - uses: rlespinasse/github-slug-action@2.0.0
     
     - name: FIX FOR https://github.com/microsoft/STL/issues/1300
-      run: C:\msys64\usr\bin\wget.exe -q "https://github.com/microsoft/STL/files/5453503/GH-1300.diff.txt"
-          git apply --unsafe-paths -p6 --directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29333\include" "GH-1300.diff.txt"
+      run: |
+        C:\msys64\usr\bin\wget.exe -q "https://github.com/microsoft/STL/files/5453503/GH-1300.diff.txt"
+        git apply --unsafe-paths -p6 --directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.28.29333\include" "GH-1300.diff.txt"
     
     - name: Install ninja-build tool
       uses: seanmiddleditch/gha-setup-ninja@v3
