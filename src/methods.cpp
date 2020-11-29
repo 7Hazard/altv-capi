@@ -500,7 +500,9 @@ static Handler recordHandler(recordMatcher, [](const MatchFinder::MatchResult& r
                 auto paramtype = origparamtype.getCanonicalType()
                     .getUnqualifiedType();
                 auto typedata = Typedata(paramtype, record->getASTContext());
-                auto origparamtypestr = std::regex_replace(param->getType().getAsString(), reg::classstructenum, "");
+                // auto origparamtypestr = std::regex_replace(gg, reg::classstructenum, "");
+                // auto origparamtypestr = param->getType().getAsString();
+                auto origparamtypestr = typedata.cpptypestr;
                 
                 if(!typedata.ok)
                 {
