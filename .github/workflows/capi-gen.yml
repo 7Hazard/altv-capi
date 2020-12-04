@@ -2,6 +2,7 @@ name: Build CAPI
 
 on:
   push:
+  workflow_dispatch:
 
 jobs:
   build-linux:
